@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molina DSNP Stars Partnership | Pyx Health</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* =============================================
+           BRAND VARIABLES (Pyx Health)
+        ============================================= */
+        :root {
+            --green:        #49a601;
+            --light-green:  #87d001;
+            --cool-slate:   #2e4456;
+            --blue:         #0076bf;
+            --light-blue:   #0cabec;
+            --orange:       #d6661a;
+            --teal:         #29a4a2;
+            --purple:       #5542a7;
+            --gray-1:       #d2dce8;
+            --gray-2:       #eff1f3;
+            --gray-3:       #f6f6f6;
+            --white:        #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--gray-3);
+            color: var(--cool-slate);
+            font-size: 14px;
+        }
+
+        h1, h2, h3 { font-family: 'Roboto Slab', serif; }
+
+        /* =============================================
+           TAB NAV
+        ============================================= */
+        .tab-nav {
+            background: var(--cool-slate);
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+
+        .nav-logo {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 300;
+            font-size: 15px;
+            color: var(--white);
+            letter-spacing: 1px;
+            margin-right: auto;
+            padding: 16px 0;
+        }
+
+        .nav-logo span { color: var(--green); font-weight: 600; }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--gray-1);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 19px 20px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover { color: var(--white); }
+        .tab-btn.active { color: var(--light-green); border-bottom-color: var(--light-green); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* =============================================
+           LAYOUT HELPERS
+        ============================================= */
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section { padding: 48px 0; }
+
+        .white-bg  { background: var(--white); }
+        .alt-bg    { background: var(--gray-3); }
+        .slate-bg  { background: var(--cool-slate); }
+        .dark-bg   { background: #1a2a38; }
+
+        .divider { height: 1px; background: var(--gray-1); }
+
+        /* =============================================
+           SECTION HEADERS
+        ============================================= */
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .eyebrow-1 { background: rgba(73,166,1,0.12);  color: var(--green); }
+        .eyebrow-2 { background: rgba(0,118,191,0.12); color: var(--blue); }
+        .eyebrow-3 { background: rgba(41,164,162,0.12); color: var(--teal); }
+        .eyebrow-4 { background: rgba(85,66,167,0.12); color: var(--purple); }
+        .eyebrow-i { background: rgba(214,102,26,0.12); color: var(--orange); }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--cool-slate);
+            margin-bottom: 6px;
+        }
+
+        .section-sub {
+            font-size: 13px;
+            color: #6b808f;
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        .section-head { margin-bottom: 32px; }
+
+        /* =============================================
+           CLIENT HEADER
+        ============================================= */
+        .client-header {
+            background: linear-gradient(135deg, var(--cool-slate) 0%, #1e3347 100%);
+            padding: 56px 40px 48px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .client-header::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 400px; height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(73,166,1,0.08));
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .header-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--light-green);
+            margin-bottom: 14px;
+        }
+
+        .client-header h1 {
+            font-size: 40px;
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 10px;
+        }
+
+        .client-header h1 strong { font-weight: 700; color: var(--green); }
+
+        .header-period {
+            font-size: 14px;
+            color: var(--gray-1);
+            margin-bottom: 28px;
+        }
+
+        .market-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .mpill {
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .mpill.launching {
+            border-color: var(--green);
+            color: var(--light-green);
+            background: rgba(73,166,1,0.12);
+        }
+
+        /* =============================================
+           KPI CARDS
+        ============================================= */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 16px;
+        }
+
+        .kpi {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 22px 20px;
+            border-top: 4px solid var(--green);
+            box-shadow: 0 2px 10px rgba(46,68,86,0.07);
+        }
+
+        .kpi.blue   { border-top-color: var(--blue); }
+        .kpi.teal   { border-top-color: var(--teal); }
+        .kpi.orange { border-top-color: var(--orange); }
+        .kpi.purple { border-top-color: var(--purple); }
+        .kpi.slate  { border-top-color: var(--cool-slate); }
+
+        .kpi-lbl {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #8a9baa;
+            margin-bottom: 8px;
+        }
+
+        .kpi-val {
+            font-family: 'Roboto Slab', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--cool-slate);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .kpi-ctx { font-size: 11px; color: #8a9baa; }
+        .kpi-ctx.good { color: var(--green); font-weight: 700; }
+        .kpi-ctx.warn { color: var(--orange); font-weight: 700; }
+
+        /* =============================================
+           TIMELINE
+        ============================================= */
+        .timeline-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-1);
+            padding: 28px 40px;
+        }
+
+        .tl-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8a9baa;
+            margin-bottom: 20px;
+        }
+
+        .tl-track {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            position: relative;
+        }
+
+        .tl-track::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 3px;
+            background: var(--gray-2);
+            z-index: 0;
+        }
+
+        .tl-phase { text-align: center; position: relative; z-index: 1; }
+
+        .tl-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            background: var(--gray-2);
+            border: 3px solid var(--gray-1);
+            color: #8a9baa;
+            position: relative;
+        }
+
+        .tl-phase.done .tl-dot {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+
+        .tl-phase.here .tl-dot {
+            background: var(--cool-slate);
+            border-color: var(--cool-slate);
+            color: var(--white);
+            box-shadow: 0 0 0 5px rgba(46,68,86,0.15);
+        }
+
+        .tl-name {
+            font-family: 'Roboto Slab', serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #8a9baa;
+        }
+
+        .tl-phase.done .tl-name { color: var(--green); }
+        .tl-phase.here .tl-name { color: var(--cool-slate); }
+
+        .tl-desc {
+            font-size: 11px;
+            color: #a0b0be;
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        .tl-here-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--cool-slate);
+            background: var(--gray-2);
+            border-radius: 10px;
+            padding: 2px 8px;
+            margin-top: 6px;
+        }
+
+        /* LINE fill for done phases */
+        .tl-phase.done::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            right: -50%;
+            height: 3px;
+            background: var(--green);
+            z-index: -1;
+        }
+
+        .tl-phase:last-child::after { display: none; }
+
+        /* =============================================
+           METRIC CARDS
+        ============================================= */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(46,68,86,0.06);
+        }
+
+        .card.span2 { grid-column: span 2; }
+
+        .card-lbl {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #8a9baa;
+            margin-bottom: 10px;
+        }
+
+        .card-val {
+            font-family: 'Roboto Slab', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--cool-slate);
+            margin-bottom: 6px;
+            line-height: 1;
+        }
+
+        .card-val.pending { color: #c8d4de; }
+
+        .card-sub {
+            font-size: 12px;
+            color: #8a9baa;
+            line-height: 1.6;
+        }
+
+        /* =============================================
+           PROGRESS BARS
+        ============================================= */
+        .prog-row {
+            margin-bottom: 22px;
+        }
+
+        .prog-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+        }
+
+        .prog-name { font-size: 13px; font-weight: 600; }
+
+        .prog-nums { font-size: 12px; color: #8a9baa; }
+
+        .prog-track {
+            height: 8px;
+            background: var(--gray-2);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .prog-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+
+        .prog-fill.g { background: var(--green); }
+        .prog-fill.b { background: var(--blue); }
+        .prog-fill.o { background: var(--orange); }
+        .prog-fill.s { background: var(--gray-1); }
+
+        .prog-target {
+            position: absolute;
+            top: -5px;
+            width: 3px;
+            height: 18px;
+            background: var(--cool-slate);
+            border-radius: 2px;
+        }
+
+        .prog-status {
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .st-good { color: var(--green); }
+        .st-warn { color: var(--orange); }
+        .st-pend { color: #8a9baa; }
+
+        /* =============================================
+           MARKET TABLE
+        ============================================= */
+        .mkt-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .mkt-table th {
+            text-align: left;
+            padding: 10px 16px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #8a9baa;
+            border-bottom: 2px solid var(--gray-1);
+        }
+
+        .mkt-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--gray-2);
+        }
+
+        .mkt-table tr:last-child td { border-bottom: none; }
+        .mkt-table tr:hover td { background: var(--gray-3); }
+
+        .mkt-code {
+            display: inline-block;
+            background: var(--cool-slate);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 5px;
+            padding: 2px 8px;
+            margin-right: 6px;
+        }
+
+        .mkt-code.go { background: var(--green); }
+
+        .conv-wrap { display: flex; align-items: center; gap: 8px; }
+        .conv-track { flex: 1; height: 6px; background: var(--gray-2); border-radius: 3px; overflow: hidden; }
+        .conv-fill  { height: 100%; border-radius: 3px; }
+
+        /* =============================================
+           VALUE SECTION
+        ============================================= */
+        .value-section {
+            background: linear-gradient(160deg, var(--cool-slate), #1a2d3e);
+            color: var(--white);
+            padding: 56px 0;
+        }
+
+        .value-section .section-title { color: var(--white); }
+        .value-section .section-sub   { color: var(--gray-1); }
+
+        .val-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .val-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .val-icon { font-size: 26px; margin-bottom: 12px; }
+
+        .val-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--light-green);
+            margin-bottom: 8px;
+        }
+
+        .val-amount {
+            font-family: 'Roboto Slab', serif;
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .val-desc {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 14px;
+        }
+
+        .val-source {
+            font-size: 10px;
+            color: rgba(255,255,255,0.35);
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 12px;
+            line-height: 1.5;
+        }
+
+        .val-total {
+            background: var(--green);
+            border-radius: 14px;
+            padding: 28px 36px;
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .val-total-lbl { font-size: 14px; font-weight: 700; }
+        .val-total-ctx { font-size: 12px; opacity: 0.8; margin-top: 4px; }
+        .val-total-amt {
+            font-family: 'Roboto Slab', serif;
+            font-size: 42px;
+            font-weight: 700;
+        }
+
+        .val-note {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-top: 16px;
+            line-height: 1.7;
+        }
+
+        /* =============================================
+           SLA CARDS
+        ============================================= */
+        .sla-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+            gap: 16px;
+        }
+
+        .sla-card {
+            background: var(--white);
+            border: 2px solid var(--gray-1);
+            border-radius: 12px;
+            padding: 22px 18px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(46,68,86,0.05);
+        }
+
+        .sla-card.exceed { border-color: var(--green); }
+        .sla-card.behind { border-color: var(--orange); }
+
+        .sla-name {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #8a9baa;
+            margin-bottom: 10px;
+        }
+
+        .sla-actual {
+            font-family: 'Roboto Slab', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--cool-slate);
+            line-height: 1;
+        }
+
+        .sla-card.exceed .sla-actual { color: var(--green); }
+        .sla-card.pending .sla-actual { color: #c8d4de; font-size: 20px; padding-top: 6px; }
+
+        .sla-target { font-size: 12px; color: #8a9baa; margin-top: 6px; }
+        .sla-desc   { font-size: 11px; color: #a0b0be; margin-top: 6px; line-height: 1.4; }
+
+        .sla-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .badge-exceed  { background: rgba(73,166,1,0.1);   color: var(--green); }
+        .badge-pending { background: var(--gray-2);          color: #8a9baa; }
+        .badge-behind  { background: rgba(214,102,26,0.1);  color: var(--orange); }
+
+        /* =============================================
+           TALKING POINTS
+        ============================================= */
+        .tp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .tp-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(46,68,86,0.06);
+        }
+
+        .tp-head {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid;
+        }
+
+        .tp-head.win  { color: var(--green);  border-color: var(--green); }
+        .tp-head.wtch { color: var(--orange); border-color: var(--orange); }
+        .tp-head.next { color: var(--blue);   border-color: var(--blue); }
+        .tp-head.cmmt { color: var(--teal);   border-color: var(--teal); }
+
+        .tp-list { list-style: none; }
+
+        .tp-list li {
+            font-size: 13px;
+            color: var(--cool-slate);
+            padding: 7px 0;
+            border-bottom: 1px solid var(--gray-3);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .tp-list li:last-child { border-bottom: none; }
+        .tp-list li::before { content: '→'; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+        .tp-head.win  ~ .tp-list li::before { color: var(--green); }
+        .tp-head.wtch ~ .tp-list li::before { color: var(--orange); }
+        .tp-head.next ~ .tp-list li::before { color: var(--blue); }
+        .tp-head.cmmt ~ .tp-list li::before { color: var(--teal); }
+
+        /* =============================================
+           INTERNAL HEADER
+        ============================================= */
+        .internal-banner {
+            background: var(--orange);
+            color: var(--white);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .int-header {
+            background: #111b25;
+            padding: 40px 40px 36px;
+            color: var(--white);
+        }
+
+        .int-header h1 { font-size: 30px; font-weight: 300; }
+        .int-header h1 strong { color: var(--orange); font-weight: 700; }
+        .int-header p  { font-size: 13px; color: #8a9baa; margin-top: 8px; }
+
+        /* Revenue cards */
+        .rev-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .rev-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(46,68,86,0.06);
+        }
+
+        .rev-card-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #8a9baa; margin-bottom: 8px; }
+        .rev-card-val { font-family: 'Roboto Slab', serif; font-size: 30px; font-weight: 700; color: var(--cool-slate); margin-bottom: 6px; }
+        .rev-card-sub { font-size: 12px; color: #8a9baa; line-height: 1.5; }
+
+        .rev-progress-wrap { margin-top: 24px; background: var(--white); border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(46,68,86,0.06); }
+        .rev-track { height: 14px; background: var(--gray-2); border-radius: 7px; overflow: hidden; margin: 12px 0 8px; }
+        .rev-fill  { height: 100%; background: linear-gradient(90deg, var(--green), var(--light-green)); border-radius: 7px; transition: width 0.6s; }
+        .rev-track-labels { display: flex; justify-content: space-between; font-size: 12px; color: #8a9baa; }
+
+        /* Flag cards */
+        .flag {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px 24px;
+            border-left: 5px solid var(--orange);
+            box-shadow: 0 2px 8px rgba(46,68,86,0.06);
+            margin-bottom: 16px;
+        }
+
+        .flag.win    { border-left-color: var(--green); }
+        .flag.watch  { border-left-color: var(--blue); }
+
+        .flag-type {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .flag-type.risk  { background: rgba(214,102,26,0.1); color: var(--orange); }
+        .flag-type.win   { background: rgba(73,166,1,0.1);   color: var(--green); }
+        .flag-type.watch { background: rgba(0,118,191,0.1);  color: var(--blue); }
+
+        .flag-title { font-size: 14px; font-weight: 700; color: var(--cool-slate); margin-bottom: 5px; }
+        .flag-desc  { font-size: 13px; color: #6b808f; line-height: 1.6; }
+        .flag-action { font-size: 12px; font-weight: 600; color: var(--cool-slate); margin-top: 10px; }
+
+        /* Monthly trend */
+        .trend-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(46,68,86,0.06);
+        }
+
+        .trend-month { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+        .trend-amount { font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 700; color: var(--cool-slate); }
+        .trend-target { font-size: 11px; color: #8a9baa; margin-top: 4px; }
+
+        /* =============================================
+           NOTE BOX
+        ============================================= */
+        .note-box {
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        .note-box.teal   { background: rgba(41,164,162,0.07); border: 1px solid rgba(41,164,162,0.2); }
+        .note-box.orange { background: rgba(214,102,26,0.06); border: 1px solid rgba(214,102,26,0.2); }
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        .footer {
+            background: var(--cool-slate);
+            color: var(--gray-1);
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 12px;
+        }
+
+        .footer-logo { font-family: 'Roboto Slab', serif; font-weight: 300; font-size: 16px; color: var(--white); }
+        .footer-logo span { color: var(--green); font-weight: 600; }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 768px) {
+            .client-header, .int-header { padding: 32px 20px; }
+            .wrap { padding: 0 20px; }
+            .tp-grid { grid-template-columns: 1fr; }
+            .rev-grid { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .client-header h1 { font-size: 28px; }
+            .timeline-bar { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- =============================================
+     TAB NAV
+============================================= -->
+<nav class="tab-nav">
+    <div class="nav-logo">pyx <span>health</span></div>
+    <button class="tab-btn active" onclick="switchTab('client',this)">Client View</button>
+    <button class="tab-btn" onclick="switchTab('internal',this)">Internal View ⚙</button>
+</nav>
+
+
+<!-- =============================================
+     CLIENT VIEW
+============================================= -->
+<div id="tab-client" class="tab-content active">
+
+    <!-- Header -->
+    <div class="client-header">
+        <div class="header-eyebrow">Monthly Progress Report</div>
+        <h1>Molina DSNP Stars <strong>Partnership</strong></h1>
+        <p class="header-period" id="client-period"></p>
+        <div class="market-pills">
+            <span class="mpill">Ohio — H9955</span>
+            <span class="mpill">Texas — H7678 / H6515</span>
+            <span class="mpill">Utah — H5628</span>
+            <span class="mpill launching">Washington — H5823 ✦ Launching</span>
+        </div>
+    </div>
+
+    <!-- Program at a Glance -->
+    <div class="white-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <div class="section-title">Program at a Glance</div>
+                <div class="section-sub">Key indicators across all four Molina DSNP markets. Updated monthly from Pyx Tableau reporting.</div>
+            </div>
+            <div class="kpi-grid" id="kpi-grid"></div>
+        </div></div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-bar">
+        <div class="wrap">
+            <div class="tl-label">Client Value Journey — Where We Are Today</div>
+            <div class="tl-track">
+                <div class="tl-phase done">
+                    <div class="tl-dot">✓</div>
+                    <div class="tl-name">Outreach</div>
+                    <div class="tl-desc">Targeting &amp; reaching<br>high-risk members</div>
+                </div>
+                <div class="tl-phase here">
+                    <div class="tl-dot">▶</div>
+                    <div class="tl-name">Engage</div>
+                    <div class="tl-desc">Enrolling members,<br>completing screenings</div>
+                    <div class="tl-here-tag">← You are here</div>
+                </div>
+                <div class="tl-phase">
+                    <div class="tl-dot">○</div>
+                    <div class="tl-name">Activate</div>
+                    <div class="tl-desc">PCP connections,<br>SDOH resolution</div>
+                </div>
+                <div class="tl-phase">
+                    <div class="tl-dot">○</div>
+                    <div class="tl-name">Outcomes</div>
+                    <div class="tl-desc">CAHPS movement,<br>Star rating impact</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phase 1: Outreach -->
+    <div class="alt-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <div class="section-eyebrow eyebrow-1">Phase 1</div>
+                <div class="section-title">Outreach</div>
+                <div class="section-sub">We reach your highest-risk members first — those without an AWV in 12+ months, with fall-risk history, or flagged for SDOH needs. Up to six outreach attempts across five channels per member.</div>
+            </div>
+            <div class="card-grid" id="outreach-grid"></div>
+        </div></div>
+    </div>
+
+    <!-- Phase 2: Engage -->
+    <div class="white-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <div class="section-eyebrow eyebrow-2">Phase 2</div>
+                <div class="section-title">Engage</div>
+                <div class="section-sub">When members connect, we enroll them, complete SDOH screenings, match them with a dedicated care team member, and begin removing barriers to care. This is where activation starts.</div>
+            </div>
+            <div class="card-grid" id="engage-grid"></div>
+            <div class="card" style="margin-top:20px;">
+                <div class="card-lbl">Enrollment by Market</div>
+                <table class="mkt-table" id="mkt-table"></table>
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Phase 3: Activate -->
+    <div class="alt-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <div class="section-eyebrow eyebrow-3">Phase 3</div>
+                <div class="section-title">Activate</div>
+                <div class="section-sub">We move members from engagement to action — facilitating PCP visits, resolving SDOH needs, connecting to benefits, and supporting reward redemption and AWV attestation.</div>
+            </div>
+            <div class="card-grid" id="activate-grid"></div>
+            <div class="note-box teal">
+                <strong>Data note:</strong> Activation outcomes (PCP connections, SDOH resolutions, fall interventions, reward redemptions) populate monthly from Pyx Tableau dashboards. These metrics feed directly into the value story in Phase 4.
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Phase 4: Outcomes & Value -->
+    <div class="value-section">
+        <div class="wrap">
+            <div class="section">
+                <div class="section-eyebrow" style="background:rgba(135,208,1,0.15); color:var(--light-green);">Phase 4</div>
+                <div class="section-title" style="color:var(--white); margin-top:10px;">Outcomes &amp; Value</div>
+                <div class="section-sub">The "so what." We translate member activation into measurable, documented value for Molina — from averted costs to CAHPS score movement to Star rating impact. Per-member values use published research benchmarks; sources shown for transparency.</div>
+                <div class="val-grid" id="value-grid"></div>
+                <div class="val-total" id="val-total"></div>
+                <p class="val-note" id="val-note"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLA Compliance -->
+    <div class="white-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <div class="section-title">Contractual Commitments</div>
+                <div class="section-sub">Pyx Health performance against SOW Exhibit C performance metrics. We track these every month — not just when it's convenient. Green means we're exceeding what we promised.</div>
+            </div>
+            <div class="sla-grid" id="sla-grid"></div>
+        </div></div>
+    </div>
+
+    <!-- Talking Points -->
+    <div class="alt-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <div class="section-title">This Month's Conversation</div>
+                <div class="section-sub">Recommended talking points for Christine Rolls &amp; Lisa Tikkanen — grounded in current data, aligned to your stated goals.</div>
+            </div>
+            <div class="tp-grid" id="tp-grid"></div>
+        </div></div>
+    </div>
+
+    <!-- Client Footer -->
+    <div class="footer">
+        <div class="footer-logo">pyx <span>health</span></div>
+        <div>Molina DSNP Stars Partnership &nbsp;|&nbsp; SOW #604123v7 &nbsp;|&nbsp; PO: 639366 &nbsp;|&nbsp; Program End: 11/6/2028</div>
+        <div>Anne Jordan &nbsp;·&nbsp; anne.jordan@pyxhealth.com &nbsp;·&nbsp; 520-263-0701</div>
+    </div>
+
+</div><!-- end client view -->
+
+
+<!-- =============================================
+     INTERNAL VIEW
+============================================= -->
+<div id="tab-internal" class="tab-content">
+
+    <div class="internal-banner">⚠ For Pyx Health Internal Use Only — Not for Client Distribution</div>
+
+    <div class="int-header">
+        <div class="section-eyebrow eyebrow-i" style="margin-bottom:12px;">Internal Operations</div>
+        <h1>Molina DSNP Stars — <strong>Account Operations</strong></h1>
+        <p id="int-period"></p>
+    </div>
+
+    <!-- Revenue -->
+    <div class="white-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-i">Revenue</span>
+                <div class="section-title" style="margin-top:10px;">Revenue Tracking</div>
+                <div class="section-sub">Earned revenue vs. $1.5M contract goal. Fees invoiced monthly per SOW terms.</div>
+            </div>
+            <div class="rev-grid" id="rev-grid"></div>
+            <div class="rev-progress-wrap">
+                <div class="card-lbl">Revenue to Goal — $1,500,000 Contract Value</div>
+                <div class="rev-track"><div class="rev-fill" id="rev-fill"></div></div>
+                <div class="rev-track-labels">
+                    <span id="rev-lbl-left"></span>
+                    <span id="rev-lbl-right">Goal: $1,500,000</span>
+                </div>
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Fee Schedule Reference -->
+    <div class="alt-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-i">Contract</span>
+                <div class="section-title" style="margin-top:10px;">Fee Schedule Reference</div>
+                <div class="section-sub">SOW fee structure for billing, margin, and revenue modeling. All fees may increase up to 3% annually per SOW terms.</div>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-lbl">Implementation Fee</div>
+                    <div class="card-val">$15,000</div>
+                    <div class="card-sub">One-time · Paid at SOW execution (Nov 7, 2025) · Not per market</div>
+                </div>
+                <div class="card">
+                    <div class="card-lbl">Annual Operational Fee</div>
+                    <div class="card-val">$36,000/yr</div>
+                    <div class="card-sub">$3,000/month · Enterprise-level (not per market) · Due from SOW effective date, including during implementation</div>
+                </div>
+                <div class="card">
+                    <div class="card-lbl">Welcome Engagement</div>
+                    <div class="card-val">$45</div>
+                    <div class="card-sub">Per enrolled member · One-time per Term · Invoiced monthly in arrears</div>
+                </div>
+                <div class="card">
+                    <div class="card-lbl">Ongoing Engagement</div>
+                    <div class="card-val">$55/mo</div>
+                    <div class="card-sub">Per engaged member/month · Max 6 months = $390 cap per member</div>
+                </div>
+                <div class="card">
+                    <div class="card-lbl">Max Revenue Per Member</div>
+                    <div class="card-val">$435</div>
+                    <div class="card-sub">$45 welcome + $390 max ongoing · 53,749 total member population</div>
+                </div>
+                <div class="card">
+                    <div class="card-lbl">Custom Reports / Analytics</div>
+                    <div class="card-val">$100–$175/hr</div>
+                    <div class="card-sub">IT/custom report dev: $175/hr · Custom analytics: $100/hr · Out-of-scope reporting</div>
+                </div>
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Risk Flags -->
+    <div class="white-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-i">Account Health</span>
+                <div class="section-title" style="margin-top:10px;">Risk Flags &amp; Action Items</div>
+                <div class="section-sub">Items for internal team awareness. Updated monthly by account management.</div>
+            </div>
+            <div id="flag-grid"></div>
+        </div></div>
+    </div>
+
+    <!-- Monthly Revenue Trend -->
+    <div class="alt-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-i">Trend</span>
+                <div class="section-title" style="margin-top:10px;">Monthly Revenue Trend</div>
+                <div class="section-sub">Month-over-month earned revenue. Engagement ramp-up expected through months 4–6 as ongoing engagement deepens.</div>
+            </div>
+            <div class="card-grid" id="trend-grid"></div>
+            <div class="note-box orange">
+                <strong>Revenue Projection:</strong> April revenue ($11,070) represents 95% MoM growth vs. March ($5,670). WA launched 4/8/2026 — adds 14,034 members; first revenue expected in May reporting. At 15% conversion of full 53,749 population (8,062 members) × avg $45 welcome + 4 months × $55 ongoing = <strong>~$1.98M gross potential</strong> over the 2-year term, before operational fee offset. Path to $1.5M goal requires sustained ramp across all four markets.
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Internal Footer -->
+    <div class="footer" style="background:#111b25;">
+        <div class="footer-logo">pyx <span style="color:var(--orange)">health</span> — Internal</div>
+        <div>SOW #604123v7 &nbsp;|&nbsp; PO: 639366 &nbsp;|&nbsp; 2-Year Term: 11/7/2025 – 11/6/2028</div>
+        <div>Anne Jordan · Stephanie Mount · Kaylan Mills</div>
+    </div>
+
+</div><!-- end internal view -->
+
+
+<!-- =============================================
+     DATA + JAVASCRIPT
+============================================= -->
+<script>
+/* =============================================
+   DATA — Update monthly from Tableau
+============================================= */
+const D = {
+    program: {
+        reportMonth:    "April 2026",
+        programMonth:   "2 of 25",
+        sowEffective:   "November 7, 2025",
+        programEnd:     "November 6, 2028",
+        poNumber:       "639366",
+        sowNumber:      "604123v7"
+    },
+    markets: [
+        { name:"Ohio",       code:"OH", planId:"H9955",         population:11943, enrolled:107, conversionRate:0.19, status:"active",    goLive:"3/17/2026" },
+        { name:"Texas",      code:"TX", planId:"H7678/H6515",   population:23560, enrolled:64,  conversionRate:0.07, status:"active",    goLive:"3/17/2026" },
+        { name:"Utah",       code:"UT", planId:"H5628",         population:4212,  enrolled:80,  conversionRate:0.31, status:"active",    goLive:"3/17/2026" },
+        { name:"Washington", code:"WA", planId:"H5823",         population:14034, enrolled:0,   conversionRate:0.00, status:"launching", goLive:"4/8/2026" }
+    ],
+    metrics: {
+        totalPopulation:       53749,
+        totalOutreached:       6427,
+        totalEnrolled:         251,
+        enrollmentTargetMin:   923,
+        enrollmentTargetPct:   0.15,
+        stillNeeded:           724,
+        overallConversionRate: 0.167,
+        avgMonthsEngagement:   1.3,
+        avgCallMinutes:        11,
+        avgChargePerMember:    66.69,
+        revenueGoal:           1500000,
+        revenueToDate:         16740,
+        welcomeRevenue:        11295,
+        ongoingRevenue:        5445
+    },
+    monthlyRevenue: [
+        { month:"March 2026", amount:5670,  target:19500 },
+        { month:"April 2026", amount:11070, target:92250 }
+    ],
+    sla: [
+        { name:"Engagement Rate",           target:0.10, actual:0.167, status:"exceed",  desc:"Members enrolled vs. total outreached" },
+        { name:"SDOH Screener Completion",  target:0.60, actual:null,  status:"pending", desc:"Engaged members completing SDOH screener" },
+        { name:"Social Needs Connections",  target:0.60, actual:null,  status:"pending", desc:"Members w/ needs connected to resources" },
+        { name:"Outreach Attempts",         target:0.98, actual:null,  status:"pending", desc:"Target file members receiving full outreach cycle" },
+        { name:"Satisfaction Rate",         target:0.60, actual:null,  status:"pending", desc:"Engaged members rating experience ≥3/5" }
+    ],
+    value: [
+        {
+            icon:"🩺", label:"PCP Relationship Established",
+            valuePerMember:800,
+            estimatePct:0.40,
+            desc:"DSNP members without an established PCP — once connected — average $800–$1,200/year in reduced ED and inpatient costs. Pyx facilitates PCP scheduling and removes access barriers.",
+            source:"AHRQ Research Brief (2020): Regular primary care relationship reduces ED utilization 19–33% in Medicare populations. Conservative estimate: $800/member/year."
+        },
+        {
+            icon:"🏠", label:"SDOH Need Identified & Resolved",
+            valuePerMember:1500,
+            estimatePct:0.30,
+            desc:"Members with unmet social needs (food, housing, transportation) who receive SDOH resources see $1,500–$2,500/year in reduced downstream healthcare costs.",
+            source:"Health Affairs, Garg et al. (Dec 2019): Systematic SDOH screening + referral reduces total medical costs $1,500–$2,500/year per member. Conservative low-end used."
+        },
+        {
+            icon:"🚶", label:"Fall Risk Intervention",
+            valuePerMember:3500,
+            estimatePct:0.20,
+            desc:"Members flagged in the target file with fall history or high fall risk. Each fall-related ED visit prevented saves ~$3,500; hospitalization prevented saves $30,000+.",
+            source:"CDC STEADI Program (2023): Mean cost of fall-related ED visit = $3,500. Mean hospitalization = $30,000. Pyx target population includes fall-risk criteria per SOW."
+        },
+        {
+            icon:"⭐", label:"CAHPS / Star Rating Movement",
+            valuePerMember:null,
+            estimatePct:null,
+            desc:"Improved navigation support, care access, and member satisfaction directly drive CAHPS scores. Each 1-Star improvement generates $2–$5 PMPM in CMS quality bonus payments for Molina.",
+            source:"MedPAC Report to Congress (2023): CMS Quality Bonus Payments = $2–$5 PMPM per 1-Star improvement. Impact calculated per Molina's specific plan population and Star measure movement."
+        }
+    ],
+    flags: [
+        { type:"win",   title:"Overall conversion rate 16.7% — exceeds 10% SLA target",
+          desc:"Despite Texas underperformance, the enterprise-level conversion rate already exceeds the contractual 10% target in Month 1. Utah at 31% is a standout. Lead with this in client conversations.",
+          action:"Use in client conversation: 'In our first month, we exceeded the contractual engagement target.'" },
+        { type:"risk",  title:"Texas conversion rate at 7% — well below program average",
+          desc:"OH (19%) and UT (31%) are outperforming. TX holds 23,560 members — the largest market — and has the most revenue upside. Member hesitation/trust barriers flagged in the Molina Enterprise Value Plan. Review TX outreach cadence, CSC script effectiveness, and member demographic nuances.",
+          action:"Account Manager: Schedule TX-specific CSC debrief; align with Christine Rolls on market-level support strategy." },
+        { type:"watch", title:"Washington launched 4/8/2026 — first revenue expected May",
+          desc:"WA adds 14,034 members and ~$630K in potential revenue to the program. Eligibility and target population files should be in-flight. First outreach cycle results expected in May reporting.",
+          action:"Ops: Confirm WA file receipt, SFTP setup, and first outreach cycle initiation." },
+        { type:"watch", title:"Revenue at 1.1% of goal — early stage, ramp required",
+          desc:"Revenue doubled MoM ($5,670 → $11,070). Path to $1.5M requires full population outreach and sustained multi-month engagement. WA activation and TX turnaround are the two biggest levers.",
+          action:"Finance: Build monthly revenue model with WA ramp and TX recovery scenarios." },
+        { type:"watch", title:"SLA data (SDOH, Outreach, Satisfaction) pending first full cycle",
+          desc:"Program is ~3 weeks old. SDOH screener completions, outreach attempt rates, and satisfaction survey results will first appear in May/June reporting cycles.",
+          action:"Reporting: Confirm Tableau views are capturing SDOH screener completions, satisfaction scores, and outreach attempt logs from Go Live." }
+    ]
+};
+
+/* =============================================
+   HELPERS
+============================================= */
+const $ = id => document.getElementById(id);
+const fmt = (n, t='n') => {
+    if (n === null || n === undefined) return '—';
+    if (t === 'pct')  return (n*100).toFixed(1)+'%';
+    if (t === '$')    return '$'+n.toLocaleString();
+    if (t === '$M')   return n >= 1e6 ? '$'+(n/1e6).toFixed(1)+'M' : '$'+n.toLocaleString();
+    return n.toLocaleString();
+};
+
+/* =============================================
+   RENDER
+============================================= */
+function renderAll() {
+    const m = D.metrics;
+
+    /* Period labels */
+    $('client-period').innerHTML = `Program Month ${D.program.programMonth} &nbsp;·&nbsp; ${D.program.reportMonth}`;
+    $('int-period').textContent   = `Report Period: ${D.program.reportMonth}`;
+
+    /* KPIs */
+    const kpis = [
+        { lbl:'Total Population',    val:fmt(m.totalPopulation),             ctx:'4 markets: OH · TX · UT · WA',              color:'' },
+        { lbl:'Members Outreached',  val:fmt(m.totalOutreached),             ctx:'OH + TX + UT active · WA launching today',  color:'blue' },
+        { lbl:'Members Enrolled',    val:fmt(m.totalEnrolled),               ctx:`Target: ${fmt(m.enrollmentTargetMin)} minimum (15%)`, color:'' },
+        { lbl:'Conversion Rate',     val:fmt(m.overallConversionRate,'pct'), ctx:'↑ Exceeds 10% SLA target',                  color:'teal', ctxCls:'good' },
+        { lbl:'Revenue to Date',     val:fmt(m.revenueToDate,'$'),           ctx:`of $1.5M goal · ${fmt(m.revenueToDate/m.revenueGoal,'pct')}`, color:'slate' },
+        { lbl:'Avg Engagement',      val:m.avgMonthsEngagement+' mo',        ctx:'Goal: 4 months average',                    color:'purple' },
+        { lbl:'Avg Call Length',     val:m.avgCallMinutes+' min',            ctx:'Per member interaction',                    color:'orange' },
+        { lbl:'Program End',         val:'11/6/2028',                        ctx:'2-year term · SOW #'+D.program.sowNumber,   color:'' }
+    ];
+    $('kpi-grid').innerHTML = kpis.map(k => `
+        <div class="kpi ${k.color}">
+            <div class="kpi-lbl">${k.lbl}</div>
+            <div class="kpi-val">${k.val}</div>
+            <div class="kpi-ctx ${k.ctxCls||''}">${k.ctx}</div>
+        </div>`).join('');
+
+    /* Outreach */
+    $('outreach-grid').innerHTML = `
+        <div class="card">
+            <div class="card-lbl">Members in Target Population</div>
+            <div class="card-val">${fmt(m.totalOutreached)}</div>
+            <div class="card-sub">OH · TX · UT outreach active &nbsp;·&nbsp; WA target file received 4/8/2026</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Target Population Criteria</div>
+            <div class="card-val">3 flags</div>
+            <div class="card-sub">No AWV in past 12 months &nbsp;·&nbsp; High-risk / history of falls &nbsp;·&nbsp; SDOH needs identified</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Outreach Channels Active</div>
+            <div class="card-val">5 channels</div>
+            <div class="card-sub">Phone (IVR + live) · SMS · Email · Postcard · Pyx App</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Outreach Attempts Per Member</div>
+            <div class="card-val">Up to 6</div>
+            <div class="card-sub">Distributed across morning · afternoon · evening · weekend to maximize contact</div>
+        </div>`;
+
+    /* Engage */
+    const engMax = 0.35;
+    $('engage-grid').innerHTML = `
+        <div class="card">
+            <div class="card-lbl">Enrolled Members</div>
+            <div class="card-val">${fmt(m.totalEnrolled)}</div>
+            <div class="card-sub">Still need ${fmt(m.stillNeeded)} to hit 15% minimum target</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Avg Months of Engagement</div>
+            <div class="card-val">${m.avgMonthsEngagement}</div>
+            <div class="card-sub">Goal: 4 months avg &nbsp;·&nbsp; 100% of members within 0–6 month window</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Avg Charge Per Member</div>
+            <div class="card-val">$${m.avgChargePerMember}</div>
+            <div class="card-sub">Max: $435/member &nbsp;·&nbsp; Deepens monthly as engagement grows</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Engagement Rate vs. SLA Target</div>
+            <div style="margin-top:10px;">
+                <div class="prog-header">
+                    <span class="prog-name">Conversion Rate</span>
+                    <span class="prog-nums">${fmt(m.overallConversionRate,'pct')} vs. 10% target</span>
+                </div>
+                <div class="prog-track">
+                    <div class="prog-fill g" style="width:${Math.min(m.overallConversionRate/0.20*100,100)}%"></div>
+                    <div class="prog-target" style="left:${0.10/0.20*100}%"></div>
+                </div>
+                <div class="prog-status st-good">↑ EXCEEDING CONTRACT TARGET</div>
+            </div>
+        </div>`;
+
+    /* Market table */
+    $('mkt-table').innerHTML = `
+        <thead><tr>
+            <th>Market</th><th>Total Population</th><th>Enrolled</th><th>Conversion Rate</th><th>Go-Live</th>
+        </tr></thead>
+        <tbody>${D.markets.map(mk => {
+            const pct = Math.min(mk.conversionRate/0.35*100,100);
+            const clr = mk.status==='launching' ? '#c8d4de' : mk.conversionRate < 0.10 ? 'var(--orange)' : 'var(--green)';
+            const isL = mk.status === 'launching';
+            return `<tr>
+                <td><span class="mkt-code ${isL?'go':''}">${mk.code}</span>${mk.name}${isL?' <span style="font-size:11px;color:var(--green);font-weight:700;">✦ Launched today</span>':''}</td>
+                <td>${fmt(mk.population)}</td>
+                <td><strong>${isL ? '—' : fmt(mk.enrolled)}</strong></td>
+                <td><div class="conv-wrap"><div class="conv-track"><div class="conv-fill" style="width:${pct}%;background:${clr}"></div></div><span style="font-size:13px;font-weight:700;min-width:44px">${isL?'—':fmt(mk.conversionRate,'pct')}</span></div></td>
+                <td style="font-size:12px;color:#8a9baa;">${mk.goLive}</td>
+            </tr>`;
+        }).join('')}</tbody>`;
+
+    /* Activate */
+    const activateMets = [
+        ['PCP Connections Facilitated', 'Members without PCP attribution helped to schedule and establish a primary care relationship'],
+        ['SDOH Needs Identified',        'From SDOH screener completion · Target: 60% of enrolled members complete screener'],
+        ['SDOH Needs Resolved',          'Members connected to housing, food, transportation, or other essential resources'],
+        ['Fall-Risk Interventions',      'High-risk members from target file receiving active navigation and safety support'],
+        ['Reward Redemptions / AWV Attestations', 'Molina STARS goal: increase reward awareness, redemption, and AWV attestation rates'],
+        ['Benefit Navigation Assists',   'Members helped to understand their plan benefits and access the right resources']
+    ];
+    $('activate-grid').innerHTML = activateMets.map(([lbl, sub]) => `
+        <div class="card">
+            <div class="card-lbl">${lbl}</div>
+            <div class="card-val pending">—</div>
+            <div class="card-sub">${sub}</div>
+        </div>`).join('');
+
+    /* Value */
+    const enrolled = m.totalEnrolled;
+    let totalEst = 0;
+    $('value-grid').innerHTML = D.value.map(v => {
+        const cnt = v.estimatePct ? Math.round(enrolled * v.estimatePct) : null;
+        const amt = cnt && v.valuePerMember ? cnt * v.valuePerMember : null;
+        if (amt) totalEst += amt;
+        return `
+        <div class="val-card">
+            <div class="val-icon">${v.icon}</div>
+            <div class="val-lbl">${v.label}</div>
+            <div class="val-amount">${amt ? fmt(amt,'$') : 'TBD'}</div>
+            <div class="val-desc">${cnt ? `<strong>~${fmt(cnt)} members estimated</strong> × ${v.valuePerMember ? fmt(v.valuePerMember,'$') : 'TBD'}/member<br>` : ''}${v.desc}</div>
+            <div class="val-source">Source: ${v.source}</div>
+        </div>`;
+    }).join('');
+
+    $('val-total').innerHTML = `
+        <div>
+            <div class="val-total-lbl">Estimated Value Generated for Molina — Current 251 Enrolled Members</div>
+            <div class="val-total-ctx">Conservative estimates · Research-backed benchmarks · Actuals populate as Tableau data flows monthly</div>
+        </div>
+        <div class="val-total-amt">${fmt(totalEst,'$')}</div>`;
+
+    $('val-note').innerHTML = `★ All value estimates use conservative published benchmarks cited above. CAHPS/Star Rating impact is tracked separately — value depends on Molina's specific quality bonus structure and Star measure movement over the program term. Actual outcomes will replace estimates as monthly Tableau data is received.`;
+
+    /* SLA */
+    $('sla-grid').innerHTML = D.sla.map(s => `
+        <div class="sla-card ${s.status}">
+            <div class="sla-name">${s.name}</div>
+            <div class="sla-actual">${s.actual !== null ? fmt(s.actual,'pct') : 'Pending'}</div>
+            <div class="sla-target">SOW Target: ${fmt(s.target,'pct')}</div>
+            <div class="sla-desc">${s.desc}</div>
+            <span class="sla-badge ${s.status==='exceed'?'badge-exceed':'badge-pending'}">${s.status==='exceed'?'↑ EXCEEDING':'DATA PENDING'}</span>
+        </div>`).join('');
+
+    /* Talking Points */
+    $('tp-grid').innerHTML = `
+        <div class="tp-card">
+            <div class="tp-head win">What's Working</div>
+            <ul class="tp-list">
+                <li>Overall conversion rate of 16.7% already exceeds our 10% contractual target — a strong signal in Month 1.</li>
+                <li>Utah leads at 31% conversion, Ohio at 19% — both markets are activating members quickly.</li>
+                <li>Revenue doubled month-over-month ($5,670 → $11,070) as engagement deepens across enrolled members.</li>
+                <li>Washington launched today (4/8/2026) — adding 14,034 members to the active program.</li>
+                <li>251 enrolled members already represent an estimated ${fmt(totalEst,'$')} in potential value for Molina.</li>
+            </ul>
+        </div>
+        <div class="tp-card">
+            <div class="tp-head wtch">Watch Items</div>
+            <ul class="tp-list">
+                <li>Texas conversion rate is 7% — below program average. We're reviewing outreach approach and member trust barriers specific to the TX market.</li>
+                <li>Washington just launched — first outreach cycle results expected in the May report.</li>
+                <li>SDOH screener, satisfaction, and outreach attempt data begin populating next cycle — will appear in May reporting.</li>
+            </ul>
+        </div>
+        <div class="tp-card">
+            <div class="tp-head next">What's Next (May–June)</div>
+            <ul class="tp-list">
+                <li>Ramp WA outreach — first outreach cycle to eligible members within 30 days of Go Live.</li>
+                <li>Drive TX conversion — dedicated focus on member hesitation and trust barriers per your Enterprise Value Plan.</li>
+                <li>SDOH screener completions will begin populating — targeting 60% of enrolled members per SOW SLA.</li>
+                <li>PCP connection facilitation in full swing — members without AWV in 12+ months are the priority.</li>
+                <li>Reward redemption and AWV attestation tracking activates — key Molina STARS quality measures.</li>
+            </ul>
+        </div>
+        <div class="tp-card">
+            <div class="tp-head cmmt">Our Commitment to You</div>
+            <ul class="tp-list">
+                <li>Monthly reporting delivered to Christine Rolls and Lisa Tikkanen — executive summary + individual market breakdowns.</li>
+                <li>Monthly 30-minute corporate check-in — standing agenda: performance, navigation opportunities, reporting alignment.</li>
+                <li>Market-level updates routed through Molina Enterprise team (Christine Rolls / Lisa Tikkanen) per your preference.</li>
+                <li>All SOW SLA metrics tracked from Go Live through program end: November 6, 2028.</li>
+            </ul>
+        </div>`;
+
+    /* ---- INTERNAL ---- */
+    const pctGoal = m.revenueToDate / m.revenueGoal;
+    const aprilRev = D.monthlyRevenue[1].amount;
+    const marchRev = D.monthlyRevenue[0].amount;
+
+    $('rev-grid').innerHTML = `
+        <div class="rev-card">
+            <div class="rev-card-lbl">Revenue to Date</div>
+            <div class="rev-card-val">${fmt(m.revenueToDate,'$')}</div>
+            <div class="rev-card-sub">${fmt(pctGoal,'pct')} to $1.5M goal &nbsp;·&nbsp; Program Month 2</div>
+        </div>
+        <div class="rev-card">
+            <div class="rev-card-lbl">April Run Rate</div>
+            <div class="rev-card-val">${fmt(aprilRev,'$')}</div>
+            <div class="rev-card-sub">+${Math.round((aprilRev-marchRev)/marchRev*100)}% vs. March &nbsp;·&nbsp; Welcome: ${fmt(m.welcomeRevenue,'$')} · Ongoing: ${fmt(m.ongoingRevenue,'$')}</div>
+        </div>
+        <div class="rev-card">
+            <div class="rev-card-lbl">Contract Revenue Goal</div>
+            <div class="rev-card-val">$1.5M</div>
+            <div class="rev-card-sub">2-year term &nbsp;·&nbsp; 53,749 total member population &nbsp;·&nbsp; Max $435/member</div>
+        </div>`;
+
+    const fillPct = Math.max(pctGoal * 100, 0.4);
+    $('rev-fill').style.width = fillPct + '%';
+    $('rev-lbl-left').textContent = fmt(m.revenueToDate,'$') + ' earned (' + fmt(pctGoal,'pct') + ')';
+
+    /* Flags */
+    $('flag-grid').innerHTML = D.flags.map(f => `
+        <div class="flag ${f.type}">
+            <span class="flag-type ${f.type}">${f.type==='win'?'✓ Win':f.type==='risk'?'⚠ Risk':'◎ Watch'}</span>
+            <div class="flag-title">${f.title}</div>
+            <div class="flag-desc">${f.desc}</div>
+            <div class="flag-action">→ Action: ${f.action}</div>
+        </div>`).join('');
+
+    /* Monthly trend */
+    $('trend-grid').innerHTML = D.monthlyRevenue.map(r => {
+        const pct = r.amount / r.target;
+        return `<div class="trend-card">
+            <div class="trend-month">${r.month}</div>
+            <div class="trend-amount">${fmt(r.amount,'$')}</div>
+            <div class="trend-target">Monthly target: ${fmt(r.target,'$')} &nbsp;·&nbsp; ${fmt(pct,'pct')} to target</div>
+            <div class="prog-track" style="margin-top:12px;">
+                <div class="prog-fill ${pct>=1?'g':'o'}" style="width:${Math.min(pct*100,100)}%"></div>
+            </div>
+        </div>`;
+    }).join('') + `
+        <div class="trend-card" style="border:2px dashed var(--gray-1);background:var(--gray-3);">
+            <div class="trend-month">May 2026</div>
+            <div class="trend-amount" style="color:#c8d4de;">TBD</div>
+            <div class="trend-target">First full month for WA &nbsp;·&nbsp; OH · TX · UT continuing ramp</div>
+        </div>`;
+}
+
+/* =============================================
+   TAB SWITCH
+============================================= */
+function switchTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    $('tab-'+name).classList.add('active');
+    btn.classList.add('active');
+}
+
+/* =============================================
+   INIT
+============================================= */
+document.addEventListener('DOMContentLoaded', renderAll);
+</script>
+
+</body>
+</html>
