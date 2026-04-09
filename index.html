@@ -790,6 +790,48 @@
         .int-header h1 strong { color: var(--orange); font-weight: 700; }
         .int-header p  { font-size: 13px; color: #8a9baa; margin-top: 8px; }
 
+        .journey-status-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 24px;
+        }
+        .journey-status-item {
+            background: rgba(255,255,255,0.04);
+            padding: 14px 18px;
+        }
+        .journey-status-item.active { background: rgba(73,166,1,0.15); }
+        .js-label {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a9baa;
+            margin-bottom: 5px;
+        }
+        .js-val {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .js-badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            background: var(--green);
+            color: var(--white);
+            border-radius: 3px;
+            padding: 2px 5px;
+            margin-left: 4px;
+        }
+        .js-badge.muted {
+            background: rgba(255,255,255,0.12);
+            font-weight: 400;
+        }
+
         /* Revenue cards */
         .rev-grid {
             display: grid;
@@ -860,6 +902,45 @@
         /* =============================================
            NOTE BOX
         ============================================= */
+        /* =============================================
+           CLIENT WONDERING CALLOUT
+        ============================================= */
+        .client-q-box {
+            background: linear-gradient(135deg, rgba(73,166,1,0.08), rgba(135,208,1,0.05));
+            border-left: 4px solid var(--green);
+            border-radius: 0 8px 8px 0;
+            padding: 18px 24px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .client-q-box.future {
+            background: rgba(210,220,232,0.25);
+            border-left-color: var(--gray-1);
+        }
+        .client-q-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+        }
+        .client-q-box.future .client-q-label { color: #8a9baa; }
+        .client-q-text {
+            font-family: 'Roboto Slab', serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--cool-slate);
+            font-style: italic;
+        }
+        .client-q-answer {
+            font-size: 12px;
+            color: #556070;
+            line-height: 1.6;
+            margin-top: 4px;
+        }
+
         .note-box {
             padding: 16px 20px;
             border-radius: 8px;
@@ -1122,28 +1203,33 @@
     <!-- Timeline -->
     <div class="timeline-bar">
         <div class="wrap">
-            <div class="tl-label">Client Value Journey — Where We Are Today</div>
+            <div class="tl-label">Client Value Journey — Where We Are Today &nbsp;·&nbsp; Program Month 2 of 25</div>
             <div class="tl-track">
                 <div class="tl-phase done">
                     <div class="tl-dot">✓</div>
-                    <div class="tl-name">Outreach</div>
-                    <div class="tl-desc">Targeting &amp; reaching<br>high-risk members</div>
+                    <div class="tl-name">Launch</div>
+                    <div class="tl-desc">Go Live – 60 days<br>Operational trust established</div>
                 </div>
                 <div class="tl-phase here">
                     <div class="tl-dot">▶</div>
                     <div class="tl-name">Engage</div>
-                    <div class="tl-desc">Enrolling members,<br>completing screenings</div>
-                    <div class="tl-here-tag">← You are here</div>
+                    <div class="tl-desc">Months 2–4<br>Members responding</div>
+                    <div class="tl-here-tag">← Month 2</div>
                 </div>
                 <div class="tl-phase">
                     <div class="tl-dot">○</div>
                     <div class="tl-name">Activate</div>
-                    <div class="tl-desc">PCP connections,<br>SDOH resolution</div>
+                    <div class="tl-desc">Months 4–6<br>Engagement → action</div>
                 </div>
                 <div class="tl-phase">
                     <div class="tl-dot">○</div>
-                    <div class="tl-name">Outcomes</div>
-                    <div class="tl-desc">CAHPS movement,<br>Star rating impact</div>
+                    <div class="tl-name">Impact</div>
+                    <div class="tl-desc">Months 6–9<br>Quality &amp; Stars movement</div>
+                </div>
+                <div class="tl-phase">
+                    <div class="tl-dot">○</div>
+                    <div class="tl-name">Renewal</div>
+                    <div class="tl-desc">Months 9–12<br>The model scales</div>
                 </div>
             </div>
         </div>
@@ -1177,9 +1263,14 @@
     <div class="white-bg">
         <div class="wrap"><div class="section">
             <div class="section-head">
-                <div class="section-eyebrow eyebrow-2">Phase 2</div>
+                <div class="section-eyebrow eyebrow-2">Phase 2 · Months 2–4</div>
                 <div class="section-title">Engage</div>
                 <div class="section-sub">When members connect, we enroll them, complete SDOH screenings, match them with a dedicated care team member, and begin removing barriers to care. This is where activation starts.</div>
+            </div>
+            <div class="client-q-box">
+                <span class="client-q-label">What you're likely wondering right now</span>
+                <span class="client-q-text">"Are members actually responding to this?"</span>
+                <span class="client-q-answer">Members are actively engaging with the program. A majority of enrolled members are progressing beyond initial outreach into needs-based conversations — identifying barriers like food access, transportation, and care coordination. 16.7% enrollment conversion in Month 1 says yes, they're responding.</span>
             </div>
             <div class="card-grid" id="engage-grid"></div>
             <div class="card" style="margin-top:20px;">
@@ -1198,9 +1289,14 @@
     <div class="alt-bg">
         <div class="wrap"><div class="section">
             <div class="section-head">
-                <div class="section-eyebrow eyebrow-3">Phase 3</div>
+                <div class="section-eyebrow eyebrow-3">Phase 3 · Months 4–6</div>
                 <div class="section-title">Activate</div>
                 <div class="section-sub">We move members from engagement to action — facilitating PCP visits, resolving SDOH needs, connecting to benefits, and supporting reward redemption and AWV attestation.</div>
+            </div>
+            <div class="client-q-box future">
+                <span class="client-q-label">What you'll be wondering at Month 4</span>
+                <span class="client-q-text">"Is engagement leading to action?"</span>
+                <span class="client-q-answer">Engagement is translating into member-reported care actions. Enrolled members are more likely to attest to scheduling or completing recommended care activities. These trends indicate early behavior changes consistent with improved likelihood of closing care gaps. Activation metrics populate here starting Month 4.</span>
             </div>
             <div class="card-grid" id="activate-grid"></div>
             <div class="note-box teal">
@@ -1213,9 +1309,14 @@
     <div class="value-section">
         <div class="wrap">
             <div class="section">
-                <div class="section-eyebrow" style="background:rgba(135,208,1,0.15); color:var(--light-green);">Phase 4</div>
-                <div class="section-title" style="color:var(--white); margin-top:10px;">Outcomes &amp; Value</div>
-                <div class="section-sub">The "so what." We translate member activation into measurable, documented value for Molina — from averted costs to CAHPS score movement to Star rating impact. Per-member values use published research benchmarks; sources shown for transparency.</div>
+                <div class="section-eyebrow" style="background:rgba(135,208,1,0.15); color:var(--light-green);">Phase 4 · Months 6–9</div>
+                <div class="section-title" style="color:var(--white); margin-top:10px;">Impact &amp; Value</div>
+                <div class="section-sub">The "so what." Sustained engagement and member-reported actions support movement toward quality and care engagement goals. Engagement trends suggest increasing likelihood of members completing recommended care activities within the measurement period — directly tied to CAHPS and Stars performance.</div>
+                <div class="client-q-box future" style="margin-bottom:32px;">
+                    <span class="client-q-label">What you'll be wondering at Month 6</span>
+                    <span class="client-q-text">"Is this helping us improve performance?"</span>
+                    <span class="client-q-answer">Value estimates below are research-backed projections based on enrolled members today. Actual outcomes replace projections as Tableau data flows monthly. Star rating movement — the ultimate performance indicator — is a 12–18 month lagging measure. The leading indicators (screenings, PCP connections, member experience) appear first.</span>
+                </div>
                 <div class="val-grid" id="value-grid"></div>
                 <div class="val-total" id="val-total"></div>
                 <p class="val-note" id="val-note"></p>
@@ -1281,6 +1382,24 @@
         <div class="section-eyebrow eyebrow-i" style="margin-bottom:12px;">Internal Operations</div>
         <h1>Molina DSNP Stars — <strong>Account Operations</strong></h1>
         <p id="int-period"></p>
+        <div class="journey-status-bar">
+            <div class="journey-status-item active">
+                <div class="js-label">Value Journey Phase</div>
+                <div class="js-val">Engage &amp; Validate <span class="js-badge">Month 2</span></div>
+            </div>
+            <div class="journey-status-item">
+                <div class="js-label">Renewal Pipeline Stage</div>
+                <div class="js-val">Not Started <span class="js-badge muted">Target: Value Discovery by Month 4</span></div>
+            </div>
+            <div class="journey-status-item">
+                <div class="js-label">Primary Account Owner</div>
+                <div class="js-val">Client Manager + PSS</div>
+            </div>
+            <div class="journey-status-item">
+                <div class="js-label">Dashboard Type</div>
+                <div class="js-val">Implementation → Engagement</div>
+            </div>
+        </div>
     </div>
 
     <!-- Revenue -->
