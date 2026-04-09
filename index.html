@@ -916,7 +916,7 @@
             <div class="section-head">
                 <div class="section-eyebrow eyebrow-1">Phase 1</div>
                 <div class="section-title">Outreach</div>
-                <div class="section-sub">We reach your highest-risk members first — those without an AWV in 12+ months, with fall-risk history, or flagged for SDOH needs. Up to six outreach attempts across five channels per member.</div>
+                <div class="section-sub">We reach your highest-risk members first — those without an AWV in 12+ months or flagged for SDOH needs. Up to six outreach attempts across five channels per member.</div>
             </div>
             <div class="card-grid" id="outreach-grid"></div>
         </div></div>
@@ -1177,13 +1177,6 @@ const D = {
             source:"Health Affairs, Garg et al. (Dec 2019): Systematic SDOH screening + referral reduces total medical costs $1,500–$2,500/year per member. Conservative low-end used."
         },
         {
-            icon:"🚶", label:"Fall Risk Intervention",
-            valuePerMember:3500,
-            estimatePct:0.20,
-            desc:"Members flagged in the target file with fall history or high fall risk. Each fall-related ED visit prevented saves ~$3,500; hospitalization prevented saves $30,000+.",
-            source:"CDC STEADI Program (2023): Mean cost of fall-related ED visit = $3,500. Mean hospitalization = $30,000. Pyx target population includes fall-risk criteria per SOW."
-        },
-        {
             icon:"⭐", label:"CAHPS / Star Rating Movement",
             valuePerMember:null,
             estimatePct:null,
@@ -1329,7 +1322,6 @@ function renderAll() {
         ['PCP Connections Facilitated', 'Members without PCP attribution helped to schedule and establish a primary care relationship'],
         ['SDOH Needs Identified',        'From SDOH screener completion · Target: 60% of enrolled members complete screener'],
         ['SDOH Needs Resolved',          'Members connected to housing, food, transportation, or other essential resources'],
-        ['Fall-Risk Interventions',      'High-risk members from target file receiving active navigation and safety support'],
         ['Reward Redemptions / AWV Attestations', 'Molina STARS goal: increase reward awareness, redemption, and AWV attestation rates'],
         ['Benefit Navigation Assists',   'Members helped to understand their plan benefits and access the right resources']
     ];
