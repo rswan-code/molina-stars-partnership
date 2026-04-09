@@ -808,6 +808,181 @@
         .note-box.orange { background: rgba(214,102,26,0.06); border: 1px solid rgba(214,102,26,0.2); }
 
         /* =============================================
+           GOALS MAPPING
+        ============================================= */
+        .goals-section {
+            background: var(--cool-slate);
+            padding: 48px 0;
+            color: var(--white);
+        }
+
+        .goals-section .section-title { color: var(--white); }
+        .goals-section .section-sub   { color: var(--gray-1); }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .goal-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .goal-molina {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray-1);
+            opacity: 0.6;
+            margin-bottom: 6px;
+        }
+
+        .goal-statement {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.5;
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .goal-pyx {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--light-green);
+            margin-bottom: 6px;
+        }
+
+        .goal-action {
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        .goal-metric {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(73,166,1,0.2);
+            color: var(--light-green);
+        }
+
+        .goal-metric.pending {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* =============================================
+           NEXT MEETING
+        ============================================= */
+        .next-meeting {
+            background: var(--white);
+            padding: 48px 0;
+        }
+
+        .meeting-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 24px;
+            margin-top: 28px;
+        }
+
+        .meeting-meta {
+            background: var(--gray-3);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .meeting-meta-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 18px;
+        }
+
+        .meeting-meta-row:last-child { margin-bottom: 0; }
+
+        .meeting-meta-lbl {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #8a9baa;
+            margin-bottom: 4px;
+        }
+
+        .meeting-meta-val {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cool-slate);
+        }
+
+        .meeting-agenda {
+            background: var(--white);
+            border: 1px solid var(--gray-1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .agenda-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            border-bottom: 1px solid var(--gray-2);
+        }
+
+        .agenda-item:last-child { border-bottom: none; }
+
+        .agenda-num {
+            background: var(--gray-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto Slab', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #c8d4de;
+            padding: 20px 0;
+        }
+
+        .agenda-content { padding: 18px 20px; }
+
+        .agenda-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--cool-slate);
+            margin-bottom: 4px;
+        }
+
+        .agenda-desc {
+            font-size: 12px;
+            color: #8a9baa;
+            line-height: 1.5;
+        }
+
+        .agenda-time {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--green);
+            margin-top: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .meeting-grid { grid-template-columns: 1fr; }
+            .goals-grid   { grid-template-columns: 1fr; }
+        }
+
+        /* =============================================
            FOOTER
         ============================================= */
         .footer {
@@ -910,6 +1085,18 @@
         </div>
     </div>
 
+    <!-- Goals Mapping -->
+    <div class="goals-section">
+        <div class="wrap">
+            <div class="section">
+                <div class="section-eyebrow" style="background:rgba(135,208,1,0.15);color:var(--light-green);">Your Goals · Our Commitment</div>
+                <div class="section-title" style="margin-top:10px;">What Molina Told Us — What We're Doing About It</div>
+                <div class="section-sub">From your Enterprise Value Plan, completed March 2026. These goals drive every outreach decision, every care team conversation, and every outcome we report.</div>
+                <div class="goals-grid" id="goals-grid"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Phase 1: Outreach -->
     <div class="alt-bg">
         <div class="wrap"><div class="section">
@@ -948,7 +1135,7 @@
             </div>
             <div class="card-grid" id="activate-grid"></div>
             <div class="note-box teal">
-                <strong>Data note:</strong> Activation outcomes (PCP connections, SDOH resolutions, fall interventions, reward redemptions) populate monthly from Pyx Tableau dashboards. These metrics feed directly into the value story in Phase 4.
+                <strong>Data note:</strong> Activation outcomes (PCP connections, SDOH resolutions, reward redemptions, AWV attestations) populate monthly from Pyx Tableau dashboards. These metrics feed directly into the value story in Phase 4.
             </div>
         </div></div>
     </div>
@@ -987,6 +1174,21 @@
             </div>
             <div class="tp-grid" id="tp-grid"></div>
         </div></div>
+    </div>
+
+    <!-- Next Meeting -->
+    <div class="next-meeting">
+        <div class="wrap">
+            <div class="section-head">
+                <div class="section-eyebrow eyebrow-2">Monthly Check-In</div>
+                <div class="section-title" style="margin-top:10px;">Next Meeting</div>
+                <div class="section-sub">Standing 30-minute monthly agenda — corporate level with Christine Rolls &amp; Lisa Tikkanen, per your stated preference.</div>
+            </div>
+            <div class="meeting-grid">
+                <div class="meeting-meta" id="meeting-meta"></div>
+                <div class="meeting-agenda" id="meeting-agenda"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Client Footer -->
@@ -1184,6 +1386,70 @@ const D = {
             source:"MedPAC Report to Congress (2023): CMS Quality Bonus Payments = $2–$5 PMPM per 1-Star improvement. Impact calculated per Molina's specific plan population and Star measure movement."
         }
     ],
+    goals: [
+        {
+            molinaGoal: "Molina's Priority #1",
+            statement:  "Help DSNP members establish a relationship with a Primary Care Provider.",
+            pyxHow:     "How Pyx delivers this",
+            action:     "We facilitate PCP scheduling for members without a PCP or AWV in 12+ months. Our care team removes access barriers — transportation, language, trust — that keep members from making and keeping appointments.",
+            metric:     "PCP connections: populating May 2026",
+            metricPending: true
+        },
+        {
+            molinaGoal: "Molina's Priority #2",
+            statement:  "Improve member experience — benefits navigation, health needs, and access to the right resources.",
+            pyxHow:     "How Pyx delivers this",
+            action:     "Every enrolled member is matched with a dedicated care team member. We complete SDOH screenings, connect members to housing, food, and transportation resources, and educate on health plan benefits — all in their preferred format.",
+            metric:     "SDOH screener completion target: 60% of enrolled members",
+            metricPending: true
+        },
+        {
+            molinaGoal: "Molina's Priority #3",
+            statement:  "Support quality improvement in underperforming STARS markets by engaging higher-risk members.",
+            pyxHow:     "How Pyx delivers this",
+            action:     "Our AI-assisted risk models identify the highest-need members from your target file first. We prioritize members without an AWV in 12+ months and those with SDOH needs — the population most likely to move your STARS measures.",
+            metric:     "16.7% conversion rate — exceeding 10% SLA target",
+            metricPending: false
+        },
+        {
+            molinaGoal: "Molina's Market Goal",
+            statement:  "Increase reward awareness, redemption, and AWV attestation across OH, TX, UT, and WA.",
+            pyxHow:     "How Pyx delivers this",
+            action:     "Our care team educates members on plan rewards during every engagement. We support AWV scheduling and attestation as a standard part of the activation workflow — directly tied to your STARS quality measures.",
+            metric:     "Reward redemption & AWV tracking: activating in Engage phase",
+            metricPending: true
+        },
+        {
+            molinaGoal: "Molina's Partnership Hope",
+            statement:  "Increased member trust and satisfaction. Improved CAHPS/HOS scores. Member retention.",
+            pyxHow:     "How Pyx delivers this",
+            action:     "Trust is built through consistency — same care team member, same phone number, human-first approach. CAHPS/HOS movement is a direct output of better navigation and member experience. Satisfaction measured every engagement cycle.",
+            metric:     "Satisfaction rate target: ≥60% rate experience 3+/5",
+            metricPending: true
+        },
+        {
+            molinaGoal: "Washington-Specific",
+            statement:  "Large houseless population presents unique outreach and access challenges.",
+            pyxHow:     "How Pyx responds",
+            action:     "WA launched 4/8/2026. Outreach approach will account for WA-specific member reachability challenges. Housing instability is an SDOH flag — members identified will be prioritized for resource connection. First results: May 2026.",
+            metric:     "WA first outreach cycle results: May 2026",
+            metricPending: true
+        }
+    ],
+    nextMeeting: {
+        date:       "May 2026",
+        cadence:    "Monthly",
+        length:     "30 minutes",
+        format:     "Corporate — Christine Rolls & Lisa Tikkanen",
+        contact:    "Anne Jordan · anne.jordan@pyxhealth.com",
+        agenda: [
+            { title:"Performance Update",        desc:"Month-over-month enrollment, conversion, and engagement metrics across all four markets. What moved, what didn't, and why.",                          time:"10 min" },
+            { title:"Value Story",               desc:"What activation is generating for Molina — PCP connections, SDOH resolutions, AWV attestations, reward redemptions. The 'so what' behind the numbers.", time:"8 min" },
+            { title:"Member Navigation & Benefits", desc:"Opportunities to improve member benefit utilization and navigation. Emerging SDOH themes from screener data.",                                    time:"6 min" },
+            { title:"Reporting & Alignment",     desc:"Confirm reporting cadence, flag any operational needs, review any areas where additional Pyx support would be valuable.",                           time:"4 min" },
+            { title:"Open Items / Next Steps",   desc:"Action items from this meeting. Anything Molina needs from Pyx before next check-in.",                                                              time:"2 min" }
+        ]
+    },
     flags: [
         { type:"win",   title:"Overall conversion rate 16.7% — exceeds 10% SLA target",
           desc:"Despite Texas underperformance, the enterprise-level conversion rate already exceeds the contractual 10% target in Month 1. Utah at 31% is a standout. Lead with this in client conversations.",
@@ -1407,6 +1673,35 @@ function renderAll() {
                 <li>All SOW SLA metrics tracked from Go Live through program end: November 6, 2028.</li>
             </ul>
         </div>`;
+
+    /* Goals mapping */
+    $('goals-grid').innerHTML = D.goals.map(g => `
+        <div class="goal-card">
+            <div class="goal-molina">${g.molinaGoal}</div>
+            <div class="goal-statement">"${g.statement}"</div>
+            <div class="goal-pyx">${g.pyxHow}</div>
+            <div class="goal-action">${g.action}</div>
+            <span class="goal-metric ${g.metricPending?'pending':''}">${g.metricPending?'◎ ':'✓ '}${g.metric}</span>
+        </div>`).join('');
+
+    /* Next meeting */
+    const nm = D.nextMeeting;
+    $('meeting-meta').innerHTML = `
+        <div class="meeting-meta-row"><div class="meeting-meta-lbl">Next Report Month</div><div class="meeting-meta-val">${nm.date}</div></div>
+        <div class="meeting-meta-row"><div class="meeting-meta-lbl">Cadence</div><div class="meeting-meta-val">${nm.cadence}</div></div>
+        <div class="meeting-meta-row"><div class="meeting-meta-lbl">Length</div><div class="meeting-meta-val">${nm.length}</div></div>
+        <div class="meeting-meta-row"><div class="meeting-meta-lbl">Format</div><div class="meeting-meta-val">${nm.format}</div></div>
+        <div class="meeting-meta-row"><div class="meeting-meta-lbl">Pyx Contact</div><div class="meeting-meta-val">${nm.contact}</div></div>`;
+
+    $('meeting-agenda').innerHTML = nm.agenda.map((a, i) => `
+        <div class="agenda-item">
+            <div class="agenda-num">${i+1}</div>
+            <div class="agenda-content">
+                <div class="agenda-title">${a.title}</div>
+                <div class="agenda-desc">${a.desc}</div>
+                <div class="agenda-time">${a.time}</div>
+            </div>
+        </div>`).join('');
 
     /* ---- INTERNAL ---- */
     const pctGoal = m.revenueToDate / m.revenueGoal;
