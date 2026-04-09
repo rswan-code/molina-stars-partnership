@@ -483,6 +483,70 @@
         .mkt-table tr:last-child td { border-bottom: none; }
         .mkt-table tr:hover td { background: var(--gray-3); }
 
+        /* =============================================
+           STAR BASELINE CARDS
+        ============================================= */
+        .star-mkt-card {
+            background: var(--white);
+            border: 1px solid var(--gray-1);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+        .star-mkt-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--gray-2);
+        }
+        .star-mkt-code {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            background: var(--cool-slate);
+            color: var(--white);
+            border-radius: 3px;
+            padding: 2px 6px;
+            letter-spacing: 1px;
+        }
+        .star-mkt-name {
+            font-weight: 600;
+            font-size: 12px;
+            flex: 1;
+        }
+        .star-mkt-overall {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--orange);
+        }
+        .star-mkt-avg {
+            font-size: 10px;
+            color: #8a9baa;
+            font-weight: 400;
+        }
+        .star-measure {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 11px;
+        }
+        .star-measure.star-weak .star-measure-val { color: var(--orange); }
+        .star-measure-lbl { color: var(--cool-slate); }
+        .star-measure-val { font-size: 13px; letter-spacing: 1px; color: var(--teal); }
+        .pyx-tag {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            background: var(--light-green);
+            color: var(--white);
+            border-radius: 3px;
+            padding: 1px 4px;
+            margin-left: 3px;
+            letter-spacing: 0.5px;
+        }
+
         .mkt-code {
             display: inline-block;
             background: var(--cool-slate);
@@ -1122,6 +1186,11 @@
                 <div class="card-lbl">Enrollment by Market</div>
                 <table class="mkt-table" id="mkt-table"></table>
             </div>
+            <div style="margin-top:12px;">
+                <div class="card-lbl" style="padding:0 0 12px 0;">2026 CMS Star Baseline — Key Measures Pyx Activates</div>
+                <div id="stars-baseline" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;"></div>
+                <div style="margin-top:10px;font-size:11px;color:#8a9baa;">★ Measures marked <strong>Pyx</strong> are directly influenced by member activation — screenings, care access, and member experience. Source: CMS 2026 Medicare Star Ratings.</div>
+            </div>
         </div></div>
     </div>
 
@@ -1331,10 +1400,14 @@ const D = {
         sowNumber:      "604123v7"
     },
     markets: [
-        { name:"Ohio",       code:"OH", planId:"H9955",         population:11943, enrolled:107, conversionRate:0.19, status:"active",    goLive:"3/17/2026" },
-        { name:"Texas",      code:"TX", planId:"H7678/H6515",   population:23560, enrolled:64,  conversionRate:0.07, status:"active",    goLive:"3/17/2026" },
-        { name:"Utah",       code:"UT", planId:"H5628",         population:4212,  enrolled:80,  conversionRate:0.31, status:"active",    goLive:"3/17/2026" },
-        { name:"Washington", code:"WA", planId:"H5823",         population:14034, enrolled:0,   conversionRate:0.00, status:"launching", goLive:"4/8/2026" }
+        { name:"Ohio",       code:"OH", planId:"H9955",       population:11943, enrolled:107, conversionRate:0.19, status:"active",    goLive:"3/17/2026",
+          stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 } },
+        { name:"Texas",      code:"TX", planId:"H7678",       population:23560, enrolled:64,  conversionRate:0.07, status:"active",    goLive:"3/17/2026",
+          stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 } },
+        { name:"Utah",       code:"UT", planId:"H5628",       population:4212,  enrolled:80,  conversionRate:0.31, status:"active",    goLive:"3/17/2026",
+          stars:{ overall:3.0, stateAvg:3.9, health:3.0, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:2 } },
+        { name:"Washington", code:"WA", planId:"H5823",       population:14034, enrolled:0,   conversionRate:0.00, status:"launching", goLive:"4/8/2026",
+          stars:{ overall:3.0, stateAvg:3.6, health:2.5, drug:4.0, stayHealthy:2, chronicConditions:2, memberExperience:1 } }
     ],
     metrics: {
         totalPopulation:       53749,
@@ -1382,8 +1455,8 @@ const D = {
             icon:"⭐", label:"CAHPS / Star Rating Movement",
             valuePerMember:null,
             estimatePct:null,
-            desc:"Improved navigation support, care access, and member satisfaction directly drive CAHPS scores. Each 1-Star improvement generates $2–$5 PMPM in CMS quality bonus payments for Molina.",
-            source:"MedPAC Report to Congress (2023): CMS Quality Bonus Payments = $2–$5 PMPM per 1-Star improvement. Impact calculated per Molina's specific plan population and Star measure movement."
+            desc:"Molina's 2026 DSNP Star Ratings: OH 3.0★, TX 3.5★, UT 3.0★, WA 3.0★ — all below state averages (3.6, 4.0, 3.9, 3.6). The two weakest CMS-measured domains are 'Member Experience with Health Plan' (WA: 1★, UT: 2★, OH: 3★) and 'Staying Healthy — Screenings & Vaccines' (OH: 2★, WA: 2★) — exactly what Pyx activates. Every enrolled member interaction is a CAHPS data point. Each 1-star improvement generates $2–$5 PMPM in CMS quality bonus revenue. Across 53,749 members, a 1-star lift = up to $3.2M annually.",
+            source:"CMS 2026 Medicare Star Ratings (HealthPlanRadar.com / Medicare Plan Finder). MedPAC Report to Congress (2023): CMS Quality Bonus Payments = $2–$5 PMPM per 1-star improvement for plans moving to 4+ star status."
         }
     ],
     goals: [
@@ -1465,7 +1538,10 @@ const D = {
           action:"Finance: Build monthly revenue model with WA ramp and TX recovery scenarios." },
         { type:"watch", title:"SLA data (SDOH, Outreach, Satisfaction) pending first full cycle",
           desc:"Program is ~3 weeks old. SDOH screener completions, outreach attempt rates, and satisfaction survey results will first appear in May/June reporting cycles.",
-          action:"Reporting: Confirm Tableau views are capturing SDOH screener completions, satisfaction scores, and outreach attempt logs from Go Live." }
+          action:"Reporting: Confirm Tableau views are capturing SDOH screener completions, satisfaction scores, and outreach attempt logs from Go Live." },
+        { type:"win",   title:"Star Rating baseline confirms Pyx is working in the right measures",
+          desc:"CMS 2026 data shows Molina's weakest DSNP measures are exactly where Pyx activates: 'Staying Healthy — Screenings & Vaccines' (OH: 2★, WA: 2★) and 'Member Experience with Health Plan' (WA: 1★, UT: 2★, OH: 3★). TX is the strongest market at 3.5★ overall but still below the 4.0★ state average. A 1-star improvement across 53,749 members at $2–$5 PMPM = $1.3M–$3.2M in annual CMS quality bonus revenue for Molina — dwarfing the $1.5M contract value in long-term stakes.",
+          action:"Account team: Include star baselines in May presentation. Frame Pyx activation as a CAHPS investment. Set expectation that star movement is a 12–18 month lagging indicator — show leading indicators (screenings, PCP connections, satisfaction) now." }
     ]
 };
 
@@ -1568,20 +1644,48 @@ function renderAll() {
     /* Market table */
     $('mkt-table').innerHTML = `
         <thead><tr>
-            <th>Market</th><th>Total Population</th><th>Enrolled</th><th>Conversion Rate</th><th>Go-Live</th>
+            <th>Market</th><th>Total Population</th><th>Enrolled</th><th>Conversion Rate</th><th>Go-Live</th><th>2026 CMS Stars</th>
         </tr></thead>
         <tbody>${D.markets.map(mk => {
             const pct = Math.min(mk.conversionRate/0.35*100,100);
             const clr = mk.status==='launching' ? '#c8d4de' : mk.conversionRate < 0.10 ? 'var(--orange)' : 'var(--green)';
             const isL = mk.status === 'launching';
+            const s = mk.stars;
+            const starClr = s.overall >= 4 ? 'var(--green)' : s.overall >= 3.5 ? 'var(--teal)' : 'var(--orange)';
             return `<tr>
                 <td><span class="mkt-code ${isL?'go':''}">${mk.code}</span>${mk.name}${isL?' <span style="font-size:11px;color:var(--green);font-weight:700;">✦ Launched today</span>':''}</td>
                 <td>${fmt(mk.population)}</td>
                 <td><strong>${isL ? '—' : fmt(mk.enrolled)}</strong></td>
                 <td><div class="conv-wrap"><div class="conv-track"><div class="conv-fill" style="width:${pct}%;background:${clr}"></div></div><span style="font-size:13px;font-weight:700;min-width:44px">${isL?'—':fmt(mk.conversionRate,'pct')}</span></div></td>
                 <td style="font-size:12px;color:#8a9baa;">${mk.goLive}</td>
+                <td><span style="font-size:15px;font-weight:700;color:${starClr};">${s.overall}★</span><span style="font-size:10px;color:#8a9baa;display:block;">State avg: ${s.stateAvg}★</span></td>
             </tr>`;
         }).join('')}</tbody>`;
+
+    /* Star baseline cards — rendered below market table */
+    $('stars-baseline').innerHTML = D.markets.map(mk => {
+        const s = mk.stars;
+        const measures = [
+            { lbl:'Staying Healthy', val:s.stayHealthy, pyx:true },
+            { lbl:'Chronic Conditions', val:s.chronicConditions, pyx:false },
+            { lbl:'Member Experience', val:s.memberExperience, pyx:true },
+        ];
+        return `
+        <div class="star-mkt-card">
+            <div class="star-mkt-header">
+                <span class="star-mkt-code">${mk.code}</span>
+                <span class="star-mkt-name">${mk.name}</span>
+                <span class="star-mkt-overall">${s.overall}★ <span class="star-mkt-avg">State avg ${s.stateAvg}★</span></span>
+            </div>
+            <div class="star-mkt-measures">
+                ${measures.map(ms => `
+                <div class="star-measure ${ms.val <= 2 ? 'star-weak' : ''}">
+                    <span class="star-measure-lbl">${ms.lbl}${ms.pyx ? ' <span class="pyx-tag">Pyx</span>' : ''}</span>
+                    <span class="star-measure-val">${'★'.repeat(ms.val)}${'☆'.repeat(5-ms.val)}</span>
+                </div>`).join('')}
+            </div>
+        </div>`;
+    }).join('');
 
     /* Activate */
     const activateMets = [
