@@ -1699,7 +1699,6 @@ function renderAll() {
     /* KPIs */
     const kpis = [
         { lbl:'Total Population',    val:fmt(m.totalPopulation),             ctx:'4 markets: OH · TX · UT · WA',              color:'' },
-        { lbl:'Members Outreached',  val:fmt(m.totalOutreached),             ctx:'All 4 markets active · WA launched 4/8/2026', color:'blue' },
         { lbl:'Members Enrolled',    val:fmt(m.totalEnrolled),               ctx:`Target: ${fmt(m.enrollmentTargetMin)} minimum (15%)`, color:'' },
         { lbl:'Conversion Rate',     val:fmt(m.overallConversionRate,'pct'), ctx:'↑ Exceeds 10% SLA target',                  color:'teal', ctxCls:'good' },
         { lbl:'Avg Engagement',      val:m.avgMonthsEngagement+' mo',        ctx:'Goal: 4 months average',                    color:'purple' },
