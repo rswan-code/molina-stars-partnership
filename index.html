@@ -1771,9 +1771,6 @@ function renderAll() {
         <tbody>${D.markets.map(mk => {
             const pct = Math.min(mk.conversionRate/0.35*100,100);
             const clr = mk.status==='launching' ? '#c8d4de' : mk.conversionRate < 0.10 ? 'var(--orange)' : 'var(--green)';
-            const isL = mk.status === 'launching';
-            const s = mk.stars;
-            const starClr = s.overall >= 4 ? 'var(--green)' : s.overall >= 3.5 ? 'var(--teal)' : 'var(--orange)';
             return `<tr>
                 <td><span class="mkt-code">${mk.code}</span>${mk.name}</td>
                 <td>${fmt(mk.population)}</td>
@@ -1782,31 +1779,6 @@ function renderAll() {
                 <td style="font-size:12px;color:#8a9baa;">${mk.goLive}</td>
             </tr>`;
         }).join('')}</tbody>`;
-
-    /* Star baseline cards — rendered below market table */
-    $('stars-baseline').innerHTML = D.markets.map(mk => {
-        const s = mk.stars;
-        const measures = [
-            { lbl:'Staying Healthy', val:s.stayHealthy, pyx:true },
-            { lbl:'Chronic Conditions', val:s.chronicConditions, pyx:false },
-            { lbl:'Member Experience', val:s.memberExperience, pyx:true },
-        ];
-        return `
-        <div class="star-mkt-card">
-            <div class="star-mkt-header">
-                <span class="star-mkt-code">${mk.code}</span>
-                <span class="star-mkt-name">${mk.name}</span>
-                <span class="star-mkt-overall">${s.overall}★ <span class="star-mkt-avg">State avg ${s.stateAvg}★</span></span>
-            </div>
-            <div class="star-mkt-measures">
-                ${measures.map(ms => `
-                <div class="star-measure ${ms.val <= 2 ? 'star-weak' : ''}">
-                    <span class="star-measure-lbl">${ms.lbl}${ms.pyx ? ' <span class="pyx-tag">Pyx</span>' : ''}</span>
-                    <span class="star-measure-val">${'★'.repeat(ms.val)}${'☆'.repeat(5-ms.val)}</span>
-                </div>`).join('')}
-            </div>
-        </div>`;
-    }).join('');
 
     /* Activate */
     const activateMets = [
