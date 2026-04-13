@@ -1185,7 +1185,7 @@
             <span class="mpill">Ohio — H9955</span>
             <span class="mpill">Texas — H7678 / H6515</span>
             <span class="mpill">Utah — H5628</span>
-            <span class="mpill launching">Washington — H5823 ✦ Launching</span>
+            <span class="mpill">Washington — H5823</span>
         </div>
     </div>
 
@@ -1235,18 +1235,6 @@
         </div>
     </div>
 
-    <!-- Goals Mapping -->
-    <div class="goals-section">
-        <div class="wrap">
-            <div class="section">
-                <div class="section-eyebrow" style="background:rgba(135,208,1,0.15);color:var(--light-green);">Your Goals · Our Commitment</div>
-                <div class="section-title" style="margin-top:10px;">What Molina Told Us — What We're Doing About It</div>
-                <div class="section-sub">From your Enterprise Value Plan, completed March 2026. These goals drive every outreach decision, every care team conversation, and every outcome we report.</div>
-                <div class="goals-grid" id="goals-grid"></div>
-            </div>
-        </div>
-    </div>
-
     <!-- Phase 1: Outreach -->
     <div class="alt-bg">
         <div class="wrap"><div class="section">
@@ -1276,11 +1264,6 @@
             <div class="card" style="margin-top:20px;">
                 <div class="card-lbl">Enrollment by Market</div>
                 <table class="mkt-table" id="mkt-table"></table>
-            </div>
-            <div style="margin-top:12px;">
-                <div class="card-lbl" style="padding:0 0 12px 0;">2026 CMS Star Baseline — Key Measures Pyx Activates</div>
-                <div id="stars-baseline" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;"></div>
-                <div style="margin-top:10px;font-size:11px;color:#8a9baa;">★ Measures marked <strong>Pyx</strong> are directly influenced by member activation — screenings, care access, and member experience. Source: CMS 2026 Medicare Star Ratings.</div>
             </div>
         </div></div>
     </div>
@@ -1320,6 +1303,18 @@
                 <div class="val-grid" id="value-grid"></div>
                 <div class="val-total" id="val-total"></div>
                 <p class="val-note" id="val-note"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goals Mapping -->
+    <div class="goals-section">
+        <div class="wrap">
+            <div class="section">
+                <div class="section-eyebrow" style="background:rgba(135,208,1,0.15);color:var(--light-green);">Your Goals · Our Commitment</div>
+                <div class="section-title" style="margin-top:10px;">What Molina Told Us — What We're Doing About It</div>
+                <div class="section-sub">From your Enterprise Value Plan, completed March 2026. These goals drive every outreach decision, every care team conversation, and every outcome we report.</div>
+                <div class="goals-grid" id="goals-grid"></div>
             </div>
         </div>
     </div>
@@ -1531,37 +1526,37 @@ const D = {
         sowNumber:      "604123v7"
     },
     markets: [
-        { name:"Ohio",       code:"OH", planId:"H9955",       population:11943, enrolled:107, conversionRate:0.19, status:"active",    goLive:"3/17/2026",
+        { name:"Ohio",       code:"OH", planId:"H9955",       population:11943, enrolled:154, conversionRate:0.19, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 } },
-        { name:"Texas",      code:"TX", planId:"H7678",       population:23560, enrolled:64,  conversionRate:0.07, status:"active",    goLive:"3/17/2026",
+        { name:"Texas",      code:"TX", planId:"H7678",       population:23560, enrolled:90,  conversionRate:0.07, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 } },
-        { name:"Utah",       code:"UT", planId:"H5628",       population:4212,  enrolled:80,  conversionRate:0.31, status:"active",    goLive:"3/17/2026",
+        { name:"Utah",       code:"UT", planId:"H5628",       population:4212,  enrolled:114, conversionRate:0.31, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.9, health:3.0, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:2 } },
-        { name:"Washington", code:"WA", planId:"H5823",       population:14034, enrolled:0,   conversionRate:0.00, status:"launching", goLive:"4/8/2026",
+        { name:"Washington", code:"WA", planId:"H5823",       population:14034, enrolled:7,   conversionRate:0.05, status:"active", goLive:"4/8/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:2.5, drug:4.0, stayHealthy:2, chronicConditions:2, memberExperience:1 } }
     ],
     metrics: {
         totalPopulation:       53749,
         totalOutreached:       6427,
-        totalEnrolled:         251,
+        totalEnrolled:         365,
         enrollmentTargetMin:   923,
         enrollmentTargetPct:   0.15,
-        stillNeeded:           724,
+        stillNeeded:           598,
         overallConversionRate: 0.167,
         avgMonthsEngagement:   1.3,
         avgCallMinutes:        11,
-        avgChargePerMember:    66.69,
-        enrollmentCallMinutes: 2761,   // 251 enrolled × 11 min avg — update from Tableau "Enrollment" call type total
+        avgChargePerMember:    72.96,
+        enrollmentCallMinutes: 4015,   // 365 enrolled × 11 min avg — update from Tableau "Enrollment" call type total
         engagementCallMinutes: null,   // pull from Tableau → Billable Calls view → Engagement call type → sum of minutes
         costPerMinute:         0.80,
         revenueGoal:           1500000,
-        revenueToDate:         16740,
-        welcomeRevenue:        11295,
-        ongoingRevenue:        5445
+        revenueToDate:         26130,
+        welcomeRevenue:        16065,
+        ongoingRevenue:        10065
     },
     monthlyRevenue: [
         { month:"March 2026", amount:5670,  target:19500 },
-        { month:"April 2026", amount:11070, target:92250 }
+        { month:"April 2026", amount:20595, target:92250 }
     ],
     sla: [
         { name:"Engagement Rate",           target:0.10, actual:0.167, status:"exceed",  desc:"Members enrolled vs. total outreached" },
@@ -1704,10 +1699,9 @@ function renderAll() {
     /* KPIs */
     const kpis = [
         { lbl:'Total Population',    val:fmt(m.totalPopulation),             ctx:'4 markets: OH · TX · UT · WA',              color:'' },
-        { lbl:'Members Outreached',  val:fmt(m.totalOutreached),             ctx:'OH + TX + UT active · WA launching today',  color:'blue' },
+        { lbl:'Members Outreached',  val:fmt(m.totalOutreached),             ctx:'All 4 markets active · WA launched 4/8/2026', color:'blue' },
         { lbl:'Members Enrolled',    val:fmt(m.totalEnrolled),               ctx:`Target: ${fmt(m.enrollmentTargetMin)} minimum (15%)`, color:'' },
         { lbl:'Conversion Rate',     val:fmt(m.overallConversionRate,'pct'), ctx:'↑ Exceeds 10% SLA target',                  color:'teal', ctxCls:'good' },
-        { lbl:'Revenue to Date',     val:fmt(m.revenueToDate,'$'),           ctx:`of $1.5M goal · ${fmt(m.revenueToDate/m.revenueGoal,'pct')}`, color:'slate' },
         { lbl:'Avg Engagement',      val:m.avgMonthsEngagement+' mo',        ctx:'Goal: 4 months average',                    color:'purple' },
         { lbl:'Avg Call Length',     val:m.avgCallMinutes+' min',            ctx:'Per member interaction',                    color:'orange' },
         { lbl:'Program End',         val:'11/6/2028',                        ctx:'2-year term · SOW #'+D.program.sowNumber,   color:'' }
@@ -1724,7 +1718,7 @@ function renderAll() {
         <div class="card">
             <div class="card-lbl">Members in Target Population</div>
             <div class="card-val">${fmt(m.totalOutreached)}</div>
-            <div class="card-sub">OH · TX · UT outreach active &nbsp;·&nbsp; WA target file received 4/8/2026</div>
+            <div class="card-sub">All 4 markets active · WA launched 4/8/2026 · First WA enrollments in April</div>
         </div>
         <div class="card">
             <div class="card-lbl">Target Population Criteria</div>
@@ -1782,10 +1776,10 @@ function renderAll() {
             const s = mk.stars;
             const starClr = s.overall >= 4 ? 'var(--green)' : s.overall >= 3.5 ? 'var(--teal)' : 'var(--orange)';
             return `<tr>
-                <td><span class="mkt-code ${isL?'go':''}">${mk.code}</span>${mk.name}${isL?' <span style="font-size:11px;color:var(--green);font-weight:700;">✦ Launched today</span>':''}</td>
+                <td><span class="mkt-code">${mk.code}</span>${mk.name}</td>
                 <td>${fmt(mk.population)}</td>
-                <td><strong>${isL ? '—' : fmt(mk.enrolled)}</strong></td>
-                <td><div class="conv-wrap"><div class="conv-track"><div class="conv-fill" style="width:${pct}%;background:${clr}"></div></div><span style="font-size:13px;font-weight:700;min-width:44px">${isL?'—':fmt(mk.conversionRate,'pct')}</span></div></td>
+                <td><strong>${fmt(mk.enrolled)}</strong></td>
+                <td><div class="conv-wrap"><div class="conv-track"><div class="conv-fill" style="width:${pct}%;background:${clr}"></div></div><span style="font-size:13px;font-weight:700;min-width:44px">${fmt(mk.conversionRate,'pct')}</span></div></td>
                 <td style="font-size:12px;color:#8a9baa;">${mk.goLive}</td>
                 <td><span style="font-size:15px;font-weight:700;color:${starClr};">${s.overall}★</span><span style="font-size:10px;color:#8a9baa;display:block;">State avg: ${s.stateAvg}★</span></td>
             </tr>`;
