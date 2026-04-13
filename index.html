@@ -1766,7 +1766,7 @@ function renderAll() {
     /* Market table */
     $('mkt-table').innerHTML = `
         <thead><tr>
-            <th>Market</th><th>Total Population</th><th>Enrolled</th><th>Conversion Rate</th><th>Go-Live</th><th>2026 CMS Stars</th>
+            <th>Market</th><th>Total Population</th><th>Enrolled</th><th>Conversion Rate</th><th>Go-Live</th>
         </tr></thead>
         <tbody>${D.markets.map(mk => {
             const pct = Math.min(mk.conversionRate/0.35*100,100);
@@ -1780,7 +1780,6 @@ function renderAll() {
                 <td><strong>${fmt(mk.enrolled)}</strong></td>
                 <td><div class="conv-wrap"><div class="conv-track"><div class="conv-fill" style="width:${pct}%;background:${clr}"></div></div><span style="font-size:13px;font-weight:700;min-width:44px">${fmt(mk.conversionRate,'pct')}</span></div></td>
                 <td style="font-size:12px;color:#8a9baa;">${mk.goLive}</td>
-                <td><span style="font-size:15px;font-weight:700;color:${starClr};">${s.overall}★</span><span style="font-size:10px;color:#8a9baa;display:block;">State avg: ${s.stateAvg}★</span></td>
             </tr>`;
         }).join('')}</tbody>`;
 
