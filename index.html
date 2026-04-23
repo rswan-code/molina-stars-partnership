@@ -1519,6 +1519,7 @@
 const D = {
     program: {
         reportMonth:    "April 2026",
+        dataAsOf:       "April 23, 2026",
         programMonth:   "2 of 25",
         sowEffective:   "November 7, 2025",
         programEnd:     "November 6, 2028",
@@ -1526,44 +1527,56 @@ const D = {
         sowNumber:      "604123v7"
     },
     markets: [
-        { name:"Ohio",       code:"OH", planId:"H9955",       population:11943, enrolled:154, conversionRate:0.19, status:"active", goLive:"3/17/2026",
-          stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 } },
-        { name:"Texas",      code:"TX", planId:"H7678",       population:23560, enrolled:90,  conversionRate:0.07, status:"active", goLive:"3/17/2026",
-          stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 } },
-        { name:"Utah",       code:"UT", planId:"H5628",       population:4212,  enrolled:114, conversionRate:0.31, status:"active", goLive:"3/17/2026",
-          stars:{ overall:3.0, stateAvg:3.9, health:3.0, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:2 } },
-        { name:"Washington", code:"WA", planId:"H5823",       population:14034, enrolled:7,   conversionRate:0.05, status:"active", goLive:"4/8/2026",
-          stars:{ overall:3.0, stateAvg:3.6, health:2.5, drug:4.0, stayHealthy:2, chronicConditions:2, memberExperience:1 } }
+        { name:"Ohio",       code:"OH", planId:"H9955", population:11943, enrolled:280, conversionRate:0.207, status:"active", goLive:"3/17/2026",
+          stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 },
+          screening:{ ucla3n:15, ucla3avg:3.7, phq4n:15, phq4avg:1.1, praparen:15, sdohNeedPct:1.00, avgNeeds:1.8, urgentPct:0.92 },
+          engage:{ careTeamMembers:193, totalCalls:413, avgCallsPerMember:2.1 }
+        },
+        { name:"Texas",      code:"TX", planId:"H7678", population:23560, enrolled:276, conversionRate:0.182, status:"active", goLive:"3/17/2026",
+          stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 },
+          screening:{ ucla3n:261, ucla3avg:4.6, phq4n:258, phq4avg:2.8, praparen:260, sdohNeedPct:0.97, avgNeeds:3.8, urgentPct:0.94 },
+          engage:{ careTeamMembers:161, totalCalls:270, avgCallsPerMember:1.6 }
+        },
+        { name:"Utah",       code:"UT", planId:"H5628", population:4212,  enrolled:189, conversionRate:0.181, status:"active", goLive:"3/17/2026",
+          stars:{ overall:3.0, stateAvg:3.9, health:3.0, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:2 },
+          screening:{ ucla3n:190, ucla3avg:4.9, phq4n:188, phq4avg:3.2, praparen:179, sdohNeedPct:0.96, avgNeeds:2.9, urgentPct:0.94 },
+          engage:{ careTeamMembers:139, totalCalls:273, avgCallsPerMember:1.9 }
+        },
+        { name:"Washington", code:"WA", planId:"H5823", population:14034, enrolled:103, conversionRate:0.213, status:"active", goLive:"4/8/2026",
+          stars:{ overall:3.0, stateAvg:3.6, health:2.5, drug:4.0, stayHealthy:2, chronicConditions:2, memberExperience:1 },
+          screening:{ ucla3n:98, ucla3avg:4.4, phq4n:96, phq4avg:2.7, praparen:100, sdohNeedPct:0.96, avgNeeds:2.6, urgentPct:0.96 },
+          engage:{ careTeamMembers:61, totalCalls:76, avgCallsPerMember:1.2 }
+        }
     ],
     metrics: {
-        totalPopulation:       53749,
+        totalPopulation:       42846,
         totalOutreached:       6427,
-        totalEnrolled:         365,
-        enrollmentTargetMin:   923,
+        totalEnrolled:         848,
+        enrollmentTargetMin:   6427,
         enrollmentTargetPct:   0.15,
-        stillNeeded:           598,
-        overallConversionRate: 0.167,
-        avgMonthsEngagement:   1.3,
-        avgCallMinutes:        11,
-        avgChargePerMember:    72.96,
-        enrollmentCallMinutes: 4015,   // 365 enrolled × 11 min avg — update from Tableau "Enrollment" call type total
-        engagementCallMinutes: null,   // pull from Tableau → Billable Calls view → Engagement call type → sum of minutes
+        stillNeeded:           5579,
+        overallConversionRate: 0.1898,
+        avgMonthsEngagement:   1.2,
+        avgCallMinutes:        12,
+        avgChargePerMember:    69.84,
+        enrollmentCallMinutes: null,
+        engagementCallMinutes: null,
         costPerMinute:         0.80,
         revenueGoal:           1500000,
-        revenueToDate:         26130,
-        welcomeRevenue:        16065,
-        ongoingRevenue:        10065
+        revenueToDate:         52665,
+        welcomeRevenue:        38160,
+        ongoingRevenue:        21065
     },
     monthlyRevenue: [
-        { month:"March 2026", amount:5670,  target:19500 },
-        { month:"April 2026", amount:20595, target:92250 }
+        { month:"March 2026", amount:5450,  target:19500 },
+        { month:"April 2026", amount:53775, target:92250 }
     ],
     sla: [
-        { name:"Engagement Rate",           target:0.10, actual:0.167, status:"exceed",  desc:"Members enrolled vs. total outreached" },
-        { name:"SDOH Screener Completion",  target:0.60, actual:null,  status:"pending", desc:"Engaged members completing SDOH screener" },
-        { name:"Social Needs Connections",  target:0.60, actual:null,  status:"pending", desc:"Members w/ needs connected to resources" },
-        { name:"Outreach Attempts",         target:0.98, actual:null,  status:"pending", desc:"Target file members receiving full outreach cycle" },
-        { name:"Satisfaction Rate",         target:0.60, actual:null,  status:"pending", desc:"Engaged members rating experience ≥3/5" }
+        { name:"Engagement Rate",           target:0.10, actual:0.1898, status:"exceed",  desc:"Members enrolled vs. total outreached" },
+        { name:"SDOH Screener Completion",  target:0.60, actual:0.653,  status:"exceed",  desc:"Engaged members completing PRAPARE screener — 554 of 848 enrolled" },
+        { name:"Social Needs Connections",  target:0.60, actual:null,   status:"pending", desc:"Members w/ needs connected to resources" },
+        { name:"Outreach Attempts",         target:0.98, actual:null,   status:"pending", desc:"Target file members receiving full outreach cycle" },
+        { name:"Satisfaction Rate",         target:0.60, actual:null,   status:"pending", desc:"Engaged members rating experience ≥3/5" }
     ],
     value: [
         {
@@ -1602,15 +1615,15 @@ const D = {
             statement:  "Improve member experience — benefits navigation, health needs, and access to the right resources.",
             pyxHow:     "How Pyx delivers this",
             action:     "Every enrolled member is matched with a dedicated care team member. We complete SDOH screenings, connect members to housing, food, and transportation resources, and educate on health plan benefits — all in their preferred format.",
-            metric:     "SDOH screener completion target: 60% of enrolled members",
-            metricPending: true
+            metric:     "554 SDOH screenings completed (65.3% of enrolled) — exceeds 60% SLA target · 96–100% of screened members identify at least one social need",
+            metricPending: false
         },
         {
             molinaGoal: "Molina's Priority #3",
             statement:  "Support quality improvement in underperforming STARS markets by engaging higher-risk members.",
             pyxHow:     "How Pyx delivers this",
             action:     "Our AI-assisted risk models identify the highest-need members from your target file first. We prioritize members without an AWV in 12+ months and those with SDOH needs — the population most likely to move your STARS measures.",
-            metric:     "16.7% conversion rate — exceeding 10% SLA target",
+            metric:     "18.98% conversion rate — exceeding 10% SLA target",
             metricPending: false
         },
         {
@@ -1633,9 +1646,9 @@ const D = {
             molinaGoal: "Washington-Specific",
             statement:  "Large houseless population presents unique outreach and access challenges.",
             pyxHow:     "How Pyx responds",
-            action:     "WA launched 4/8/2026. Outreach approach will account for WA-specific member reachability challenges. Housing instability is an SDOH flag — members identified will be prioritized for resource connection. First results: May 2026.",
-            metric:     "WA first outreach cycle results: May 2026",
-            metricPending: true
+            action:     "WA launched 4/8/2026. Our outreach accounts for WA's housing instability challenges — affected members are flagged for priority resource connection. Economic stability is the top identified need at 96%. SDOH engagement (57% of calls) is the primary focus in this market.",
+            metric:     "103 enrolled · 21.3% conversion rate — highest of all 4 markets since go-live",
+            metricPending: false
         }
     ],
     nextMeeting: {
@@ -1653,24 +1666,24 @@ const D = {
         ]
     },
     flags: [
-        { type:"win",   title:"Overall conversion rate 16.7% — exceeds 10% SLA target",
-          desc:"Despite Texas underperformance, the enterprise-level conversion rate already exceeds the contractual 10% target in Month 1. Utah at 31% is a standout. Lead with this in client conversations.",
-          action:"Use in client conversation: 'In our first month, we exceeded the contractual engagement target.'" },
-        { type:"risk",  title:"Texas conversion rate at 7% — well below program average",
-          desc:"OH (19%) and UT (31%) are outperforming. TX holds 23,560 members — the largest market — and has the most revenue upside. Member hesitation/trust barriers flagged in the Molina Enterprise Value Plan. Review TX outreach cadence, CSC script effectiveness, and member demographic nuances.",
-          action:"Account Manager: Schedule TX-specific CSC debrief; align with Christine Rolls on market-level support strategy." },
-        { type:"watch", title:"Washington launched 4/8/2026 — first revenue expected May",
-          desc:"WA adds 14,034 members and ~$630K in potential revenue to the program. Eligibility and target population files should be in-flight. First outreach cycle results expected in May reporting.",
-          action:"Ops: Confirm WA file receipt, SFTP setup, and first outreach cycle initiation." },
-        { type:"watch", title:"Revenue at 1.1% of goal — early stage, ramp required",
-          desc:"Revenue doubled MoM ($5,670 → $11,070). Path to $1.5M requires full population outreach and sustained multi-month engagement. WA activation and TX turnaround are the two biggest levers.",
-          action:"Finance: Build monthly revenue model with WA ramp and TX recovery scenarios." },
-        { type:"watch", title:"SLA data (SDOH, Outreach, Satisfaction) pending first full cycle",
-          desc:"Program is ~3 weeks old. SDOH screener completions, outreach attempt rates, and satisfaction survey results will first appear in May/June reporting cycles.",
-          action:"Reporting: Confirm Tableau views are capturing SDOH screener completions, satisfaction scores, and outreach attempt logs from Go Live." },
+        { type:"win",   title:"Overall conversion rate 18.98% — exceeds 10% SLA target across all 4 markets",
+          desc:"All four markets are tracking above the 10% contractual floor. WA leads at 21.3%, OH at 20.7%, TX improved to 18.2% (from an early low of 7%), UT at 18.1%. Enterprise conversion at 18.98% is nearly double the SLA minimum.",
+          action:"Use in client conversation: 'Every market is exceeding our engagement commitment — and Washington outperformed expectations in its first month.'" },
+        { type:"win",   title:"SDOH screener completion at 65.3% — exceeds 60% SLA target",
+          desc:"554 of 848 enrolled members have completed the PRAPARE screener. 96–100% across markets identify at least one social need. TX average needs per member: 3.8 — the highest of all markets, reflecting significant unmet need. This is leading-indicator data for STARS quality movement.",
+          action:"Reporting: Surface screener completion rate in May client presentation as a second SLA win alongside conversion rate." },
+        { type:"watch", title:"Texas holds the largest population (23,560) — highest upside, highest need",
+          desc:"TX improved significantly from early conversion rates. Now at 18.2% with 276 enrolled. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. Engagement is heavily SDOH/resource navigation focused. PCP connections and AWV should be next priority.",
+          action:"Account Manager: Align with Christine Rolls on TX-specific SDOH resource pipeline. Ensure care team has TX community resource access for housing, food, economic assistance." },
+        { type:"watch", title:"Revenue at $52,665 (3.5% of $1.5M goal) — Month 2, ramp in progress",
+          desc:"March: $5,450 · April (to date): $53,775 — 10× MoM growth driven by WA go-live and growing ongoing engagement fees. Welcome revenue: $38,160 · Ongoing: $21,065. Path to goal requires sustained 4-month average engagement per member across 8,062 enrolled (15% of 42,846).",
+          action:"Finance: Model revenue ramp through Month 6 with current conversion trajectory. WA at 21.3% conversion with 10,458 in eligibility file is the near-term growth lever." },
+        { type:"watch", title:"Engagement depth is early — avg 1.2–2.1 calls per member by market",
+          desc:"Total engagement calls: 1,032 across all 4 markets (OH 413 / TX 270 / UT 273 / WA 76). Average engagement calls per member range from 1.2 (WA, just launched) to 2.1 (OH). Goal is 4 months average engagement. Digital/app activity is light at this stage — telephonic care team engagement is the primary channel.",
+          action:"CSC: Monitor engagement call depth by market. Members with only 1 call are at risk of falling out. Build warm follow-up cadence for enrolled members at the 30-day mark." },
         { type:"win",   title:"Star Rating baseline confirms Pyx is working in the right measures",
-          desc:"CMS 2026 data shows Molina's weakest DSNP measures are exactly where Pyx activates: 'Staying Healthy — Screenings & Vaccines' (OH: 2★, WA: 2★) and 'Member Experience with Health Plan' (WA: 1★, UT: 2★, OH: 3★). TX is the strongest market at 3.5★ overall but still below the 4.0★ state average. A 1-star improvement across 53,749 members at $2–$5 PMPM = $1.3M–$3.2M in annual CMS quality bonus revenue for Molina — dwarfing the $1.5M contract value in long-term stakes.",
-          action:"Account team: Include star baselines in May presentation. Frame Pyx activation as a CAHPS investment. Set expectation that star movement is a 12–18 month lagging indicator — show leading indicators (screenings, PCP connections, satisfaction) now." }
+          desc:"CMS 2026 data shows Molina's weakest DSNP measures are exactly where Pyx activates: 'Staying Healthy — Screenings & Vaccines' (OH: 2★, WA: 2★) and 'Member Experience with Health Plan' (WA: 1★, UT: 2★, OH: 3★). TX is the strongest market at 3.5★ but still below 4.0★ state average. A 1-star improvement at $2–$5 PMPM across 42,846 members = $1.0M–$2.6M annually in CMS quality bonus revenue for Molina.",
+          action:"Account team: Include star baselines and SDOH screener data in May QBR. Frame Pyx activation as a CAHPS investment — show leading indicators (screenings, PCP connections, satisfaction) now, Star movement is a 12–18 month lagging indicator." }
     ]
 };
 
@@ -1693,8 +1706,8 @@ function renderAll() {
     const m = D.metrics;
 
     /* Period labels */
-    $('client-period').innerHTML = `Program Month ${D.program.programMonth} &nbsp;·&nbsp; ${D.program.reportMonth}`;
-    $('int-period').textContent   = `Report Period: ${D.program.reportMonth}`;
+    $('client-period').innerHTML = `Program Month ${D.program.programMonth} &nbsp;·&nbsp; ${D.program.reportMonth} &nbsp;·&nbsp; Data as of ${D.program.dataAsOf}`;
+    $('int-period').textContent   = `Report Period: ${D.program.reportMonth} · Data as of ${D.program.dataAsOf}`;
 
     /* KPIs */
     const kpis = [
@@ -1717,7 +1730,7 @@ function renderAll() {
         <div class="card">
             <div class="card-lbl">Members in Target Population</div>
             <div class="card-val">${fmt(m.totalOutreached)}</div>
-            <div class="card-sub">All 4 markets active · WA launched 4/8/2026 · First WA enrollments in April</div>
+            <div class="card-sub">All 4 markets active · WA enrolled 103 members at 21.3% conversion since 4/8 launch</div>
         </div>
         <div class="card">
             <div class="card-lbl">Target Population Criteria</div>
@@ -1781,18 +1794,33 @@ function renderAll() {
         }).join('')}</tbody>`;
 
     /* Activate */
+    const totalPRAPARE   = D.markets.reduce((s,mk) => s+(mk.screening?.praparen||0), 0);
+    const totalPHQ4      = D.markets.reduce((s,mk) => s+(mk.screening?.phq4n||0), 0);
+    const totalUCLA3     = D.markets.reduce((s,mk) => s+(mk.screening?.ucla3n||0), 0);
+    const totalEngCalls  = D.markets.reduce((s,mk) => s+(mk.engage?.totalCalls||0), 0);
+    const screenerPct    = totalPRAPARE / m.totalEnrolled;
+    const wUCLA3 = D.markets.reduce((s,mk)=>s+(mk.screening?.ucla3avg||0)*(mk.screening?.ucla3n||0),0)/totalUCLA3;
+    const wPHQ4  = D.markets.reduce((s,mk)=>s+(mk.screening?.phq4avg||0)*(mk.screening?.phq4n||0),0)/totalPHQ4;
+
     const activateMets = [
-        ['PCP Connections Facilitated', 'Members without PCP attribution helped to schedule and establish a primary care relationship'],
-        ['SDOH Needs Identified',        'From SDOH screener completion · Target: 60% of enrolled members complete screener'],
-        ['SDOH Needs Resolved',          'Members connected to housing, food, transportation, or other essential resources'],
-        ['Reward Redemptions / AWV Attestations', 'Molina STARS goal: increase reward awareness, redemption, and AWV attestation rates'],
-        ['Benefit Navigation Assists',   'Members helped to understand their plan benefits and access the right resources']
+        { lbl:'SDOH Screenings Completed',       val:fmt(totalPRAPARE), pending:false,
+          sub:`${fmt(screenerPct,'pct')} of enrolled members — ↑ exceeds 60% SLA target · 96–100% of screened members identify at least one social need across all markets` },
+        { lbl:'PHQ-4 Mental Health Assessments', val:fmt(totalPHQ4),    pending:false,
+          sub:`Avg score: ${wPHQ4.toFixed(1)} (scale 0–12) · Baseline established across all 4 markets · Reduction tracked monthly` },
+        { lbl:'UCLA-3 Loneliness Assessments',   val:fmt(totalUCLA3),   pending:false,
+          sub:`Avg score: ${wUCLA3.toFixed(1)} (scale 3–9 · 6–9 = lonely) · Baseline established · Range: OH 3.7 · TX 4.6 · UT 4.9 · WA 4.4` },
+        { lbl:'Total Engagement Calls',          val:fmt(totalEngCalls), pending:false,
+          sub:`Care team interactions across all markets · OH 413 · TX 270 · UT 273 · WA 76 · Avg 12 min per call` },
+        { lbl:'PCP Connections Facilitated',     val:'—', pending:true,
+          sub:'Tracking activating — populating May 2026 from Tableau' },
+        { lbl:'SDOH Needs Resolved / AWV Attestations', val:'—', pending:true,
+          sub:'Members connected to housing, food, transportation resources + Molina STARS AWV goal — tracking in progress' }
     ];
-    $('activate-grid').innerHTML = activateMets.map(([lbl, sub]) => `
+    $('activate-grid').innerHTML = activateMets.map(a => `
         <div class="card">
-            <div class="card-lbl">${lbl}</div>
-            <div class="card-val pending">—</div>
-            <div class="card-sub">${sub}</div>
+            <div class="card-lbl">${a.lbl}</div>
+            <div class="card-val ${a.pending?'pending':''}">${a.val}</div>
+            <div class="card-sub">${a.sub}</div>
         </div>`).join('');
 
     /* Value */
@@ -1836,27 +1864,26 @@ function renderAll() {
         <div class="tp-card">
             <div class="tp-head win">What's Working</div>
             <ul class="tp-list">
-                <li>Overall conversion rate of 16.7% already exceeds our 10% contractual target — a strong signal in Month 1.</li>
-                <li>Utah leads at 31% conversion, Ohio at 19% — both markets are activating members quickly.</li>
-                <li>Revenue doubled month-over-month ($5,670 → $11,070) as engagement deepens across enrolled members.</li>
-                <li>Washington launched today (4/8/2026) — adding 14,034 members to the active program.</li>
-                <li>251 enrolled members already represent an estimated ${fmt(totalEst,'$')} in potential value for Molina.</li>
+                <li>All 4 markets are above the 10% engagement SLA — enterprise rate of 18.98%, nearly double the contractual minimum.</li>
+                <li>Washington outperformed expectations at 21.3% conversion in its first month (launched 4/8/2026).</li>
+                <li>SDOH screener completion at 65.3% already exceeds the 60% SLA target — 554 members screened, 96–100% identify at least one social need.</li>
+                <li>${fmt(m.totalEnrolled)} enrolled members represent an estimated ${fmt(totalEst,'$')} in potential value for Molina through reduced costs and quality improvement.</li>
             </ul>
         </div>
         <div class="tp-card">
             <div class="tp-head wtch">Watch Items</div>
             <ul class="tp-list">
-                <li>Texas conversion rate is 7% — below program average. We're reviewing outreach approach and member trust barriers specific to the TX market.</li>
-                <li>Washington just launched — first outreach cycle results expected in the May report.</li>
-                <li>SDOH screener, satisfaction, and outreach attempt data begin populating next cycle — will appear in May reporting.</li>
+                <li>Texas holds 23,560 members — the largest market population. SDOH needs are highest here (avg 3.8 needs per member, 95% economic instability). Deepening engagement is the priority.</li>
+                <li>Engagement depth is early across all markets — avg 1.2–2.1 calls per member. Building toward the 4-month engagement goal is the next focus.</li>
+                <li>PCP connections, SDOH resolution tracking, and AWV attestations are activating — will appear in May reporting.</li>
             </ul>
         </div>
         <div class="tp-card">
             <div class="tp-head next">What's Next (May–June)</div>
             <ul class="tp-list">
-                <li>Ramp WA outreach — first outreach cycle to eligible members within 30 days of Go Live.</li>
-                <li>Drive TX conversion — dedicated focus on member hesitation and trust barriers per your Enterprise Value Plan.</li>
-                <li>SDOH screener completions will begin populating — targeting 60% of enrolled members per SOW SLA.</li>
+                <li>Deepen engagement across all markets — drive enrolled members from 1–2 calls toward the 4-month average goal.</li>
+                <li>PCP connection facilitation in full swing — members without AWV in 12+ months are the priority referral target.</li>
+                <li>SDOH resource connection tracking activates — members with identified needs connected to housing, food, and transportation resources.</li>
                 <li>PCP connection facilitation in full swing — members without AWV in 12+ months are the priority.</li>
                 <li>Reward redemption and AWV attestation tracking activates — key Molina STARS quality measures.</li>
             </ul>
@@ -1919,7 +1946,7 @@ function renderAll() {
         <div class="rev-card">
             <div class="rev-card-lbl">Contract Revenue Goal</div>
             <div class="rev-card-val">$1.5M</div>
-            <div class="rev-card-sub">2-year term &nbsp;·&nbsp; 53,749 total member population &nbsp;·&nbsp; Max $435/member</div>
+            <div class="rev-card-sub">2-year term &nbsp;·&nbsp; ${fmt(m.totalPopulation)} total member population &nbsp;·&nbsp; Max $435/member</div>
         </div>`;
 
     const fillPct = Math.max(pctGoal * 100, 0.4);
