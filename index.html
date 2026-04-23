@@ -657,6 +657,121 @@
         }
 
         /* =============================================
+           MARKET SPOTLIGHT
+        ============================================= */
+        .market-spotlight-header {
+            font-family: 'Roboto Slab', serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--slate);
+            margin: 36px 0 12px;
+            letter-spacing: 0.01em;
+        }
+        .market-spotlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .mkt-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            border-top: 4px solid var(--teal);
+        }
+        .mkt-card-name {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 4px;
+        }
+        .mkt-card-stars {
+            font-size: 11px;
+            color: #8a9baa;
+            margin-bottom: 14px;
+        }
+        .mkt-stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f3f6;
+            font-size: 12px;
+        }
+        .mkt-stat-row:last-of-type { border-bottom: none; }
+        .mkt-stat-lbl { color: #8a9baa; }
+        .mkt-stat-val { font-weight: 700; color: var(--slate); }
+        .mkt-signal {
+            margin-top: 12px;
+            padding: 8px 10px;
+            background: #f0faf4;
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--green);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* =============================================
+           COHORT TABLE
+        ============================================= */
+        .cohort-header {
+            font-family: 'Roboto Slab', serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin: 0 0 8px;
+        }
+        .cohort-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        .cohort-table-wrap {
+            overflow-x: auto;
+            margin-bottom: 36px;
+        }
+        .cohort-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .cohort-table th {
+            text-align: left;
+            padding: 10px 14px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .cohort-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.85);
+            vertical-align: top;
+        }
+        .cohort-table tr:last-child td { border-bottom: none; }
+        .cohort-table td.cohort-tier {
+            font-weight: 700;
+            color: var(--white);
+            white-space: nowrap;
+        }
+        .cohort-table td.cohort-n {
+            color: var(--light-green);
+            font-weight: 700;
+        }
+        .cohort-pending {
+            color: rgba(255,255,255,0.25);
+            font-style: italic;
+            font-size: 11px;
+        }
+
+        /* =============================================
            SLA CARDS
         ============================================= */
         .sla-grid {
@@ -1282,6 +1397,8 @@
                 <span class="client-q-answer">Yes. 554 members have completed SDOH screenings — 96–100% across all 4 markets identify at least one social need. Economic instability is the primary barrier in every market. PHQ-4 and UCLA-3 baselines are now established, creating the measurement foundation for demonstrating clinical change over time. This is the data that drives everything downstream.</span>
             </div>
             <div class="card-grid" id="activate-grid"></div>
+            <div class="market-spotlight-header">What We're Seeing by Market</div>
+            <div class="market-spotlight-grid" id="market-spotlight-grid"></div>
             <div class="note-box teal">
                 <strong>What comes next:</strong> Once barriers are identified, we remove them. PCP scheduling, SDOH resource connections, AWV support, and reward redemption tracking activate in Phase 4. Those outcomes appear below.
             </div>
@@ -1300,6 +1417,9 @@
                     <span class="client-q-text">"Is this helping our quality, utilization, and STARS goals?"</span>
                     <span class="client-q-answer">PCP connections, AWV attestations, and SDOH resolutions populate from Tableau monthly starting in Phase 4. Star rating movement is a 12–18 month lagging indicator — the leading indicators (screenings, barrier identification, care team engagement) are building that case now in Phase 3.</span>
                 </div>
+                <div class="cohort-header">The Case We're Building: Engagement Duration → Outcomes</div>
+                <div class="cohort-sub">As our member cohort matures, we will demonstrate that deeper engagement produces measurably better health outcomes — connecting time-in-program directly to quality and utilization results.</div>
+                <div class="cohort-table-wrap" id="cohort-table"></div>
                 <div class="val-grid" id="value-grid"></div>
                 <div class="val-total" id="val-total"></div>
                 <p class="val-note" id="val-note"></p>
@@ -1827,6 +1947,49 @@ function renderAll() {
             <div class="card-val ${a.pending?'pending':''}">${a.val}</div>
             <div class="card-sub">${a.sub}</div>
         </div>`).join('');
+
+    /* Market Spotlight */
+    const signals = {
+        OH: 'Every member screened identifies a social need — highest urgency rate (92%). Economic instability is universal.',
+        TX: 'Highest social need load: avg 3.8 needs per member. Large population means scale of barrier removal matters most here.',
+        UT: 'Highest loneliness (UCLA 4.9) and distress (PHQ-4 3.2) of any market — strong predictor of the 2★ member experience gap.',
+        WA: 'Newest market (live 4/8). 1★ member experience — baseline established across all 3 domains. Most room to move.'
+    };
+    $('market-spotlight-grid').innerHTML = D.markets.map(mk => `
+        <div class="mkt-card">
+            <div class="mkt-card-name">${mk.name} (${mk.code})</div>
+            <div class="mkt-card-stars">${mk.stars.overall}★ Overall · ${mk.stars.memberExperience}★ Member Experience · ${mk.stars.stayHealthy}★ Staying Healthy</div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">SDOH Screened</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">(${fmt(mk.screening.sdohNeedPct,'pct')} have ≥1 need)</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Loneliness (UCLA-3)</span><span class="mkt-stat-val">${mk.screening.ucla3avg.toFixed(1)} of 9</span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Distress (PHQ-4)</span><span class="mkt-stat-val">${mk.screening.phq4avg.toFixed(1)}</span></div>
+            <div class="mkt-signal">${signals[mk.code]}</div>
+        </div>`).join('');
+
+    /* Cohort engagement-duration table */
+    const cohortRows = [
+        { tier:'1 month',   n: 848, pcpPct:'—', awvPct:'—', sdohRes:'—', note:'Baseline cohort — full program population today' },
+        { tier:'2+ months', n: null, pcpPct:'—', awvPct:'—', sdohRes:'—', note:'Populating June 2026 — we expect meaningfully higher activation rates' },
+        { tier:'3+ months', n: null, pcpPct:'—', awvPct:'—', sdohRes:'—', note:'Populating July 2026 — longitudinal outcome comparison begins' },
+    ];
+    $('cohort-table').innerHTML = `<table class="cohort-table">
+        <thead><tr>
+            <th>Engagement Tier</th>
+            <th>Members</th>
+            <th>PCP Connection Rate</th>
+            <th>AWV Completion Rate</th>
+            <th>SDOH Needs Resolved</th>
+            <th>Notes</th>
+        </tr></thead>
+        <tbody>${cohortRows.map(r=>`<tr>
+            <td class="cohort-tier">${r.tier}</td>
+            <td class="cohort-n">${r.n ? fmt(r.n) : '<span class="cohort-pending">Pending</span>'}</td>
+            <td>${r.pcpPct === '—' ? '<span class="cohort-pending">Pending</span>' : r.pcpPct}</td>
+            <td>${r.awvPct === '—' ? '<span class="cohort-pending">Pending</span>' : r.awvPct}</td>
+            <td>${r.sdohRes === '—' ? '<span class="cohort-pending">Pending</span>' : r.sdohRes}</td>
+            <td style="font-size:11px;color:rgba(255,255,255,0.45);">${r.note}</td>
+        </tr>`).join('')}</tbody>
+    </table>`;
 
     /* Value */
     const enrolled = m.totalEnrolled;
