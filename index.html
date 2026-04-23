@@ -1738,18 +1738,20 @@ function renderAll() {
             <div class="card-sub">No AWV in past 12 months &nbsp;·&nbsp; High-risk / history of falls &nbsp;·&nbsp; SDOH needs identified</div>
         </div>
         <div class="card">
-            <div class="card-lbl">Outreach Channels Active</div>
-            <div class="card-val">5 channels</div>
-            <div class="card-sub">Phone (IVR + live) · SMS · Email · Postcard · Pyx App</div>
-        </div>
-        <div class="card">
             <div class="card-lbl">Outreach Attempts Per Member</div>
             <div class="card-val">Up to 6</div>
             <div class="card-sub">Distributed across morning · afternoon · evening · weekend to maximize contact</div>
         </div>`;
 
-    /* Engage */
-    const engMax = 0.35;
+    /* Engage — enrollment + depth stats */
+    const totalPRAPARE   = D.markets.reduce((s,mk) => s+(mk.screening?.praparen||0), 0);
+    const totalPHQ4      = D.markets.reduce((s,mk) => s+(mk.screening?.phq4n||0), 0);
+    const totalUCLA3     = D.markets.reduce((s,mk) => s+(mk.screening?.ucla3n||0), 0);
+    const totalEngCalls  = D.markets.reduce((s,mk) => s+(mk.engage?.totalCalls||0), 0);
+    const screenerPct    = totalPRAPARE / m.totalEnrolled;
+    const wUCLA3 = D.markets.reduce((s,mk)=>s+(mk.screening?.ucla3avg||0)*(mk.screening?.ucla3n||0),0)/totalUCLA3;
+    const wPHQ4  = D.markets.reduce((s,mk)=>s+(mk.screening?.phq4avg||0)*(mk.screening?.phq4n||0),0)/totalPHQ4;
+
     $('engage-grid').innerHTML = `
         <div class="card">
             <div class="card-lbl">Enrolled Members</div>
@@ -1774,6 +1776,21 @@ function renderAll() {
                 </div>
                 <div class="prog-status st-good">↑ EXCEEDING CONTRACT TARGET</div>
             </div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Total Care Team Engagements</div>
+            <div class="card-val">${fmt(totalEngCalls)}</div>
+            <div class="card-sub">Calls across all 4 markets · OH 413 · TX 270 · UT 273 · WA 76 · Avg ${m.avgCallMinutes} min per call</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">SDOH Screenings Completed</div>
+            <div class="card-val" style="color:var(--green)">${fmt(totalPRAPARE)}</div>
+            <div class="card-sub">↑ ${fmt(screenerPct,'pct')} of enrolled — exceeds 60% SLA target · 96–100% of screened members identify at least one social need</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Behavioral Health Baselines Set</div>
+            <div class="card-val">${fmt(totalPHQ4)}</div>
+            <div class="card-sub">PHQ-4 avg ${wPHQ4.toFixed(1)} · UCLA-3 loneliness avg ${wUCLA3.toFixed(1)} · Baselines established across all 4 markets · Reduction tracked monthly</div>
         </div>`;
 
     /* Market table */
@@ -1793,28 +1810,18 @@ function renderAll() {
             </tr>`;
         }).join('')}</tbody>`;
 
-    /* Activate */
-    const totalPRAPARE   = D.markets.reduce((s,mk) => s+(mk.screening?.praparen||0), 0);
-    const totalPHQ4      = D.markets.reduce((s,mk) => s+(mk.screening?.phq4n||0), 0);
-    const totalUCLA3     = D.markets.reduce((s,mk) => s+(mk.screening?.ucla3n||0), 0);
-    const totalEngCalls  = D.markets.reduce((s,mk) => s+(mk.engage?.totalCalls||0), 0);
-    const screenerPct    = totalPRAPARE / m.totalEnrolled;
-    const wUCLA3 = D.markets.reduce((s,mk)=>s+(mk.screening?.ucla3avg||0)*(mk.screening?.ucla3n||0),0)/totalUCLA3;
-    const wPHQ4  = D.markets.reduce((s,mk)=>s+(mk.screening?.phq4avg||0)*(mk.screening?.phq4n||0),0)/totalPHQ4;
-
+    /* Activate — outcomes pending from Tableau */
     const activateMets = [
-        { lbl:'SDOH Screenings Completed',       val:fmt(totalPRAPARE), pending:false,
-          sub:`${fmt(screenerPct,'pct')} of enrolled members — ↑ exceeds 60% SLA target · 96–100% of screened members identify at least one social need across all markets` },
-        { lbl:'PHQ-4 Mental Health Assessments', val:fmt(totalPHQ4),    pending:false,
-          sub:`Avg score: ${wPHQ4.toFixed(1)} (scale 0–12) · Baseline established across all 4 markets · Reduction tracked monthly` },
-        { lbl:'UCLA-3 Loneliness Assessments',   val:fmt(totalUCLA3),   pending:false,
-          sub:`Avg score: ${wUCLA3.toFixed(1)} (scale 3–9 · 6–9 = lonely) · Baseline established · Range: OH 3.7 · TX 4.6 · UT 4.9 · WA 4.4` },
-        { lbl:'Total Engagement Calls',          val:fmt(totalEngCalls), pending:false,
-          sub:`Care team interactions across all markets · OH 413 · TX 270 · UT 273 · WA 76 · Avg 12 min per call` },
         { lbl:'PCP Connections Facilitated',     val:'—', pending:true,
-          sub:'Tracking activating — populating May 2026 from Tableau' },
-        { lbl:'SDOH Needs Resolved / AWV Attestations', val:'—', pending:true,
-          sub:'Members connected to housing, food, transportation resources + Molina STARS AWV goal — tracking in progress' }
+          sub:'Members without a PCP helped to schedule and establish a primary care relationship · Populating May 2026' },
+        { lbl:'SDOH Needs Resolved',             val:'—', pending:true,
+          sub:'Members connected to housing, food, transportation, and other essential resources · Tracking in progress' },
+        { lbl:'Reward Redemptions',              val:'—', pending:true,
+          sub:'Molina plan reward awareness and redemption — educated during every engagement · Tracking activating' },
+        { lbl:'AWV Attestations',                val:'—', pending:true,
+          sub:'Annual Wellness Visit scheduling and attestation support — Molina STARS quality measure · Populating May 2026' },
+        { lbl:'Benefit Navigation Assists',      val:'—', pending:true,
+          sub:'Members helped to understand and access plan benefits · Tracking in progress' }
     ];
     $('activate-grid').innerHTML = activateMets.map(a => `
         <div class="card">
