@@ -1983,15 +1983,14 @@ function renderAll() {
 
     /* Market Spotlight */
     const signals = {
-        OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers, not background noise. OH is 2★ Staying Healthy: members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens. That\'s the Stars lever here.',
-        TX: 'Largest market population and highest social need load (3.8 avg needs/member). TX is the only market at 3.5★ overall — quality Molina needs to protect, not just improve. Unmet social needs are an early warning signal for quality erosion. At this scale, PCP connection facilitation has the largest absolute impact of any market.',
-        UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market — and 2★ member experience. These are not separate problems. Isolated, distressed members give low CAHPS scores. Pyx consistent engagement is the direct intervention. This is the clearest market-level case for CAHPS/HOS movement.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge. Our data confirms it: 96% social need, economic instability dominant. But WA has the highest conversion rate of all 4 markets (21.3%) despite launching 2 weeks ago. The hardest-to-reach members are engaging. This is a Pyx proof point — and the 1★ member experience has the most room to move.'
+        OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers, not background noise. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
+        TX: 'Largest market population and highest social need load (3.8 avg needs/member). Unmet social needs are an early warning signal for quality erosion before it shows up in reporting. At this scale, PCP connection facilitation has the largest absolute impact of any market.',
+        UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. These are not separate problems — isolated, distressed members give low CAHPS scores. Pyx consistent engagement is the direct intervention. Clearest market-level case for CAHPS/HOS movement.',
+        WA: 'Molina flagged WA\'s houseless population as a unique challenge. Our data confirms it: 96% social need, economic instability dominant. But WA has the highest conversion rate of all 4 markets (21.3%) despite launching 2 weeks ago. The hardest-to-reach members are engaging — and member experience has the most room to move.'
     };
     $('market-spotlight-grid').innerHTML = D.markets.map(mk => `
         <div class="mkt-card">
             <div class="mkt-card-name">${mk.name} (${mk.code})</div>
-            <div class="mkt-card-stars">${mk.stars.overall}★ Overall · ${mk.stars.memberExperience}★ Member Experience · ${mk.stars.stayHealthy}★ Staying Healthy</div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">SDOH Screened</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">(${fmt(mk.screening.sdohNeedPct,'pct')} have ≥1 need)</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Loneliness (UCLA-3)</span><span class="mkt-stat-val">${mk.screening.ucla3avg.toFixed(1)} of 9</span></div>
