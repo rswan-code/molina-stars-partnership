@@ -994,8 +994,9 @@
             margin-bottom: 16px;
         }
 
-        .flag.win    { border-left-color: var(--green); }
-        .flag.watch  { border-left-color: var(--blue); }
+        .flag.win         { border-left-color: var(--green); }
+        .flag.watch       { border-left-color: var(--blue); }
+        .flag.investigate { border-left-color: var(--orange); }
 
         .flag-type {
             font-size: 10px;
@@ -1008,9 +1009,10 @@
             margin-bottom: 8px;
         }
 
-        .flag-type.risk  { background: rgba(214,102,26,0.1); color: var(--orange); }
-        .flag-type.win   { background: rgba(73,166,1,0.1);   color: var(--green); }
-        .flag-type.watch { background: rgba(0,118,191,0.1);  color: var(--blue); }
+        .flag-type.risk        { background: rgba(214,102,26,0.1); color: var(--orange); }
+        .flag-type.win         { background: rgba(73,166,1,0.1);   color: var(--green); }
+        .flag-type.watch       { background: rgba(0,118,191,0.1);  color: var(--blue); }
+        .flag-type.investigate { background: rgba(214,102,26,0.1); color: var(--orange); }
 
         .flag-title { font-size: 14px; font-weight: 700; color: var(--cool-slate); margin-bottom: 5px; }
         .flag-desc  { font-size: 13px; color: #6b808f; line-height: 1.6; }
@@ -1836,7 +1838,13 @@ const D = {
           action:"CSC: Monitor engagement call depth by market. Members with only 1 call are at risk of falling out. Build warm follow-up cadence for enrolled members at the 30-day mark." },
         { type:"win",   title:"Star Rating baseline confirms Pyx is working in the right measures",
           desc:"CMS 2026 data shows Molina's weakest DSNP measures are exactly where Pyx activates: 'Staying Healthy — Screenings & Vaccines' (OH: 2★, WA: 2★) and 'Member Experience with Health Plan' (WA: 1★, UT: 2★, OH: 3★). TX is the strongest market at 3.5★ but still below 4.0★ state average. A 1-star improvement at $2–$5 PMPM across 42,846 members = $1.0M–$2.6M annually in CMS quality bonus revenue for Molina.",
-          action:"Account team: Include star baselines and SDOH screener data in May QBR. Frame Pyx activation as a CAHPS investment — show leading indicators (screenings, PCP connections, satisfaction) now, Star movement is a 12–18 month lagging indicator." }
+          action:"Account team: Include star baselines and SDOH screener data in May QBR. Frame Pyx activation as a CAHPS investment — show leading indicators (screenings, PCP connections, satisfaction) now, Star movement is a 12–18 month lagging indicator." },
+        { type:"investigate", title:"DATA CHECK: Total Population dropped from ~53,749 to 42,846 — verify source",
+          desc:"Dashboard currently shows 42,846 total target population. Prior reporting showed ~53,749 total eligible DSNP members across OH/TX/UT/WA. A ~20% drop in 11 days is atypical. Likely causes: (1) target file was re-filtered with a different inclusion criteria, (2) two reports are pulling from different data sources, or (3) a population segment was removed from the outreach file. This matters — the enrollment SLA denominator (15% of total pop) and revenue ceiling both depend on this number.",
+          action:"Data/Ops: Pull the April 27 target file and compare to the April 16 file. Confirm whether 42,846 is the current billable outreach population or a subset. If the number changed legitimately, update the CLAUDE.md contract context and confirm with Molina." },
+        { type:"investigate", title:"DATA CHECK: Avg call length 11–12 min — validate against Tableau Billable Calls view",
+          desc:"Dashboard shows avg 12 min per member interaction. At this program stage, a significant share of calls are welcome engagements — which include baseline screenings (PRAPARE, PHQ-4, UCLA-3), rapport building, and benefit navigation. Those calls were sold at 30–40 minutes and are charged separately at $45. 12 minutes average seems low if welcome calls are included in this metric. Possible cause: the Tableau metric may be averaging all call types (including short follow-up/outreach attempts) rather than isolating completed engagements.",
+          action:"CSC/Data: Validate the call length metric against the Billable Calls view in Tableau. Confirm whether this is avg length of completed engagement calls only, or all call attempts including non-connects. Report back before May client presentation." }
     ]
 };
 
@@ -1962,10 +1970,10 @@ function renderAll() {
           sub:`${fmt(totalPRAPARE/m.totalEnrolled,'pct')} of enrolled members · ${fmt(pctSdohNeed,'pct')} identify at least one social need · Economic instability is the leading barrier in every market` },
         { lbl:'PHQ-4 Baseline Established',
           val: fmt(totalPHQ4),
-          sub:`Avg score ${wPHQ4.toFixed(1)} · Emotional health and stress levels documented — measurement foundation for clinical change over time` },
+          sub:`Avg score ${wPHQ4.toFixed(1)} · Scale 0–12: 0–2 Normal · 3–5 Mild · 6–8 Moderate · 9–12 Severe · Emotional health and stress levels documented across enrolled population` },
         { lbl:'UCLA Loneliness Baseline',
           val: fmt(totalUCLA3),
-          sub:`Avg score ${wUCLA3.toFixed(1)} of 9 · Social isolation levels established per member — key driver of member experience and care avoidance` },
+          sub:`Avg score ${wUCLA3.toFixed(1)} of 9 · Scale 3–9: 3–5 Not lonely · 6–9 Lonely · Social isolation levels established per member — key driver of member experience and care avoidance` },
         { lbl:'Avg Social Needs Per Member',
           val: wAvgNeeds.toFixed(1),
           sub:`Members carry multiple compounding barriers — not isolated incidents; systemic issues requiring coordinated navigation` },
@@ -1993,8 +2001,8 @@ function renderAll() {
             <div class="mkt-card-name">${mk.name} (${mk.code})</div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">SDOH Screened</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">(${fmt(mk.screening.sdohNeedPct,'pct')} have ≥1 need)</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Loneliness (UCLA-3)</span><span class="mkt-stat-val">${mk.screening.ucla3avg.toFixed(1)} of 9</span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Distress (PHQ-4)</span><span class="mkt-stat-val">${mk.screening.phq4avg.toFixed(1)}</span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Loneliness (UCLA-3)</span><span class="mkt-stat-val">${mk.screening.ucla3avg.toFixed(1)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${mk.screening.ucla3avg >= 6 ? '· Lonely (6–9)' : '· Not lonely (3–5)'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Distress (PHQ-4)</span><span class="mkt-stat-val">${mk.screening.phq4avg.toFixed(1)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${mk.screening.phq4avg <= 2 ? '· Normal (0–2)' : mk.screening.phq4avg <= 5 ? '· Mild (3–5)' : mk.screening.phq4avg <= 8 ? '· Moderate (6–8)' : '· Severe (9–12)'}</span></span></div>
             <div class="mkt-signal">${signals[mk.code]}</div>
         </div>`).join('');
 
@@ -2192,7 +2200,7 @@ function renderAll() {
     /* Flags */
     $('flag-grid').innerHTML = D.flags.map(f => `
         <div class="flag ${f.type}">
-            <span class="flag-type ${f.type}">${f.type==='win'?'✓ Win':f.type==='risk'?'⚠ Risk':'◎ Watch'}</span>
+            <span class="flag-type ${f.type}">${f.type==='win'?'✓ Win':f.type==='risk'?'⚠ Risk':f.type==='investigate'?'⚑ Investigate':'◎ Watch'}</span>
             <div class="flag-title">${f.title}</div>
             <div class="flag-desc">${f.desc}</div>
             <div class="flag-action">→ Action: ${f.action}</div>
