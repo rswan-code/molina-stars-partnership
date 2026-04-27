@@ -1704,7 +1704,7 @@ const D = {
         }
     ],
     metrics: {
-        totalPopulation:       42846,
+        totalPopulation:       0, /* recalculated below from D.markets */
         totalOutreached:       6427,
         totalEnrolled:         848,
         enrollmentTargetMin:   6427,
@@ -1847,6 +1847,7 @@ const D = {
           action:"CSC/Data: Validate the call length metric against the Billable Calls view in Tableau. Confirm whether this is avg length of completed engagement calls only, or all call attempts including non-connects. Report back before May client presentation." }
     ]
 };
+D.metrics.totalPopulation = D.markets.reduce((sum, mk) => sum + mk.population, 0);
 
 /* =============================================
    HELPERS
