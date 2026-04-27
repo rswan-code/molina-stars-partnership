@@ -1965,15 +1965,15 @@ function renderAll() {
     const pctSdohNeed = D.markets.reduce((s,mk)=>s+(mk.screening?.sdohNeedPct||0)*(mk.screening?.praparen||0),0)/totalPRAPARE;
 
     const activateMets = [
-        { lbl:'SDOH Screenings Completed',
+        { lbl:'PRAPARE (SDOH) Completed',
           val: fmt(totalPRAPARE),
-          sub:`${fmt(totalPRAPARE/m.totalEnrolled,'pct')} of enrolled members · ${fmt(pctSdohNeed,'pct')} identify at least one social need · Economic instability is the leading barrier in every market` },
-        { lbl:'PHQ-4 Baseline Established',
+          sub:`${fmt(totalPRAPARE/m.totalEnrolled,'pct')} of enrolled · ${fmt(pctSdohNeed,'pct')} identify ≥1 social need · Economic instability is the leading barrier in every market · OH: ${fmt(D.markets[0].screening.praparen/D.markets[0].enrolled,'pct')} · TX: ${fmt(D.markets[1].screening.praparen/D.markets[1].enrolled,'pct')} · UT: ${fmt(D.markets[2].screening.praparen/D.markets[2].enrolled,'pct')} · WA: ${fmt(D.markets[3].screening.praparen/D.markets[3].enrolled,'pct')}` },
+        { lbl:'PHQ-4 Completed',
           val: fmt(totalPHQ4),
-          sub:`Avg score ${wPHQ4.toFixed(1)} · Scale 0–12: 0–2 Normal · 3–5 Mild · 6–8 Moderate · 9–12 Severe · Emotional health and stress levels documented across enrolled population` },
-        { lbl:'UCLA Loneliness Baseline',
+          sub:`${fmt(totalPHQ4/m.totalEnrolled,'pct')} of enrolled · Avg score ${wPHQ4.toFixed(1)} · Scale 0–12: 0–2 Normal · 3–5 Mild · 6–8 Moderate · 9–12 Severe · OH: ${fmt(D.markets[0].screening.phq4n/D.markets[0].enrolled,'pct')} · TX: ${fmt(D.markets[1].screening.phq4n/D.markets[1].enrolled,'pct')} · UT: ${fmt(D.markets[2].screening.phq4n/D.markets[2].enrolled,'pct')} · WA: ${fmt(D.markets[3].screening.phq4n/D.markets[3].enrolled,'pct')}` },
+        { lbl:'UCLA-3 (Loneliness) Completed',
           val: fmt(totalUCLA3),
-          sub:`Avg score ${wUCLA3.toFixed(1)} of 9 · Scale 3–9: 3–5 Not lonely · 6–9 Lonely · Social isolation levels established per member — key driver of member experience and care avoidance` },
+          sub:`${fmt(totalUCLA3/m.totalEnrolled,'pct')} of enrolled · Avg score ${wUCLA3.toFixed(1)} of 9 · Scale 3–9: 3–5 Not lonely · 6–9 Lonely · OH: ${fmt(D.markets[0].screening.ucla3n/D.markets[0].enrolled,'pct')} · TX: ${fmt(D.markets[1].screening.ucla3n/D.markets[1].enrolled,'pct')} · UT: ${fmt(D.markets[2].screening.ucla3n/D.markets[2].enrolled,'pct')} · WA: ${fmt(D.markets[3].screening.ucla3n/D.markets[3].enrolled,'pct')}` },
         { lbl:'Avg Social Needs Per Member',
           val: wAvgNeeds.toFixed(1),
           sub:`Members carry multiple compounding barriers — not isolated incidents; systemic issues requiring coordinated navigation` },
@@ -1999,10 +1999,10 @@ function renderAll() {
     $('market-spotlight-grid').innerHTML = D.markets.map(mk => `
         <div class="mkt-card">
             <div class="mkt-card-name">${mk.name} (${mk.code})</div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">SDOH Screened</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">(${fmt(mk.screening.sdohNeedPct,'pct')} have ≥1 need)</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PRAPARE (SDOH)</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${fmt(mk.screening.praparen/mk.enrolled,'pct')} of enrolled · ${fmt(mk.screening.sdohNeedPct,'pct')} have ≥1 need</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">UCLA-3 (Loneliness)</span><span class="mkt-stat-val">${fmt(mk.screening.ucla3n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${fmt(mk.screening.ucla3n/mk.enrolled,'pct')} of enrolled · avg ${mk.screening.ucla3avg.toFixed(1)} ${mk.screening.ucla3avg >= 6 ? '· Lonely' : '· Not lonely'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${fmt(mk.screening.phq4n/mk.enrolled,'pct')} of enrolled · avg ${mk.screening.phq4avg.toFixed(1)} ${mk.screening.phq4avg <= 2 ? '· Normal' : mk.screening.phq4avg <= 5 ? '· Mild' : mk.screening.phq4avg <= 8 ? '· Moderate' : '· Severe'}</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Loneliness (UCLA-3)</span><span class="mkt-stat-val">${mk.screening.ucla3avg.toFixed(1)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${mk.screening.ucla3avg >= 6 ? '· Lonely (6–9)' : '· Not lonely (3–5)'}</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Distress (PHQ-4)</span><span class="mkt-stat-val">${mk.screening.phq4avg.toFixed(1)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${mk.screening.phq4avg <= 2 ? '· Normal (0–2)' : mk.screening.phq4avg <= 5 ? '· Mild (3–5)' : mk.screening.phq4avg <= 8 ? '· Moderate (6–8)' : '· Severe (9–12)'}</span></span></div>
             <div class="mkt-signal">${signals[mk.code]}</div>
         </div>`).join('');
 
