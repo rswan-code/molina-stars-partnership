@@ -84,6 +84,63 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
+        /* Talking Points toggle */
+        .tp-toggle-btn {
+            margin-left: 20px;
+            background: rgba(135,208,1,0.15);
+            border: 1px solid rgba(135,208,1,0.4);
+            border-radius: 20px;
+            color: var(--light-green);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tp-toggle-btn:hover,
+        .tp-toggle-btn.active {
+            background: var(--light-green);
+            color: var(--cool-slate);
+            border-color: var(--light-green);
+        }
+
+        /* Talking point blocks — hidden by default */
+        .tp-block {
+            display: none;
+            background: linear-gradient(135deg, rgba(41,164,162,0.07), rgba(73,166,1,0.05));
+            border-left: 3px solid var(--teal);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 16px 0 8px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--cool-slate);
+        }
+        .tp-block.visible { display: block; }
+        .tp-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+        .tp-line {
+            margin-bottom: 10px;
+        }
+        .tp-line:last-child { margin-bottom: 0; }
+        .tp-stat {
+            font-weight: 700;
+            color: var(--cool-slate);
+        }
+        .tp-say {
+            color: #4a6070;
+            font-style: italic;
+        }
+
         /* =============================================
            LAYOUT HELPERS
         ============================================= */
@@ -1299,6 +1356,7 @@
     <div class="nav-logo">pyx <span>health</span></div>
     <button class="tab-btn active" onclick="switchTab('client',this)">Client View</button>
     <button class="tab-btn" onclick="switchTab('internal',this)">Internal View ⚙</button>
+    <button class="tp-toggle-btn" id="tp-toggle" onclick="toggleTalkingPoints(this)">Talking Points</button>
 </nav>
 
 
@@ -1325,9 +1383,15 @@
         <div class="wrap"><div class="section">
             <div class="section-head">
                 <div class="section-title">Program at a Glance</div>
-                <div class="section-sub">Key indicators across all four Molina DSNP markets. Updated monthly from Pyx Tableau reporting.</div>
+                <div class="section-sub">In the first weeks of launch, this partnership is outperforming on reach, building meaningful engagement with DSNP members, and rapidly generating visibility into the barriers preventing preventive care. These are the leading indicators we would expect to see before measurable movement in access, HOS, CAHPS, and Stars.</div>
             </div>
             <div class="kpi-grid" id="kpi-grid"></div>
+            <div class="tp-block" id="tp-kpi">
+                <div class="tp-label">Talking Points — Program Overview</div>
+                <div class="tp-line"><span class="tp-stat">18.98% conversion rate</span> — <span class="tp-say">"This is nearly 2× our contractual target, demonstrating strong early reach into a traditionally hard-to-engage DSNP population. High conversion this early signals we're connecting with the right members in the right way."</span></div>
+                <div class="tp-line"><span class="tp-stat">848 enrolled members</span> — <span class="tp-say">"848 members now have a dedicated Pyx care team member — each one a real relationship this plan didn't have before. These aren't contacts. They're the foundation of the behavior change that moves quality measures."</span></div>
+                <div class="tp-line"><span class="tp-stat">Avg engagement length [verify call data]</span> — <span class="tp-say">"Average call lengths reflect needs-based, trust-building conversations — not transactional outreach. That depth is what drives the screening completion and barrier visibility you're seeing downstream."</span></div>
+            </div>
         </div></div>
     </div>
 
@@ -1411,6 +1475,11 @@
                 <span class="client-q-answer">Members are responding. 18.98% of members reached are enrolling — nearly double the 10% contractual minimum. Washington launched just weeks ago and already leads at 21.3%. Every enrolled member moves into needs-based conversation with a dedicated care team member within the first engagement.</span>
             </div>
             <div class="card-grid" id="engage-grid"></div>
+            <div class="tp-block" id="tp-engage">
+                <div class="tp-label">Talking Points — Reach &amp; Response</div>
+                <div class="tp-line"><span class="tp-stat">Conversion rate</span> — <span class="tp-say">"DSNP members are among the most complex and hardest-to-reach populations in managed care. The fact that nearly 1 in 5 members reached are choosing to engage — and stay engaged — is a strong early signal that this population wants this support. They just haven't had access to it."</span></div>
+                <div class="tp-line"><span class="tp-stat">Washington at 21.3%</span> — <span class="tp-say">"Washington launched just weeks ago with a member population Molina specifically flagged as challenging to reach. They're outperforming every other market on conversion. The barriers are real — but members are responding."</span></div>
+            </div>
             <div class="card" style="margin-top:20px;">
                 <div class="card-lbl">Enrollment by Market</div>
                 <table class="mkt-table" id="mkt-table"></table>
@@ -1432,10 +1501,17 @@
                 <span class="client-q-answer">Yes. 554 members have completed SDOH screenings — 96–100% across all 4 markets identify at least one social need. Economic instability is the primary barrier in every market. PHQ-4 and UCLA-3 baselines are now established, creating the measurement foundation for demonstrating clinical change over time. This is the data that drives everything downstream.</span>
             </div>
             <div class="card-grid" id="activate-grid"></div>
+            <div class="tp-block" id="tp-activate">
+                <div class="tp-label">Talking Points — Deep Engagement &amp; Barrier Visibility</div>
+                <div class="tp-line"><span class="tp-stat">SDOH screening completion (~95% in TX, UT, WA)</span> — <span class="tp-say">"We typically see around 70% completion on SDOH assessments. We're running at 95% across three of your four markets. That reflects two things: genuine trust between your members and our care team, and the fact that these members want to talk about what's getting in their way. You can't solve barriers you can't see — now we can see them, at scale."</span></div>
+                <div class="tp-line"><span class="tp-stat">PHQ-4 baselines established</span> — <span class="tp-say">"We've documented mental health baselines across hundreds of members. This creates the measurement foundation to demonstrate improvement in HOS emotional health outcomes over time. You can't move a measure you haven't first established."</span></div>
+                <div class="tp-line"><span class="tp-stat">UCLA-3 loneliness baselines</span> — <span class="tp-say">"Social isolation is one of the least visible drivers of low member experience scores — and one of the hardest things for a plan to measure on its own. We now have baseline loneliness scores for enrolled members. Consistent engagement directly addresses this."</span></div>
+                <div class="tp-line"><span class="tp-stat">Avg 3.0 social needs per member</span> — <span class="tp-say">"Members are carrying an average of three concurrent social needs. These aren't isolated problems — they're layered barriers that require coordinated navigation, not a single referral. That's exactly what our care team is built to do."</span></div>
+            </div>
             <div class="market-spotlight-header">What We're Seeing by Market</div>
             <div class="market-spotlight-grid" id="market-spotlight-grid"></div>
             <div class="note-box teal">
-                <strong>What comes next:</strong> Once barriers are identified, we remove them. PCP scheduling, SDOH resource connections, AWV support, and reward redemption tracking activate in Phase 4. Those outcomes appear below.
+                <strong>What comes next:</strong> Once barriers are identified, we remove them. PCP scheduling, SDOH resource connections, and AWV support activate in Phase 4. Those outcomes appear below.
             </div>
         </div></div>
     </div>
@@ -2224,6 +2300,16 @@ function renderAll() {
             <div class="trend-amount" style="color:#c8d4de;">TBD</div>
             <div class="trend-target">First full month for WA &nbsp;·&nbsp; OH · TX · UT continuing ramp</div>
         </div>`;
+}
+
+/* =============================================
+   TALKING POINTS TOGGLE
+============================================= */
+function toggleTalkingPoints(btn) {
+    const blocks = document.querySelectorAll('.tp-block');
+    const isOn = btn.classList.toggle('active');
+    blocks.forEach(b => b.classList.toggle('visible', isOn));
+    btn.textContent = isOn ? 'Hide Talking Points' : 'Talking Points';
 }
 
 /* =============================================
