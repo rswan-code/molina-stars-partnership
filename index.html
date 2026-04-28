@@ -306,6 +306,44 @@
         .kpi-ctx.good { color: var(--green); font-weight: 700; }
         .kpi-ctx.warn { color: var(--orange); font-weight: 700; }
 
+        .kpi-why {
+            font-size: 11px;
+            color: var(--teal);
+            line-height: 1.5;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--gray-2);
+            font-style: italic;
+        }
+
+        /* Value anchor banner */
+        .value-anchor-banner {
+            background: linear-gradient(120deg, var(--cool-slate) 0%, #1e3a4a 100%);
+            padding: 28px 40px;
+            border-bottom: 3px solid var(--green);
+        }
+        .vab-inner {
+            max-width: 820px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .vab-eyebrow {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--light-green);
+            margin-bottom: 10px;
+        }
+        .vab-text {
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.7;
+        }
+        .vab-text strong { font-weight: 600; color: var(--light-green); }
+
         /* =============================================
            TIMELINE
         ============================================= */
@@ -1316,6 +1354,95 @@
         }
 
         /* =============================================
+           PRIORITY SECTIONS (Value View)
+        ============================================= */
+        .priority-section { padding: 56px 0; }
+        .priority-section.alt { background: var(--gray-3); }
+        .priority-section.dark {
+            background: linear-gradient(135deg, var(--cool-slate), #1a2f3d);
+            color: var(--white);
+        }
+
+        .priority-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(73,166,1,0.12);
+            border: 1px solid rgba(73,166,1,0.3);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 14px;
+        }
+        .priority-badge.p2 { background:rgba(41,164,162,0.12); border-color:rgba(41,164,162,0.3); color:var(--teal); }
+        .priority-badge.p3 { background:rgba(0,118,191,0.12);  border-color:rgba(0,118,191,0.3);  color:var(--blue); }
+        .priority-badge.p4 { background:rgba(85,66,167,0.12);  border-color:rgba(85,66,167,0.3);  color:var(--purple); }
+
+        .priority-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--cool-slate);
+            margin-bottom: 8px;
+        }
+        .priority-section.dark .priority-title { color: var(--white); }
+
+        .priority-molina-q {
+            font-size: 14px;
+            font-style: italic;
+            color: #8a9baa;
+            margin-bottom: 6px;
+            padding-left: 12px;
+            border-left: 3px solid var(--gray-1);
+        }
+        .priority-answer {
+            font-size: 13px;
+            color: #4a6070;
+            line-height: 1.7;
+            max-width: 720px;
+            margin-bottom: 28px;
+        }
+        .priority-section.dark .priority-answer { color: rgba(255,255,255,0.65); }
+
+        .priority-phase-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--teal);
+            background: rgba(41,164,162,0.1);
+            border-radius: 4px;
+            padding: 3px 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Journey context bar */
+        .journey-context {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            border-left: 4px solid var(--green);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: #4a6070;
+        }
+        .journey-context-lbl {
+            font-weight: 700;
+            color: var(--cool-slate);
+            white-space: nowrap;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        /* =============================================
            FOOTER
         ============================================= */
         .footer {
@@ -1355,6 +1482,7 @@
 <nav class="tab-nav">
     <div class="nav-logo">pyx <span>health</span></div>
     <button class="tab-btn active" onclick="switchTab('client',this)">Client View</button>
+    <button class="tab-btn" onclick="switchTab('value',this)">Value View ✦</button>
     <button class="tab-btn" onclick="switchTab('internal',this)">Internal View ⚙</button>
     <button class="tp-toggle-btn" id="tp-toggle" onclick="toggleTalkingPoints(this)">Talking Points</button>
 </nav>
@@ -1595,6 +1723,180 @@
     </div>
 
 </div><!-- end client view -->
+
+
+<!-- =============================================
+     VALUE VIEW
+============================================= -->
+<div id="tab-value" class="tab-content">
+
+    <!-- Header -->
+    <div class="client-header">
+        <div class="header-eyebrow">Partnership Value Report</div>
+        <h1>Molina DSNP <strong>Partnership</strong></h1>
+        <p class="header-period" id="vv-period"></p>
+        <div class="market-pills">
+            <span class="mpill">Ohio — H9955</span>
+            <span class="mpill">Texas — H7678</span>
+            <span class="mpill">Utah — H5628</span>
+            <span class="mpill">Washington — H5823</span>
+        </div>
+    </div>
+
+    <!-- Value Anchor Banner -->
+    <div class="value-anchor-banner">
+        <div class="vab-inner">
+            <div class="vab-eyebrow">Program Month 2 of 25 — Leading Indicators</div>
+            <div class="vab-text">In the first weeks of launch, this partnership is <strong>outperforming on reach</strong>, building meaningful engagement with DSNP members, and <strong>rapidly generating visibility into the barriers</strong> preventing preventive care. These are the leading indicators we would expect to see before measurable movement in access, HOS, CAHPS, and Stars.</div>
+        </div>
+    </div>
+
+    <!-- Value KPIs -->
+    <div class="white-bg">
+        <div class="wrap"><div class="section">
+            <div class="kpi-grid" id="kpi-grid-value"></div>
+            <div class="tp-block">
+                <div class="tp-label">Talking Points — Opening Numbers</div>
+                <div class="tp-line"><span class="tp-stat">18.98% conversion</span> — <span class="tp-say">"Nearly 2× our contractual target. DSNP members are among the hardest populations to reach and engage — this rate demonstrates that a different kind of outreach produces a different kind of result."</span></div>
+                <div class="tp-line"><span class="tp-stat">848 members activated</span> — <span class="tp-say">"848 members now have a dedicated Pyx care team member — each one a real relationship the plan didn't have before. These aren't contacts. They're the foundation of the behavior change that moves quality measures."</span></div>
+                <div class="tp-line"><span class="tp-stat">554 barriers now visible</span> — <span class="tp-say">"You can't solve barriers you can't see. We can now see them — at scale, across every market, in the first two months of program operation."</span></div>
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Value Journey Context -->
+    <div class="timeline-bar">
+        <div class="wrap">
+            <div class="tl-label">How We Deliver — Pyx Value Journey &nbsp;·&nbsp; Multiple phases run in parallel</div>
+            <div class="tl-swimlane">
+                <div class="tl-sw-axis">
+                    <div></div>
+                    <div class="tl-sw-axis-labels">
+                        <span style="left:0%">Month 1</span>
+                        <span style="left:20%">Month 6</span>
+                        <span style="left:44%">Month 12</span>
+                        <span style="left:68%">Month 18</span>
+                        <span style="left:100%">Month 25</span>
+                    </div>
+                </div>
+                <div class="tl-now-wrap">
+                    <div class="tl-now-line" style="left:8%">
+                        <div class="tl-now-pill">Now</div>
+                    </div>
+                </div>
+                <div class="tl-sw-row">
+                    <div class="tl-sw-lbl">Launch &amp; Readiness</div>
+                    <div class="tl-sw-track"><div class="tl-sw-bar done" style="left:0%;width:8%">Complete</div></div>
+                </div>
+                <div class="tl-sw-row">
+                    <div class="tl-sw-lbl">Reach &amp; Response</div>
+                    <div class="tl-sw-track"><div class="tl-sw-bar active" style="left:0%;width:80%">Ongoing ▶</div></div>
+                </div>
+                <div class="tl-sw-row">
+                    <div class="tl-sw-lbl">Deep Engagement</div>
+                    <div class="tl-sw-track"><div class="tl-sw-bar active" style="left:4%;width:76%">Active Now ▶</div></div>
+                </div>
+                <div class="tl-sw-row">
+                    <div class="tl-sw-lbl">Activation &amp; Impact</div>
+                    <div class="tl-sw-track"><div class="tl-sw-bar building" style="left:14%;width:46%">Building →</div></div>
+                </div>
+                <div class="tl-sw-row">
+                    <div class="tl-sw-lbl">Stars &amp; Value</div>
+                    <div class="tl-sw-track"><div class="tl-sw-bar upcoming" style="left:44%;width:56%">Months 12–25</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Priority 1: PCP Access -->
+    <div class="white-bg priority-section">
+        <div class="wrap"><div class="section">
+            <div class="priority-badge">Molina Priority 1</div>
+            <div class="priority-title">Establish PCP Relationships</div>
+            <div class="priority-molina-q">"Help DSNP members establish a relationship with a Primary Care Provider."</div>
+            <div class="priority-answer">The barriers keeping members from PCP relationships are now visible. Economic instability, housing insecurity, and transportation gaps are the primary obstacles identified across all four markets. Care team conversations are the mechanism — each call builds the trust and removes the barrier that makes a PCP appointment possible. PCP connection facilitation activates in Phase 4 as we shift from identifying to removing.</div>
+            <div class="journey-context">
+                <span class="journey-context-lbl">Value Journey</span>
+                <span>Currently in <strong>Deep Engagement</strong> — barriers are being identified and documented. <strong>Activation</strong> (PCP scheduling, SDOH resolution) begins Month 4.</span>
+            </div>
+            <div class="card-grid" id="vv-pcp-grid"></div>
+            <div class="tp-block">
+                <div class="tp-label">Talking Points — PCP Access</div>
+                <div class="tp-line"><span class="tp-stat">1,032 care team conversations</span> — <span class="tp-say">"These aren't automated reminders or text blasts. These are needs-based conversations with a dedicated care team member — the kind of interaction that builds the trust required to get a DSNP member to schedule and keep a PCP appointment."</span></div>
+                <div class="tp-line"><span class="tp-stat">PCP connections pending</span> — <span class="tp-say">"PCP connection tracking activates in May. The groundwork is laid — we know which members lack a PCP, we know their barriers, and we're working through them. The outcomes will follow the engagement."</span></div>
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Priority 2: Member Experience -->
+    <div class="priority-section alt">
+        <div class="wrap"><div class="section">
+            <div class="priority-badge p2">Molina Priority 2</div>
+            <div class="priority-title">Improve Member Experience</div>
+            <div class="priority-molina-q">"Improve member experience — benefits navigation, health needs, and access to the right resources."</div>
+            <div class="priority-answer">Member experience is driven by whether members feel heard, supported, and able to navigate their care. We've now established loneliness and distress baselines across the enrolled population — the metrics that most directly predict CAHPS and HOS scores. These baselines give us the ability to demonstrate change over time, not just activity.</div>
+            <div class="journey-context">
+                <span class="journey-context-lbl">Value Journey</span>
+                <span>Baselines established in <strong>Deep Engagement</strong>. CAHPS/HOS movement is a 12–18 month lagging indicator — the measurement foundation is being built now.</span>
+            </div>
+            <div class="card-grid" id="vv-experience-grid"></div>
+            <div class="tp-block">
+                <div class="tp-label">Talking Points — Member Experience</div>
+                <div class="tp-line"><span class="tp-stat">UCLA-3 loneliness baselines</span> — <span class="tp-say">"Social isolation is one of the least visible drivers of low CAHPS scores — and one of the hardest things for a plan to measure. We now have loneliness baselines for every enrolled member. Consistent engagement with the same care team member directly addresses this. Consistent with published research on social isolation and patient experience outcomes."</span></div>
+                <div class="tp-line"><span class="tp-stat">PHQ-4 distress baselines</span> — <span class="tp-say">"Distressed members navigate care less effectively and report lower satisfaction even when care quality is equivalent. We've established mental health baselines that create the foundation to demonstrate HOS emotional health improvement over time. You can't move a measure you haven't first established."</span></div>
+                <div class="tp-line"><span class="tp-stat">95% screener completion (TX/UT/WA)</span> — <span class="tp-say">"We typically see around 70% completion on SDOH assessments. We're running at 95% in three of your four markets. That's not just a compliance metric — it reflects genuine trust between your members and our care team."</span></div>
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Priority 3: Quality Improvement -->
+    <div class="priority-section">
+        <div class="wrap"><div class="section">
+            <div class="priority-badge p3">Molina Priority 3</div>
+            <div class="priority-title">Support Quality Improvement</div>
+            <div class="priority-molina-q">"Support quality improvement in underperforming markets by engaging higher-risk members."</div>
+            <div class="priority-answer">SDOH screening completion is the direct precursor to closing gaps in Staying Healthy measures — the domain where Molina's DSNP markets have the most room to improve. Members with unaddressed social needs skip preventive screenings. Identifying and removing those barriers is what turns engagement into quality movement.</div>
+            <div class="journey-context">
+                <span class="journey-context-lbl">Value Journey</span>
+                <span>Leading indicators being generated now in <strong>Deep Engagement</strong>. AWV attestations and preventive screening support activate in <strong>Phase 4</strong> (Month 4+).</span>
+            </div>
+            <div class="card-grid" id="vv-quality-grid"></div>
+            <div class="tp-block">
+                <div class="tp-label">Talking Points — Quality Improvement</div>
+                <div class="tp-line"><span class="tp-stat">SDOH screening as quality leading indicator</span> — <span class="tp-say">"Every SDOH screening is a data point that didn't exist before. Members with identified barriers are the same members who skip AWVs and preventive screenings. Now that we can see the barrier, we can remove it — and when the barrier is removed, the screening happens. That's how this moves Staying Healthy measures."</span></div>
+                <div class="tp-line"><span class="tp-stat">Stars movement timeline</span> — <span class="tp-say">"Star rating movement is a 12–18 month lagging indicator. The leading indicators — screener completion, barrier identification, care team engagement depth — are building that case right now in Month 2. We'll be able to show the through-line from what we're doing today to the quality scores that follow."</span></div>
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Market-Level Signals -->
+    <div class="priority-section alt">
+        <div class="wrap"><div class="section">
+            <div class="priority-badge p4">By Market</div>
+            <div class="priority-title">What We're Seeing in Each Market</div>
+            <div class="priority-answer">Each market has a distinct barrier profile — which means each market has a distinct opportunity. The data below shows what's driving outcomes in each geography and how it maps to Molina's quality and experience priorities.</div>
+            <div class="market-spotlight-grid" id="vv-market-grid"></div>
+        </div></div>
+    </div>
+
+    <!-- Building Toward -->
+    <div class="priority-section dark">
+        <div class="wrap"><div class="section">
+            <div class="priority-badge" style="background:rgba(135,208,1,0.15);border-color:rgba(135,208,1,0.4);color:var(--light-green);">Building Toward</div>
+            <div class="priority-title" style="color:var(--white);">The Case We're Building: Engagement → Outcomes</div>
+            <div class="priority-answer">As this cohort matures, we will demonstrate that deeper engagement produces measurably better outcomes — connecting time-in-program directly to PCP connections, AWV completion, and quality measure movement. The table below shows the framework. Columns populate as cohort data accumulates.</div>
+            <div class="cohort-table-wrap" id="vv-cohort-table"></div>
+        </div></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-logo">pyx <span>health</span></div>
+        <div>Molina DSNP Partnership &nbsp;|&nbsp; SOW #604123v7 &nbsp;|&nbsp; PO: 639366</div>
+        <div id="vv-footer-period"></div>
+    </div>
+
+</div><!-- end value view -->
 
 
 <!-- =============================================
@@ -2303,6 +2605,154 @@ function renderAll() {
 }
 
 /* =============================================
+   VALUE VIEW RENDER
+============================================= */
+function renderValueView() {
+    const m = D.metrics;
+
+    /* Period */
+    const periodStr = `Program Month ${D.program.programMonth} &nbsp;·&nbsp; ${D.program.reportMonth} &nbsp;·&nbsp; Data as of ${D.program.dataAsOf}`;
+    if ($('vv-period'))       $('vv-period').innerHTML = periodStr;
+    if ($('vv-footer-period')) $('vv-footer-period').textContent = `Data as of ${D.program.dataAsOf}`;
+
+    /* Screener totals */
+    const totalPRAPARE = D.markets.reduce((s,mk)=>s+(mk.screening?.praparen||0),0);
+    const wAvgNeeds    = D.markets.reduce((s,mk)=>s+(mk.screening?.avgNeeds||0)*(mk.screening?.praparen||0),0)/totalPRAPARE;
+    const totalPHQ4    = D.markets.reduce((s,mk)=>s+(mk.screening?.phq4n||0),0);
+    const totalUCLA3   = D.markets.reduce((s,mk)=>s+(mk.screening?.ucla3n||0),0);
+    const pctSdohNeed  = D.markets.reduce((s,mk)=>s+(mk.screening?.sdohNeedPct||0)*(mk.screening?.praparen||0),0)/totalPRAPARE;
+    const txUtWaEnrolled   = D.markets.filter(mk=>mk.code!=='OH').reduce((s,mk)=>s+mk.enrolled,0);
+    const txUtWaPRAPARE    = D.markets.filter(mk=>mk.code!=='OH').reduce((s,mk)=>s+(mk.screening?.praparen||0),0);
+    const txUtWaCompPct    = txUtWaPRAPARE / txUtWaEnrolled;
+
+    /* Value KPIs */
+    const vKpis = [
+        { lbl:'Members Activated',      val:fmt(m.totalEnrolled),
+          ctx:'Nearly 2× contractual target rate',    color:'green',
+          why:'Each enrolled member is a relationship the plan didn\'t have before — the foundation of the behavior change that moves quality measures.' },
+        { lbl:'Conversion Rate',        val:fmt(m.overallConversionRate,'pct'),
+          ctx:'↑ Exceeds 10% SLA target',             color:'teal', ctxCls:'good',
+          why:'Strong early reach into a traditionally hard-to-engage DSNP population.' },
+        { lbl:'Barriers Identified',    val:fmt(totalPRAPARE),
+          ctx:`${fmt(pctSdohNeed,'pct')} identify ≥1 social need`,  color:'teal',
+          why:'You can\'t solve barriers you can\'t see. Now we can — at scale, across every market.' },
+        { lbl:'Avg Social Needs',       val:wAvgNeeds.toFixed(1),
+          ctx:'Concurrent needs per member',          color:'purple',
+          why:'Layered barriers require coordinated navigation — confirming the model this program is built on.' },
+        { lbl:'Screener Completion',    val:fmt(txUtWaCompPct,'pct'),
+          ctx:'TX · UT · WA (OH under investigation)', color:'blue',
+          why:'Well above the 70% we typically see — a direct signal of member trust and engagement quality.' }
+    ];
+    if ($('kpi-grid-value')) $('kpi-grid-value').innerHTML = vKpis.map(k=>`
+        <div class="kpi ${k.color||''}">
+            <div class="kpi-lbl">${k.lbl}</div>
+            <div class="kpi-val">${k.val}</div>
+            <div class="kpi-ctx ${k.ctxCls||''}">${k.ctx}</div>
+            <div class="kpi-why">${k.why}</div>
+        </div>`).join('');
+
+    /* Priority 1: PCP Access */
+    const totalEngCalls = D.markets.reduce((s,mk)=>s+(mk.engage?.totalCalls||0),0);
+    if ($('vv-pcp-grid')) $('vv-pcp-grid').innerHTML = `
+        <div class="card">
+            <div class="card-lbl">Care Team Conversations</div>
+            <div class="card-val">${fmt(totalEngCalls)}</div>
+            <div class="card-sub">Needs-based conversations across all 4 markets — building the trust required to move members to PCP action &nbsp;·&nbsp; OH ${D.markets[0].engage.totalCalls} · TX ${D.markets[1].engage.totalCalls} · UT ${D.markets[2].engage.totalCalls} · WA ${D.markets[3].engage.totalCalls}</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Primary Barrier to PCP Access</div>
+            <div class="card-val" style="font-size:22px;line-height:1.3;">Economic<br>Instability</div>
+            <div class="card-sub">Leading SDOH barrier in every market — the driver keeping members from establishing and maintaining PCP relationships</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">PCP Connections Facilitated</div>
+            <div class="card-val pending">—</div>
+            <div class="card-sub">Tracking activates May 2026 · Members without a PCP are the priority outreach target</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">AWV Support</div>
+            <div class="card-val pending">—</div>
+            <div class="card-sub">Annual Wellness Visit scheduling and attestation support activates Phase 4 — direct quality measure impact</div>
+        </div>`;
+
+    /* Priority 2: Member Experience */
+    const wUCLA3 = D.markets.reduce((s,mk)=>s+(mk.screening?.ucla3avg||0)*(mk.screening?.ucla3n||0),0)/totalUCLA3;
+    const wPHQ4  = D.markets.reduce((s,mk)=>s+(mk.screening?.phq4avg||0)*(mk.screening?.phq4n||0),0)/totalPHQ4;
+    if ($('vv-experience-grid')) $('vv-experience-grid').innerHTML = `
+        <div class="card">
+            <div class="card-lbl">UCLA-3 Baselines Established</div>
+            <div class="card-val">${fmt(totalUCLA3)}</div>
+            <div class="card-sub">Avg ${wUCLA3.toFixed(1)} of 9 &nbsp;·&nbsp; Scale: 3–5 Not lonely · 6–9 Lonely &nbsp;·&nbsp; Social isolation levels documented — key predictor of member experience scores</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">PHQ-4 Baselines Established</div>
+            <div class="card-val">${fmt(totalPHQ4)}</div>
+            <div class="card-sub">Avg ${wPHQ4.toFixed(1)} of 12 &nbsp;·&nbsp; Scale: 0–2 Normal · 3–5 Mild · 6–8 Moderate &nbsp;·&nbsp; Emotional health foundation for HOS improvement measurement</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Screener Completion (TX/UT/WA)</div>
+            <div class="card-val">${fmt(txUtWaCompPct,'pct')}</div>
+            <div class="card-sub">vs. 70% industry benchmark &nbsp;·&nbsp; High completion reflects genuine member trust — members sharing what's really getting in their way</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">CAHPS / HOS Movement</div>
+            <div class="card-val pending">—</div>
+            <div class="card-sub">12–18 month lagging indicator &nbsp;·&nbsp; Baselines established now create the measurement foundation to demonstrate change</div>
+        </div>`;
+
+    /* Priority 3: Quality */
+    if ($('vv-quality-grid')) $('vv-quality-grid').innerHTML = `
+        <div class="card">
+            <div class="card-lbl">SDOH Screenings Complete</div>
+            <div class="card-val">${fmt(totalPRAPARE)}</div>
+            <div class="card-sub">${fmt(pctSdohNeed,'pct')} identify ≥1 social need &nbsp;·&nbsp; Barrier visibility is the direct precursor to closing Staying Healthy gaps</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Members with Identified Barriers</div>
+            <div class="card-val">${fmt(Math.round(totalPRAPARE * pctSdohNeed))}</div>
+            <div class="card-sub">Members with documented unmet social needs — now prioritized for barrier removal and preventive care navigation</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Avg Social Needs Per Member</div>
+            <div class="card-val">${wAvgNeeds.toFixed(1)}</div>
+            <div class="card-sub">Concurrent barriers per member &nbsp;·&nbsp; Layered needs require coordinated navigation — confirming this population won't move on a single referral</div>
+        </div>
+        <div class="card">
+            <div class="card-lbl">Preventive Care Attestations</div>
+            <div class="card-val pending">—</div>
+            <div class="card-sub">AWV and preventive screening attestations populate Phase 4 — the direct quality measure output of barrier removal</div>
+        </div>`;
+
+    /* Market grid — reuse signals */
+    const signals = {
+        OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
+        TX: 'Largest enrolled cohort and highest social need load (3.8 avg needs/member). Most enrolled members with most barriers = highest absolute count of PCP connections Pyx will facilitate — directly addressing Molina\'s Priority 1.',
+        UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. Consistent with published research linking social isolation and depression to lower patient experience scores. Clearest market-level case for CAHPS/HOS movement.',
+        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA has the highest conversion rate of all markets (21.3%). The hardest-to-reach members are engaging.'
+    };
+    if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
+        <div class="mkt-card">
+            <div class="mkt-card-name">${mk.name} (${mk.code})</div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PRAPARE (SDOH)</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${fmt(mk.screening.praparen/mk.enrolled,'pct')} of enrolled · ${fmt(mk.screening.sdohNeedPct,'pct')} have ≥1 need</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">UCLA-3 (Loneliness)</span><span class="mkt-stat-val">${fmt(mk.screening.ucla3n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${fmt(mk.screening.ucla3n/mk.enrolled,'pct')} · avg ${mk.screening.ucla3avg.toFixed(1)} ${mk.screening.ucla3avg>=6?'· Lonely':'· Not lonely'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">${fmt(mk.screening.phq4n/mk.enrolled,'pct')} · avg ${mk.screening.phq4avg.toFixed(1)} ${mk.screening.phq4avg<=2?'· Normal':mk.screening.phq4avg<=5?'· Mild':mk.screening.phq4avg<=8?'· Moderate':'· Severe'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
+            <div class="mkt-signal">${signals[mk.code]}</div>
+        </div>`).join('');
+
+    /* Cohort table */
+    if ($('vv-cohort-table')) $('vv-cohort-table').innerHTML = `<table class="cohort-table">
+        <thead><tr>
+            <th>Engagement Tier</th><th>Members</th><th>PCP Connection Rate</th><th>AWV Completion Rate</th><th>SDOH Needs Resolved</th><th>Notes</th>
+        </tr></thead>
+        <tbody>
+            <tr><td class="cohort-tier">1 month</td><td class="cohort-n">${fmt(m.totalEnrolled)}</td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td style="font-size:11px;color:rgba(255,255,255,0.45);">Baseline cohort — full program population today</td></tr>
+            <tr><td class="cohort-tier">2+ months</td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td style="font-size:11px;color:rgba(255,255,255,0.45);">Populating June 2026 — we expect meaningfully higher activation rates</td></tr>
+            <tr><td class="cohort-tier">3+ months</td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td style="font-size:11px;color:rgba(255,255,255,0.45);">Populating July 2026 — longitudinal outcome comparison begins</td></tr>
+        </tbody></table>`;
+}
+
+/* =============================================
    TALKING POINTS TOGGLE
 ============================================= */
 function toggleTalkingPoints(btn) {
@@ -2332,7 +2782,7 @@ function switchTab(name, btn) {
 /* =============================================
    INIT
 ============================================= */
-document.addEventListener('DOMContentLoaded', renderAll);
+document.addEventListener('DOMContentLoaded', () => { renderAll(); renderValueView(); });
 </script>
 
 </body>
