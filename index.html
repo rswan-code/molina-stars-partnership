@@ -1600,13 +1600,13 @@
             <div class="client-q-box">
                 <span class="client-q-label">What Molina is wondering</span>
                 <span class="client-q-text">"Are we reaching the right people?"</span>
-                <span class="client-q-answer">Members are responding. 18.98% of members reached are enrolling — nearly double the 10% contractual minimum. Washington launched just weeks ago and already leads at 21.3%. Every enrolled member moves into needs-based conversation with a dedicated care team member within the first engagement.</span>
+                <span class="client-q-answer">Members are responding. 22.89% of members reached are enrolling — more than double the 10% contractual minimum. Ohio leads at 25.4%, Washington follows at 23.7% despite launching weeks later with Molina's most complex population. Every enrolled member moves into needs-based conversation with a dedicated care team member within the first engagement.</span>
             </div>
             <div class="card-grid" id="engage-grid"></div>
             <div class="tp-block" id="tp-engage">
                 <div class="tp-label">Talking Points — Reach &amp; Response</div>
                 <div class="tp-line"><span class="tp-stat">Conversion rate</span> — <span class="tp-say">"DSNP members are among the most complex and hardest-to-reach populations in managed care. The fact that nearly 1 in 5 members reached are choosing to engage — and stay engaged — is a strong early signal that this population wants this support. They just haven't had access to it."</span></div>
-                <div class="tp-line"><span class="tp-stat">Washington at 21.3%</span> — <span class="tp-say">"Washington launched just weeks ago with a member population Molina specifically flagged as challenging to reach. They're outperforming every other market on conversion. The barriers are real — but members are responding."</span></div>
+                <div class="tp-line"><span class="tp-stat">Ohio at 25.4%, Washington at 23.7%</span> — <span class="tp-say">"Washington launched weeks later than the other markets, serves the population Molina specifically flagged as the hardest to reach, and is performing second across all four markets. Ohio is leading at 25.4%. The barriers are real — but members are responding at every market, with every cohort."</span></div>
             </div>
             <div class="card" style="margin-top:20px;">
                 <div class="card-lbl">Enrollment by Market</div>
@@ -2670,8 +2670,8 @@ function renderValueView() {
         </div>
         <div class="card">
             <div class="card-lbl">PCP Connections Facilitated</div>
-            <div class="card-val pending">—</div>
-            <div class="card-sub">Tracking activates May 2026 · Members without a PCP are the priority outreach target</div>
+            <div class="card-val">1</div>
+            <div class="card-sub">TX: New Patient Meet & Greet with PCP-NP scheduled 05/05/2026 · Next appointment already confirmed · OH · UT · WA data pending</div>
         </div>
         <div class="card">
             <div class="card-lbl">AWV Support</div>
@@ -2723,8 +2723,8 @@ function renderValueView() {
         </div>
         <div class="card">
             <div class="card-lbl">Preventive Care Attestations</div>
-            <div class="card-val pending">—</div>
-            <div class="card-sub">AWV and preventive screening attestations populate Phase 4 — the direct quality measure output of barrier removal</div>
+            <div class="card-val">1</div>
+            <div class="card-sub">TX: Cancer Screening (Mammogram) scheduled 04/30/2026 at MLK Clinic — directly supports Staying Healthy & Screenings STARS domain (OH 2★ · WA 2★) · AWV attestations activate Phase 4</div>
         </div>`;
 
     /* Market grid — reuse signals */
@@ -2732,7 +2732,7 @@ function renderValueView() {
         OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
         TX: 'Largest enrolled cohort and highest social need load (3.8 avg needs/member). Most enrolled members with most barriers = highest absolute count of PCP connections Pyx will facilitate — directly addressing Molina\'s Priority 1.',
         UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. Consistent with published research linking social isolation and depression to lower patient experience scores. Clearest market-level case for CAHPS/HOS movement.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA has the highest conversion rate of all markets (21.3%). The hardest-to-reach members are engaging.'
+        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA is tracking second across all markets at 23.7% conversion with 453 enrolled. The hardest-to-reach members are engaging.'
     };
     if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
         <div class="mkt-card">
