@@ -2141,8 +2141,8 @@ const D = {
             statement:  "Help DSNP members establish a relationship with a Primary Care Provider.",
             pyxHow:     "How Pyx delivers this",
             action:     "We facilitate PCP scheduling for members without a PCP or AWV in 12+ months. Our care team removes access barriers — transportation, language, trust — that keep members from making and keeping appointments.",
-            metric:     "PCP connections: populating May 2026",
-            metricPending: true
+            metric:     "TX: 1 PCP appointment scheduled (New Patient Meet & Greet, 05/05/2026) · 1 preventive care appointment (Mammogram, Staying Healthy STARS measure) · OH · UT · WA: populating",
+            metricPending: false
         },
         {
             molinaGoal: "Molina's Priority #2",
@@ -2200,6 +2200,9 @@ const D = {
         ]
     },
     flags: [
+        { type:"win",   title:"First PCP and preventive care appointments confirmed in TX — activation is working",
+          desc:"TX: 2 member appointments scheduled as of May 4, 2026. (1) Mary Nelson — New Patient Meet & Greet with PCP-NP on 05/05/2026. Direct fulfillment of Molina Priority #1: establishing a PCP relationship. Next appointment already scheduled. (2) Carol Gamble — Cancer Screening (Mammogram) at MLK Clinic on 04/30/2026. Directly supports the 'Staying Healthy — Screenings & Vaccines' STARS domain, where OH and WA are weakest (2★ each). OH, UT, WA appointment data not yet available.",
+          action:"Include in June client presentation as the first confirmed activation outcomes beyond SDOH screening. Frame both: PCP connection = Priority #1 delivered. Mammogram = Staying Healthy STARS measure in motion. Ask Molina to confirm AWV attestation process for members completing annual wellness visits." },
         { type:"win",   title:"Overall conversion rate 22.89% — exceeds 10% SLA target across all 4 markets",
           desc:"All four markets are tracking above the 10% contractual floor. OH leads at 25.4%, WA at 23.7%, TX at 21.9%, UT at 20.6%. Enterprise conversion at 22.89% is more than double the SLA minimum.",
           action:"Use in client conversation: 'Every market is exceeding our engagement commitment — and Washington has grown from 165 to 453 enrolled in its first full month.'" },
@@ -2357,8 +2360,8 @@ function renderAll() {
         { lbl:'Avg Social Needs Per Member',
           val: wAvgNeeds.toFixed(1),
           sub:`Members carry multiple compounding barriers — not isolated incidents; systemic issues requiring coordinated navigation` },
-        { lbl:'PCP Connections Facilitated', val:'—', pending:true,
-          sub:'Members without a PCP helped to schedule and establish a primary care relationship · Populating May 2026' },
+        { lbl:'PCP Connections Facilitated', val:'1',
+          sub:'TX: New Patient Meet & Greet with PCP-NP scheduled 05/05/2026 · Plus 1 Mammogram (Cancer Screening) supporting the Staying Healthy STARS domain · OH · UT · WA: appointment data pending' },
         { lbl:'SDOH Needs Resolved',         val:'—', pending:true,
           sub:'Members connected to housing, food, transportation, and essential resources · Tracking in progress' }
     ];
