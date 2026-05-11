@@ -2141,7 +2141,7 @@ const D = {
             statement:  "Help DSNP members establish a relationship with a Primary Care Provider.",
             pyxHow:     "How Pyx delivers this",
             action:     "We facilitate PCP scheduling for members without a PCP or AWV in 12+ months. Our care team removes access barriers — transportation, language, trust — that keep members from making and keeping appointments.",
-            metric:     "TX: 1 PCP appointment scheduled (New Patient Meet & Greet, 05/05/2026) · 1 preventive care appointment (Mammogram, Staying Healthy STARS measure) · OH · UT · WA: populating",
+            metric:     "3 PCP connections across TX, WA, UT · OH: no appointments yet · TX: Mary Nelson (PCP-NP, Scheduled 05/05) · WA: Patricia Anderson (PCP-NP, Annual Wellness Exam, Attended 04/30) · UT: Cheryl Thormahlen (PCP-PA, Scheduled 05/26)",
             metricPending: false
         },
         {
@@ -2200,9 +2200,9 @@ const D = {
         ]
     },
     flags: [
-        { type:"win",   title:"First PCP and preventive care appointments confirmed in TX — activation is working",
-          desc:"TX: 2 member appointments scheduled as of May 4, 2026. (1) Mary Nelson — New Patient Meet & Greet with PCP-NP on 05/05/2026. Direct fulfillment of Molina Priority #1: establishing a PCP relationship. Next appointment already scheduled. (2) Carol Gamble — Cancer Screening (Mammogram) at MLK Clinic on 04/30/2026. Directly supports the 'Staying Healthy — Screenings & Vaccines' STARS domain, where OH and WA are weakest (2★ each). OH, UT, WA appointment data not yet available.",
-          action:"Include in June client presentation as the first confirmed activation outcomes beyond SDOH screening. Frame both: PCP connection = Priority #1 delivered. Mammogram = Staying Healthy STARS measure in motion. Ask Molina to confirm AWV attestation process for members completing annual wellness visits." },
+        { type:"win",   title:"9 appointments confirmed across TX, WA & UT — PCP connections and preventive care activating",
+          desc:"3 PCP connections established across TX, WA, and UT as of May 8, 2026. TX (3 appts): Mary Nelson — PCP Visit scheduled 05/05 (direct fulfillment of Molina Priority #1); Carol Gamble — Cancer Screening (Mammogram) at MLK Clinic 04/30 (Staying Healthy STARS domain); Corey Newton — Blood Glucose Check attended 04/29. WA (5 appts): Patricia Anderson — Annual Wellness Exam (PCP-NP, Attended 04/30), Home Health (Attended), Heart Doctor Annual Physical (Attended); Kathleen Nygren — Diabetes Specialist and Orthopedic appointments scheduled. UT (1 appt): Cheryl Thormahlen — PCP Visit scheduled 05/26. OH: no appointments yet.",
+          action:"Include in June client presentation as first confirmed activation outcomes across 3 markets. Frame: 3 PCP connections = Priority #1 in motion. Mammogram = Staying Healthy STARS measure activated. AWV (WA, Attended) = direct STARS attestation opportunity. Ask Molina to confirm AWV attestation workflow for WA." },
         { type:"win",   title:"Overall conversion rate 22.70% — exceeds 10% SLA target across all 4 markets",
           desc:"All four markets are tracking above the 10% contractual floor. OH leads at 24.9%, WA at 23.9%, TX at 21.7%, UT at 20.2%. Enterprise conversion at 22.70% is more than double the SLA minimum. Total enrolled: 1,752.",
           action:"Use in client conversation: 'Every market is exceeding our engagement commitment — 1,752 members enrolled across OH, TX, UT, and WA.'" },
@@ -2360,8 +2360,8 @@ function renderAll() {
         { lbl:'Avg Social Needs Per Member',
           val: wAvgNeeds.toFixed(1),
           sub:`Members carry multiple compounding barriers — not isolated incidents; systemic issues requiring coordinated navigation` },
-        { lbl:'PCP Connections Facilitated', val:'1',
-          sub:'TX: PCP Visit scheduled · Plus 1 Mammogram (Cancer Screening) supporting the Staying Healthy STARS domain · OH · UT · WA: appointment data pending' },
+        { lbl:'PCP Connections Facilitated', val:'3',
+          sub:'TX: Mary Nelson — PCP Visit scheduled (05/05) · WA: Patricia Anderson — PCP Visit attended (04/30) · UT: Cheryl Thormahlen — PCP Visit scheduled (05/26) · OH: no appointments yet · Plus 1 Cancer Screening (Mammogram, TX) supporting the Staying Healthy STARS domain · Plus 1 Blood Glucose Check (TX) and 1 Annual Wellness Exam (WA, Attended)' },
         { lbl:'SDOH Needs Resolved',         val:'—', pending:true,
           sub:'Members connected to housing, food, transportation, and essential resources · Tracking in progress' }
     ];
@@ -2670,13 +2670,13 @@ function renderValueView() {
         </div>
         <div class="card">
             <div class="card-lbl">PCP Connections Facilitated</div>
-            <div class="card-val">1</div>
-            <div class="card-sub">TX: PCP Visit scheduled · OH · UT · WA data pending</div>
+            <div class="card-val">3</div>
+            <div class="card-sub">TX: Mary Nelson — PCP Visit scheduled (05/05) · WA: Patricia Anderson — PCP Visit attended (04/30) · UT: Cheryl Thormahlen — PCP Visit scheduled (05/26) · OH: no appointments yet</div>
         </div>
         <div class="card">
             <div class="card-lbl">AWV Support</div>
             <div class="card-val">1</div>
-            <div class="card-sub">TX: PCP Visit scheduled · OH · UT · WA data pending</div>
+            <div class="card-sub">WA: Patricia Anderson — Annual Wellness Exam (Attended 04/30) · Direct STARS attestation opportunity · TX · UT · OH: AWV data pending</div>
         </div>`;
 
     /* Priority 2: Member Experience */
@@ -2723,8 +2723,8 @@ function renderValueView() {
         </div>
         <div class="card">
             <div class="card-lbl">Preventive Care Attestations</div>
-            <div class="card-val">1</div>
-            <div class="card-sub">TX: Cancer Screening (Mammogram) scheduled 04/30/2026 at MLK Clinic — directly supports Staying Healthy & Screenings STARS domain (OH 2★ · WA 2★) · AWV attestations activate Phase 4</div>
+            <div class="card-val">2</div>
+            <div class="card-sub">TX: Cancer Screening (Mammogram) at MLK Clinic 04/30 — Staying Healthy & Screenings STARS domain · TX: Blood Glucose Check (Attended 04/29) — Diabetes Care STARS domain · WA: Annual Wellness Exam (Attended 04/30) — AWV attestation opportunity · AWV confirmations activate Phase 4</div>
         </div>`;
 
     /* Market grid — reuse signals */
