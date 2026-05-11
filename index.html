@@ -2643,9 +2643,9 @@ function renderValueView() {
         { lbl:'Avg Social Needs',       val:wAvgNeeds.toFixed(1),
           ctx:'Concurrent needs per member',          color:'purple',
           why:'Layered barriers require coordinated navigation — confirming the model this program is built on.' },
-        { lbl:'Screener Completion',    val:fmt(txUtWaCompPct,'pct'),
-          ctx:'TX · UT · WA (OH under investigation)', color:'blue',
-          why:'Well above the 70% we typically see — a direct signal of member trust and engagement quality.' }
+        { lbl:'Screener Completion',    val:fmt(totalPRAPARE),
+          ctx:'PRAPARE screenings across all 4 markets', color:'blue',
+          why:'Members are sharing what\'s getting in their way — at scale, across every market.' }
     ];
     if ($('kpi-grid-value')) $('kpi-grid-value').innerHTML = vKpis.map(k=>`
         <div class="kpi ${k.color||''}">
@@ -2694,9 +2694,9 @@ function renderValueView() {
             <div class="card-sub">Avg ${wPHQ4.toFixed(1)} of 12 &nbsp;·&nbsp; Scale: 0–2 Normal · 3–5 Mild · 6–8 Moderate &nbsp;·&nbsp; Emotional health foundation for HOS improvement measurement</div>
         </div>
         <div class="card">
-            <div class="card-lbl">Screener Completion (TX/UT/WA)</div>
-            <div class="card-val">${fmt(txUtWaCompPct,'pct')}</div>
-            <div class="card-sub">vs. 70% industry benchmark &nbsp;·&nbsp; High completion reflects genuine member trust — members sharing what's really getting in their way</div>
+            <div class="card-lbl">Screener Completion</div>
+            <div class="card-val">${fmt(totalPRAPARE)}</div>
+            <div class="card-sub">PRAPARE screenings across all 4 markets &nbsp;·&nbsp; Members are sharing what's getting in their way — at scale, across every market</div>
         </div>
         <div class="card">
             <div class="card-lbl">CAHPS / HOS Movement</div>
