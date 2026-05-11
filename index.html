@@ -2206,12 +2206,12 @@ const D = {
         { type:"win",   title:"Overall conversion rate 22.70% — exceeds 10% SLA target across all 4 markets",
           desc:"All four markets are tracking above the 10% contractual floor. OH leads at 24.9%, WA at 23.9%, TX at 21.7%, UT at 20.2%. Enterprise conversion at 22.70% is more than double the SLA minimum. Total enrolled: 1,752.",
           action:"Use in client conversation: 'Every market is exceeding our engagement commitment — 1,752 members enrolled across OH, TX, UT, and WA.'" },
-        { type:"win",   title:"SDOH screener completion at 90.2% — far exceeds 60% SLA target",
-          desc:"1,540 PRAPARE screenings completed across all markets (OH: 447 · TX: 389 · UT: 330 · WA: 374). 96–97% of screenings identify at least one social need. OH avg needs: 3.3 · TX: 3.8 — the highest unmet need burden of any market. Note: counts reflect total completions; members may have taken multiple screenings.",
+        { type:"win",   title:"1,540 PRAPARE screenings completed — 96–97% identify at least one social need",
+          desc:"PRAPARE screenings completed across all markets: OH 447 · TX 389 · UT 330 · WA 374. 96–97% of screenings identify at least one social need per screening. OH avg needs: 3.3 · TX: 3.8 — highest unmet need burden of any market. Counts reflect total completions; members may have taken multiple screenings over the program period.",
           action:"Reporting: Surface PRAPARE screening volume and SDOH need rates in the June client presentation. Confirm with data team whether unique-member counts are available for SLA tracking." },
         { type:"watch", title:"Texas holds the largest population (23,560) — highest upside, highest need",
-          desc:"TX improved significantly from early conversion rates. Now at 18.2% with 276 enrolled. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. Engagement is heavily SDOH/resource navigation focused. PCP connections and AWV should be next priority.",
-          action:"Account Manager: Align with Christine Rolls on TX-specific SDOH resource pipeline. Ensure care team has TX community resource access for housing, food, economic assistance." },
+          desc:"TX at 21.7% conversion with 433 enrolled — highest absolute enrolled count of any market. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. 783 engagement calls with 375 unique members. 3 appointments confirmed: PCP visit (Mary Nelson, scheduled 05/05), Cancer Screening Mammogram (Carol Gamble, 04/30), and Blood Glucose Check (Corey Newton, attended 04/29).",
+          action:"Account Manager: Align with Christine Rolls on TX-specific SDOH resource pipeline. Ensure care team has TX community resource access for housing, food, economic assistance. Surface TX appointment activity as first market with confirmed PCP connections and preventive care." },
         { type:"watch", title:"Revenue at $103,020 (9.1% of $1.5M goal) — Month 3, ramp accelerating",
           desc:"March: $5,450 · April: $94,150 · May (partial): $36,220. Welcome revenue: $78,840 · Ongoing: $56,980. April exceeded monthly target (102.1% to goal). May is pacing at 19.6% to target with the month still in progress. Avg charge per member: $77.52.",
           action:"Finance: Model revenue ramp through Month 6. 1,752 enrolled at $77.52 avg charge — ongoing engagement revenue will compound as cohort matures toward 4-month average." },
@@ -2377,7 +2377,7 @@ function renderAll() {
         OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers, not background noise. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
         TX: 'Largest eligible population (23,560) and highest social need load (3.8 avg needs/member) of any market. 433 enrolled at 21.7% conversion. 783 total engagement calls with 375 unique members. Economic instability and housing barriers are the primary drivers keeping these members from establishing PCP relationships — which is Molina\'s stated Priority #1. More enrolled members with more barriers means the highest absolute count of PCP connections Pyx will facilitate. That\'s where the volume of impact lands.',
         UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. Published research (JAMA Network Open, HCAHPS studies) consistently links both social isolation and depression/anxiety to lower patient experience scores — distressed, isolated members navigate care with less support and report worse experiences even when clinical care is equivalent. UT\'s profile fits that pattern closely. We expect to validate this from Molina\'s own data as the cohort matures.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge. Our data confirms it: 96% social need, economic instability dominant. With 453 enrolled at 23.7% conversion, WA is tracking second across all markets — despite launching later and serving a harder population. Ohio leads at 25.4%, but WA\'s trajectory with this population is the stronger signal. The hardest-to-reach members are engaging — and member experience has the most room to move.'
+        WA: 'Molina flagged WA\'s houseless population as a unique challenge. Our data confirms it: 96% social need, economic instability dominant. With 482 enrolled at 23.9% conversion, WA is tracking second across all markets — despite launching later and serving a harder population. Ohio leads at 24.9%, but WA\'s trajectory with this population is the stronger signal. Patricia Anderson has already attended a PCP visit and Annual Wellness Exam — first confirmed AWV attestation opportunity in the program.'
     };
     $('market-spotlight-grid').innerHTML = D.markets.map(mk => `
         <div class="mkt-card">
@@ -2456,7 +2456,8 @@ function renderAll() {
             <div class="tp-head win">What's Working</div>
             <ul class="tp-list">
                 <li>All 4 markets are above the 10% engagement SLA — enterprise rate of 22.70%, more than double the contractual minimum. 1,752 total enrolled.</li>
-                <li>Washington at 23.9% conversion with 482 enrolled — OH leads at 24.9% with 474 enrolled.</li>
+                <li>3 PCP connections confirmed across TX, WA & UT — 9 total appointments scheduled or attended. First confirmed AWV (WA, Attended 04/30) and Cancer Screening Mammogram (TX) directly supporting STARS quality measures.</li>
+                <li>WA at 23.9% conversion with 482 enrolled — OH leads at 24.9% with 474 enrolled. All 4 markets exceeding the SLA floor.</li>
                 <li>1,540 PRAPARE screenings completed across all markets — 96–97% identify at least one social need per screening. Unique member count pending for SLA tracking.</li>
                 <li>${fmt(m.totalEnrolled)} enrolled members represent an estimated ${fmt(totalEst,'$')} in potential value for Molina through reduced costs and quality improvement.</li>
             </ul>
@@ -2464,18 +2465,18 @@ function renderAll() {
         <div class="tp-card">
             <div class="tp-head wtch">Watch Items</div>
             <ul class="tp-list">
-                <li>Texas holds 23,560 members — the largest market population. SDOH needs are highest here (avg 3.8 needs per member, 95% economic instability). Deepening engagement is the priority.</li>
-                <li>Engagement depth is early across all markets — avg 1.2–2.1 calls per member. Building toward the 4-month engagement goal is the next focus.</li>
-                <li>PCP connections, SDOH resolution tracking, and AWV attestations are activating — will appear in May reporting.</li>
+                <li>Texas holds 23,560 members — the largest market population and highest SDOH need (avg 3.8 per member, 95% economic instability). TX also leads in appointment activity with 3 confirmed visits.</li>
+                <li>Engagement depth building — avg 1.5–2.2 calls per member by market. OH leads at 2.2, WA at 1.5 (latest launch). Building toward the 4-month average engagement goal.</li>
+                <li>OH has no appointments yet — care team should prioritize PCP referral facilitation for Ohio members in the next engagement cycle.</li>
             </ul>
         </div>
         <div class="tp-card">
             <div class="tp-head next">What's Next (May–June)</div>
             <ul class="tp-list">
-                <li>Deepen engagement across all markets — drive enrolled members from 1–2 calls toward the 4-month average goal.</li>
-                <li>PCP connection facilitation in full swing — members without AWV in 12+ months are the priority referral target.</li>
+                <li>Deepen engagement across all markets — drive enrolled members toward the 4-month average goal. WA (1.5 avg calls) has the most runway to build.</li>
+                <li>Confirm AWV attestation workflow with Molina for WA — Patricia Anderson's Annual Wellness Exam (Attended 04/30) is the program's first confirmed AWV opportunity.</li>
+                <li>Activate Ohio PCP referrals — OH is the only market with no appointments yet; 474 enrolled members represent the largest untapped PCP connection opportunity.</li>
                 <li>SDOH resource connection tracking activates — members with identified needs connected to housing, food, and transportation resources.</li>
-                <li>PCP connection facilitation in full swing — members without AWV in 12+ months are the priority.</li>
                 <li>Reward redemption and AWV attestation tracking activates — key Molina STARS quality measures.</li>
             </ul>
         </div>
@@ -2732,7 +2733,7 @@ function renderValueView() {
         OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
         TX: 'Largest enrolled cohort and highest social need load (3.8 avg needs/member). Most enrolled members with most barriers = highest absolute count of PCP connections Pyx will facilitate — directly addressing Molina\'s Priority 1.',
         UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. Consistent with published research linking social isolation and depression to lower patient experience scores. Clearest market-level case for CAHPS/HOS movement.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA is tracking second across all markets at 23.9% conversion with 482 enrolled. 490 engagement calls with 317 unique members engaged. The hardest-to-reach members are engaging.'
+        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA is tracking second at 23.9% conversion with 482 enrolled. 490 engagement calls with 317 unique members engaged. First confirmed AWV in the program: Patricia Anderson attended an Annual Wellness Exam 04/30. The hardest-to-reach members are engaging — and delivering STARS-measurable outcomes.'
     };
     if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
         <div class="mkt-card">
