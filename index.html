@@ -2062,7 +2062,7 @@ const D = {
     markets: [
         { name:"Ohio",       code:"OH", planId:"H9955", population:11943, enrolled:474, conversionRate:0.249, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 },
-          screening:{ ucla3n:478, ucla3avg:4.8, phq4n:470, phq4avg:3.2, praparen:487, sdohNeedPct:0.96, avgNeeds:3.3, urgentPct:0.92 },
+          screening:{ ucla3n:478, ucla3avg:4.8, phq4n:470, phq4avg:3.2, praparen:447, sdohNeedPct:0.96, avgNeeds:3.3, urgentPct:0.92 },
           engage:{ careTeamMembers:377, totalCalls:871, avgCallsPerMember:2.2 }
         },
         { name:"Texas",      code:"TX", planId:"H7678", population:23560, enrolled:433, conversionRate:0.217, status:"active", goLive:"3/17/2026",
@@ -2107,7 +2107,7 @@ const D = {
     ],
     sla: [
         { name:"Engagement Rate",           target:0.10, actual:0.2270, status:"exceed",  desc:"Members enrolled vs. total outreached" },
-        { name:"SDOH Screener Completion",  target:0.60, actual:0.902,  status:"exceed",  desc:"Engaged members completing PRAPARE screener — 1,580 of 1,752 enrolled" },
+        { name:"SDOH Screener Completion",  target:0.60, actual:0.879,  status:"exceed",  desc:"Engaged members completing PRAPARE screener — 1,540 of 1,752 enrolled" },
         { name:"Social Needs Connections",  target:0.60, actual:null,   status:"pending", desc:"Members w/ needs connected to resources" },
         { name:"Outreach Attempts",         target:0.98, actual:null,   status:"pending", desc:"Target file members receiving full outreach cycle" },
         { name:"Satisfaction Rate",         target:0.60, actual:null,   status:"pending", desc:"Engaged members rating experience ≥3/5" }
@@ -2207,8 +2207,8 @@ const D = {
           desc:"All four markets are tracking above the 10% contractual floor. OH leads at 24.9%, WA at 23.9%, TX at 21.7%, UT at 20.2%. Enterprise conversion at 22.70% is more than double the SLA minimum. Total enrolled: 1,752.",
           action:"Use in client conversation: 'Every market is exceeding our engagement commitment — 1,752 members enrolled across OH, TX, UT, and WA.'" },
         { type:"win",   title:"SDOH screener completion at 90.2% — far exceeds 60% SLA target",
-          desc:"1,580 of 1,752 enrolled members have completed the PRAPARE screener (OH: 487 · TX: 389 · UT: 330 · WA: 374). 96–97% across all markets identify at least one social need. OH and TX avg needs per member: 3.3 and 3.8 respectively — the highest unmet need burden of any markets.",
-          action:"Reporting: Surface 90.2% screener completion as a major SLA win in the June client presentation — 30 points above the 60% contractual target." },
+          desc:"1,540 of 1,752 enrolled members have completed the PRAPARE screener (OH: 447 · TX: 389 · UT: 330 · WA: 374). 96–97% across all markets identify at least one social need. OH and TX avg needs per member: 3.3 and 3.8 respectively — the highest unmet need burden of any markets.",
+          action:"Reporting: Surface 87.9% screener completion as a major SLA win in the June client presentation — nearly 30 points above the 60% contractual target." },
         { type:"watch", title:"Texas holds the largest population (23,560) — highest upside, highest need",
           desc:"TX improved significantly from early conversion rates. Now at 18.2% with 276 enrolled. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. Engagement is heavily SDOH/resource navigation focused. PCP connections and AWV should be next priority.",
           action:"Account Manager: Align with Christine Rolls on TX-specific SDOH resource pipeline. Ensure care team has TX community resource access for housing, food, economic assistance." },
@@ -2457,7 +2457,7 @@ function renderAll() {
             <ul class="tp-list">
                 <li>All 4 markets are above the 10% engagement SLA — enterprise rate of 22.70%, more than double the contractual minimum. 1,752 total enrolled.</li>
                 <li>Washington at 23.9% conversion with 482 enrolled — OH leads at 24.9% with 474 enrolled.</li>
-                <li>SDOH screener completion at 90.2% — 1,580 of 1,752 enrolled screened, 30 points above the 60% SLA target, 96–97% identify at least one social need.</li>
+                <li>SDOH screener completion at 87.9% — 1,540 of 1,752 enrolled screened, nearly 30 points above the 60% SLA target, 96–97% identify at least one social need.</li>
                 <li>${fmt(m.totalEnrolled)} enrolled members represent an estimated ${fmt(totalEst,'$')} in potential value for Molina through reduced costs and quality improvement.</li>
             </ul>
         </div>
