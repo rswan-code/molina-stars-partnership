@@ -2141,7 +2141,7 @@ const D = {
             statement:  "Help DSNP members establish a relationship with a Primary Care Provider.",
             pyxHow:     "How Pyx delivers this",
             action:     "We facilitate PCP scheduling for members without a PCP or AWV in 12+ months. Our care team removes access barriers — transportation, language, trust — that keep members from making and keeping appointments.",
-            metric:     "3 PCP connections across TX, WA, UT · OH: no appointments yet · TX: Mary Nelson (PCP-NP, Scheduled 05/05) · WA: Patricia Anderson (PCP-NP, Annual Wellness Exam, Attended 04/30) · UT: Cheryl Thormahlen (PCP-PA, Scheduled 05/26)",
+            metric:     "3 markets with PCP visits confirmed · TX: 1 PCP + 2 preventive visits · WA: 1 PCP/AWV + 4 care visits (9 total across TX, WA, UT) · OH: none yet",
             metricPending: false
         },
         {
@@ -2201,7 +2201,7 @@ const D = {
     },
     flags: [
         { type:"win",   title:"9 appointments confirmed across TX, WA & UT — PCP connections and preventive care activating",
-          desc:"3 PCP connections established across TX, WA, and UT as of May 8, 2026. TX (3 appts): Mary Nelson — PCP Visit scheduled 05/05 (direct fulfillment of Molina Priority #1); Carol Gamble — Cancer Screening (Mammogram) at MLK Clinic 04/30 (Staying Healthy STARS domain); Corey Newton — Blood Glucose Check attended 04/29. WA (5 appts): Patricia Anderson — Annual Wellness Exam (PCP-NP, Attended 04/30), Home Health (Attended), Heart Doctor Annual Physical (Attended); Kathleen Nygren — Diabetes Specialist and Orthopedic appointments scheduled. UT (1 appt): Cheryl Thormahlen — PCP Visit scheduled 05/26. OH: no appointments yet.",
+          desc:"9 appointments confirmed across TX, WA, and UT as of May 8, 2026. TX (3 visits): 1 PCP visit scheduled, 1 Cancer Screening (Mammogram) — Staying Healthy STARS domain, 1 Blood Glucose Check attended. WA (5 visits): 1 PCP/Annual Wellness Exam attended (direct AWV attestation opportunity), 1 Home Health visit attended, 1 specialist Annual Physical attended, 1 Diabetes Specialist scheduled, 1 Orthopedic scheduled. UT (1 visit): 1 PCP visit scheduled. OH: no appointments yet.",
           action:"Include in June client presentation as first confirmed activation outcomes across 3 markets. Frame: 3 PCP connections = Priority #1 in motion. Mammogram = Staying Healthy STARS measure activated. AWV (WA, Attended) = direct STARS attestation opportunity. Ask Molina to confirm AWV attestation workflow for WA." },
         { type:"win",   title:"Overall conversion rate 22.70% — exceeds 10% SLA target across all 4 markets",
           desc:"All four markets are tracking above the 10% contractual floor. OH leads at 24.9%, WA at 23.9%, TX at 21.7%, UT at 20.2%. Enterprise conversion at 22.70% is more than double the SLA minimum. Total enrolled: 1,752.",
@@ -2210,7 +2210,7 @@ const D = {
           desc:"PRAPARE screenings completed across all markets: OH 447 · TX 389 · UT 330 · WA 374. 96–97% of screenings identify at least one social need per screening. OH avg needs: 3.3 · TX: 3.8 — highest unmet need burden of any market. Counts reflect total completions; members may have taken multiple screenings over the program period.",
           action:"Reporting: Surface PRAPARE screening volume and SDOH need rates in the June client presentation. Confirm with data team whether unique-member counts are available for SLA tracking." },
         { type:"watch", title:"Texas holds the largest population (23,560) — highest upside, highest need",
-          desc:"TX at 21.7% conversion with 433 enrolled — highest absolute enrolled count of any market. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. 783 engagement calls with 375 unique members. 3 appointments confirmed: PCP visit (Mary Nelson, scheduled 05/05), Cancer Screening Mammogram (Carol Gamble, 04/30), and Blood Glucose Check (Corey Newton, attended 04/29).",
+          desc:"TX at 21.7% conversion with 433 enrolled — highest absolute enrolled count of any market. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. 783 engagement calls with 375 unique members. 3 appointments confirmed: 1 PCP visit scheduled, 1 Cancer Screening Mammogram (Staying Healthy STARS domain), 1 Blood Glucose Check attended.",
           action:"Account Manager: Align with Christine Rolls on TX-specific SDOH resource pipeline. Ensure care team has TX community resource access for housing, food, economic assistance. Surface TX appointment activity as first market with confirmed PCP connections and preventive care." },
         { type:"watch", title:"Revenue at $103,020 (9.1% of $1.5M goal) — Month 3, ramp accelerating",
           desc:"March: $5,450 · April: $94,150 · May (partial): $36,220. Welcome revenue: $78,840 · Ongoing: $56,980. April exceeded monthly target (102.1% to goal). May is pacing at 19.6% to target with the month still in progress. Avg charge per member: $77.52.",
@@ -2360,8 +2360,8 @@ function renderAll() {
         { lbl:'Avg Social Needs Per Member',
           val: wAvgNeeds.toFixed(1),
           sub:`Members carry multiple compounding barriers — not isolated incidents; systemic issues requiring coordinated navigation` },
-        { lbl:'PCP Connections Facilitated', val:'3',
-          sub:'TX: Mary Nelson — PCP Visit scheduled (05/05) · WA: Patricia Anderson — PCP Visit attended (04/30) · UT: Cheryl Thormahlen — PCP Visit scheduled (05/26) · OH: no appointments yet · Plus 1 Cancer Screening (Mammogram, TX) supporting the Staying Healthy STARS domain · Plus 1 Blood Glucose Check (TX) and 1 Annual Wellness Exam (WA, Attended)' },
+        { lbl:'PCP & Preventive Visits Facilitated', val:'9',
+          sub:'TX: 3 visits (1 PCP · 1 Cancer Screening · 1 Blood Glucose) · WA: 5 visits (1 PCP/AWV · 4 specialist & care) · UT: 1 PCP visit · OH: none yet' },
         { lbl:'SDOH Needs Resolved',         val:'—', pending:true,
           sub:'Members connected to housing, food, transportation, and essential resources · Tracking in progress' }
     ];
@@ -2456,7 +2456,7 @@ function renderAll() {
             <div class="tp-head win">What's Working</div>
             <ul class="tp-list">
                 <li>All 4 markets are above the 10% engagement SLA — enterprise rate of 22.70%, more than double the contractual minimum. 1,752 total enrolled.</li>
-                <li>3 PCP connections confirmed across TX, WA & UT — 9 total appointments scheduled or attended. First confirmed AWV (WA, Attended 04/30) and Cancer Screening Mammogram (TX) directly supporting STARS quality measures.</li>
+                <li>9 PCP and preventive visits confirmed across TX, WA & UT — 3 PCP connections, 1 AWV, 1 Cancer Screening, 1 Blood Glucose Check, and additional specialist and care visits. First STARS-measurable preventive outcomes in the program.</li>
                 <li>WA at 23.9% conversion with 482 enrolled — OH leads at 24.9% with 474 enrolled. All 4 markets exceeding the SLA floor.</li>
                 <li>1,540 PRAPARE screenings completed across all markets — 96–97% identify at least one social need per screening. Unique member count pending for SLA tracking.</li>
                 <li>${fmt(m.totalEnrolled)} enrolled members represent an estimated ${fmt(totalEst,'$')} in potential value for Molina through reduced costs and quality improvement.</li>
@@ -2474,7 +2474,7 @@ function renderAll() {
             <div class="tp-head next">What's Next (May–June)</div>
             <ul class="tp-list">
                 <li>Deepen engagement across all markets — drive enrolled members toward the 4-month average goal. WA (1.5 avg calls) has the most runway to build.</li>
-                <li>Confirm AWV attestation workflow with Molina for WA — Patricia Anderson's Annual Wellness Exam (Attended 04/30) is the program's first confirmed AWV opportunity.</li>
+                <li>Confirm AWV attestation workflow with Molina for WA — 1 Annual Wellness Exam attended in WA is the program's first confirmed AWV opportunity.</li>
                 <li>Activate Ohio PCP referrals — OH is the only market with no appointments yet; 474 enrolled members represent the largest untapped PCP connection opportunity.</li>
                 <li>SDOH resource connection tracking activates — members with identified needs connected to housing, food, and transportation resources.</li>
                 <li>Reward redemption and AWV attestation tracking activates — key Molina STARS quality measures.</li>
@@ -2670,14 +2670,14 @@ function renderValueView() {
             <div class="card-sub">Leading SDOH barrier in every market — the driver keeping members from establishing and maintaining PCP relationships</div>
         </div>
         <div class="card">
-            <div class="card-lbl">PCP Connections Facilitated</div>
-            <div class="card-val">3</div>
-            <div class="card-sub">TX: Mary Nelson — PCP Visit scheduled (05/05) · WA: Patricia Anderson — PCP Visit attended (04/30) · UT: Cheryl Thormahlen — PCP Visit scheduled (05/26) · OH: no appointments yet</div>
+            <div class="card-lbl">PCP & Preventive Visits Facilitated</div>
+            <div class="card-val">9</div>
+            <div class="card-sub">TX: 3 visits (1 PCP · 1 Cancer Screening · 1 Blood Glucose) · WA: 5 visits (1 PCP/AWV · 4 specialist & care) · UT: 1 PCP visit · OH: none yet</div>
         </div>
         <div class="card">
             <div class="card-lbl">AWV Support</div>
             <div class="card-val">1</div>
-            <div class="card-sub">WA: Patricia Anderson — Annual Wellness Exam (Attended 04/30) · Direct STARS attestation opportunity · TX · UT · OH: AWV data pending</div>
+            <div class="card-sub">WA: 1 Annual Wellness Exam attended · Direct STARS attestation opportunity · TX · UT · OH: AWV data pending</div>
         </div>`;
 
     /* Priority 2: Member Experience */
@@ -2724,8 +2724,8 @@ function renderValueView() {
         </div>
         <div class="card">
             <div class="card-lbl">Preventive Care Attestations</div>
-            <div class="card-val">2</div>
-            <div class="card-sub">TX: Cancer Screening (Mammogram) at MLK Clinic 04/30 — Staying Healthy & Screenings STARS domain · TX: Blood Glucose Check (Attended 04/29) — Diabetes Care STARS domain · WA: Annual Wellness Exam (Attended 04/30) — AWV attestation opportunity · AWV confirmations activate Phase 4</div>
+            <div class="card-val">3</div>
+            <div class="card-sub">TX: 1 Cancer Screening (Mammogram) — Staying Healthy & Screenings STARS domain · TX: 1 Blood Glucose Check attended — Diabetes Care STARS domain · WA: 1 Annual Wellness Exam attended — AWV attestation opportunity · AWV confirmations activate Phase 4</div>
         </div>`;
 
     /* Market grid — reuse signals */
@@ -2733,7 +2733,7 @@ function renderValueView() {
         OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
         TX: 'Largest enrolled cohort and highest social need load (3.8 avg needs/member). Most enrolled members with most barriers = highest absolute count of PCP connections Pyx will facilitate — directly addressing Molina\'s Priority 1.',
         UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. Consistent with published research linking social isolation and depression to lower patient experience scores. Clearest market-level case for CAHPS/HOS movement.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA is tracking second at 23.9% conversion with 482 enrolled. 490 engagement calls with 317 unique members engaged. First confirmed AWV in the program: Patricia Anderson attended an Annual Wellness Exam 04/30. The hardest-to-reach members are engaging — and delivering STARS-measurable outcomes.'
+        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA is tracking second at 23.9% conversion with 482 enrolled. 490 engagement calls with 317 unique members engaged. WA leads the program in total appointments (5), including the first confirmed Annual Wellness Exam — a direct STARS attestation opportunity. The hardest-to-reach members are engaging and delivering STARS-measurable outcomes.'
     };
     if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
         <div class="mkt-card">
