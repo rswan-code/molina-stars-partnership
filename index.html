@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1472,6 +1472,46 @@
             .client-header h1 { font-size: 28px; }
             .timeline-bar { padding: 24px 20px; }
         }
+
+        /* =============================================
+           NET NEW UPDATES TAB
+        ============================================= */
+        .updates-hero {
+            background: linear-gradient(135deg, #1e3347 0%, var(--cool-slate) 100%);
+            padding: 48px 40px 40px;
+            color: var(--white);
+            border-bottom: 4px solid var(--teal);
+        }
+        .updates-hero .header-eyebrow { color: var(--teal); }
+        .updates-title { font-size: 36px; font-weight: 300; margin-bottom: 8px; }
+        .updates-title strong { font-weight: 700; color: var(--teal); }
+        .updates-period { font-size: 14px; color: rgba(255,255,255,0.7); }
+        .updates-period strong { color: var(--white); }
+
+        .change-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .change-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px 22px;
+            border-left: 4px solid var(--teal);
+            box-shadow: 0 2px 10px rgba(46,68,86,0.07);
+        }
+        .change-card.green  { border-left-color: var(--green); }
+        .change-card.blue   { border-left-color: var(--blue); }
+        .change-card.purple { border-left-color: var(--purple); }
+        .change-card.teal   { border-left-color: var(--teal); }
+        .chg-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #8a9baa; margin-bottom: 14px; }
+        .chg-comparison { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+        .chg-before { font-family: 'Roboto Slab', serif; font-size: 18px; font-weight: 400; color: #b0bec8; text-decoration: line-through; }
+        .chg-arrow  { font-size: 16px; color: #b0bec8; flex-shrink: 0; }
+        .chg-after  { font-family: 'Roboto Slab', serif; font-size: 26px; font-weight: 700; color: var(--cool-slate); }
+        .chg-delta { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(73,166,1,0.12); color: var(--green); }
+        .chg-delta.new-badge { background: rgba(41,164,162,0.12); color: var(--teal); }
     </style>
 </head>
 <body>
@@ -1483,6 +1523,7 @@
     <div class="nav-logo">pyx <span>health</span></div>
     <button class="tab-btn active" onclick="switchTab('client',this)">Client View</button>
     <button class="tab-btn" onclick="switchTab('value',this)">Value View ✦</button>
+    <button class="tab-btn" onclick="switchTab('updates',this)">Net New Updates 🆕</button>
     <button class="tab-btn" onclick="switchTab('internal',this)">Internal View ⚙</button>
     <button class="tp-toggle-btn" id="tp-toggle" onclick="toggleTalkingPoints(this)">Talking Points</button>
 </nav>
@@ -1600,13 +1641,13 @@
             <div class="client-q-box">
                 <span class="client-q-label">What Molina is wondering</span>
                 <span class="client-q-text">"Are we reaching the right people?"</span>
-                <span class="client-q-answer">Members are responding. 22.70% of members reached are enrolling — more than double the 10% contractual minimum. Ohio leads at 24.9%, Washington follows at 23.9% despite launching weeks later with Molina's most complex population. Every enrolled member moves into needs-based conversation with a dedicated care team member within the first engagement.</span>
+                <span class="client-q-answer">Members are responding. 20.88% of members reached are enrolling — more than double the 10% contractual minimum. Ohio leads at 21.7%, with Texas, Utah, and Washington all performing at or above 20%. Every enrolled member moves into needs-based conversation with a dedicated care team member within the first engagement.</span>
             </div>
             <div class="card-grid" id="engage-grid"></div>
             <div class="tp-block" id="tp-engage">
                 <div class="tp-label">Talking Points — Reach &amp; Response</div>
                 <div class="tp-line"><span class="tp-stat">Conversion rate</span> — <span class="tp-say">"DSNP members are among the most complex and hardest-to-reach populations in managed care. The fact that nearly 1 in 5 members reached are choosing to engage — and stay engaged — is a strong early signal that this population wants this support. They just haven't had access to it."</span></div>
-                <div class="tp-line"><span class="tp-stat">Ohio at 24.9%, Washington at 23.9%</span> — <span class="tp-say">"Washington launched weeks later than the other markets, serves the population Molina specifically flagged as the hardest to reach, and is performing second across all four markets. Ohio is leading at 24.9%. The barriers are real — but members are responding at every market, with every cohort."</span></div>
+                <div class="tp-line"><span class="tp-stat">Ohio at 21.7%, all 4 markets above 20%</span> — <span class="tp-say">"Washington launched weeks later than the other markets, serves the population Molina specifically flagged as the hardest to reach, and has now enrolled 1,033 members — the highest volume of any market. Ohio leads at 21.7%. The barriers are real — but members are responding at every market, with every cohort."</span></div>
             </div>
             <div class="card" style="margin-top:20px;">
                 <div class="card-lbl">Enrollment by Market</div>
@@ -1757,8 +1798,8 @@
             <div class="kpi-grid" id="kpi-grid-value"></div>
             <div class="tp-block">
                 <div class="tp-label">Talking Points — Opening Numbers</div>
-                <div class="tp-line"><span class="tp-stat">22.70% conversion — more than 2× the SLA target</span> — <span class="tp-say">"Every market is above our contractual floor. DSNP members are among the hardest populations to reach and engage — this rate demonstrates that a different kind of outreach produces a different kind of result."</span></div>
-                <div class="tp-line"><span class="tp-stat">1,752 members enrolled across all 4 markets</span> — <span class="tp-say">"1,752 members now have a dedicated Pyx care team member — each one a real relationship the plan didn't have before. These aren't contacts. They're the foundation of the behavior change that moves quality measures."</span></div>
+                <div class="tp-line"><span class="tp-stat">20.88% conversion — more than 2× the SLA target</span> — <span class="tp-say">"Every market is above our contractual floor. DSNP members are among the hardest populations to reach and engage — this rate demonstrates that a different kind of outreach produces a different kind of result."</span></div>
+                <div class="tp-line"><span class="tp-stat">3,003 members enrolled across all 4 markets</span> — <span class="tp-say">"3,003 members now have a dedicated Pyx care team member — each one a real relationship the plan didn't have before. These aren't contacts. They're the foundation of the behavior change that moves quality measures."</span></div>
                 <div class="tp-line"><span class="tp-stat">1,540 SDOH screenings completed — 96–97% identify ≥1 social need</span> — <span class="tp-say">"You can't solve barriers you can't see. We can now see them — at scale, across every market, in Month 3 of program operation. Economic instability is the leading barrier in every market."</span></div>
             </div>
         </div></div>
@@ -2043,6 +2084,73 @@
 
 
 <!-- =============================================
+     NET NEW UPDATES TAB
+============================================= -->
+<div id="tab-updates" class="tab-content">
+
+    <div class="updates-hero">
+        <div class="wrap">
+            <div class="header-eyebrow">Net New Updates</div>
+            <h1 class="updates-title">What's Changed Since <strong>Last Report</strong></h1>
+            <p class="updates-period">Previous update: <strong>May 11, 2026</strong> &nbsp;·&nbsp; Current: <strong id="upd-current-date"></strong> &nbsp;·&nbsp; Month <strong id="upd-month"></strong> of 25</p>
+        </div>
+    </div>
+
+    <div class="alt-bg section">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-2">Enrollment &amp; Engagement</span>
+                <h2 class="section-title">Member Growth &amp; Conversion</h2>
+                <p class="section-sub">Enrollment and conversion rate movement since May 11 — the primary leading indicator for revenue and downstream outcomes.</p>
+            </div>
+            <div class="change-grid" id="chg-enrollment"></div>
+        </div>
+    </div>
+
+    <div class="white-bg section">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-1">Enrollments by Market</span>
+                <h2 class="section-title">Market-by-Market Enrollment Growth</h2>
+                <p class="section-sub">New member enrollments per market since May 11 — Washington leads in total volume, Ohio leads in conversion rate.</p>
+            </div>
+            <div class="change-grid" id="chg-markets"></div>
+        </div>
+    </div>
+
+    <div class="alt-bg section">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-3">Clinical Screenings</span>
+                <h2 class="section-title">SDOH &amp; Behavioral Health Assessments</h2>
+                <p class="section-sub">PRAPARE, UCLA-3, and PHQ-4 screening volume since May 11 — the data foundation for barrier identification and quality measure movement.</p>
+            </div>
+            <div class="change-grid" id="chg-screenings"></div>
+        </div>
+    </div>
+
+    <div class="alt-bg section">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-4">Activation &amp; Impact</span>
+                <h2 class="section-title">Care Connections &amp; Appointments</h2>
+                <p class="section-sub">PCP connections, preventive care attestations, and care team conversation volume — the leading indicators that move STARS measures.</p>
+            </div>
+            <div class="change-grid" id="chg-activation"></div>
+        </div>
+    </div>
+
+    <div class="tab-footer" style="background:var(--cool-slate);padding:24px 40px;">
+        <div class="wrap footer-inner">
+            <div class="footer-logo">pyx <span>health</span></div>
+            <div id="upd-footer-meta" style="font-size:13px;opacity:0.7;"></div>
+        </div>
+    </div>
+
+</div><!-- /tab-updates -->
+
+
+<!-- =============================================
      DATA + JAVASCRIPT
 ============================================= -->
 <script>
@@ -2051,31 +2159,31 @@
 ============================================= */
 const D = {
     program: {
-        reportMonth:    "May 2026",
-        dataAsOf:       "May 11, 2026",
-        programMonth:   "3 of 25",
+        reportMonth:    "June 2026",
+        dataAsOf:       "June 5, 2026",
+        programMonth:   "4 of 25",
         sowEffective:   "November 7, 2025",
         programEnd:     "November 6, 2028",
         poNumber:       "639366",
         sowNumber:      "604123v7"
     },
     markets: [
-        { name:"Ohio",       code:"OH", planId:"H9955", population:11943, enrolled:474, conversionRate:0.249, status:"active", goLive:"3/17/2026",
+        { name:"Ohio",       code:"OH", planId:"H9955", population:11943, enrolled:779, conversionRate:0.217, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 },
           screening:{ ucla3n:478, ucla3avg:4.8, phq4n:470, phq4avg:3.2, praparen:447, sdohNeedPct:0.96, avgNeeds:3.3, urgentPct:0.92 },
           engage:{ careTeamMembers:377, totalCalls:871, avgCallsPerMember:2.2 }
         },
-        { name:"Texas",      code:"TX", planId:"H7678", population:23560, enrolled:433, conversionRate:0.217, status:"active", goLive:"3/17/2026",
+        { name:"Texas",      code:"TX", planId:"H7678", population:23560, enrolled:799, conversionRate:0.210, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 },
           screening:{ ucla3n:431, ucla3avg:4.6, phq4n:426, phq4avg:2.7, praparen:389, sdohNeedPct:0.97, avgNeeds:3.8, urgentPct:0.94 },
           engage:{ careTeamMembers:375, totalCalls:783, avgCallsPerMember:2.0 }
         },
-        { name:"Utah",       code:"UT", planId:"H5628", population:4212,  enrolled:363, conversionRate:0.202, status:"active", goLive:"3/17/2026",
+        { name:"Utah",       code:"UT", planId:"H5628", population:4212,  enrolled:392, conversionRate:0.208, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.9, health:3.0, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:2 },
           screening:{ ucla3n:361, ucla3avg:4.7, phq4n:361, phq4avg:3.1, praparen:330, sdohNeedPct:0.96, avgNeeds:3.1, urgentPct:0.94 },
           engage:{ careTeamMembers:254, totalCalls:543, avgCallsPerMember:2.1 }
         },
-        { name:"Washington", code:"WA", planId:"H5823", population:14034, enrolled:482, conversionRate:0.239, status:"active", goLive:"4/8/2026",
+        { name:"Washington", code:"WA", planId:"H5823", population:14034, enrolled:1033, conversionRate:0.202, status:"active", goLive:"4/8/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:2.5, drug:4.0, stayHealthy:2, chronicConditions:2, memberExperience:1 },
           screening:{ ucla3n:458, ucla3avg:4.6, phq4n:461, phq4avg:2.8, praparen:374, sdohNeedPct:0.96, avgNeeds:2.6, urgentPct:0.96 },
           engage:{ careTeamMembers:317, totalCalls:490, avgCallsPerMember:1.5 }
@@ -2083,30 +2191,31 @@ const D = {
     ],
     metrics: {
         totalPopulation:       0, /* recalculated below from D.markets */
-        totalOutreached:       7353,
-        totalEnrolled:         1752,
+        totalOutreached:       14395,
+        totalEnrolled:         3003,
         enrollmentTargetMin:   6427,
         enrollmentTargetPct:   0.15,
-        stillNeeded:           4675,
-        overallConversionRate: 0.2270,
-        avgMonthsEngagement:   1.4,
+        stillNeeded:           3424,
+        overallConversionRate: 0.2088,
+        avgMonthsEngagement:   1.6,
         avgCallMinutes:        12,
-        avgChargePerMember:    77.52,
+        avgChargePerMember:    92.53,
         enrollmentCallMinutes: null,
         engagementCallMinutes: null,
         costPerMinute:         0.80,
         revenueGoal:           1500000,
-        revenueToDate:         103020,
-        welcomeRevenue:        78840,
-        ongoingRevenue:        56980
+        revenueToDate:         277860,
+        welcomeRevenue:        135135,
+        ongoingRevenue:        142725
     },
     monthlyRevenue: [
-        { month:"March 2026", amount:5450,  target:19500 },
-        { month:"April 2026", amount:94150, target:92250 },
-        { month:"May 2026",   amount:36220, target:92250 }
+        { month:"March 2026", amount:5450,   target:19500  },
+        { month:"April 2026", amount:94150,  target:92250  },
+        { month:"May 2026",   amount:148720, target:185000 },
+        { month:"June 2026",  amount:29540,  target:198300 }
     ],
     sla: [
-        { name:"Engagement Rate",           target:0.10, actual:0.2270, status:"exceed",  desc:"Members enrolled vs. total outreached" },
+        { name:"Engagement Rate",           target:0.10, actual:0.2088, status:"exceed",  desc:"Members enrolled vs. total outreached" },
         { name:"SDOH Screener Completion",  target:0.60, actual:null,   status:"pending", desc:"1,540 PRAPARE screenings completed across 4 markets — counts reflect total completions; unique member tracking in progress" },
         { name:"Social Needs Connections",  target:0.60, actual:null,   status:"pending", desc:"Members w/ needs connected to resources" },
         { name:"Outreach Attempts",         target:0.98, actual:null,   status:"pending", desc:"Target file members receiving full outreach cycle" },
@@ -2157,7 +2266,7 @@ const D = {
             statement:  "Support quality improvement in underperforming STARS markets by engaging higher-risk members.",
             pyxHow:     "How Pyx delivers this",
             action:     "Our AI-assisted risk models identify the highest-need members from your target file first. We prioritize members without an AWV in 12+ months and those with SDOH needs — the population most likely to move your STARS measures.",
-            metric:     "22.70% conversion rate — exceeding 10% SLA target",
+            metric:     "20.88% conversion rate — exceeding 10% SLA target",
             metricPending: false
         },
         {
@@ -2181,7 +2290,7 @@ const D = {
             statement:  "Large houseless population presents unique outreach and access challenges.",
             pyxHow:     "How Pyx responds",
             action:     "WA launched 4/8/2026. Our outreach accounts for WA's housing instability challenges — affected members are flagged for priority resource connection. Economic stability is the top identified need at 96%. SDOH engagement (57% of calls) is the primary focus in this market.",
-            metric:     "482 enrolled · 23.9% conversion rate — second highest of all 4 markets since go-live",
+            metric:     "1,033 enrolled · 20.2% conversion rate — highest enrollment volume of all 4 markets",
             metricPending: false
         }
     ],
@@ -2203,18 +2312,18 @@ const D = {
         { type:"win",   title:"9 appointments confirmed across TX, WA & UT — PCP connections and preventive care activating",
           desc:"9 appointments confirmed across TX, WA, and UT as of May 8, 2026. TX (3 visits): 1 PCP visit scheduled, 1 Cancer Screening (Mammogram) — Staying Healthy STARS domain, 1 Blood Glucose Check attended. WA (5 visits): 1 PCP/Annual Wellness Exam attended (direct AWV attestation opportunity), 1 Home Health visit attended, 1 specialist Annual Physical attended, 1 Diabetes Specialist scheduled, 1 Orthopedic scheduled. UT (1 visit): 1 PCP visit scheduled. OH: no appointments yet.",
           action:"Include in June client presentation as first confirmed activation outcomes across 3 markets. Frame: 3 PCP connections = Priority #1 in motion. Mammogram = Staying Healthy STARS measure activated. AWV (WA, Attended) = direct STARS attestation opportunity. Ask Molina to confirm AWV attestation workflow for WA." },
-        { type:"win",   title:"Overall conversion rate 22.70% — exceeds 10% SLA target across all 4 markets",
-          desc:"All four markets are tracking above the 10% contractual floor. OH leads at 24.9%, WA at 23.9%, TX at 21.7%, UT at 20.2%. Enterprise conversion at 22.70% is more than double the SLA minimum. Total enrolled: 1,752.",
-          action:"Use in client conversation: 'Every market is exceeding our engagement commitment — 1,752 members enrolled across OH, TX, UT, and WA.'" },
+        { type:"win",   title:"Overall conversion rate 20.88% — exceeds 10% SLA target across all 4 markets",
+          desc:"All four markets are tracking above the 10% contractual floor. OH leads at 21.7%, TX at 21.0%, UT at 20.8%, WA at 20.2%. Enterprise conversion at 20.88% is more than double the SLA minimum. Total enrolled: 3,003.",
+          action:"Use in client conversation: 'Every market is exceeding our engagement commitment — 3,003 members enrolled across OH, TX, UT, and WA.'" },
         { type:"win",   title:"1,540 PRAPARE screenings completed — 96–97% identify at least one social need",
           desc:"PRAPARE screenings completed across all markets: OH 447 · TX 389 · UT 330 · WA 374. 96–97% of screenings identify at least one social need per screening. OH avg needs: 3.3 · TX: 3.8 — highest unmet need burden of any market. Counts reflect total completions; members may have taken multiple screenings over the program period.",
           action:"Reporting: Surface PRAPARE screening volume and SDOH need rates in the June client presentation. Confirm with data team whether unique-member counts are available for SLA tracking." },
         { type:"watch", title:"Texas holds the largest population (23,560) — highest upside, highest need",
-          desc:"TX at 21.7% conversion with 433 enrolled — highest absolute enrolled count of any market. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. 783 engagement calls with 375 unique members. 3 appointments confirmed: 1 PCP visit scheduled, 1 Cancer Screening Mammogram (Staying Healthy STARS domain), 1 Blood Glucose Check attended.",
+          desc:"TX at 21.0% conversion with 799 enrolled — second highest enrollment of any market. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. 3 appointments confirmed: 1 PCP visit scheduled, 1 Cancer Screening Mammogram (Staying Healthy STARS domain), 1 Blood Glucose Check attended.",
           action:"Account Manager: Align with Christine Rolls on TX-specific SDOH resource pipeline. Ensure care team has TX community resource access for housing, food, economic assistance. Surface TX appointment activity as first market with confirmed PCP connections and preventive care." },
         { type:"watch", title:"Revenue at $103,020 (9.1% of $1.5M goal) — Month 3, ramp accelerating",
-          desc:"March: $5,450 · April: $94,150 · May (partial): $36,220. Welcome revenue: $78,840 · Ongoing: $56,980. April exceeded monthly target (102.1% to goal). May is pacing at 19.6% to target with the month still in progress. Avg charge per member: $77.52.",
-          action:"Finance: Model revenue ramp through Month 6. 1,752 enrolled at $77.52 avg charge — ongoing engagement revenue will compound as cohort matures toward 4-month average." },
+          desc:"March: $5,450 · April: $94,150 · May: $148,720 · June (partial): $29,540. Welcome revenue: $135,135 · Ongoing: $142,725. April and May both exceeded or approached monthly targets. June is early in the month at 14.9% to target. Avg charge per member: $92.53.",
+          action:"Finance: Model revenue ramp through Month 6. 3,003 enrolled at $92.53 avg charge — ongoing engagement revenue will compound as cohort matures toward 4-month average." },
         { type:"watch", title:"Engagement depth building — avg 1.5–2.2 calls per member by market",
           desc:"Total engagement calls: 2,687 across all 4 markets (OH 871 / TX 783 / UT 543 / WA 490). Average engagement calls per member range from 1.5 (WA) to 2.2 (OH). Goal is 4 months average engagement. 1,323 unique members engaged across all markets.",
           action:"CSC: Monitor engagement call depth by market. Members with only 1 call are at risk of falling out. WA improving rapidly — 317 unique members engaged since 4/8 launch." },
@@ -2229,7 +2338,14 @@ const D = {
           action:"CSC/Data: Validate the call length metric against the Billable Calls view in Tableau. Confirm whether this is avg length of completed engagement calls only, or all call attempts including non-connects. Report back before May client presentation." }
     ]
 };
-D.metrics.totalPopulation = D.markets.reduce((sum, mk) => sum + mk.population, 0);
+D.metrics.totalPopulation         = D.markets.reduce((sum, mk) => sum + mk.population,              0);
+D.metrics.totalPrapare            = D.markets.reduce((sum, mk) => sum + mk.screening.praparen,       0);
+D.metrics.totalUcla3              = D.markets.reduce((sum, mk) => sum + mk.screening.ucla3n,          0);
+D.metrics.totalPhq4               = D.markets.reduce((sum, mk) => sum + mk.screening.phq4n,           0);
+D.metrics.totalCareConvos         = D.markets.reduce((sum, mk) => sum + mk.engage.totalCalls,         0);
+D.metrics.uniqueMembersEngaged    = D.markets.reduce((sum, mk) => sum + mk.engage.careTeamMembers,    0);
+D.metrics.pcpAppointments         = 9;
+D.metrics.preventiveAttestations  = 3;
 
 /* =============================================
    HELPERS
@@ -2274,7 +2390,7 @@ function renderAll() {
         <div class="card">
             <div class="card-lbl">Members in Target Population</div>
             <div class="card-val">${fmt(m.totalOutreached)}</div>
-            <div class="card-sub">All 4 markets active · WA enrolled 482 members at 23.9% conversion since 4/8 launch</div>
+            <div class="card-sub">All 4 markets active · WA leads enrollment volume at 1,033 members since 4/8 launch</div>
         </div>
         <div class="card">
             <div class="card-lbl">Target Population Criteria</div>
@@ -2455,9 +2571,9 @@ function renderAll() {
         <div class="tp-card">
             <div class="tp-head win">What's Working</div>
             <ul class="tp-list">
-                <li>All 4 markets are above the 10% engagement SLA — enterprise rate of 22.70%, more than double the contractual minimum. 1,752 total enrolled.</li>
+                <li>All 4 markets are above the 10% engagement SLA — enterprise rate of 20.88%, more than double the contractual minimum. 3,003 total enrolled.</li>
                 <li>9 PCP and preventive visits confirmed across TX, WA & UT — 3 PCP connections, 1 AWV, 1 Cancer Screening, 1 Blood Glucose Check, and additional specialist and care visits. First STARS-measurable preventive outcomes in the program.</li>
-                <li>WA at 23.9% conversion with 482 enrolled — OH leads at 24.9% with 474 enrolled. All 4 markets exceeding the SLA floor.</li>
+                <li>WA leads enrollment volume with 1,033 enrolled — OH leads conversion at 21.7% with 779 enrolled. All 4 markets exceeding the SLA floor.</li>
                 <li>1,540 PRAPARE screenings completed across all markets — 96–97% identify at least one social need per screening. Unique member count pending for SLA tracking.</li>
                 <li>${fmt(m.totalEnrolled)} enrolled members represent an estimated ${fmt(totalEst,'$')} in potential value for Molina through reduced costs and quality improvement.</li>
             </ul>
@@ -2475,7 +2591,7 @@ function renderAll() {
             <ul class="tp-list">
                 <li>Deepen engagement across all markets — drive enrolled members toward the 4-month average goal. WA (1.5 avg calls) has the most runway to build.</li>
                 <li>Confirm AWV attestation workflow with Molina for WA — 1 Annual Wellness Exam attended in WA is the program's first confirmed AWV opportunity.</li>
-                <li>Activate Ohio PCP referrals — OH is the only market with no appointments yet; 474 enrolled members represent the largest untapped PCP connection opportunity.</li>
+                <li>Activate Ohio PCP referrals — OH is the only market with no appointments yet; 779 enrolled members represent a significant PCP connection opportunity.</li>
                 <li>SDOH resource connection tracking activates — members with identified needs connected to housing, food, and transportation resources.</li>
                 <li>Reward redemption and AWV attestation tracking activates — key Molina STARS quality measures.</li>
             </ul>
@@ -2733,7 +2849,7 @@ function renderValueView() {
         OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
         TX: 'Largest enrolled cohort and highest social need load (3.8 avg needs/member). Most enrolled members with most barriers = highest absolute count of PCP connections Pyx will facilitate — directly addressing Molina\'s Priority 1.',
         UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. Consistent with published research linking social isolation and depression to lower patient experience scores. Clearest market-level case for CAHPS/HOS movement.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA is tracking second at 23.9% conversion with 482 enrolled. 490 engagement calls with 317 unique members engaged. WA leads the program in total appointments (5), including the first confirmed Annual Wellness Exam — a direct STARS attestation opportunity. The hardest-to-reach members are engaging and delivering STARS-measurable outcomes.'
+        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA leads all markets in total enrollment at 1,033 members (20.2% conversion). The hardest-to-reach members are engaging at scale, with appointment activity and AWV attestation opportunities continuing to build.'
     };
     if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
         <div class="mkt-card">
@@ -2785,9 +2901,92 @@ function switchTab(name, btn) {
 }
 
 /* =============================================
+   NET NEW UPDATES
+============================================= */
+function renderUpdates() {
+    const prev = {
+        totalEnrolled:          1752,
+        overallConversionRate:  0.2270,
+        totalOutreached:        7353,
+        revenueToDate:          103020,
+        totalPrapare:           1540,
+        totalUcla3:             1728,
+        totalPhq4:              1718,
+        totalCareConvos:        2687,
+        uniqueMembersEngaged:   1323,
+        pcpAppointments:        9,
+        preventiveAttestations: 3
+    };
+
+    function card(label, before, after, fmtType, color) {
+        const fmtV = v => {
+            if (v === 0 || v === null || v === undefined) return '—';
+            if (fmtType === '$') return '$' + v.toLocaleString();
+            if (fmtType === '%') return (v * 100).toFixed(1) + '%';
+            return v.toLocaleString();
+        };
+        const hasBefore = before !== 0 && before !== null && before !== undefined;
+        const compHtml = hasBefore
+            ? `<span class="chg-before">${fmtV(before)}</span><span class="chg-arrow">→</span><span class="chg-after">${fmtV(after)}</span>`
+            : `<span class="chg-after">${fmtV(after)}</span>`;
+        let deltaHtml = '';
+        if (after) {
+            if (!hasBefore) {
+                deltaHtml = `<div class="chg-delta new-badge">NEW</div>`;
+            } else {
+                const d = fmtType === '%'
+                    ? `+${((after - before) * 100).toFixed(1)}pp`
+                    : fmtType === '$'
+                        ? `+$${(after - before).toLocaleString()}`
+                        : `+${(after - before).toLocaleString()} (+${Math.round((after - before) / before * 100)}%)`;
+                deltaHtml = `<div class="chg-delta">${d}</div>`;
+            }
+        }
+        return `<div class="change-card ${color || ''}">
+            <div class="chg-label">${label}</div>
+            <div class="chg-comparison">${compHtml}</div>
+            ${deltaHtml}
+        </div>`;
+    }
+
+    const m = D.metrics;
+
+    document.getElementById('chg-enrollment').innerHTML = [
+        card('Members Enrolled',              prev.totalEnrolled,         m.totalEnrolled,         'n',  'blue'),
+        card('Conversion Rate',               prev.overallConversionRate, m.overallConversionRate, '%',  'blue'),
+        card('Total Members Outreached',      prev.totalOutreached,       m.totalOutreached,       'n',  'blue'),
+        card('Revenue to Date',               prev.revenueToDate,         m.revenueToDate,         '$',  'green'),
+    ].join('');
+
+    const prevMarkets = { OH: 474, TX: 433, UT: 363, WA: 482 };
+    document.getElementById('chg-markets').innerHTML = D.markets.map(mk => {
+        const before = prevMarkets[mk.code];
+        return card(`${mk.name} (${mk.code}) — ${(mk.conversionRate * 100).toFixed(1)}% conversion`, before, mk.enrolled, 'n', 'green');
+    }).join('');
+
+    document.getElementById('chg-screenings').innerHTML = [
+        card('PRAPARE / SDOH Screenings',    prev.totalPrapare, m.totalPrapare, 'n', ''),
+        card('UCLA-3 Loneliness Assessments', prev.totalUcla3,   m.totalUcla3,   'n', ''),
+        card('PHQ-4 Distress Assessments',    prev.totalPhq4,    m.totalPhq4,    'n', ''),
+    ].join('');
+
+    document.getElementById('chg-activation').innerHTML = [
+        card('PCP / Care Appointments',       prev.pcpAppointments,        m.pcpAppointments,        'n', 'purple'),
+        card('Preventive Care Attestations',  prev.preventiveAttestations, m.preventiveAttestations, 'n', 'purple'),
+        card('Care Team Conversations',       prev.totalCareConvos,        m.totalCareConvos,        'n', 'teal'),
+        card('Unique Members Engaged',        prev.uniqueMembersEngaged,   m.uniqueMembersEngaged,   'n', 'teal'),
+    ].join('');
+
+    document.getElementById('upd-current-date').textContent = D.program.dataAsOf;
+    document.getElementById('upd-month').textContent = D.program.programMonth.split(' ')[0];
+    document.getElementById('upd-footer-meta').textContent =
+        `Changes since May 11, 2026 · Pyx Health · ${D.program.reportMonth}`;
+}
+
+/* =============================================
    INIT
 ============================================= */
-document.addEventListener('DOMContentLoaded', () => { renderAll(); renderValueView(); });
+document.addEventListener('DOMContentLoaded', () => { renderAll(); renderValueView(); renderUpdates(); });
 </script>
 
 </body>
