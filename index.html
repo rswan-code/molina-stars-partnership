@@ -1800,7 +1800,7 @@
                 <div class="tp-label">Talking Points — Opening Numbers</div>
                 <div class="tp-line"><span class="tp-stat">20.88% conversion — more than 2× the SLA target</span> — <span class="tp-say">"Every market is above our contractual floor. DSNP members are among the hardest populations to reach and engage — this rate demonstrates that a different kind of outreach produces a different kind of result."</span></div>
                 <div class="tp-line"><span class="tp-stat">3,003 members enrolled across all 4 markets</span> — <span class="tp-say">"3,003 members now have a dedicated Pyx care team member — each one a real relationship the plan didn't have before. These aren't contacts. They're the foundation of the behavior change that moves quality measures."</span></div>
-                <div class="tp-line"><span class="tp-stat">1,540 SDOH screenings completed — 96–97% identify ≥1 social need</span> — <span class="tp-say">"You can't solve barriers you can't see. We can now see them — at scale, across every market, in Month 3 of program operation. Economic instability is the leading barrier in every market."</span></div>
+                <div class="tp-line"><span class="tp-stat">2,871 PRAPARE screenings completed — 95–97% identify ≥1 social need</span> — <span class="tp-say">"You can't solve barriers you can't see. We can now see them — at scale, across every market, in Month 4 of program operation. Income instability and food insecurity are the dominant barriers in every market."</span></div>
             </div>
         </div></div>
     </div>
@@ -1863,7 +1863,7 @@
             <div class="card-grid" id="vv-pcp-grid"></div>
             <div class="tp-block">
                 <div class="tp-label">Talking Points — PCP Access</div>
-                <div class="tp-line"><span class="tp-stat">2,687 care team conversations</span> — <span class="tp-say">"These aren't automated reminders or text blasts. These are needs-based conversations with a dedicated care team member — the kind of interaction that builds the trust required to get a DSNP member to schedule and keep a PCP appointment."</span></div>
+                <div class="tp-line"><span class="tp-stat">6,588 care team conversations</span> — <span class="tp-say">"These aren't automated reminders or text blasts. These are needs-based conversations with a dedicated care team member — the kind of interaction that builds the trust required to get a DSNP member to schedule and keep a PCP appointment."</span></div>
                 <div class="tp-line"><span class="tp-stat">9 visits confirmed across TX, WA & UT</span> — <span class="tp-say">"PCP connections are happening — 3 markets have confirmed visits, including an Annual Wellness Exam in WA that is a direct STARS attestation opportunity. OH activation is the next priority."</span></div>
             </div>
         </div></div>
@@ -1885,7 +1885,7 @@
                 <div class="tp-label">Talking Points — Member Experience</div>
                 <div class="tp-line"><span class="tp-stat">UCLA-3 loneliness baselines</span> — <span class="tp-say">"Social isolation is one of the least visible drivers of low CAHPS scores — and one of the hardest things for a plan to measure. We now have loneliness baselines for every enrolled member. Consistent engagement with the same care team member directly addresses this. Consistent with published research on social isolation and patient experience outcomes."</span></div>
                 <div class="tp-line"><span class="tp-stat">PHQ-4 distress baselines</span> — <span class="tp-say">"Distressed members navigate care less effectively and report lower satisfaction even when care quality is equivalent. We've established mental health baselines that create the foundation to demonstrate HOS emotional health improvement over time. You can't move a measure you haven't first established."</span></div>
-                <div class="tp-line"><span class="tp-stat">1,718 UCLA-3 and 1,718 PHQ-4 screenings completed</span> — <span class="tp-say">"We have loneliness and distress baselines on the enrolled population — the metrics that most directly predict CAHPS and HOS scores. Members averaged 4.7 on loneliness and 3.0 on distress across all markets. That's the measurement foundation. You can't move a measure you haven't first established."</span></div>
+                <div class="tp-line"><span class="tp-stat">3,218 UCLA-3 and 3,190 PHQ-4 screenings completed</span> — <span class="tp-say">"We have loneliness and distress baselines on the enrolled population — the metrics that most directly predict CAHPS and HOS scores. Members average 4.5–4.8 on loneliness and 2.6–3.2 on distress across markets. That's the measurement foundation. You can't move a measure you haven't first established."</span></div>
             </div>
         </div></div>
     </div>
@@ -2170,23 +2170,23 @@ const D = {
     markets: [
         { name:"Ohio",       code:"OH", planId:"H9955", population:11943, enrolled:779, conversionRate:0.217, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 },
-          screening:{ ucla3n:478, ucla3avg:4.8, phq4n:470, phq4avg:3.2, praparen:447, sdohNeedPct:0.96, avgNeeds:3.3, urgentPct:0.92 },
-          engage:{ careTeamMembers:377, totalCalls:871, avgCallsPerMember:2.2 }
+          screening:{ ucla3n:849, ucla3avg:4.8, phq4n:843, phq4avg:3.2, praparen:743, sdohNeedPct:0.96, avgNeeds:3.3, urgentPct:0.95 },
+          engage:{ careTeamMembers:704, totalCalls:1845, avgCallsPerMember:2.5 }
         },
         { name:"Texas",      code:"TX", planId:"H7678", population:23560, enrolled:799, conversionRate:0.210, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 },
-          screening:{ ucla3n:431, ucla3avg:4.6, phq4n:426, phq4avg:2.7, praparen:389, sdohNeedPct:0.97, avgNeeds:3.8, urgentPct:0.94 },
-          engage:{ careTeamMembers:375, totalCalls:783, avgCallsPerMember:2.0 }
+          screening:{ ucla3n:828, ucla3avg:4.4, phq4n:819, phq4avg:2.7, praparen:755, sdohNeedPct:0.97, avgNeeds:3.5, urgentPct:0.95 },
+          engage:{ careTeamMembers:723, totalCalls:1820, avgCallsPerMember:2.4 }
         },
         { name:"Utah",       code:"UT", planId:"H5628", population:4212,  enrolled:392, conversionRate:0.208, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.9, health:3.0, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:2 },
-          screening:{ ucla3n:361, ucla3avg:4.7, phq4n:361, phq4avg:3.1, praparen:330, sdohNeedPct:0.96, avgNeeds:3.1, urgentPct:0.94 },
-          engage:{ careTeamMembers:254, totalCalls:543, avgCallsPerMember:2.1 }
+          screening:{ ucla3n:453, ucla3avg:4.7, phq4n:452, phq4avg:2.9, praparen:370, sdohNeedPct:0.96, avgNeeds:3.1, urgentPct:0.95 },
+          engage:{ careTeamMembers:358, totalCalls:991, avgCallsPerMember:2.7 }
         },
         { name:"Washington", code:"WA", planId:"H5823", population:14034, enrolled:1033, conversionRate:0.202, status:"active", goLive:"4/8/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:2.5, drug:4.0, stayHealthy:2, chronicConditions:2, memberExperience:1 },
-          screening:{ ucla3n:458, ucla3avg:4.6, phq4n:461, phq4avg:2.8, praparen:374, sdohNeedPct:0.96, avgNeeds:2.6, urgentPct:0.96 },
-          engage:{ careTeamMembers:317, totalCalls:490, avgCallsPerMember:1.5 }
+          screening:{ ucla3n:1088, ucla3avg:4.5, phq4n:1076, phq4avg:2.6, praparen:1003, sdohNeedPct:0.95, avgNeeds:3.3, urgentPct:0.94 },
+          engage:{ careTeamMembers:904, totalCalls:1932, avgCallsPerMember:2.1 }
         }
     ],
     metrics: {
@@ -2216,7 +2216,7 @@ const D = {
     ],
     sla: [
         { name:"Engagement Rate",           target:0.10, actual:0.2088, status:"exceed",  desc:"Members enrolled vs. total outreached" },
-        { name:"SDOH Screener Completion",  target:0.60, actual:null,   status:"pending", desc:"1,540 PRAPARE screenings completed across 4 markets — counts reflect total completions; unique member tracking in progress" },
+        { name:"SDOH Screener Completion",  target:0.60, actual:null,   status:"pending", desc:"2,871 PRAPARE screenings completed across 4 markets — counts reflect total completions; unique member tracking in progress" },
         { name:"Social Needs Connections",  target:0.60, actual:null,   status:"pending", desc:"Members w/ needs connected to resources" },
         { name:"Outreach Attempts",         target:0.98, actual:null,   status:"pending", desc:"Target file members receiving full outreach cycle" },
         { name:"Satisfaction Rate",         target:0.60, actual:null,   status:"pending", desc:"Engaged members rating experience ≥3/5" }
@@ -2258,7 +2258,7 @@ const D = {
             statement:  "Improve member experience — benefits navigation, health needs, and access to the right resources.",
             pyxHow:     "How Pyx delivers this",
             action:     "Every enrolled member is matched with a dedicated care team member. We complete SDOH screenings, connect members to housing, food, and transportation resources, and educate on health plan benefits — all in their preferred format.",
-            metric:     "554 SDOH screenings completed (65.3% of enrolled) — exceeds 60% SLA target · 96–100% of screened members identify at least one social need",
+            metric:     "2,871 PRAPARE screenings completed (95.6% of enrolled) — exceeds 60% SLA target · 95–97% of screened members identify at least one social need",
             metricPending: false
         },
         {
@@ -2315,8 +2315,8 @@ const D = {
         { type:"win",   title:"Overall conversion rate 20.88% — exceeds 10% SLA target across all 4 markets",
           desc:"All four markets are tracking above the 10% contractual floor. OH leads at 21.7%, TX at 21.0%, UT at 20.8%, WA at 20.2%. Enterprise conversion at 20.88% is more than double the SLA minimum. Total enrolled: 3,003.",
           action:"Use in client conversation: 'Every market is exceeding our engagement commitment — 3,003 members enrolled across OH, TX, UT, and WA.'" },
-        { type:"win",   title:"1,540 PRAPARE screenings completed — 96–97% identify at least one social need",
-          desc:"PRAPARE screenings completed across all markets: OH 447 · TX 389 · UT 330 · WA 374. 96–97% of screenings identify at least one social need per screening. OH avg needs: 3.3 · TX: 3.8 — highest unmet need burden of any market. Counts reflect total completions; members may have taken multiple screenings over the program period.",
+        { type:"win",   title:"2,871 PRAPARE screenings completed — 95–97% identify at least one social need",
+          desc:"PRAPARE screenings completed across all markets: OH 743 · TX 755 · UT 370 · WA 1,003. 95–97% of screenings identify at least one social need. OH avg needs: 3.3 · TX: 3.5 · UT: 3.1 · WA: 3.3. WA leads in volume with 1,003 screenings. Counts reflect total completions across the program period.",
           action:"Reporting: Surface PRAPARE screening volume and SDOH need rates in the June client presentation. Confirm with data team whether unique-member counts are available for SLA tracking." },
         { type:"watch", title:"Texas holds the largest population (23,560) — highest upside, highest need",
           desc:"TX at 21.0% conversion with 799 enrolled — second highest enrollment of any market. SDOH needs per member average 3.8 — highest of any market. 95% indicate economic instability, 100% indicate a social/community need. 3 appointments confirmed: 1 PCP visit scheduled, 1 Cancer Screening Mammogram (Staying Healthy STARS domain), 1 Blood Glucose Check attended.",
@@ -2324,9 +2324,9 @@ const D = {
         { type:"watch", title:"Revenue at $103,020 (9.1% of $1.5M goal) — Month 3, ramp accelerating",
           desc:"March: $5,450 · April: $94,150 · May: $148,720 · June (partial): $29,540. Welcome revenue: $135,135 · Ongoing: $142,725. April and May both exceeded or approached monthly targets. June is early in the month at 14.9% to target. Avg charge per member: $92.53.",
           action:"Finance: Model revenue ramp through Month 6. 3,003 enrolled at $92.53 avg charge — ongoing engagement revenue will compound as cohort matures toward 4-month average." },
-        { type:"watch", title:"Engagement depth building — avg 1.5–2.2 calls per member by market",
-          desc:"Total engagement calls: 2,687 across all 4 markets (OH 871 / TX 783 / UT 543 / WA 490). Average engagement calls per member range from 1.5 (WA) to 2.2 (OH). Goal is 4 months average engagement. 1,323 unique members engaged across all markets.",
-          action:"CSC: Monitor engagement call depth by market. Members with only 1 call are at risk of falling out. WA improving rapidly — 317 unique members engaged since 4/8 launch." },
+        { type:"win",   title:"Engagement depth accelerating — avg 2.1–2.7 calls per member by market",
+          desc:"Total engagement calls: 6,588 across all 4 markets (OH 1,845 / TX 1,820 / UT 991 / WA 1,932). Average calls per member: UT leads at 2.7, OH at 2.5, TX at 2.4, WA at 2.1. Goal is 4 months average engagement. 2,689 unique members engaged across all markets.",
+          action:"CSC: UT's 2.7 avg calls per member is a positive signal — deepest engagement depth in the program. WA has scaled from 317 to 904 unique engaged members since launch. Continue monitoring members with only 1 call." },
         { type:"win",   title:"Star Rating baseline confirms Pyx is working in the right measures",
           desc:"CMS 2026 data shows Molina's weakest DSNP measures are exactly where Pyx activates: 'Staying Healthy — Screenings & Vaccines' (OH: 2★, WA: 2★) and 'Member Experience with Health Plan' (WA: 1★, UT: 2★, OH: 3★). TX is the strongest market at 3.5★ but still below 4.0★ state average. A 1-star improvement at $2–$5 PMPM across 42,846 members = $1.0M–$2.6M annually in CMS quality bonus revenue for Molina.",
           action:"Account team: Include star baselines and SDOH screener data in May QBR. Frame Pyx activation as a CAHPS investment — show leading indicators (screenings, PCP connections, satisfaction) now, Star movement is a 12–18 month lagging indicator." },
@@ -2490,10 +2490,10 @@ function renderAll() {
 
     /* Market Spotlight */
     const signals = {
-        OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers, not background noise. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
-        TX: 'Largest eligible population (23,560) and highest social need load (3.8 avg needs/member) of any market. 433 enrolled at 21.7% conversion. 783 total engagement calls with 375 unique members. Economic instability and housing barriers are the primary drivers keeping these members from establishing PCP relationships — which is Molina\'s stated Priority #1. More enrolled members with more barriers means the highest absolute count of PCP connections Pyx will facilitate. That\'s where the volume of impact lands.',
-        UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. Published research (JAMA Network Open, HCAHPS studies) consistently links both social isolation and depression/anxiety to lower patient experience scores — distressed, isolated members navigate care with less support and report worse experiences even when clinical care is equivalent. UT\'s profile fits that pattern closely. We expect to validate this from Molina\'s own data as the cohort matures.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge. Our data confirms it: 96% social need, economic instability dominant. With 482 enrolled at 23.9% conversion, WA is tracking second across all markets — despite launching later and serving a harder population. Ohio leads at 24.9%, but WA\'s trajectory with this population is the stronger signal. Patricia Anderson has already attended a PCP visit and Annual Wellness Exam — first confirmed AWV attestation opportunity in the program.'
+        OH: '96% of screened members identify a social need — with a 95% urgency rate, these are acute barriers, not background noise. Income instability (92%) and food insecurity (61%) are the dominant drivers. 743 PRAPARE screenings and 849 UCLA-3 assessments completed. 704 unique members engaged across 1,845 care team calls — avg 2.5 calls per member. Ohio leads all markets in conversion at 21.7%.',
+        TX: 'Largest eligible population (23,560) and high social need load (3.5 avg needs/member). 97% of screened members identify a need — income instability (92%) and food insecurity (68%) are the top barriers. 755 PRAPARE screenings and 828 UCLA-3 assessments completed. 723 unique members engaged across 1,820 calls. TX holds the highest absolute count of enrolled members at 799, with the deepest SDOH burden — the market most likely to generate PCP connections at scale.',
+        UT: 'Highest engagement depth of any market at 2.7 avg calls per member. UCLA-3 loneliness avg of 4.7 and PHQ-4 distress avg of 2.9 — consistent with research linking social isolation and depression to lower patient experience scores. 96% of screened members identify a social need, with food insecurity (73%) the standout barrier. 453 UCLA-3 and 452 PHQ-4 assessments completed across 358 unique members engaged.',
+        WA: 'Molina flagged WA\'s houseless population as a unique challenge — the data confirms the complexity and the response. 95% social need, income instability (92%) and food insecurity (66%) dominant. WA leads all markets in total enrollment at 1,033 members and in raw screening volume: 1,088 UCLA-3, 1,076 PHQ-4, and 1,003 PRAPARE screenings completed. 904 unique members engaged across 1,932 care team calls. Washington is the largest and most active market in the program.'
     };
     $('market-spotlight-grid').innerHTML = D.markets.map(mk => `
         <div class="mkt-card">
@@ -2846,10 +2846,10 @@ function renderValueView() {
 
     /* Market grid — reuse signals */
     const signals = {
-        OH: '100% of screened members identify a social need — with a 92% urgency rate, these are acute barriers. Members facing food and housing instability skip preventive screenings. Remove the barrier, the screening happens.',
-        TX: 'Largest enrolled cohort and highest social need load (3.8 avg needs/member). Most enrolled members with most barriers = highest absolute count of PCP connections Pyx will facilitate — directly addressing Molina\'s Priority 1.',
-        UT: 'Highest loneliness (UCLA 4.9) and highest distress (PHQ-4 3.2) of any market. Consistent with published research linking social isolation and depression to lower patient experience scores. Clearest market-level case for CAHPS/HOS movement.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge. 96% social need, economic instability dominant — and yet WA leads all markets in total enrollment at 1,033 members (20.2% conversion). The hardest-to-reach members are engaging at scale, with appointment activity and AWV attestation opportunities continuing to build.'
+        OH: '96% of screened members identify a social need — 95% of those needs are urgent. Income instability (92%) and food insecurity (61%) are the dominant barriers. 743 PRAPARE, 849 UCLA-3, and 843 PHQ-4 screenings completed. Members facing these barriers skip preventive screenings — remove the barrier, the screening happens.',
+        TX: 'Highest social need burden at 97% screened with a need, driven by income instability (92%) and food insecurity (68%). 3.5 avg SDOH needs per member across 755 PRAPARE screenings. With 799 enrolled and the deepest unmet need profile, TX represents the highest volume PCP connection opportunity in the program.',
+        UT: 'Highest engagement intensity at 2.7 avg calls per member — care team relationships are the deepest here. UCLA-3 loneliness avg 4.7, PHQ-4 distress avg 2.9. Food insecurity (73%) is the standout barrier — highest food need rate of any market. These are the exact conditions that suppress preventive care utilization and lower CAHPS scores.',
+        WA: 'WA leads the program in enrollment (1,033) and screening volume — 1,088 UCLA-3, 1,076 PHQ-4, and 1,003 PRAPARE screenings completed. 95% identify a social need, with income instability (92%) and food insecurity (66%) dominant. 904 unique members engaged across 1,932 care team calls. The hardest-to-reach population is responding at scale.'
     };
     if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
         <div class="mkt-card">
