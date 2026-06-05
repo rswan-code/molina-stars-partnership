@@ -2170,22 +2170,22 @@ const D = {
     markets: [
         { name:"Ohio",       code:"OH", planId:"H9955", population:11943, enrolled:779, conversionRate:0.217, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 },
-          screening:{ ucla3n:849, ucla3avg:4.8, phq4n:843, phq4avg:3.2, praparen:743, sdohNeedPct:0.96, avgNeeds:3.3, urgentPct:0.95 },
+          screening:{ ucla3n:849, ucla3avg:4.8, phq4n:843, phq4avg:3.2, praparen:743, mwban:634, sdohNeedPct:0.96, avgNeeds:3.3, urgentPct:0.95 },
           engage:{ careTeamMembers:704, totalCalls:1845, avgCallsPerMember:2.5 }
         },
         { name:"Texas",      code:"TX", planId:"H7678", population:23560, enrolled:799, conversionRate:0.210, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 },
-          screening:{ ucla3n:828, ucla3avg:4.4, phq4n:819, phq4avg:2.7, praparen:755, sdohNeedPct:0.97, avgNeeds:3.5, urgentPct:0.95 },
+          screening:{ ucla3n:828, ucla3avg:4.4, phq4n:819, phq4avg:2.7, praparen:755, mwban:670, sdohNeedPct:0.97, avgNeeds:3.5, urgentPct:0.95 },
           engage:{ careTeamMembers:723, totalCalls:1820, avgCallsPerMember:2.4 }
         },
         { name:"Utah",       code:"UT", planId:"H5628", population:4212,  enrolled:392, conversionRate:0.208, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.9, health:3.0, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:2 },
-          screening:{ ucla3n:453, ucla3avg:4.7, phq4n:452, phq4avg:2.9, praparen:370, sdohNeedPct:0.96, avgNeeds:3.1, urgentPct:0.95 },
+          screening:{ ucla3n:453, ucla3avg:4.7, phq4n:452, phq4avg:2.9, praparen:370, mwban:329, sdohNeedPct:0.96, avgNeeds:3.1, urgentPct:0.95 },
           engage:{ careTeamMembers:358, totalCalls:991, avgCallsPerMember:2.7 }
         },
         { name:"Washington", code:"WA", planId:"H5823", population:14034, enrolled:1033, conversionRate:0.202, status:"active", goLive:"4/8/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:2.5, drug:4.0, stayHealthy:2, chronicConditions:2, memberExperience:1 },
-          screening:{ ucla3n:1088, ucla3avg:4.5, phq4n:1076, phq4avg:2.6, praparen:1003, sdohNeedPct:0.95, avgNeeds:3.3, urgentPct:0.94 },
+          screening:{ ucla3n:1088, ucla3avg:4.5, phq4n:1076, phq4avg:2.6, praparen:1003, mwban:901, sdohNeedPct:0.95, avgNeeds:3.3, urgentPct:0.94 },
           engage:{ careTeamMembers:904, totalCalls:1932, avgCallsPerMember:2.1 }
         }
     ],
@@ -2340,6 +2340,7 @@ const D = {
 };
 D.metrics.totalPopulation         = D.markets.reduce((sum, mk) => sum + mk.population,              0);
 D.metrics.totalPrapare            = D.markets.reduce((sum, mk) => sum + mk.screening.praparen,       0);
+D.metrics.totalMWBA               = D.markets.reduce((sum, mk) => sum + (mk.screening.mwban||0),     0);
 D.metrics.totalUcla3              = D.markets.reduce((sum, mk) => sum + mk.screening.ucla3n,          0);
 D.metrics.totalPhq4               = D.markets.reduce((sum, mk) => sum + mk.screening.phq4n,           0);
 D.metrics.totalCareConvos         = D.markets.reduce((sum, mk) => sum + mk.engage.totalCalls,         0);
@@ -2458,6 +2459,7 @@ function renderAll() {
     const totalPRAPARE = D.markets.reduce((s,mk) => s+(mk.screening?.praparen||0), 0);
     const totalPHQ4    = D.markets.reduce((s,mk) => s+(mk.screening?.phq4n||0), 0);
     const totalUCLA3   = D.markets.reduce((s,mk) => s+(mk.screening?.ucla3n||0), 0);
+    const totalMWBA    = D.markets.reduce((s,mk) => s+(mk.screening?.mwban||0), 0);
     const wUCLA3 = D.markets.reduce((s,mk)=>s+(mk.screening?.ucla3avg||0)*(mk.screening?.ucla3n||0),0)/totalUCLA3;
     const wPHQ4  = D.markets.reduce((s,mk)=>s+(mk.screening?.phq4avg||0)*(mk.screening?.phq4n||0),0)/totalPHQ4;
     const wAvgNeeds = D.markets.reduce((s,mk)=>s+(mk.screening?.avgNeeds||0)*(mk.screening?.praparen||0),0)/totalPRAPARE;
@@ -2473,6 +2475,9 @@ function renderAll() {
         { lbl:'UCLA-3 (Loneliness) Completed',
           val: fmt(totalUCLA3),
           sub:`Total screenings across all markets · Avg score ${wUCLA3.toFixed(1)} of 9 · Scale 3–9: 3–5 Not lonely · 6–9 Lonely · Avg score by market: OH ${D.markets[0].screening.ucla3avg.toFixed(1)} · TX ${D.markets[1].screening.ucla3avg.toFixed(1)} · UT ${D.markets[2].screening.ucla3avg.toFixed(1)} · WA ${D.markets[3].screening.ucla3avg.toFixed(1)}` },
+        { lbl:'Medicare Well-Being Assessments',
+          val: fmt(totalMWBA),
+          sub:`Total assessments across all markets · By market: OH ${fmt(D.markets[0].screening.mwban)} · TX ${fmt(D.markets[1].screening.mwban)} · UT ${fmt(D.markets[2].screening.mwban)} · WA ${fmt(D.markets[3].screening.mwban)}` },
         { lbl:'Avg Social Needs Per Member',
           val: wAvgNeeds.toFixed(1),
           sub:`Members carry multiple compounding barriers — not isolated incidents; systemic issues requiring coordinated navigation` },
