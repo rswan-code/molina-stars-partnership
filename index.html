@@ -2411,16 +2411,6 @@ function renderAll() {
             <div class="card-lbl">Enrolled Members</div>
             <div class="card-val">${fmt(m.totalEnrolled)}</div>
             <div class="card-sub">Still need ${fmt(m.stillNeeded)} to hit 15% minimum target</div>
-            <div style="margin-top:12px;">
-                <div class="prog-header">
-                    <span class="prog-name">Progress to Enrollment Target</span>
-                    <span class="prog-nums">${fmt(m.totalEnrolled)} of ${fmt(m.enrollmentTargetMin)}</span>
-                </div>
-                <div class="prog-track">
-                    <div class="prog-fill b" style="width:${Math.min(m.totalEnrolled/m.enrollmentTargetMin*100,100).toFixed(1)}%"></div>
-                </div>
-                <div class="prog-status st-good">${(m.totalEnrolled/m.enrollmentTargetMin*100).toFixed(1)}% TO ENROLLMENT TARGET</div>
-            </div>
         </div>
         <div class="card">
             <div class="card-lbl">Avg Months of Engagement</div>
