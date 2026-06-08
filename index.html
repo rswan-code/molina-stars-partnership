@@ -2664,16 +2664,16 @@ function renderAll() {
             <span class="goal-metric ${g.metricPending?'pending':''}">${g.metricPending?'◎ ':'✓ '}${g.metric}</span>
         </div>`).join('');
 
-    /* Next meeting */
+    /* Next meeting — section removed from UI; guards prevent null-ref errors */
     const nm = D.nextMeeting;
-    $('meeting-meta').innerHTML = `
+    if ($('meeting-meta')) $('meeting-meta').innerHTML = `
         <div class="meeting-meta-row"><div class="meeting-meta-lbl">Next Report Month</div><div class="meeting-meta-val">${nm.date}</div></div>
         <div class="meeting-meta-row"><div class="meeting-meta-lbl">Cadence</div><div class="meeting-meta-val">${nm.cadence}</div></div>
         <div class="meeting-meta-row"><div class="meeting-meta-lbl">Length</div><div class="meeting-meta-val">${nm.length}</div></div>
         <div class="meeting-meta-row"><div class="meeting-meta-lbl">Format</div><div class="meeting-meta-val">${nm.format}</div></div>
         <div class="meeting-meta-row"><div class="meeting-meta-lbl">Pyx Contact</div><div class="meeting-meta-val">${nm.contact}</div></div>`;
 
-    $('meeting-agenda').innerHTML = nm.agenda.map((a, i) => `
+    if ($('meeting-agenda')) $('meeting-agenda').innerHTML = nm.agenda.map((a, i) => `
         <div class="agenda-item">
             <div class="agenda-num">${i+1}</div>
             <div class="agenda-content">
