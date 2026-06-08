@@ -963,6 +963,11 @@
 
         .sla-target { font-size: 12px; color: #4a6070; margin-top: 6px; }
         .sla-desc   { font-size: 11px; color: #4a6070; margin-top: 6px; line-height: 1.4; }
+        .sla-prog-wrap { margin-top: 10px; }
+        .sla-prog-track { height: 7px; background: var(--gray-2); border-radius: 4px; position: relative; margin: 5px 0 3px; }
+        .sla-prog-fill  { height: 100%; border-radius: 4px; background: var(--green); transition: width 0.6s; }
+        .sla-prog-target-line { position: absolute; top: -3px; width: 2px; height: 13px; background: var(--cool-slate); border-radius: 1px; }
+        .sla-prog-labels { display: flex; justify-content: space-between; font-size: 10px; color: #4a6070; }
 
         .sla-badge {
             display: inline-block;
@@ -2256,7 +2261,7 @@ const D = {
     ],
     sla: [
         { name:"Engagement Rate",           target:0.10, actual:0.2088, status:"exceed",  desc:"Members enrolled vs. total outreached" },
-        { name:"SDOH Screener Completion",  target:0.60, actual:null,   status:"pending", desc:"2,871 PRAPARE screenings completed across 4 markets — counts reflect total completions; unique member tracking in progress" },
+        { name:"SDOH Screener Completion",  target:0.60, actual:0.956,  status:"exceed",  desc:"2,871 PRAPARE screenings completed across 4 markets — counts reflect total completions; unique member tracking in progress" },
         { name:"Social Needs Connections",  target:0.60, actual:null,   status:"pending", desc:"Members w/ needs connected to resources" },
         { name:"Outreach Attempts",         target:0.98, actual:null,   status:"pending", desc:"Target file members receiving full outreach cycle" },
         { name:"Satisfaction Rate",         target:0.60, actual:null,   status:"pending", desc:"Engaged members rating experience ≥3/5" }
@@ -2620,14 +2625,27 @@ function renderAll() {
     $('val-note').innerHTML = `★ All value estimates use conservative published benchmarks cited above. CAHPS/Star Rating impact is tracked separately — value depends on Molina's specific quality bonus structure and Star measure movement over the program term. Actual outcomes will replace estimates as monthly Tableau data is received.`;
 
     /* SLA */
-    $('sla-grid').innerHTML = D.sla.map(s => `
+    $('sla-grid').innerHTML = D.sla.map(s => {
+        const fillPct = s.actual !== null ? Math.min(s.actual / 1.0 * 100, 100).toFixed(1) : 0;
+        const targetPct = (s.target * 100).toFixed(1);
+        const progBar = s.actual !== null ? `
+            <div class="sla-prog-wrap">
+                <div class="sla-prog-track">
+                    <div class="sla-prog-fill" style="width:${fillPct}%"></div>
+                    <div class="sla-prog-target-line" style="left:${targetPct}%"></div>
+                </div>
+                <div class="sla-prog-labels"><span>0%</span><span>Target: ${fmt(s.target,'pct')}</span><span>100%</span></div>
+            </div>` : '';
+        return `
         <div class="sla-card ${s.status}">
             <div class="sla-name">${s.name}</div>
             <div class="sla-actual">${s.actual !== null ? fmt(s.actual,'pct') : 'Pending'}</div>
             <div class="sla-target">SOW Target: ${fmt(s.target,'pct')}</div>
+            ${progBar}
             <div class="sla-desc">${s.desc}</div>
             <span class="sla-badge ${s.status==='exceed'?'badge-exceed':'badge-pending'}">${s.status==='exceed'?'↑ EXCEEDING':'DATA PENDING'}</span>
-        </div>`).join('');
+        </div>`;
+    }).join('');
 
     /* Talking Points */
     $('tp-grid').innerHTML = `
