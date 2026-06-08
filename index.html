@@ -849,6 +849,19 @@
             color: var(--green);
             margin-bottom: 6px;
         }
+        .mkt-highest-badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: rgba(214,102,26,0.12);
+            color: var(--orange);
+            border-radius: 3px;
+            padding: 1px 5px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
 
         /* =============================================
            COHORT TABLE
@@ -2541,12 +2554,15 @@ function renderAll() {
             <li>Leads all markets in enrollment (1,033) and total screening volume</li>
             <li>904 unique members engaged · 1,932 care team calls</li></ul>`
     };
+    const maxUcla3 = Math.max(...D.markets.map(m => m.screening.ucla3avg));
+    const maxPhq4  = Math.max(...D.markets.map(m => m.screening.phq4avg));
+    const badge = '<span class="mkt-highest-badge">↑ highest</span>';
     $('market-spotlight-grid').innerHTML = D.markets.map(mk => `
         <div class="mkt-card">
             <div class="mkt-card-name">${mk.name} (${mk.code})</div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">PRAPARE (SDOH)</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · ${fmt(mk.screening.sdohNeedPct,'pct')} identify ≥1 need</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">UCLA-3 (Loneliness)</span><span class="mkt-stat-val">${fmt(mk.screening.ucla3n)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · avg score ${mk.screening.ucla3avg.toFixed(1)} ${mk.screening.ucla3avg >= 6 ? '· Lonely' : '· Not lonely'}</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · avg score ${mk.screening.phq4avg.toFixed(1)} ${mk.screening.phq4avg <= 2 ? '· Normal' : mk.screening.phq4avg <= 5 ? '· Mild' : mk.screening.phq4avg <= 8 ? '· Moderate' : '· Severe'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">UCLA-3 (Loneliness)</span><span class="mkt-stat-val">${fmt(mk.screening.ucla3n)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · avg score ${mk.screening.ucla3avg.toFixed(1)}${mk.screening.ucla3avg === maxUcla3 ? badge : ''} ${mk.screening.ucla3avg >= 6 ? '· Lonely' : '· Not lonely'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · avg score ${mk.screening.phq4avg.toFixed(1)}${mk.screening.phq4avg === maxPhq4 ? badge : ''} ${mk.screening.phq4avg <= 2 ? '· Normal' : mk.screening.phq4avg <= 5 ? '· Mild' : mk.screening.phq4avg <= 8 ? '· Moderate' : '· Severe'}</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Medicare Well-Being</span><span class="mkt-stat-val">${fmt(mk.screening.mwban)} <span style="font-weight:400;color:#4a6070;font-size:11px;">assessments completed</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
             <div class="mkt-signal">${signals[mk.code]}</div>
