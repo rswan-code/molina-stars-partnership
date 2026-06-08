@@ -2405,7 +2405,6 @@ function renderAll() {
         { lbl:'Total Population',    val:fmt(m.totalPopulation),             ctx:'4 markets: OH · TX · UT · WA',              color:'' },
         { lbl:'Members Enrolled',    val:fmt(m.totalEnrolled),               ctx:`Target: ${fmt(m.enrollmentTargetMin)} minimum (15%)`, color:'' },
         { lbl:'Conversion Rate',     val:fmt(m.overallConversionRate,'pct'), ctx:'↑ Exceeds 10% SLA target',                  color:'teal', ctxCls:'good' },
-        { lbl:'Avg Engagement',      val:m.avgMonthsEngagement+' mo',        ctx:'Goal: 4 months average',                    color:'purple' },
         { lbl:'Avg Call Length',     val:m.avgCallMinutes+' min',            ctx:'Per member interaction',                    color:'orange' },
         { lbl:'Program End',         val:'11/6/2028',                        ctx:'2-year term · SOW #'+D.program.sowNumber,   color:'' }
     ];
@@ -2442,11 +2441,6 @@ function renderAll() {
             <div class="card-lbl">Enrolled Members</div>
             <div class="card-val">${fmt(m.totalEnrolled)}</div>
             <div class="card-sub">Still need ${fmt(m.stillNeeded)} to hit 15% minimum target</div>
-        </div>
-        <div class="card">
-            <div class="card-lbl">Avg Months of Engagement</div>
-            <div class="card-val">${m.avgMonthsEngagement}</div>
-            <div class="card-sub">Goal: 4 months avg &nbsp;·&nbsp; 100% of members within 0–6 month window</div>
         </div>
         <div class="card">
             <div class="card-lbl">Engagement Rate vs. SLA Target</div>
