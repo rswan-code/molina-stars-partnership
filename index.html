@@ -1745,9 +1745,6 @@
                 <div class="cohort-header">The Case We're Building: Engagement Duration → Outcomes</div>
                 <div class="cohort-sub">As our member cohort matures, we will demonstrate that deeper engagement produces measurably better health outcomes — connecting time-in-program directly to quality and utilization results.</div>
                 <div class="cohort-table-wrap" id="cohort-table"></div>
-                <div class="val-grid" id="value-grid"></div>
-                <div class="val-total" id="val-total"></div>
-                <p class="val-note" id="val-note"></p>
             </div>
         </div>
     </div>
@@ -1972,6 +1969,9 @@
             <div class="priority-title" style="color:var(--white);">The Case We're Building: Engagement → Outcomes</div>
             <div class="priority-answer">As this cohort matures, we will demonstrate that deeper engagement produces measurably better outcomes — connecting time-in-program directly to PCP connections, AWV completion, and quality measure movement. The table below shows the framework. Columns populate as cohort data accumulates.</div>
             <div class="cohort-table-wrap" id="vv-cohort-table"></div>
+            <div class="val-grid" id="vv-value-grid" style="margin-top:32px;"></div>
+            <div class="val-total" id="vv-val-total" style="margin-top:20px;"></div>
+            <p class="val-note" id="vv-val-note"></p>
         </div></div>
     </div>
 
@@ -2598,31 +2598,14 @@ function renderAll() {
         </tr>`).join('')}</tbody>
     </table>`;
 
-    /* Value */
+    /* Value — compute totalEst for talking points reference below; tiles rendered in Value View */
     const enrolled = m.totalEnrolled;
     let totalEst = 0;
-    $('value-grid').innerHTML = D.value.map(v => {
+    D.value.forEach(v => {
         const cnt = v.estimatePct ? Math.round(enrolled * v.estimatePct) : null;
         const amt = cnt && v.valuePerMember ? cnt * v.valuePerMember : null;
         if (amt) totalEst += amt;
-        return `
-        <div class="val-card">
-            <div class="val-icon">${v.icon}</div>
-            <div class="val-lbl">${v.label}</div>
-            <div class="val-amount">${amt ? fmt(amt,'$') : 'TBD'}</div>
-            <div class="val-desc">${cnt ? `<strong>~${fmt(cnt)} members estimated</strong> × ${v.valuePerMember ? fmt(v.valuePerMember,'$') : 'TBD'}/member<br>` : ''}${v.desc}</div>
-            <div class="val-source">Source: ${v.source}</div>
-        </div>`;
-    }).join('');
-
-    $('val-total').innerHTML = `
-        <div>
-            <div class="val-total-lbl">Estimated Value Generated for Molina — Current 251 Enrolled Members</div>
-            <div class="val-total-ctx">Conservative estimates · Research-backed benchmarks · Actuals populate as Tableau data flows monthly</div>
-        </div>
-        <div class="val-total-amt">${fmt(totalEst,'$')}</div>`;
-
-    $('val-note').innerHTML = `★ All value estimates use conservative published benchmarks cited above. CAHPS/Star Rating impact is tracked separately — value depends on Molina's specific quality bonus structure and Star measure movement over the program term. Actual outcomes will replace estimates as monthly Tableau data is received.`;
+    });
 
     /* SLA */
     $('sla-grid').innerHTML = D.sla.map(s => {
@@ -2967,6 +2950,30 @@ function renderValueView() {
             <tr><td class="cohort-tier">2+ months</td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td style="font-size:11px;color:rgba(255,255,255,0.45);">Populating June 2026 — we expect meaningfully higher activation rates</td></tr>
             <tr><td class="cohort-tier">3+ months</td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td style="font-size:11px;color:rgba(255,255,255,0.45);">Populating July 2026 — longitudinal outcome comparison begins</td></tr>
         </tbody></table>`;
+
+    /* Value tiles */
+    const enrolled = m.totalEnrolled;
+    let vvTotalEst = 0;
+    if ($('vv-value-grid')) $('vv-value-grid').innerHTML = D.value.map(v => {
+        const cnt = v.estimatePct ? Math.round(enrolled * v.estimatePct) : null;
+        const amt = cnt && v.valuePerMember ? cnt * v.valuePerMember : null;
+        if (amt) vvTotalEst += amt;
+        return `
+        <div class="val-card">
+            <div class="val-icon">${v.icon}</div>
+            <div class="val-lbl">${v.label}</div>
+            <div class="val-amount">${amt ? fmt(amt,'$') : 'TBD'}</div>
+            <div class="val-desc">${cnt ? `<strong>~${fmt(cnt)} members estimated</strong> × ${v.valuePerMember ? fmt(v.valuePerMember,'$') : 'TBD'}/member<br>` : ''}${v.desc}</div>
+            <div class="val-source">Source: ${v.source}</div>
+        </div>`;
+    }).join('');
+    if ($('vv-val-total')) $('vv-val-total').innerHTML = `
+        <div>
+            <div class="val-total-lbl">Estimated Value Generated for Molina — ${fmt(enrolled)} Enrolled Members</div>
+            <div class="val-total-ctx">Conservative estimates · Research-backed benchmarks · Actuals populate as Tableau data flows monthly</div>
+        </div>
+        <div class="val-total-amt">${fmt(vvTotalEst,'$')}</div>`;
+    if ($('vv-val-note')) $('vv-val-note').innerHTML = `★ All value estimates use conservative published benchmarks cited above. CAHPS/Star Rating impact is tracked separately — value depends on Molina's specific quality bonus structure and Star measure movement over the program term. Actual outcomes will replace estimates as monthly Tableau data is received.`;
 }
 
 /* =============================================
