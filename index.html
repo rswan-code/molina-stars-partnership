@@ -2902,21 +2902,38 @@ function renderValueView() {
             <div class="card-sub">TX: 1 Cancer Screening (Mammogram) — Staying Healthy & Screenings STARS domain · TX: 1 Blood Glucose Check attended — Diabetes Care STARS domain · WA: 1 Annual Wellness Exam attended — AWV attestation opportunity · AWV confirmations activate Phase 4</div>
         </div>`;
 
-    /* Market grid — reuse signals */
-    const signals = {
-        OH: '96% of screened members identify a social need — 95% of those needs are urgent. Income instability (92%) and food insecurity (61%) are the dominant barriers. 743 PRAPARE, 849 UCLA-3, and 843 PHQ-4 screenings completed. Members facing these barriers skip preventive screenings — remove the barrier, the screening happens.',
-        TX: 'Highest social need burden at 97% screened with a need, driven by income instability (92%) and food insecurity (68%). 3.5 avg SDOH needs per member across 755 PRAPARE screenings. With 799 enrolled and the deepest unmet need profile, TX represents the highest volume PCP connection opportunity in the program.',
-        UT: 'Highest engagement intensity at 2.7 avg calls per member — care team relationships are the deepest here. UCLA-3 loneliness avg 4.7, PHQ-4 distress avg 2.9. Food insecurity (73%) is the standout barrier — highest food need rate of any market. These are the exact conditions that suppress preventive care utilization and lower CAHPS scores.',
-        WA: 'WA leads the program in enrollment (1,033) and screening volume — 1,088 UCLA-3, 1,076 PHQ-4, and 1,003 PRAPARE screenings completed. 95% identify a social need, with income instability (92%) and food insecurity (66%) dominant. 904 unique members engaged across 1,932 care team calls. The hardest-to-reach population is responding at scale.'
+    /* Market grid — Value View signals (bulleted, matches Client View) */
+    const vvSignals = {
+        OH: `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>96% identify ≥1 social need · 95% urgency rate — acute barriers, not background noise</li>
+            <li>Top barriers: income instability (92%) · food insecurity (61%)</li>
+            <li>704 unique members engaged · 1,845 calls · avg 2.5 calls/member</li>
+            <li>Leads all markets in conversion rate at 21.7%</li></ul>`,
+        TX: `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>Largest eligible population (23,560) · deepest SDOH burden at 3.5 avg needs/member</li>
+            <li>97% identify ≥1 social need · top barriers: income instability (92%) · food insecurity (68%)</li>
+            <li>723 unique members engaged · 1,820 calls</li>
+            <li>Highest absolute enrolled count (799) — most likely market for PCP connections at scale</li></ul>`,
+        UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>Highest engagement depth: 2.7 avg calls/member across all markets</li>
+            <li>96% identify ≥1 social need · top barriers: income instability (96%) · food insecurity (73%)</li>
+            <li>UCLA-3 avg 4.7 · PHQ-4 avg 2.9 — isolation & distress link to lower CAHPS/HOS scores</li>
+            <li>358 unique members engaged · 991 care team calls</li></ul>`,
+        WA: `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>Houseless population confirmed as complex challenge — data reflects the depth</li>
+            <li>95% identify ≥1 social need · income instability (92%) · food insecurity (66%)</li>
+            <li>Leads all markets in enrollment (1,033) and total screening volume</li>
+            <li>904 unique members engaged · 1,932 care team calls</li></ul>`
     };
     if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
         <div class="mkt-card">
             <div class="mkt-card-name">${mk.name} (${mk.code})</div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">PRAPARE (SDOH)</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · ${fmt(mk.screening.sdohNeedPct,'pct')} identify ≥1 need</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">UCLA-3 (Loneliness)</span><span class="mkt-stat-val">${fmt(mk.screening.ucla3n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · avg score ${mk.screening.ucla3avg.toFixed(1)} ${mk.screening.ucla3avg>=6?'· Lonely':'· Not lonely'}</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · avg score ${mk.screening.phq4avg.toFixed(1)} ${mk.screening.phq4avg<=2?'· Normal':mk.screening.phq4avg<=5?'· Mild':mk.screening.phq4avg<=8?'· Moderate':'· Severe'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">UCLA-3 (Loneliness)</span><span class="mkt-stat-val">${fmt(mk.screening.ucla3n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · avg score ${mk.screening.ucla3avg.toFixed(1)}${mk.screening.ucla3avg === maxUcla3 ? badge : ''} ${mk.screening.ucla3avg>=6?'· Lonely':'· Not lonely'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · avg score ${mk.screening.phq4avg.toFixed(1)}${mk.screening.phq4avg === maxPhq4 ? badge : ''} ${mk.screening.phq4avg<=2?'· Normal':mk.screening.phq4avg<=5?'· Mild':mk.screening.phq4avg<=8?'· Moderate':'· Severe'}</span></span></div>
+            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Medicare Well-Being</span><span class="mkt-stat-val">${fmt(mk.screening.mwban)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">assessments completed</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
-            <div class="mkt-signal">${signals[mk.code]}</div>
+            <div class="mkt-signal">${vvSignals[mk.code]}</div>
         </div>`).join('');
 
     /* Cohort table */
