@@ -814,13 +814,40 @@
         .mkt-stat-val { font-weight: 700; color: var(--slate); }
         .mkt-signal {
             margin-top: 12px;
-            padding: 8px 10px;
+            padding: 10px 12px;
             background: #f0faf4;
             border-radius: 6px;
             font-size: 11px;
+            color: var(--cool-slate);
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        .mkt-signal ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .mkt-signal ul li {
+            padding: 3px 0 3px 16px;
+            position: relative;
+            border-bottom: 1px solid rgba(73,166,1,0.1);
+        }
+        .mkt-signal ul li:last-child { border-bottom: none; }
+        .mkt-signal ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
             color: var(--green);
-            font-weight: 600;
-            line-height: 1.4;
+            font-size: 10px;
+            top: 4px;
+        }
+        .mkt-signal-lbl {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 6px;
         }
 
         /* =============================================
@@ -2493,10 +2520,26 @@ function renderAll() {
 
     /* Market Spotlight */
     const signals = {
-        OH: '96% of screened members identify a social need — with a 95% urgency rate, these are acute barriers, not background noise. Income instability (92%) and food insecurity (61%) are the dominant drivers. 743 PRAPARE screenings and 849 UCLA-3 assessments completed. 704 unique members engaged across 1,845 care team calls — avg 2.5 calls per member. Ohio leads all markets in conversion at 21.7%.',
-        TX: 'Largest eligible population (23,560) and high social need load (3.5 avg needs/member). 97% of screened members identify a need — income instability (92%) and food insecurity (68%) are the top barriers. 755 PRAPARE screenings and 828 UCLA-3 assessments completed. 723 unique members engaged across 1,820 calls. TX holds the highest absolute count of enrolled members at 799, with the deepest SDOH burden — the market most likely to generate PCP connections at scale.',
-        UT: 'Highest engagement depth of any market at 2.7 avg calls per member. UCLA-3 loneliness avg of 4.7 and PHQ-4 distress avg of 2.9 — consistent with research linking social isolation and depression to lower patient experience scores. 96% of screened members identify a social need, with food insecurity (73%) the standout barrier. 453 UCLA-3 and 452 PHQ-4 assessments completed across 358 unique members engaged.',
-        WA: 'Molina flagged WA\'s houseless population as a unique challenge — the data confirms the complexity and the response. 95% social need, income instability (92%) and food insecurity (66%) dominant. WA leads all markets in total enrollment at 1,033 members and in raw screening volume: 1,088 UCLA-3, 1,076 PHQ-4, and 1,003 PRAPARE screenings completed. 904 unique members engaged across 1,932 care team calls. Washington is the largest and most active market in the program.'
+        OH: `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>96% identify ≥1 social need · 95% urgency rate — acute barriers, not background noise</li>
+            <li>Top barriers: income instability (92%) · food insecurity (61%)</li>
+            <li>704 unique members engaged · 1,845 calls · avg 2.5 calls/member</li>
+            <li>Leads all markets in conversion rate at 21.7%</li></ul>`,
+        TX: `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>Largest eligible population (23,560) · deepest SDOH burden at 3.5 avg needs/member</li>
+            <li>97% identify ≥1 social need · top barriers: income instability (92%) · food insecurity (68%)</li>
+            <li>723 unique members engaged · 1,820 calls</li>
+            <li>Highest absolute enrolled count (799) — most likely market for PCP connections at scale</li></ul>`,
+        UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>Highest engagement depth: 2.7 avg calls/member across all markets</li>
+            <li>96% identify ≥1 social need · food insecurity (73%) is standout barrier</li>
+            <li>UCLA-3 avg 4.7 · PHQ-4 avg 2.9 — isolation & distress link to lower CAHPS/HOS scores</li>
+            <li>358 unique members engaged · 991 care team calls</li></ul>`,
+        WA: `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>Houseless population confirmed as complex challenge — data reflects the depth</li>
+            <li>95% identify ≥1 social need · income instability (92%) · food insecurity (66%)</li>
+            <li>Leads all markets in enrollment (1,033) and total screening volume</li>
+            <li>904 unique members engaged · 1,932 care team calls</li></ul>`
     };
     $('market-spotlight-grid').innerHTML = D.markets.map(mk => `
         <div class="mkt-card">
