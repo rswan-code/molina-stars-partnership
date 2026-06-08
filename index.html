@@ -2903,6 +2903,9 @@ function renderValueView() {
         </div>`;
 
     /* Market grid — Value View signals (bulleted, matches Client View) */
+    const maxUcla3 = Math.max(...D.markets.map(m => m.screening.ucla3avg));
+    const maxPhq4  = Math.max(...D.markets.map(m => m.screening.phq4avg));
+    const badge = '<span class="mkt-highest-badge">↑ highest</span>';
     const vvSignals = {
         OH: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>96% identify ≥1 social need · 95% urgency rate — acute barriers, not background noise</li>
