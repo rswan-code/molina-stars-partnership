@@ -1557,6 +1557,74 @@
         .chg-after  { font-family: 'Roboto Slab', serif; font-size: 26px; font-weight: 700; color: var(--cool-slate); }
         .chg-delta { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(73,166,1,0.12); color: var(--green); }
         .chg-delta.new-badge { background: rgba(41,164,162,0.12); color: var(--teal); }
+
+        /* =============================================
+           MARKET DEEP-DIVE TAB (Ohio, etc.)
+        ============================================= */
+        .mkt-hero-sub { font-size: 13px; color: rgba(255,255,255,0.7); margin: 4px 0 24px; }
+
+        /* Horizontal bar list — SDOH barriers, engagement mix */
+        .barh-row {
+            display: grid;
+            grid-template-columns: 175px 1fr 46px;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 9px;
+        }
+        .barh-lbl { font-size: 12px; color: #4a6070; text-align: right; line-height: 1.25; }
+        .barh-track { height: 15px; background: var(--gray-2); border-radius: 4px; overflow: hidden; }
+        .barh-fill { height: 100%; border-radius: 4px; background: var(--teal); transition: width 0.6s ease; }
+        .barh-fill.top { background: var(--green); }
+        .barh-fill.mix { background: var(--blue); }
+        .barh-val { font-size: 12px; font-weight: 700; color: var(--cool-slate); }
+        @media (max-width: 640px) {
+            .barh-row { grid-template-columns: 120px 1fr 40px; gap: 8px; }
+            .barh-lbl { font-size: 11px; }
+        }
+
+        /* Chips — demographics / quick facts */
+        .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+        .chip {
+            background: var(--gray-3);
+            border: 1px solid var(--gray-1);
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 12px;
+            color: var(--cool-slate);
+        }
+        .chip strong { color: var(--green); font-weight: 700; }
+
+        /* Ranked resource list */
+        .res-list { list-style: none; columns: 2; column-gap: 32px; }
+        .res-list li {
+            font-size: 12.5px;
+            color: var(--cool-slate);
+            padding: 7px 0;
+            border-bottom: 1px solid var(--gray-2);
+            break-inside: avoid;
+        }
+        .res-list li .res-rank {
+            display: inline-block;
+            min-width: 22px;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        @media (max-width: 640px) { .res-list { columns: 1; } }
+
+        /* Star baseline display */
+        .star-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+        .star-box {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(46,68,86,0.06);
+            border-top: 4px solid var(--purple);
+        }
+        .star-box .sb-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #4a6070; margin-bottom: 8px; }
+        .star-box .sb-val { font-family: 'Roboto Slab', serif; font-size: 30px; font-weight: 700; color: var(--cool-slate); line-height: 1; }
+        .star-box .sb-val .sb-star { color: var(--light-green); font-size: 22px; }
+        .star-box.weak { border-top-color: var(--orange); }
+        .star-box .sb-sub { font-size: 11px; color: #4a6070; margin-top: 8px; line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -1568,6 +1636,7 @@
     <div class="nav-logo">pyx <span>health</span></div>
     <button class="tab-btn active" onclick="switchTab('client',this)">Client View</button>
     <button class="tab-btn" onclick="switchTab('value',this)">Value View ✦</button>
+    <button class="tab-btn" onclick="switchTab('ohio',this)">Ohio</button>
     <button class="tab-btn" onclick="switchTab('updates',this)">Net New Updates 🆕</button>
     <button class="tab-btn" onclick="switchTab('internal',this)">Internal View ⚙</button>
     <button class="tp-toggle-btn" id="tp-toggle" onclick="toggleTalkingPoints(this)">Talking Points</button>
@@ -1791,6 +1860,14 @@
     </div>
 
 </div><!-- end client view -->
+
+
+<!-- =============================================
+     MARKET DEEP-DIVE — OHIO
+============================================= -->
+<div id="tab-ohio" class="tab-content">
+    <div id="oh-root"></div>
+</div><!-- end ohio view -->
 
 
 <!-- =============================================
@@ -2088,8 +2165,23 @@
         </div></div>
     </div>
 
-    <!-- Monthly Revenue Trend -->
+    <!-- STARS Rating Baselines -->
     <div class="alt-bg">
+        <div class="wrap"><div class="section">
+            <div class="section-head">
+                <span class="section-eyebrow eyebrow-i">Quality Strategy</span>
+                <div class="section-title" style="margin-top:10px;">STARS Rating Baselines — 2026 CMS</div>
+                <div class="section-sub">Molina's 2026 CMS DSNP ratings by market — all below their state averages. Weak domains (≤2★, shown in orange) are exactly what Pyx activates: SDOH screening (Staying Healthy) and member experience. This is the strategic case behind the engagement work; keep it internal-facing, not on the client market tabs.</div>
+            </div>
+            <div class="card" id="star-baseline-grid"></div>
+            <div class="note-box teal" style="margin-top:20px;">
+                <strong>Why this matters:</strong> Star movement is a 12–18 month lagging indicator. The leading indicators — SDOH screening completion, barrier identification, and sustained engagement — are building the case now. Each 1-star improvement generates roughly $2–$5 PMPM in CMS quality-bonus revenue; across 53,749 members a 1-star lift is worth up to ~$3.2M annually.
+            </div>
+        </div></div>
+    </div>
+
+    <!-- Monthly Revenue Trend -->
+    <div class="white-bg">
         <div class="wrap"><div class="section">
             <div class="section-head">
                 <span class="section-eyebrow eyebrow-i">Trend</span>
@@ -3065,9 +3157,238 @@ function renderUpdates() {
 }
 
 /* =============================================
+   MARKET DEEP-DIVE TABS — client-facing, shareable per market
+   Update monthly from the per-market Tableau dashboard PDF
+   (Onboarding & Population · Screening Details · Program Engagement).
+============================================= */
+const MARKET_DETAIL = {
+    OH: {
+        name:"Ohio", code:"OH", planId:"H9955", goLive:"3/17/2026",
+        dataAsOf:"July 6, 2026", eligFileDate:"June 10, 2026",
+        enrolled:1321, onboards30:514, eligFile:14121, conversionRate:0.113,
+        uniqueOutreached:11260, onboardingFromOutreach:0.326,
+        appUserPct:0.48, gender:{ f:755, m:566 },
+        outreachAttempts:[
+            {n:"1 attempt",pct:0.24},{n:"2 attempts",pct:0.18},{n:"3 attempts",pct:0.13},
+            {n:"4 attempts",pct:0.21},{n:"5 attempts",pct:0.23}
+        ],
+        screening:{ praparen:1138, ucla3n:1392, ucla3avg:4.7, phq4n:1380, phq4avg:3.1,
+                    mwban:1039, sdohNeedPct:0.96, avgNeeds:3.0, urgentPct:0.95 },
+        sdohNeeds:[
+            {n:"Income",pct:0.93},{n:"Food",pct:0.65},{n:"Healthy Days",pct:0.51},
+            {n:"Transportation",pct:0.24},{n:"Economic Stability",pct:0.22},{n:"Access to Care",pct:0.18},
+            {n:"Housing",pct:0.18},{n:"Health Literacy",pct:0.15},{n:"Medication Adherence",pct:0.15},
+            {n:"Safety",pct:0.10},{n:"Childcare",pct:0.07},{n:"Care Gap",pct:0.04}
+        ],
+        engage:{ careTeamMembers:1233, totalCalls:1706, avgCallsPerMember:3.8,
+                 avgActivityPerPerson:5, maxActivity:37, resourceConnections:200, posPsychLoneliness:40 },
+        engagementMix:[
+            {n:"PRAPARE (SDOH)",pct:0.32},{n:"UCLA-3 (Loneliness)",pct:0.22},
+            {n:"SDOH Navigation",pct:0.21},{n:"Resource Navigation",pct:0.21}
+        ],
+        topResources:[
+            {n:"Find Help (211 network)",rank:1,pct:0.17},{n:"211",rank:2,pct:0.14},
+            {n:"Find a Provider",rank:3,pct:0.10},{n:"National Respite Locator",rank:4,pct:0.06},
+            {n:"Network Dental (SKYGEN)",rank:4,pct:0.06},{n:"Healthy Actions Rewards",rank:6,pct:0.05},
+            {n:"Silver&Fit Fitness Program",rank:6,pct:0.05},{n:"OTC (Over-the-Counter) Benefits",rank:8,pct:0.04}
+        ],
+        stars:{ overall:3.0, stateAvg:3.6, stayHealthy:2, memberExperience:3, chronicConditions:3 },
+        signals:[
+            "Outreach scaled ~3× this period — 11,260 members reached, up from ~3,500 — driving enrollment to 1,321 (+70%)",
+            "96% of screened members identify ≥1 social need · 95% flag a need as urgent — acute barriers, not background noise",
+            "Top barriers: income instability (93%) · food insecurity (65%) · healthy days (51%)",
+            "1,233 members engaged with a care team member · 1,706 engagement calls · avg 3.8 calls per member",
+            "Conversion normalizing to 11.3% as outreach reaches deeper into the eligible population — still above the 10% SLA floor"
+        ]
+    }
+};
+
+/* Build a horizontal bar list scaled to the set's own max */
+function barhList(items, cls) {
+    const max = Math.max(...items.map(i => i.pct));
+    return items.map((i, idx) => {
+        const w = Math.round(i.pct / max * 100);
+        const fillCls = cls === 'mix' ? 'mix' : (idx === 0 ? 'top' : '');
+        return `<div class="barh-row">
+            <div class="barh-lbl">${i.n}</div>
+            <div class="barh-track"><div class="barh-fill ${fillCls}" style="width:${w}%"></div></div>
+            <div class="barh-val">${fmt(i.pct,'pct').replace('.0','')}</div>
+        </div>`;
+    }).join('');
+}
+
+function renderMarketTab(code, rootId) {
+    const d = MARKET_DETAIL[code];
+    if (!d) return;
+    const s = d.screening, e = d.engage;
+    const convPct = fmt(d.conversionRate,'pct');
+    const uclaState = s.ucla3avg >= 6 ? 'Lonely' : 'Not lonely';
+    const phqState  = s.phq4avg <= 2 ? 'Normal' : s.phq4avg <= 5 ? 'Mild' : s.phq4avg <= 8 ? 'Moderate' : 'Severe';
+
+    const html = `
+    <!-- Header -->
+    <div class="client-header">
+        <div class="header-eyebrow">Market Deep-Dive</div>
+        <h1>Molina DSNP Stars — <strong>${d.name}</strong></h1>
+        <p class="header-period">${d.name} (${d.planId}) &nbsp;·&nbsp; Data as of ${d.dataAsOf} &nbsp;·&nbsp; Eligibility file received ${d.eligFileDate}</p>
+        <div class="market-pills">
+            <span class="mpill">${d.name} — ${d.planId}</span>
+            <span class="mpill">Go-Live ${d.goLive}</span>
+            <span class="mpill launching">DSNP Stars Navigate Program</span>
+        </div>
+    </div>
+
+    <!-- At a Glance -->
+    <div class="white-bg"><div class="wrap"><div class="section">
+        <div class="section-head">
+            <div class="section-title">${d.name} at a Glance</div>
+            <div class="section-sub">A single-market view of how the ${d.name} DSNP population is responding — reach, engagement, the barriers we're surfacing, and the Star measures this activity is built to move.</div>
+        </div>
+        <div class="kpi-grid">
+            <div class="kpi"><div class="kpi-lbl">Members Enrolled</div><div class="kpi-val">${fmt(d.enrolled)}</div><div class="kpi-ctx">+${fmt(d.onboards30)} in the last 30 days</div></div>
+            <div class="kpi teal"><div class="kpi-lbl">Conversion Rate</div><div class="kpi-val">${convPct}</div><div class="kpi-ctx good">↑ Exceeds 10% SLA target</div></div>
+            <div class="kpi blue"><div class="kpi-lbl">Unique Members Reached</div><div class="kpi-val">${fmt(d.uniqueOutreached)}</div><div class="kpi-ctx">${fmt(d.onboardingFromOutreach,'pct')} onboard from successful outreach</div></div>
+            <div class="kpi orange"><div class="kpi-lbl">Avg Social Needs</div><div class="kpi-val">${s.avgNeeds.toFixed(1)}</div><div class="kpi-ctx">Per screened member</div></div>
+        </div>
+        <div class="note-box teal" style="margin-top:24px;">
+            <strong>What this period shows:</strong> ${d.name} expanded outreach significantly — ${fmt(d.uniqueOutreached)} unique members reached, up from roughly 3,500. Enrollment grew to <strong>${fmt(d.enrolled)}</strong> members. As outreach pushes deeper into the eligible population, conversion normalizes to ${convPct} — still comfortably above the 10% contractual floor, on a much larger base.
+        </div>
+    </div></div></div>
+
+    <!-- Reach & Response -->
+    <div class="alt-bg"><div class="wrap"><div class="section">
+        <div class="section-head">
+            <div class="section-eyebrow eyebrow-2">Reach &amp; Response</div>
+            <div class="section-title">Who We're Reaching in ${d.name}</div>
+        </div>
+        <div class="client-q-box">
+            <span class="client-q-label">What this data tells us</span>
+            <span class="client-q-text">"Are we reaching the right people?"</span>
+            <span class="client-q-answer">Yes — and at scale. ${convPct} of members reached are enrolling, above the 10% contractual minimum, even as we've tripled the number of members contacted. Every enrolled member moves into a needs-based conversation with a dedicated care team member.</span>
+        </div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-lbl">Conversion vs. SLA Target</div>
+                <div style="margin-top:10px;">
+                    <div class="prog-header"><span class="prog-name">Conversion Rate</span><span class="prog-nums">${convPct} vs. 10% target</span></div>
+                    <div class="prog-track"><div class="prog-fill g" style="width:${Math.min(d.conversionRate/0.20*100,100)}%"></div><div class="prog-target" style="left:${0.10/0.20*100}%"></div></div>
+                    <div class="prog-status st-good">↑ EXCEEDING CONTRACT TARGET</div>
+                </div>
+            </div>
+            <div class="card"><div class="card-lbl">Members Reached</div><div class="card-val">${fmt(d.uniqueOutreached)}</div><div class="card-sub">Unique members contacted to date</div></div>
+            <div class="card"><div class="card-lbl">Members Enrolled</div><div class="card-val">${fmt(d.enrolled)}</div><div class="card-sub">${fmt(d.gender.f)} women · ${fmt(d.gender.m)} men · enrollment concentrated in the 55–74 age bands · ${fmt(d.appUserPct,'pct')} enrolled via the Pyx app; the rest fully supported by the compassionate support center</div></div>
+        </div>
+    </div></div></div>
+
+    <!-- Deep Engagement & Barrier Visibility -->
+    <div class="white-bg"><div class="wrap"><div class="section">
+        <div class="section-head">
+            <div class="section-eyebrow eyebrow-3">Deep Engagement &amp; Barrier Visibility</div>
+            <div class="section-title">What We're Learning About ${d.name} Members</div>
+        </div>
+        <div class="client-q-box">
+            <span class="client-q-label">What this data tells us</span>
+            <span class="client-q-text">"Are we learning anything meaningful that can change outcomes?"</span>
+            <span class="client-q-answer">${fmt(s.praparen)} members have completed PRAPARE SDOH screenings — ${fmt(s.sdohNeedPct,'pct')} identify at least one social need, averaging ${s.avgNeeds.toFixed(1)} needs per member. PHQ-4 and UCLA-3 baselines are established, creating the measurement foundation to demonstrate CAHPS and HOS movement over time.</span>
+        </div>
+        <div class="card-grid">
+            <div class="card"><div class="card-lbl">PRAPARE (SDOH)</div><div class="card-val">${fmt(s.praparen)}</div><div class="card-sub">${fmt(s.sdohNeedPct,'pct')} identify ≥1 social need · ${fmt(s.urgentPct,'pct')} flag a need as urgent</div></div>
+            <div class="card"><div class="card-lbl">UCLA-3 (Loneliness)</div><div class="card-val">${fmt(s.ucla3n)}</div><div class="card-sub">Avg score ${s.ucla3avg.toFixed(1)} of 9 · ${uclaState} (3–5 not lonely · 6–9 lonely)</div></div>
+            <div class="card"><div class="card-lbl">PHQ-4 (Distress)</div><div class="card-val">${fmt(s.phq4n)}</div><div class="card-sub">Avg score ${s.phq4avg.toFixed(1)} of 12 · ${phqState} (0–2 normal · 3–5 mild · 6–8 moderate)</div></div>
+            <div class="card"><div class="card-lbl">Medicare Well-Being</div><div class="card-val">${fmt(s.mwban)}</div><div class="card-sub">Assessments completed across enrolled members</div></div>
+        </div>
+    </div></div></div>
+
+    <!-- Top Barriers -->
+    <div class="alt-bg"><div class="wrap"><div class="section">
+        <div class="section-head">
+            <div class="section-title">Top Social Barriers in ${d.name}</div>
+            <div class="section-sub">Share of screened members indicating a need in each area. Income instability and food insecurity dominate — the same barriers that keep members from making and keeping preventive-care appointments.</div>
+        </div>
+        <div class="card">${barhList(d.sdohNeeds, 'barrier')}</div>
+    </div></div></div>
+
+    <!-- Engagement -->
+    <div class="white-bg"><div class="wrap"><div class="section">
+        <div class="section-head">
+            <div class="section-eyebrow eyebrow-1">Care Team Engagement</div>
+            <div class="section-title">How ${d.name} Members Are Engaging</div>
+            <div class="section-sub">Engagement isn't a single call — it's a relationship. Below is what care team members and ${d.name} members are actually doing together.</div>
+        </div>
+        <div class="kpi-grid">
+            <div class="kpi"><div class="kpi-lbl">Members Engaged</div><div class="kpi-val">${fmt(e.careTeamMembers)}</div><div class="kpi-ctx">Distinct members with ≥1 care team call</div></div>
+            <div class="kpi teal"><div class="kpi-lbl">Engagement Calls</div><div class="kpi-val">${fmt(e.totalCalls)}</div><div class="kpi-ctx">Avg ${e.avgCallsPerMember} calls per member</div></div>
+            <div class="kpi blue"><div class="kpi-lbl">Resource Connections</div><div class="kpi-val">${fmt(e.resourceConnections)}</div><div class="kpi-ctx">Configurable content shared with members</div></div>
+            <div class="kpi purple"><div class="kpi-lbl">Loneliness Interventions</div><div class="kpi-val">${fmt(e.posPsychLoneliness)}</div><div class="kpi-ctx">Positive-psychology activities · avg ${e.avgActivityPerPerson}/person</div></div>
+        </div>
+        <div class="card-grid" style="margin-top:20px;">
+            <div class="card">
+                <div class="card-lbl">Primary Engagement Type</div>
+                <div class="card-sub" style="margin-bottom:14px;">How care team time is spent — screening, barrier navigation, and resource connection lead the mix.</div>
+                ${barhList(d.engagementMix, 'mix')}
+            </div>
+            <div class="card">
+                <div class="card-lbl">Most-Utilized Resource Connections</div>
+                <div class="card-sub" style="margin-bottom:14px;">Top resources ${d.name} members were connected to, by member volume.</div>
+                <ul class="res-list">${d.topResources.map(r => `<li><span class="res-rank">#${r.rank}</span>${r.n}</li>`).join('')}</ul>
+            </div>
+        </div>
+    </div></div></div>
+
+    <!-- Key Signals -->
+    <div class="alt-bg"><div class="wrap"><div class="section">
+        <div class="section-head">
+            <div class="section-title">Key Signals — ${d.name}</div>
+        </div>
+        <div class="mkt-card">
+            <div class="mkt-signal"><div class="mkt-signal-lbl">What stands out this period</div>
+            <ul>${d.signals.map(x => `<li>${x}</li>`).join('')}</ul></div>
+        </div>
+    </div></div></div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-logo">pyx <span>health</span></div>
+        <div>Molina DSNP Stars Partnership &nbsp;|&nbsp; ${d.name} (${d.planId}) &nbsp;|&nbsp; Data as of ${d.dataAsOf}</div>
+        <div>Anne Jordan &nbsp;·&nbsp; anne.jordan@pyxhealth.com &nbsp;·&nbsp; 520-263-0701</div>
+    </div>`;
+
+    document.getElementById(rootId).innerHTML = html;
+}
+
+/* STARS baselines — internal view, all markets */
+function renderStarBaselines() {
+    const el = $('star-baseline-grid');
+    if (!el) return;
+    const star = v => v <= 2
+        ? `<span style="color:var(--orange);font-weight:700">${v}★</span>`
+        : `${v}★`;
+    el.innerHTML = `<table class="mkt-table">
+        <thead><tr>
+            <th>Market</th><th>Overall</th><th>State Avg</th>
+            <th>Staying Healthy</th><th>Member Experience</th><th>Chronic Conditions</th>
+        </tr></thead>
+        <tbody>${D.markets.map(mk => `<tr>
+            <td><span class="mkt-code">${mk.code}</span>${mk.name}</td>
+            <td><strong>${mk.stars.overall.toFixed(1)}★</strong></td>
+            <td style="color:#4a6070;">${mk.stars.stateAvg}★</td>
+            <td>${star(mk.stars.stayHealthy)}</td>
+            <td>${star(mk.stars.memberExperience)}</td>
+            <td>${star(mk.stars.chronicConditions)}</td>
+        </tr>`).join('')}</tbody>
+    </table>`;
+}
+
+/* =============================================
    INIT
 ============================================= */
-document.addEventListener('DOMContentLoaded', () => { renderAll(); renderValueView(); renderUpdates(); });
+document.addEventListener('DOMContentLoaded', () => {
+    renderAll();
+    renderValueView();
+    renderUpdates();
+    renderMarketTab('OH', 'oh-root');
+    renderStarBaselines();
+});
 </script>
 
 </body>
