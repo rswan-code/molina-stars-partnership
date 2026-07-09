@@ -1901,7 +1901,6 @@
     <div class="footer">
         <div class="footer-logo">pyx <span>health</span></div>
         <div>Molina DSNP Stars Partnership &nbsp;|&nbsp; SOW #604123v7 &nbsp;|&nbsp; PO: 639366 &nbsp;|&nbsp; Program End: 11/6/2028</div>
-        <div>Anne Jordan &nbsp;·&nbsp; anne.jordan@pyxhealth.com &nbsp;·&nbsp; 520-263-0701</div>
     </div>
 
 </div><!-- end client view -->
@@ -2466,7 +2465,7 @@ const D = {
         cadence:    "Monthly",
         length:     "30 minutes",
         format:     "Corporate — Christine Rolls & Lisa Tikkanen",
-        contact:    "Anne Jordan · anne.jordan@pyxhealth.com",
+        contact:    "Pyx Health Account Team",
         agenda: [
             { title:"Performance Update",        desc:"Month-over-month enrollment, conversion, and engagement metrics across all four markets. What moved, what didn't, and why.",                          time:"10 min" },
             { title:"Value Story",               desc:"What activation is generating for Molina — PCP connections, SDOH resolutions, AWV attestations, reward redemptions. The 'so what' behind the numbers.", time:"8 min" },
@@ -3334,7 +3333,6 @@ function renderMarketTab(code, rootId) {
             <div class="kpi"><div class="kpi-lbl">Members Engaged</div><div class="kpi-val">${fmt(e.careTeamMembers)}</div><div class="kpi-ctx">Distinct members with ≥1 care team call</div></div>
             <div class="kpi teal"><div class="kpi-lbl">Engagement Calls</div><div class="kpi-val">${fmt(e.totalCalls)}</div><div class="kpi-ctx">Avg ${e.avgCallsPerMember} calls per member</div></div>
             <div class="kpi blue"><div class="kpi-lbl">Resource Connections</div><div class="kpi-val">${fmt(e.resourceConnections)}</div><div class="kpi-ctx">Configurable content shared with members</div></div>
-            <div class="kpi purple"><div class="kpi-lbl">Loneliness Interventions</div><div class="kpi-val">${fmt(e.posPsychLoneliness)}</div><div class="kpi-ctx">Positive-psychology activities · avg ${e.avgActivityPerPerson}/person</div></div>
         </div>
         <div class="card-grid" style="margin-top:20px;">
             <div class="card">
@@ -3365,7 +3363,6 @@ function renderMarketTab(code, rootId) {
     <div class="footer">
         <div class="footer-logo">pyx <span>health</span></div>
         <div>Molina DSNP Stars Partnership &nbsp;|&nbsp; ${d.name} (${d.planId}) &nbsp;|&nbsp; Data as of ${d.dataAsOf}</div>
-        <div>Anne Jordan &nbsp;·&nbsp; anne.jordan@pyxhealth.com &nbsp;·&nbsp; 520-263-0701</div>
     </div>`;
 
     document.getElementById(rootId).innerHTML = html;
