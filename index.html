@@ -1625,6 +1625,49 @@
         .star-box .sb-val .sb-star { color: var(--light-green); font-size: 22px; }
         .star-box.weak { border-top-color: var(--orange); }
         .star-box .sb-sub { font-size: 11px; color: #4a6070; margin-top: 8px; line-height: 1.5; }
+
+        /* Compact market-tab spacing */
+        .market-tab .section { padding: 36px 0; }
+        .market-tab .section-head { margin-bottom: 20px; }
+        .market-tab .kpi-val { font-size: 24px; }
+
+        /* Export-to-PDF floating button */
+        #export-pdf-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 300;
+            background: var(--green);
+            color: var(--white);
+            border: none;
+            border-radius: 24px;
+            padding: 12px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        #export-pdf-btn:hover { background: var(--cool-slate); }
+        #export-pdf-btn:active { transform: translateY(1px); }
+
+        /* =============================================
+           PRINT / PDF EXPORT
+        ============================================= */
+        @media print {
+            .tab-nav, .tp-toggle-btn, #export-pdf-btn { display: none !important; }
+            .tab-content:not(.active) { display: none !important; }
+            .tab-content.active { display: block !important; }
+            html, body { background: #fff !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .section { padding: 18px 0 !important; }
+            .client-header { padding: 28px 32px !important; }
+            .card, .kpi, .star-box, .mkt-card, .barh-row, .res-list li, .footer { break-inside: avoid; }
+            .section-head, .card-grid, .kpi-grid { break-inside: avoid; }
+            @page { margin: 12mm; size: letter; }
+        }
     </style>
 </head>
 <body>
@@ -1641,6 +1684,8 @@
     <button class="tab-btn" onclick="switchTab('internal',this)">Internal View ⚙</button>
     <button class="tp-toggle-btn" id="tp-toggle" onclick="toggleTalkingPoints(this)">Talking Points</button>
 </nav>
+
+<button id="export-pdf-btn" onclick="exportActiveTab()" title="Export the current view to PDF">⬇ Export PDF</button>
 
 
 <!-- =============================================
@@ -1865,7 +1910,7 @@
 <!-- =============================================
      MARKET DEEP-DIVE — OHIO
 ============================================= -->
-<div id="tab-ohio" class="tab-content">
+<div id="tab-ohio" class="tab-content market-tab">
     <div id="oh-root"></div>
 </div><!-- end ohio view -->
 
@@ -3238,58 +3283,30 @@ function renderMarketTab(code, rootId) {
         </div>
     </div>
 
-    <!-- At a Glance -->
+    <!-- At a Glance + Reach -->
     <div class="white-bg"><div class="wrap"><div class="section">
         <div class="section-head">
             <div class="section-title">${d.name} at a Glance</div>
-            <div class="section-sub">A single-market view of how the ${d.name} DSNP population is responding — reach, engagement, the barriers we're surfacing, and the Star measures this activity is built to move.</div>
         </div>
         <div class="kpi-grid">
             <div class="kpi"><div class="kpi-lbl">Members Enrolled</div><div class="kpi-val">${fmt(d.enrolled)}</div><div class="kpi-ctx">+${fmt(d.onboards30)} in the last 30 days</div></div>
             <div class="kpi teal"><div class="kpi-lbl">Conversion Rate</div><div class="kpi-val">${convPct}</div><div class="kpi-ctx good">↑ Exceeds 10% SLA target</div></div>
-            <div class="kpi blue"><div class="kpi-lbl">Unique Members Reached</div><div class="kpi-val">${fmt(d.uniqueOutreached)}</div><div class="kpi-ctx">${fmt(d.onboardingFromOutreach,'pct')} onboard from successful outreach</div></div>
+            <div class="kpi blue"><div class="kpi-lbl">Unique Members Reached</div><div class="kpi-val">${fmt(d.uniqueOutreached)}</div><div class="kpi-ctx">${fmt(d.onboardingFromOutreach,'pct')} onboard from outreach</div></div>
             <div class="kpi orange"><div class="kpi-lbl">Avg Social Needs</div><div class="kpi-val">${s.avgNeeds.toFixed(1)}</div><div class="kpi-ctx">Per screened member</div></div>
         </div>
-        <div class="note-box teal" style="margin-top:24px;">
-            <strong>What this period shows:</strong> ${d.name} expanded outreach significantly — ${fmt(d.uniqueOutreached)} unique members reached, up from roughly 3,500. Enrollment grew to <strong>${fmt(d.enrolled)}</strong> members. As outreach pushes deeper into the eligible population, conversion normalizes to ${convPct} — still comfortably above the 10% contractual floor, on a much larger base.
+        <div class="card" style="margin-top:20px;">
+            <div class="prog-header"><span class="prog-name">Conversion vs. SLA Target</span><span class="prog-nums">${convPct} vs. 10% target</span></div>
+            <div class="prog-track"><div class="prog-fill g" style="width:${Math.min(d.conversionRate/0.20*100,100)}%"></div><div class="prog-target" style="left:${0.10/0.20*100}%"></div></div>
+            <div class="prog-status st-good">↑ EXCEEDING CONTRACT TARGET</div>
+            <div class="card-sub" style="margin-top:16px;"><strong>Who's enrolling:</strong> ${fmt(d.gender.f)} women · ${fmt(d.gender.m)} men · concentrated in the 55–74 age bands · ${fmt(d.appUserPct,'pct')} enrolled via the Pyx app, the rest fully supported by the compassionate support center.</div>
         </div>
     </div></div></div>
 
-    <!-- Reach & Response -->
+    <!-- Screeners -->
     <div class="alt-bg"><div class="wrap"><div class="section">
         <div class="section-head">
-            <div class="section-eyebrow eyebrow-2">Reach &amp; Response</div>
-            <div class="section-title">Who We're Reaching in ${d.name}</div>
-        </div>
-        <div class="client-q-box">
-            <span class="client-q-label">What this data tells us</span>
-            <span class="client-q-text">"Are we reaching the right people?"</span>
-            <span class="client-q-answer">Yes — and at scale. ${convPct} of members reached are enrolling, above the 10% contractual minimum, even as we've tripled the number of members contacted. Every enrolled member moves into a needs-based conversation with a dedicated care team member.</span>
-        </div>
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-lbl">Conversion vs. SLA Target</div>
-                <div style="margin-top:10px;">
-                    <div class="prog-header"><span class="prog-name">Conversion Rate</span><span class="prog-nums">${convPct} vs. 10% target</span></div>
-                    <div class="prog-track"><div class="prog-fill g" style="width:${Math.min(d.conversionRate/0.20*100,100)}%"></div><div class="prog-target" style="left:${0.10/0.20*100}%"></div></div>
-                    <div class="prog-status st-good">↑ EXCEEDING CONTRACT TARGET</div>
-                </div>
-            </div>
-            <div class="card"><div class="card-lbl">Members Reached</div><div class="card-val">${fmt(d.uniqueOutreached)}</div><div class="card-sub">Unique members contacted to date</div></div>
-            <div class="card"><div class="card-lbl">Members Enrolled</div><div class="card-val">${fmt(d.enrolled)}</div><div class="card-sub">${fmt(d.gender.f)} women · ${fmt(d.gender.m)} men · enrollment concentrated in the 55–74 age bands · ${fmt(d.appUserPct,'pct')} enrolled via the Pyx app; the rest fully supported by the compassionate support center</div></div>
-        </div>
-    </div></div></div>
-
-    <!-- Deep Engagement & Barrier Visibility -->
-    <div class="white-bg"><div class="wrap"><div class="section">
-        <div class="section-head">
-            <div class="section-eyebrow eyebrow-3">Deep Engagement &amp; Barrier Visibility</div>
             <div class="section-title">What We're Learning About ${d.name} Members</div>
-        </div>
-        <div class="client-q-box">
-            <span class="client-q-label">What this data tells us</span>
-            <span class="client-q-text">"Are we learning anything meaningful that can change outcomes?"</span>
-            <span class="client-q-answer">${fmt(s.praparen)} members have completed PRAPARE SDOH screenings — ${fmt(s.sdohNeedPct,'pct')} identify at least one social need, averaging ${s.avgNeeds.toFixed(1)} needs per member. PHQ-4 and UCLA-3 baselines are established, creating the measurement foundation to demonstrate CAHPS and HOS movement over time.</span>
+            <div class="section-sub">${fmt(s.praparen)} PRAPARE screenings · ${fmt(s.sdohNeedPct,'pct')} identify ≥1 social need · loneliness &amp; distress baselines established.</div>
         </div>
         <div class="card-grid">
             <div class="card"><div class="card-lbl">PRAPARE (SDOH)</div><div class="card-val">${fmt(s.praparen)}</div><div class="card-sub">${fmt(s.sdohNeedPct,'pct')} identify ≥1 social need · ${fmt(s.urgentPct,'pct')} flag a need as urgent</div></div>
@@ -3300,20 +3317,18 @@ function renderMarketTab(code, rootId) {
     </div></div></div>
 
     <!-- Top Barriers -->
-    <div class="alt-bg"><div class="wrap"><div class="section">
+    <div class="white-bg"><div class="wrap"><div class="section">
         <div class="section-head">
             <div class="section-title">Top Social Barriers in ${d.name}</div>
-            <div class="section-sub">Share of screened members indicating a need in each area. Income instability and food insecurity dominate — the same barriers that keep members from making and keeping preventive-care appointments.</div>
+            <div class="section-sub">Share of screened members indicating a need in each area.</div>
         </div>
         <div class="card">${barhList(d.sdohNeeds, 'barrier')}</div>
     </div></div></div>
 
     <!-- Engagement -->
-    <div class="white-bg"><div class="wrap"><div class="section">
+    <div class="alt-bg"><div class="wrap"><div class="section">
         <div class="section-head">
-            <div class="section-eyebrow eyebrow-1">Care Team Engagement</div>
             <div class="section-title">How ${d.name} Members Are Engaging</div>
-            <div class="section-sub">Engagement isn't a single call — it's a relationship. Below is what care team members and ${d.name} members are actually doing together.</div>
         </div>
         <div class="kpi-grid">
             <div class="kpi"><div class="kpi-lbl">Members Engaged</div><div class="kpi-val">${fmt(e.careTeamMembers)}</div><div class="kpi-ctx">Distinct members with ≥1 care team call</div></div>
@@ -3324,19 +3339,19 @@ function renderMarketTab(code, rootId) {
         <div class="card-grid" style="margin-top:20px;">
             <div class="card">
                 <div class="card-lbl">Primary Engagement Type</div>
-                <div class="card-sub" style="margin-bottom:14px;">How care team time is spent — screening, barrier navigation, and resource connection lead the mix.</div>
+                <div class="card-sub" style="margin-bottom:14px;">How care team time is spent.</div>
                 ${barhList(d.engagementMix, 'mix')}
             </div>
             <div class="card">
-                <div class="card-lbl">Most-Utilized Resource Connections</div>
-                <div class="card-sub" style="margin-bottom:14px;">Top resources ${d.name} members were connected to, by member volume.</div>
+                <div class="card-lbl">Top Self-Navigated Resources (In-App)</div>
+                <div class="card-sub" style="margin-bottom:14px;">Resources ${d.name} members found and connected to on their own within the Pyx app, by member volume.</div>
                 <ul class="res-list">${d.topResources.map(r => `<li><span class="res-rank">#${r.rank}</span>${r.n}</li>`).join('')}</ul>
             </div>
         </div>
     </div></div></div>
 
     <!-- Key Signals -->
-    <div class="alt-bg"><div class="wrap"><div class="section">
+    <div class="white-bg"><div class="wrap"><div class="section">
         <div class="section-head">
             <div class="section-title">Key Signals — ${d.name}</div>
         </div>
@@ -3377,6 +3392,22 @@ function renderStarBaselines() {
             <td>${star(mk.stars.chronicConditions)}</td>
         </tr>`).join('')}</tbody>
     </table>`;
+}
+
+/* Export the currently-active tab to PDF via the browser print dialog.
+   Only the active tab prints (see @media print); title drives the PDF filename. */
+function exportActiveTab() {
+    const active = document.querySelector('.tab-content.active');
+    const prevTitle = document.title;
+    let name = 'Molina DSNP Stars';
+    if (active) {
+        const h = active.querySelector('h1');
+        if (h) name = h.textContent.replace(/\s+/g, ' ').trim();
+    }
+    document.title = `${name} — Pyx Health`;
+    const restore = () => { document.title = prevTitle; window.removeEventListener('afterprint', restore); };
+    window.addEventListener('afterprint', restore);
+    window.print();
 }
 
 /* =============================================
