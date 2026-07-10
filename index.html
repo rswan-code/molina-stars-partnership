@@ -2368,7 +2368,7 @@ const D = {
     ],
     metrics: {
         totalPopulation:       0, /* recalculated below from D.markets */
-        totalOutreached:       33181,
+        totalOutreached:       33183,
         totalEnrolled:         4212,
         enrollmentTargetMin:   6427,
         enrollmentTargetPct:   0.15,
@@ -2599,7 +2599,7 @@ function renderAll() {
         <div class="card">
             <div class="card-lbl">Unique Members Reached</div>
             <div class="card-val">${fmt(m.totalOutreached)}</div>
-            <div class="card-sub">Members contacted across all 4 markets · OH 11,260 · TX 9,032 · WA 10,144 · UT 2,745</div>
+            <div class="card-sub">Members contacted across all 4 markets · OH 11,262 · TX 9,032 · WA 10,144 · UT 2,745</div>
         </div>
         <div class="card">
             <div class="card-lbl">Target Population Criteria</div>
@@ -3221,9 +3221,9 @@ function renderUpdates() {
 const MARKET_DETAIL = {
     OH: {
         name:"Ohio", code:"OH", planId:"H9955", goLive:"3/17/2026",
-        dataAsOf:"July 6, 2026", eligFileDate:"June 10, 2026",
-        enrolled:1321, onboards30:514, eligFile:14121, conversionRate:0.113,
-        uniqueOutreached:11260, onboardingFromOutreach:0.326,
+        dataAsOf:"July 10, 2026", eligFileDate:"June 10, 2026",
+        enrolled:1342, onboards30:420, eligFile:14121, conversionRate:0.119,
+        uniqueOutreached:11262, onboardingFromOutreach:0.326,
         appUserPct:0.48, gender:{ f:755, m:566 },
         outreachAttempts:[
             {n:"1 attempt",pct:0.24},{n:"2 attempts",pct:0.18},{n:"3 attempts",pct:0.13},
@@ -3237,7 +3237,7 @@ const MARKET_DETAIL = {
             {n:"Housing",pct:0.18},{n:"Health Literacy",pct:0.15},{n:"Medication Adherence",pct:0.15},
             {n:"Safety",pct:0.10},{n:"Childcare",pct:0.07},{n:"Care Gap",pct:0.04}
         ],
-        engage:{ careTeamMembers:1233, totalCalls:1706, avgCallsPerMember:3.8,
+        engage:{ careTeamMembers:1284, totalCalls:4053, avgCallsPerMember:3.9,
                  avgActivityPerPerson:5, maxActivity:37, resourceConnections:200, posPsychLoneliness:40 },
         engagementMix:[
             {n:"PRAPARE (SDOH)",pct:0.32},{n:"UCLA-3 (Loneliness)",pct:0.22},
@@ -3251,10 +3251,10 @@ const MARKET_DETAIL = {
         ],
         stars:{ overall:3.0, stateAvg:3.6, stayHealthy:2, memberExperience:3, chronicConditions:3 },
         signals:[
-            "Outreach scaled ~3× this period — 11,260 members reached, up from ~3,500 — driving enrollment to 1,321 (+70%)",
+            "Outreach scaled ~3× this period — 11,262 members reached, up from ~3,500 — driving enrollment to 1,342 (+72%)",
             "96% of screened members identify ≥1 social need · 95% flag a need as urgent — acute barriers, not background noise",
             "Top barriers: income instability (93%) · food insecurity (65%) · healthy days (51%)",
-            "1,233 members engaged with a care team member · 1,706 engagement calls · avg 3.8 calls per member",
+            "1,284 members engaged with a care team member · 4,053 engagement calls · avg 3.9 calls per member",
             "Conversion normalizing to 11.3% as outreach reaches deeper into the eligible population — still above the 10% SLA floor"
         ]
     }
