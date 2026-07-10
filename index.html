@@ -1664,9 +1664,9 @@
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             .section { padding: 18px 0 !important; }
             .client-header { padding: 28px 32px !important; }
-            .card, .kpi, .star-box, .mkt-card, .barh-row, .res-list li, .footer { break-inside: avoid; }
-            .section-head, .card-grid, .kpi-grid { break-inside: avoid; }
-            @page { margin: 12mm; size: letter; }
+            /* One continuous page: exportActiveTab() injects an exact @page size.
+               margin:0 also suppresses the browser's auto URL/date header & footer. */
+            @page { margin: 0; }
         }
     </style>
 </head>
@@ -3406,17 +3406,39 @@ function renderStarBaselines() {
 }
 
 /* Export the currently-active tab to PDF via the browser print dialog.
+   Renders as ONE continuous page (no page breaks) at a fixed 1180px layout width,
+   with zero page margins (which also removes the browser's auto URL/date footer).
    Only the active tab prints (see @media print); title drives the PDF filename. */
 function exportActiveTab() {
     const active = document.querySelector('.tab-content.active');
     const prevTitle = document.title;
     let name = 'Molina DSNP Stars';
     if (active) {
-        const h = active.querySelector('h1');
-        if (h) name = h.textContent.replace(/\s+/g, ' ').trim();
+        const h1 = active.querySelector('h1');
+        if (h1) name = h1.textContent.replace(/\s+/g, ' ').trim();
     }
     document.title = `${name} — Pyx Health`;
-    const restore = () => { document.title = prevTitle; window.removeEventListener('afterprint', restore); };
+
+    const PRINT_W = 1180;
+    let pageStyle = null;
+    if (active) {
+        // Measure the tab's height at the fixed print width, then size the page to fit it exactly.
+        active.style.width = PRINT_W + 'px';
+        const contentH = Math.ceil(active.scrollHeight) + 10; // small buffer avoids a blank trailing page
+        active.style.width = '';
+        pageStyle = document.createElement('style');
+        pageStyle.media = 'print';
+        pageStyle.textContent =
+            `@page { size: ${PRINT_W}px ${contentH}px; margin: 0; }` +
+            `.tab-content.active { width: ${PRINT_W}px !important; }`;
+        document.head.appendChild(pageStyle);
+    }
+
+    const restore = () => {
+        document.title = prevTitle;
+        if (pageStyle) pageStyle.remove();
+        window.removeEventListener('afterprint', restore);
+    };
     window.addEventListener('afterprint', restore);
     window.print();
 }
