@@ -1626,6 +1626,11 @@
         .star-box.weak { border-top-color: var(--orange); }
         .star-box .sb-sub { font-size: 11px; color: #4a6070; margin-top: 8px; line-height: 1.5; }
 
+        /* Activation & Impact stat row */
+        .act-stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 24px; margin-bottom: 24px; }
+        .act-mix-row { grid-template-columns: 215px 1fr 74px; }
+        @media (max-width: 640px) { .act-mix-row { grid-template-columns: 130px 1fr 64px; } }
+
         /* Compact market-tab spacing */
         .market-tab .section { padding: 36px 0; }
         .market-tab .section-head { margin-bottom: 20px; }
@@ -1850,15 +1855,27 @@
             <div class="section">
                 <div class="section-eyebrow" style="background:rgba(135,208,1,0.15); color:var(--light-green);">Phases 4–5 · Months 4–12</div>
                 <div class="section-title" style="color:var(--white); margin-top:10px;">Activation &amp; Impact</div>
-                <div class="section-sub">Once barriers are identified, members act — and member action drives measurable improvement in quality, utilization, and cost. Activation outcomes populate as engagement deepens. Value estimates below are research-backed projections based on enrolled members today.</div>
+                <div class="section-sub">Once barriers are identified, members act — and in Month 4 that action is already visible. Our care team is coordinating appointments across the full range of member needs, not just the Annual Wellness Visit. Here's the activation work happening right now.</div>
                 <div class="client-q-box future" style="margin-bottom:32px;">
                     <span class="client-q-label">What Molina will be measuring</span>
                     <span class="client-q-text">"Is this helping our quality, utilization, and STARS goals?"</span>
-                    <span class="client-q-answer">PCP connections, AWV attestations, and SDOH resolutions populate from Tableau monthly starting in Phase 4. Star rating movement is a 12–18 month lagging indicator — the leading indicators (screenings, barrier identification, care team engagement) are building that case now in Phase 3.</span>
+                    <span class="client-q-answer">Yes — directly. 77% of scheduled appointments target STARS/HEDIS quality measures: breast and colorectal cancer screening and diabetes care. Activation is broad by design — DSNP members carry complex, compounding needs — but it's concentrated exactly where quality is measured. Star rating movement is a 12–18 month lagging indicator; this appointment activity is the leading indicator building that case now.</span>
                 </div>
-                <div class="cohort-header">The Case We're Building: Engagement Duration → Outcomes</div>
-                <div class="cohort-sub">As our member cohort matures, we will demonstrate that deeper engagement produces measurably better health outcomes — connecting time-in-program directly to quality and utilization results.</div>
-                <div class="cohort-table-wrap" id="cohort-table"></div>
+                <div class="cohort-header">Activation in Motion — Appointments Coordinated to Date</div>
+                <div class="cohort-sub">DSNP members carry complex, compounding needs, so our care team coordinates across many visit types — not just the Annual Wellness Visit. This is the activation work happening right now, in Month 4.</div>
+                <div class="card" style="margin-top:24px;">
+                    <div class="act-stat-row">
+                        <div><div class="card-lbl">Appointments Scheduled</div><div class="card-val">154</div><div class="card-sub">Network total, all 4 markets · TX 39 · OH 25 · WA 66 · UT 24</div></div>
+                        <div><div class="card-lbl">Target STARS Measures</div><div class="card-val">77%</div><div class="card-sub">118 of 154 are breast &amp; colorectal cancer screening and diabetes care — direct HEDIS/STARS quality measures</div></div>
+                        <div><div class="card-lbl">Cancer Screenings</div><div class="card-val">76</div><div class="card-sub">Mammogram (40) + colon cancer screening (36) — nearly half of all activation</div></div>
+                    </div>
+                    <div class="card-lbl" style="margin-top:8px;">Appointment Mix — By Visit Type</div>
+                    <div class="card-sub" style="margin-bottom:14px;">Cancer screening and diabetes care lead — the visit types that most directly move quality measures.</div>
+                    <div id="activation-mix"></div>
+                </div>
+                <div class="note-box" style="margin-top:20px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);">
+                    <strong style="color:var(--white);">On the Annual Wellness Visit:</strong> <span style="color:rgba(255,255,255,0.82);">Activation is intentionally broad — but AWV remains a priority. We've deployed additional care-team training and updated talking points, and expect AWV volume to increase over the coming months as those efforts take hold.</span>
+                </div>
             </div>
         </div>
     </div>
@@ -2072,9 +2089,9 @@
     <div class="priority-section dark">
         <div class="wrap"><div class="section">
             <div class="priority-badge" style="background:rgba(135,208,1,0.15);border-color:rgba(135,208,1,0.4);color:var(--light-green);">Building Toward</div>
-            <div class="priority-title" style="color:var(--white);">The Case We're Building: Engagement → Outcomes</div>
-            <div class="priority-answer">As this cohort matures, we will demonstrate that deeper engagement produces measurably better outcomes — connecting time-in-program directly to PCP connections, AWV completion, and quality measure movement. The table below shows the framework. Columns populate as cohort data accumulates.</div>
-            <div class="cohort-table-wrap" id="vv-cohort-table"></div>
+            <div class="priority-title" style="color:var(--white);">Activation in Motion — What the Care Team Is Coordinating</div>
+            <div class="priority-answer">Activation is already happening across the full range of member needs — not just the Annual Wellness Visit. 154 appointments are scheduled across the network, and 77% target STARS/HEDIS quality measures: breast and colorectal cancer screening and diabetes care. As this cohort matures, we'll connect that activity to PCP connections, AWV completion, and quality-measure movement. The mix below shows where the care team is directing scheduling today.</div>
+            <div class="cohort-table-wrap" id="vv-activation-mix" style="padding:20px;"></div>
             <div class="val-grid" id="vv-value-grid" style="margin-top:32px;"></div>
             <div class="val-total" id="vv-val-total" style="margin-top:20px;"></div>
             <p class="val-note" id="vv-val-note"></p>
@@ -2515,6 +2532,37 @@ D.metrics.uniqueMembersEngaged    = D.markets.reduce((sum, mk) => sum + mk.engag
 D.metrics.pcpAppointments         = 9;
 D.metrics.preventiveAttestations  = 3;
 
+/* Activation & Impact — appointment activity (from Call Center team, July 2026).
+   Exact counts by appointment reason, network total 154 across all 4 markets. */
+const ACTIVATION = {
+    totalAppointments: 154,
+    byMarket: { TX:39, OH:25, WA:66, UT:24 },
+    starsAligned: 118, /* Mammogram + Colon + Diabetes A1C — direct STARS/HEDIS measures */
+    cancerScreenings: 76, /* Mammogram 40 + Colon 36 */
+    mix: [
+        { n:"Diabetes Maintenance (A1C)",   count:42 },
+        { n:"Cancer Screening (Mammogram)", count:40 },
+        { n:"Colon Cancer Screening",       count:36 },
+        { n:"Annual Physical / Wellness",   count:34 },
+        { n:"Blood Glucose Check",          count:1  },
+        { n:"Immunization / Vaccination",   count:1  }
+    ]
+};
+function renderActivationMix(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const max = Math.max(...ACTIVATION.mix.map(i => i.count));
+    el.innerHTML = ACTIVATION.mix.map((i, idx) => {
+        const w = Math.round(i.count / max * 100);
+        const pct = Math.round(i.count / ACTIVATION.totalAppointments * 100);
+        return `<div class="barh-row act-mix-row">
+            <div class="barh-lbl">${i.n}</div>
+            <div class="barh-track"><div class="barh-fill ${idx === 0 ? 'top' : ''}" style="width:${w}%"></div></div>
+            <div class="barh-val">${i.count} · ${pct}%</div>
+        </div>`;
+    }).join('');
+}
+
 /* =============================================
    HELPERS
 ============================================= */
@@ -2689,30 +2737,8 @@ function renderAll() {
             <div class="mkt-signal">${signals[mk.code]}</div>
         </div>`).join('');
 
-    /* Cohort engagement-duration table */
-    const cohortRows = [
-        { tier:'1 month',   n: 4212, pcpPct:'—', awvPct:'—', sdohRes:'—', note:'Baseline cohort — full program population today' },
-        { tier:'2+ months', n: null, pcpPct:'—', awvPct:'—', sdohRes:'—', note:'Now populating — members 2+ months in program; we expect meaningfully higher activation rates' },
-        { tier:'3+ months', n: null, pcpPct:'—', awvPct:'—', sdohRes:'—', note:'Populating August 2026 — longitudinal outcome comparison begins' },
-    ];
-    $('cohort-table').innerHTML = `<table class="cohort-table">
-        <thead><tr>
-            <th>Engagement Tier</th>
-            <th>Members</th>
-            <th>PCP Connection Rate</th>
-            <th>AWV Completion Rate</th>
-            <th>SDOH Needs Resolved</th>
-            <th>Notes</th>
-        </tr></thead>
-        <tbody>${cohortRows.map(r=>`<tr>
-            <td class="cohort-tier">${r.tier}</td>
-            <td class="cohort-n">${r.n ? fmt(r.n) : '<span class="cohort-pending">Pending</span>'}</td>
-            <td>${r.pcpPct === '—' ? '<span class="cohort-pending">Pending</span>' : r.pcpPct}</td>
-            <td>${r.awvPct === '—' ? '<span class="cohort-pending">Pending</span>' : r.awvPct}</td>
-            <td>${r.sdohRes === '—' ? '<span class="cohort-pending">Pending</span>' : r.sdohRes}</td>
-            <td style="font-size:11px;color:rgba(255,255,255,0.45);">${r.note}</td>
-        </tr>`).join('')}</tbody>
-    </table>`;
+    /* Activation & Impact — appointment mix (Client View) */
+    renderActivationMix('activation-mix');
 
     /* Value — compute totalEst for talking points reference below; tiles rendered in Value View */
     const enrolled = m.totalEnrolled;
@@ -3055,16 +3081,8 @@ function renderValueView() {
             <div class="mkt-signal">${vvSignals[mk.code]}</div>
         </div>`).join('');
 
-    /* Cohort table */
-    if ($('vv-cohort-table')) $('vv-cohort-table').innerHTML = `<table class="cohort-table">
-        <thead><tr>
-            <th>Engagement Tier</th><th>Members</th><th>PCP Connection Rate</th><th>AWV Completion Rate</th><th>SDOH Needs Resolved</th><th>Notes</th>
-        </tr></thead>
-        <tbody>
-            <tr><td class="cohort-tier">1 month</td><td class="cohort-n">${fmt(m.totalEnrolled)}</td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td style="font-size:11px;color:rgba(255,255,255,0.45);">Baseline cohort — full program population today</td></tr>
-            <tr><td class="cohort-tier">2+ months</td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td style="font-size:11px;color:rgba(255,255,255,0.45);">Populating June 2026 — we expect meaningfully higher activation rates</td></tr>
-            <tr><td class="cohort-tier">3+ months</td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td><span class="cohort-pending">Pending</span></td><td style="font-size:11px;color:rgba(255,255,255,0.45);">Populating July 2026 — longitudinal outcome comparison begins</td></tr>
-        </tbody></table>`;
+    /* Activation mix (Value View) */
+    renderActivationMix('vv-activation-mix');
 
     /* Value tiles */
     const enrolled = m.totalEnrolled;
