@@ -1664,9 +1664,8 @@
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             .section { padding: 18px 0 !important; }
             .client-header { padding: 28px 32px !important; }
-            /* One continuous page: exportActiveTab() injects an exact @page size.
-               margin:0 also suppresses the browser's auto URL/date header & footer. */
-            @page { margin: 0; }
+            /* One continuous page + zero margins (which also removes the browser's URL/date
+               header & footer) are applied by exportActiveTab()'s injected @page rule. */
         }
     </style>
 </head>
@@ -3419,17 +3418,21 @@ function exportActiveTab() {
     }
     document.title = `${name} — Pyx Health`;
 
-    const PRINT_W = 1180;
+    // Fixed page width: fills the page edge-to-edge, keeps the desktop layout, and renders
+    // text at full size (no shrink-to-paper). Narrower than the 1180 screen width so text
+    // reads larger in the PDF.
+    const PRINT_W = 900;
     let pageStyle = null;
     if (active) {
-        // Measure the tab's height at the fixed print width, then size the page to fit it exactly.
+        // Measure the tab's height at the print width, then size the page to fit it exactly.
         active.style.width = PRINT_W + 'px';
-        const contentH = Math.ceil(active.scrollHeight) + 10; // small buffer avoids a blank trailing page
+        const contentH = Math.ceil(active.scrollHeight) + 8; // small buffer avoids a blank trailing page
         active.style.width = '';
         pageStyle = document.createElement('style');
         pageStyle.media = 'print';
         pageStyle.textContent =
             `@page { size: ${PRINT_W}px ${contentH}px; margin: 0; }` +
+            `html, body { width: ${PRINT_W}px !important; margin: 0 !important; padding: 0 !important; }` +
             `.tab-content.active { width: ${PRINT_W}px !important; }`;
         document.head.appendChild(pageStyle);
     }
