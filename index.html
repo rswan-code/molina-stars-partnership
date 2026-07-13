@@ -3302,15 +3302,9 @@ function renderMarketTab(code, rootId) {
         </div>
         <div class="kpi-grid">
             <div class="kpi"><div class="kpi-lbl">Members Enrolled</div><div class="kpi-val">${fmt(d.enrolled)}</div><div class="kpi-ctx">+${fmt(d.onboards30)} in the last 30 days</div></div>
-            <div class="kpi teal"><div class="kpi-lbl">Conversion Rate</div><div class="kpi-val">${convPct}</div><div class="kpi-ctx good">↑ Exceeds 10% SLA target</div></div>
+            <div class="kpi teal"><div class="kpi-lbl">Conversion Rate</div><div class="kpi-val">${convPct}</div></div>
             <div class="kpi blue"><div class="kpi-lbl">Unique Members Reached</div><div class="kpi-val">${fmt(d.uniqueOutreached)}</div><div class="kpi-ctx">${fmt(d.onboardingFromOutreach,'pct')} onboard from outreach</div></div>
             <div class="kpi orange"><div class="kpi-lbl">Avg Social Needs</div><div class="kpi-val">${s.avgNeeds.toFixed(1)}</div><div class="kpi-ctx">Per screened member</div></div>
-        </div>
-        <div class="card" style="margin-top:20px;">
-            <div class="prog-header"><span class="prog-name">Conversion vs. SLA Target</span><span class="prog-nums">${convPct} vs. 10% target</span></div>
-            <div class="prog-track"><div class="prog-fill g" style="width:${Math.min(d.conversionRate/0.20*100,100)}%"></div><div class="prog-target" style="left:${0.10/0.20*100}%"></div></div>
-            <div class="prog-status st-good">↑ EXCEEDING CONTRACT TARGET</div>
-            <div class="card-sub" style="margin-top:16px;"><strong>Who's enrolling:</strong> ${fmt(d.gender.f)} women · ${fmt(d.gender.m)} men · concentrated in the 55–74 age bands · ${fmt(d.appUserPct,'pct')} enrolled via the Pyx app, the rest fully supported by the compassionate support center.</div>
         </div>
     </div></div></div>
 
