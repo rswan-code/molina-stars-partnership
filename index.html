@@ -3306,6 +3306,9 @@ function renderMarketTab(code, rootId) {
             <div class="kpi blue"><div class="kpi-lbl">Unique Members Reached</div><div class="kpi-val">${fmt(d.uniqueOutreached)}</div><div class="kpi-ctx">${fmt(d.onboardingFromOutreach,'pct')} onboard from outreach</div></div>
             <div class="kpi orange"><div class="kpi-lbl">Avg Social Needs</div><div class="kpi-val">${s.avgNeeds.toFixed(1)}</div><div class="kpi-ctx">Per screened member</div></div>
         </div>
+        <div class="card" style="margin-top:20px;">
+            <div class="card-sub"><strong>Who's enrolling:</strong> ${fmt(d.gender.f)} women · ${fmt(d.gender.m)} men · concentrated in the 55–74 age bands · ${fmt(d.appUserPct,'pct')} enrolled in the Pyx app as well as telephonic support; the rest fully supported telephonically by the Pyx Care Team.</div>
+        </div>
     </div></div></div>
 
     <!-- Screeners -->
