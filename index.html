@@ -1659,8 +1659,13 @@
         @media print {
             .tab-nav, .tp-toggle-btn, #export-pdf-btn { display: none !important; }
             .tab-content:not(.active) { display: none !important; }
-            .tab-content.active { display: block !important; }
-            html, body { background: #fff !important; }
+            /* Clip any horizontal overflow so the page is exactly the print width —
+               otherwise Chrome shrinks the whole page to fit, making text small & fuzzy.
+               (Client/Value views have full-width elements like the timeline that can spill.) */
+            .tab-content.active { display: block !important; overflow-x: clip !important; }
+            html, body { background: #fff !important; overflow-x: clip !important; }
+            .timeline-bar, .tl-swimlane, .tl-sw-axis, .tl-sw-axis-labels, .tl-now-wrap { overflow: hidden !important; }
+            .wrap { max-width: 100% !important; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             .section { padding: 18px 0 !important; }
             .client-header { padding: 28px 32px !important; }
