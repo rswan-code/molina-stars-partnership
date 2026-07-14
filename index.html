@@ -1679,6 +1679,9 @@
     <button class="tab-btn active" onclick="switchTab('client',this)">Client View</button>
     <button class="tab-btn" onclick="switchTab('value',this)">Value View ✦</button>
     <button class="tab-btn" onclick="switchTab('ohio',this)">Ohio</button>
+    <button class="tab-btn" onclick="switchTab('texas',this)">Texas</button>
+    <button class="tab-btn" onclick="switchTab('utah',this)">Utah</button>
+    <button class="tab-btn" onclick="switchTab('washington',this)">Washington</button>
     <button class="tab-btn" onclick="switchTab('updates',this)">Net New Updates 🆕</button>
     <button class="tab-btn" onclick="switchTab('internal',this)">Internal View ⚙</button>
     <button class="tp-toggle-btn" id="tp-toggle" onclick="toggleTalkingPoints(this)" title="Talking Points" aria-label="Toggle Talking Points"></button>
@@ -1923,6 +1926,18 @@
 <div id="tab-ohio" class="tab-content market-tab">
     <div id="oh-root"></div>
 </div><!-- end ohio view -->
+
+<div id="tab-texas" class="tab-content market-tab">
+    <div id="tx-root"></div>
+</div><!-- end texas view -->
+
+<div id="tab-utah" class="tab-content market-tab">
+    <div id="ut-root"></div>
+</div><!-- end utah view -->
+
+<div id="tab-washington" class="tab-content market-tab">
+    <div id="wa-root"></div>
+</div><!-- end washington view -->
 
 
 <!-- =============================================
@@ -3257,6 +3272,111 @@ const MARKET_DETAIL = {
             "1,284 members engaged with a care team member · 4,053 engagement calls · avg 3.9 calls per member",
             "Conversion normalizing to 11.9% as outreach reaches deeper into the eligible population"
         ]
+    },
+    TX: {
+        name:"Texas", code:"TX", planId:"H7678", goLive:"3/17/2026",
+        dataAsOf:"July 9, 2026", eligFileDate:"June 10, 2026",
+        enrolled:1114, onboards30:269, eligFile:12268, conversionRate:0.120,
+        uniqueOutreached:9032, onboardingFromOutreach:0.359,
+        appUserPct:0.41, gender:{ f:670, m:444 },
+        screening:{ praparen:1065, ucla3n:1307, ucla3avg:4.4, phq4n:1295, phq4avg:2.5,
+                    mwban:1005, sdohNeedPct:0.97, avgNeeds:3.2, urgentPct:0.96 },
+        sdohNeeds:[
+            {n:"Income",pct:0.92},{n:"Food",pct:0.69},{n:"Healthy Days",pct:0.50},
+            {n:"Health Literacy",pct:0.27},{n:"Housing",pct:0.25},{n:"Transportation",pct:0.23},
+            {n:"Economic Stability",pct:0.21},{n:"Access to Care",pct:0.19},{n:"Medication Adherence",pct:0.16},
+            {n:"Safety",pct:0.10},{n:"Care Gap",pct:0.06},{n:"Childcare",pct:0.04}
+        ],
+        engage:{ careTeamMembers:1087, totalCalls:3665, avgCallsPerMember:5.6,
+                 avgActivityPerPerson:5, maxActivity:38, resourceConnections:177, posPsychLoneliness:16 },
+        engagementMix:[
+            {n:"Resource Navigation",pct:0.42},{n:"UCLA-3 (Loneliness)",pct:0.22},
+            {n:"PRAPARE (SDOH)",pct:0.19},{n:"SDOH Navigation",pct:0.17}
+        ],
+        topResources:[
+            {n:"Find Help (211 network)",rank:1,pct:0.13},{n:"Find a Provider",rank:2,pct:0.16},
+            {n:"211",rank:3,pct:0.06},{n:"Silver&Fit Fitness Program",rank:3,pct:0.06},
+            {n:"OTC (Over-the-Counter) Benefits",rank:5,pct:0.13},{n:"Healthy Actions Rewards",rank:5,pct:0.08},
+            {n:"Member Portal",rank:7,pct:0.03},{n:"Long-Term Care Support",rank:7,pct:0.03}
+        ],
+        stars:{ overall:3.5, stateAvg:4.0, stayHealthy:3, memberExperience:4, chronicConditions:3 },
+        signals:[
+            "Largest eligible population in the program (23,560) · 1,114 enrolled at 12.0% conversion",
+            "97% of screened members identify ≥1 social need · top barriers: income instability (92%) · food insecurity (69%)",
+            "1,087 members engaged · 5.6 calls per member — the deepest engagement depth of any market",
+            "Outreach scaled to 9,032 members reached; conversion normalizing to 12.0% as the base expands",
+            "SDOH burden averages 3.2 needs per member; cancer-screening and diabetes-care activation underway"
+        ]
+    },
+    WA: {
+        name:"Washington", code:"WA", planId:"H5823", goLive:"4/8/2026",
+        dataAsOf:"July 9, 2026", eligFileDate:"June 10, 2026",
+        enrolled:1305, onboards30:231, eligFile:13018, conversionRate:0.124,
+        uniqueOutreached:10144, onboardingFromOutreach:0.332,
+        appUserPct:0.42, gender:{ f:741, m:564 },
+        screening:{ praparen:1265, ucla3n:1584, ucla3avg:4.5, phq4n:1566, phq4avg:2.5,
+                    mwban:1180, sdohNeedPct:0.95, avgNeeds:3.1, urgentPct:0.94 },
+        sdohNeeds:[
+            {n:"Income",pct:0.91},{n:"Food",pct:0.68},{n:"Healthy Days",pct:0.53},
+            {n:"Access to Care",pct:0.23},{n:"Transportation",pct:0.22},{n:"Housing",pct:0.21},
+            {n:"Economic Stability",pct:0.19},{n:"Health Literacy",pct:0.18},{n:"Medication Adherence",pct:0.18},
+            {n:"Safety",pct:0.09},{n:"Care Gap",pct:0.07},{n:"Childcare",pct:0.04}
+        ],
+        engage:{ careTeamMembers:1245, totalCalls:4015, avgCallsPerMember:3.9,
+                 avgActivityPerPerson:5, maxActivity:32, resourceConnections:145, posPsychLoneliness:16 },
+        engagementMix:[
+            {n:"SDOH Navigation",pct:0.27},{n:"PRAPARE (SDOH)",pct:0.26},
+            {n:"Resource Navigation",pct:0.23},{n:"UCLA-3 (Loneliness)",pct:0.22}
+        ],
+        topResources:[
+            {n:"Find Help (211 network)",rank:1,pct:0.13},{n:"211",rank:2,pct:0.08},
+            {n:"Long-Term Care Support",rank:3,pct:0.06},{n:"Healthy Actions Rewards",rank:3,pct:0.06},
+            {n:"Network Vision (VSP)",rank:5,pct:0.10},{n:"Health Promotion Programs",rank:5,pct:0.05},
+            {n:"Disease Management Program",rank:7,pct:0.06},{n:"Silver&Fit Fitness Program",rank:7,pct:0.05}
+        ],
+        stars:{ overall:3.0, stateAvg:3.6, stayHealthy:2, memberExperience:1, chronicConditions:2 },
+        signals:[
+            "Houseless population confirmed as a complex challenge — the data reflects the depth",
+            "1,305 enrolled at 12.4% conversion — second-highest enrollment volume of any market",
+            "95% of screened members identify ≥1 social need · top barriers: income instability (91%) · food insecurity (68%)",
+            "Highest screening volume in the program — 1,584 UCLA-3 · 1,566 PHQ-4 · 1,265 PRAPARE",
+            "1,245 members engaged · 3.9 calls per member"
+        ]
+    },
+    UT: {
+        name:"Utah", code:"UT", planId:"H5628", goLive:"3/17/2026",
+        dataAsOf:"July 9, 2026", eligFileDate:"June 10, 2026",
+        enrolled:451, onboards30:53, eligFile:3696, conversionRate:0.159,
+        uniqueOutreached:2745, onboardingFromOutreach:0.378,
+        appUserPct:0.46, gender:{ f:268, m:183 },
+        screening:{ praparen:427, ucla3n:578, ucla3avg:4.7, phq4n:574, phq4avg:3.0,
+                    mwban:408, sdohNeedPct:0.96, avgNeeds:3.1, urgentPct:0.96 },
+        sdohNeeds:[
+            {n:"Income",pct:0.93},{n:"Food",pct:0.70},{n:"Healthy Days",pct:0.51},
+            {n:"Transportation",pct:0.25},{n:"Housing",pct:0.23},{n:"Medication Adherence",pct:0.23},
+            {n:"Economic Stability",pct:0.19},{n:"Access to Care",pct:0.17},{n:"Health Literacy",pct:0.16},
+            {n:"Safety",pct:0.10},{n:"Care Gap",pct:0.05},{n:"Childcare",pct:0.05}
+        ],
+        engage:{ careTeamMembers:437, totalCalls:1497, avgCallsPerMember:3.5,
+                 avgActivityPerPerson:5, maxActivity:27, resourceConnections:63, posPsychLoneliness:28 },
+        engagementMix:[
+            {n:"SDOH Navigation",pct:0.35},{n:"UCLA-3 (Loneliness)",pct:0.26},
+            {n:"PRAPARE (SDOH)",pct:0.21},{n:"Resource Navigation",pct:0.15}
+        ],
+        topResources:[
+            {n:"Find Help (211 network)",rank:1,pct:0.11},{n:"211",rank:2,pct:0.05},
+            {n:"Healthy Actions Rewards",rank:2,pct:0.06},{n:"Silver&Fit Fitness Program",rank:2,pct:0.22},
+            {n:"Disease Management Program",rank:5,pct:0.06},{n:"Network Vision (VSP)",rank:5,pct:0.06},
+            {n:"National Hunger Hotline",rank:5,pct:0.06},{n:"Behavioral Health Services",rank:5,pct:0.05}
+        ],
+        stars:{ overall:3.0, stateAvg:3.9, stayHealthy:3, memberExperience:2, chronicConditions:3 },
+        signals:[
+            "Highest conversion of any market at 15.9% — 451 enrolled from a smaller eligible pool",
+            "96% of screened members identify ≥1 social need · top barriers: income instability (93%) · food insecurity (70%)",
+            "UCLA-3 avg 4.7 · PHQ-4 avg 3.0 — isolation & distress link to lower CAHPS/HOS scores",
+            "437 members engaged · 3.5 calls per member",
+            "Smallest market by volume, but the strongest conversion efficiency in the program"
+        ]
     }
 };
 
@@ -3451,6 +3571,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderValueView();
     renderUpdates();
     renderMarketTab('OH', 'oh-root');
+    renderMarketTab('TX', 'tx-root');
+    renderMarketTab('UT', 'ut-root');
+    renderMarketTab('WA', 'wa-root');
     renderStarBaselines();
 });
 </script>
