@@ -3528,9 +3528,9 @@ function renderStarBaselines() {
 }
 
 /* Export the currently-active tab to PDF via the browser print dialog.
-   Market tabs -> one continuous page (fixed 900px width, zero margins) for a single
-   shareable sheet. Enterprise views (Client/Value/Net New/Internal) -> standard multi-page
-   landscape Letter, so long content stays crisp/selectable instead of being rasterized.
+   Every tab exports as ONE continuous portrait page at a fixed 900px width with zero margins
+   (no browser URL/date footer). overflow-x: clip prevents shrink-to-fit, so text stays
+   full-size and crisp/selectable rather than being scaled down and rasterized.
    Only the active tab prints (see @media print); title drives the PDF filename. */
 function exportActiveTab() {
     const active = document.querySelector('.tab-content.active');
@@ -3542,25 +3542,20 @@ function exportActiveTab() {
     }
     document.title = `${name} — Pyx Health`;
 
+    // All tabs export the same way: ONE continuous portrait page at a fixed 900px width.
+    // overflow-x: clip keeps content exactly 900px wide so the browser never shrinks-to-fit
+    // (shrinking is what made it small + fuzzy + rasterized) — text stays full-size and crisp.
+    const PRINT_W = 900;
     const pageStyle = document.createElement('style');
     pageStyle.media = 'print';
-
-    if (active && active.classList.contains('market-tab')) {
-        // MARKET TABS: one continuous page at a fixed 900px width — fills the page,
-        // native-size text. These are short enough to stay crisp/vector.
-        const PRINT_W = 900;
+    if (active) {
         active.style.width = PRINT_W + 'px';
         const contentH = Math.ceil(active.scrollHeight) + 8; // buffer avoids a blank trailing page
         active.style.width = '';
         pageStyle.textContent =
             `@page { size: ${PRINT_W}px ${contentH}px; margin: 0; }` +
-            `html, body { width: ${PRINT_W}px !important; margin: 0 !important; padding: 0 !important; }` +
+            `html, body { width: ${PRINT_W}px !important; margin: 0 !important; padding: 0 !important; overflow-x: clip !important; }` +
             `.tab-content.active { width: ${PRINT_W}px !important; overflow-x: clip !important; }`;
-    } else {
-        // ENTERPRISE VIEWS (Client / Value / Net New / Internal): standard multi-page,
-        // landscape Letter. Content flows across normal pages so text stays crisp and
-        // selectable (a single giant page gets rasterized by the browser).
-        pageStyle.textContent = `@page { size: 11in 8.5in; margin: 0.4in; }`;
     }
     document.head.appendChild(pageStyle);
 
