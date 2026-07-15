@@ -3528,9 +3528,10 @@ function renderStarBaselines() {
 }
 
 /* Export the currently-active tab to PDF via the browser print dialog.
-   Every tab exports as ONE continuous portrait page at a fixed 900px width with zero margins
-   (no browser URL/date footer). overflow-x: clip prevents shrink-to-fit, so text stays
-   full-size and crisp/selectable rather than being scaled down and rasterized.
+   Market tabs -> one continuous 900px portrait page (short, single shareable sheet).
+   Enterprise views (Client/Value/Net New/Internal) -> standard multi-page PORTRAIT Letter,
+   because a single continuous page for that much content becomes an unusable tall fuzzy
+   sliver; pagination keeps text crisp & selectable.
    Only the active tab prints (see @media print); title drives the PDF filename. */
 function exportActiveTab() {
     const active = document.querySelector('.tab-content.active');
@@ -3542,20 +3543,24 @@ function exportActiveTab() {
     }
     document.title = `${name} — Pyx Health`;
 
-    // All tabs export the same way: ONE continuous portrait page at a fixed 900px width.
-    // overflow-x: clip keeps content exactly 900px wide so the browser never shrinks-to-fit
-    // (shrinking is what made it small + fuzzy + rasterized) — text stays full-size and crisp.
-    const PRINT_W = 900;
     const pageStyle = document.createElement('style');
     pageStyle.media = 'print';
-    if (active) {
+    if (active && active.classList.contains('market-tab')) {
+        // MARKET TABS: one continuous 900px portrait page — short enough to stay crisp,
+        // and a single shareable sheet. overflow-x: clip prevents shrink-to-fit.
+        const PRINT_W = 900;
         active.style.width = PRINT_W + 'px';
-        const contentH = Math.ceil(active.scrollHeight) + 8; // buffer avoids a blank trailing page
+        const contentH = Math.ceil(active.scrollHeight) + 8;
         active.style.width = '';
         pageStyle.textContent =
             `@page { size: ${PRINT_W}px ${contentH}px; margin: 0; }` +
             `html, body { width: ${PRINT_W}px !important; margin: 0 !important; padding: 0 !important; overflow-x: clip !important; }` +
             `.tab-content.active { width: ${PRINT_W}px !important; overflow-x: clip !important; }`;
+    } else {
+        // ENTERPRISE VIEWS (Client / Value / Net New / Internal): standard multi-page,
+        // PORTRAIT Letter. Too long for a single continuous page (that becomes an unusable
+        // tall, fuzzy sliver); paginating onto normal pages keeps text crisp & selectable.
+        pageStyle.textContent = `@page { size: 8.5in 11in; margin: 0.4in; }`;
     }
     document.head.appendChild(pageStyle);
 
