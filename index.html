@@ -3560,7 +3560,8 @@ function exportActiveTab() {
         // ENTERPRISE VIEWS (Client / Value / Net New / Internal): standard multi-page,
         // PORTRAIT Letter. Too long for a single continuous page (that becomes an unusable
         // tall, fuzzy sliver); paginating onto normal pages keeps text crisp & selectable.
-        pageStyle.textContent = `@page { size: 8.5in 11in; margin: 0.4in; }`;
+        // margin: 0 suppresses the browser's auto URL/date footer (no dialog toggle needed).
+        pageStyle.textContent = `@page { size: 8.5in 11in; margin: 0; }`;
     }
     document.head.appendChild(pageStyle);
 
