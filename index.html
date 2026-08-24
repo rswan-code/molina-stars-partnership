@@ -923,6 +923,13 @@
             color: var(--light-green);
             font-weight: 700;
         }
+        .cohort-table tr.cohort-total-row td {
+            border-top: 2px solid rgba(255,255,255,0.22);
+            border-bottom: none;
+            background: rgba(255,255,255,0.04);
+            font-weight: 700;
+            color: var(--white);
+        }
         .cohort-pending {
             color: rgba(255,255,255,0.25);
             font-style: italic;
@@ -1895,6 +1902,22 @@
                 <div class="note-box" style="margin-top:20px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);">
                     <strong style="color:var(--white);">On the Annual Wellness Visit:</strong> <span style="color:rgba(255,255,255,0.82);">The AWV volume we projected last cycle has now ramped sharply — 214 visits coordinated this period, the leading activation type across all four markets, and a direct STARS/CAHPS quality driver.</span>
                 </div>
+
+                <div class="cohort-header" style="margin-top:40px;">Repeat Screening Outcomes — PHQ-4 and UCLA-3</div>
+                <div class="data-vintage">Screening data as of August 17, 2026</div>
+                <div class="cohort-sub">Members with two or more screenings of the same instrument, and the share whose most recent score was lower than their first score. This is the first look at movement in the two measures that most directly predict CAHPS and HOS performance — not activity, but change in the members themselves.</div>
+                <div class="card" style="margin-top:24px;">
+                    <div class="act-stat-row">
+                        <div><div class="card-lbl">PHQ-4 Distress Reduction</div><div class="card-val" id="rs-phq4-pct"></div><div class="card-sub" id="rs-phq4-sub"></div></div>
+                        <div><div class="card-lbl">UCLA-3 Loneliness Reduction</div><div class="card-val" id="rs-ucla3-pct"></div><div class="card-sub" id="rs-ucla3-sub"></div></div>
+                    </div>
+                    <div class="card-lbl" style="margin-top:8px;">By Market</div>
+                    <div class="card-sub" style="margin-bottom:14px;">Reduction rates are consistent across all four markets — a 42–45% band on PHQ-4 and 37–41% on UCLA-3 — which suggests a program effect rather than a single-market anomaly.</div>
+                    <div class="cohort-table-wrap" id="repeat-screening" style="margin-bottom:0;"></div>
+                </div>
+                <div class="note-box" style="margin-top:20px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);">
+                    <strong style="color:var(--white);">How to read this:</strong> <span style="color:rgba(255,255,255,0.82);">These are members screened at least twice, so the cohort is the more established members — roughly a quarter of the enrolled population to date. "Reduction" means the most recent score came in lower than the first; it is directional movement, not a clinically validated response rate, and there is no comparison group. Members who began at a healthy baseline have little room to improve, so the share improving is a floor on the program's effect rather than a ceiling.</span>
+                </div>
             </div>
         </div>
     </div>
@@ -2603,6 +2626,61 @@ function renderActivationMix(id) {
     }).join('');
 }
 
+/* Repeat Screening Outcomes — members with 2+ screenings of the SAME instrument,
+   and the share whose most recent score was lower than their first score.
+   Data through 8/17/2026. Enterprise rows are derived below, not hardcoded:
+   n = sum of markets; % = n-weighted average of the market rates. */
+const REPEAT_SCREENING = {
+    dataThrough: "August 17, 2026",
+    byMarket: [
+        { code:"OH", phq4n:453, phq4Red:0.450, ucla3n:460, ucla3Red:0.389 },
+        { code:"TX", phq4n:393, phq4Red:0.438, ucla3n:388, ucla3Red:0.376 },
+        { code:"UT", phq4n:139, phq4Red:0.432, ucla3n:141, ucla3Red:0.411 },
+        { code:"WA", phq4n:450, phq4Red:0.422, ucla3n:458, ucla3Red:0.367 }
+    ]
+};
+REPEAT_SCREENING.total = (() => {
+    const r = REPEAT_SCREENING.byMarket;
+    const sum = (k) => r.reduce((s, m) => s + m[k], 0);
+    const wavg = (nKey, pKey) => r.reduce((s, m) => s + m[nKey] * m[pKey], 0) / sum(nKey);
+    return { phq4n: sum('phq4n'), phq4Red: wavg('phq4n','phq4Red'),
+             ucla3n: sum('ucla3n'), ucla3Red: wavg('ucla3n','ucla3Red') };
+})();
+
+function renderRepeatScreening(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const nameOf = c => (D.markets.find(m => m.code === c) || {}).name || c;
+    const t = REPEAT_SCREENING.total;
+    const rows = REPEAT_SCREENING.byMarket.map(m => `
+        <tr>
+            <td class="cohort-tier">${nameOf(m.code)} (${m.code})</td>
+            <td>${fmt(m.phq4n)}</td>
+            <td class="cohort-n">${fmt(m.phq4Red,'pct')}</td>
+            <td>${fmt(m.ucla3n)}</td>
+            <td class="cohort-n">${fmt(m.ucla3Red,'pct')}</td>
+        </tr>`).join('');
+    el.innerHTML = `
+        <table class="cohort-table">
+            <thead><tr>
+                <th>Market</th>
+                <th>Members w/ 2+ PHQ-4</th>
+                <th>% w/ PHQ-4 reduction</th>
+                <th>Members w/ 2+ UCLA-3</th>
+                <th>% w/ UCLA-3 reduction</th>
+            </tr></thead>
+            <tbody>${rows}
+                <tr class="cohort-total-row">
+                    <td class="cohort-tier">All markets</td>
+                    <td>${fmt(t.phq4n)}</td>
+                    <td class="cohort-n">${fmt(t.phq4Red,'pct')}</td>
+                    <td>${fmt(t.ucla3n)}</td>
+                    <td class="cohort-n">${fmt(t.ucla3Red,'pct')}</td>
+                </tr>
+            </tbody>
+        </table>`;
+}
+
 /* =============================================
    HELPERS
 ============================================= */
@@ -2779,6 +2857,16 @@ function renderAll() {
 
     /* Activation & Impact — appointment mix (Client View) */
     renderActivationMix('activation-mix');
+
+    /* Activation & Impact — repeat screening outcomes (Client View) */
+    renderRepeatScreening('repeat-screening');
+    const rs = REPEAT_SCREENING.total;
+    if ($('rs-phq4-pct')) {
+        $('rs-phq4-pct').textContent  = fmt(rs.phq4Red,'pct');
+        $('rs-phq4-sub').textContent  = `of ${fmt(rs.phq4n)} members with 2+ PHQ-4 screenings scored lower than their first — anxiety & depression symptom burden`;
+        $('rs-ucla3-pct').textContent = fmt(rs.ucla3Red,'pct');
+        $('rs-ucla3-sub').textContent = `of ${fmt(rs.ucla3n)} members with 2+ UCLA-3 screenings scored lower than their first — social isolation`;
+    }
 
     /* Value — compute totalEst for talking points reference below; tiles rendered in Value View */
     const enrolled = m.totalEnrolled;
