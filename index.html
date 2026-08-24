@@ -2079,13 +2079,13 @@
             <div class="priority-answer">SDOH screening completion is the direct precursor to closing gaps in Staying Healthy measures — the domain where Molina's DSNP markets have the most room to improve. Members with unaddressed social needs skip preventive screenings. Identifying and removing those barriers is what turns engagement into quality movement.</div>
             <div class="journey-context">
                 <span class="journey-context-lbl">Value Journey</span>
-                <span>Transitioning from <strong>Deep Engagement</strong> to <strong>Activation</strong> — 3 preventive care attestations confirmed across TX and WA, including 1 Cancer Screening (Mammogram) and 1 AWV directly supporting STARS quality measures.</span>
+                <span>Transitioning from <strong>Deep Engagement</strong> to <strong>Activation</strong> — 214 Annual Wellness Visits and 70 STARS/HEDIS measure appointments (blood pressure control, diabetes care, breast &amp; colorectal cancer screening) coordinated across the four markets.</span>
             </div>
             <div class="card-grid" id="vv-quality-grid"></div>
             <div class="tp-block">
                 <div class="tp-label">Talking Points — Quality Improvement</div>
                 <div class="tp-line"><span class="tp-stat">SDOH screening as quality leading indicator</span> — <span class="tp-say">"Every SDOH screening is a data point that didn't exist before. Members with identified barriers are the same members who skip AWVs and preventive screenings. Now that we can see the barrier, we can remove it — and when the barrier is removed, the screening happens. That's how this moves Staying Healthy measures."</span></div>
-                <div class="tp-line"><span class="tp-stat">3 preventive care attestations confirmed</span> — <span class="tp-say">"Star rating movement is a 12–18 month lagging indicator. But we're already seeing the early outputs in Month 3 — preventive visits, an AWV, and a Cancer Screening directly in the Staying Healthy STARS domain. The leading indicators are converting to real outcomes."</span></div>
+                <div class="tp-line"><span class="tp-stat">214 Annual Wellness Visits coordinated</span> — <span class="tp-say">"Star rating movement is a 12–18 month lagging indicator. But we're already seeing the early outputs — 214 Annual Wellness Visits and 70 appointments in STARS/HEDIS measure areas (blood pressure, diabetes, cancer screening). The leading indicators are converting to real activity."</span></div>
             </div>
         </div></div>
     </div>
@@ -2508,9 +2508,9 @@ const D = {
         ]
     },
     flags: [
-        { type:"win",   title:"9 appointments confirmed across TX, WA & UT — PCP connections and preventive care activating",
-          desc:"9 appointments confirmed across TX, WA, and UT as of May 8, 2026. TX (3 visits): 1 PCP visit scheduled, 1 Cancer Screening (Mammogram) — Staying Healthy STARS domain, 1 Blood Glucose Check attended. WA (5 visits): 1 PCP/Annual Wellness Exam attended (direct AWV attestation opportunity), 1 Home Health visit attended, 1 specialist Annual Physical attended, 1 Diabetes Specialist scheduled, 1 Orthopedic scheduled. UT (1 visit): 1 PCP visit scheduled. OH: no appointments yet.",
-          action:"Include in June client presentation as first confirmed activation outcomes across 3 markets. Frame: 3 PCP connections = Priority #1 in motion. Mammogram = Staying Healthy STARS measure activated. AWV (WA, Attended) = direct STARS attestation opportunity. Ask Molina to confirm AWV attestation workflow for WA." },
+        { type:"win",   title:"394 appointments coordinated — 214 Annual Wellness Visits leading activation",
+          desc:"394 appointments coordinated across all 4 markets (OH 96 · TX 147 · WA 105 · UT 46) per the August appointment schedule, with 210 already attended. Annual Wellness Visits lead at 214 (54% of all appointments) — a direct STARS/CAHPS quality driver. 70 appointments target specific STARS/HEDIS measures: blood pressure control (27), diabetes care (26), colorectal (10) and breast (7) cancer screening.",
+          action:"Surface the AWV ramp in the client presentation — AWV completion is a direct STARS/CAHPS quality driver. Continue tracking attended vs. scheduled and confirm AWV attestation workflow with Molina as the cohort matures." },
         { type:"win",   title:"Overall conversion rate 15.1% — exceeds 10% SLA target across all 4 markets",
           desc:"All four markets are tracking well above the 10% contractual floor. WA leads at 15.8%, OH at 15.6%, UT at 15.2%, TX at 13.6%. Enterprise conversion at 15.1% remains well above the SLA minimum even after outreach scaled ~3× to 33,700+ unique members reached. Total enrolled: 5,325.",
           action:"Use in client conversation: 'Every market is exceeding our engagement commitment — 5,325 members enrolled across OH, TX, UT, and WA — on a much larger outreach base.'" },
@@ -2544,8 +2544,8 @@ D.metrics.totalUcla3              = D.markets.reduce((sum, mk) => sum + mk.scree
 D.metrics.totalPhq4               = D.markets.reduce((sum, mk) => sum + mk.screening.phq4n,           0);
 D.metrics.totalCareConvos         = D.markets.reduce((sum, mk) => sum + mk.engage.totalCalls,         0);
 D.metrics.uniqueMembersEngaged    = D.markets.reduce((sum, mk) => sum + mk.engage.careTeamMembers,    0);
-D.metrics.pcpAppointments         = 9;
-D.metrics.preventiveAttestations  = 3;
+D.metrics.pcpAppointments         = 394; /* total appointments coordinated — August appointment schedule CSVs */
+D.metrics.preventiveAttestations  = 70;  /* STARS-measure appointments (BP + diabetes + colon + mammogram) */
 
 /* Activation & Impact — appointment activity (Appointment Schedule CSVs, 8/1/2026).
    394 appointment records across all 4 markets. Category bars count appointments
@@ -3173,8 +3173,8 @@ function renderUpdates() {
         totalPhq4:              4815,
         totalCareConvos:        10883,
         uniqueMembersEngaged:   4002,
-        pcpAppointments:        9,
-        preventiveAttestations: 3
+        pcpAppointments:        0, /* now sourced from appointment CSVs — show as new this cycle */
+        preventiveAttestations: 0
     };
 
     function card(label, before, after, fmtType, color) {
@@ -3230,8 +3230,8 @@ function renderUpdates() {
     ].join('');
 
     document.getElementById('chg-activation').innerHTML = [
-        card('PCP / Care Appointments',       prev.pcpAppointments,        m.pcpAppointments,        'n', 'purple'),
-        card('Preventive Care Attestations',  prev.preventiveAttestations, m.preventiveAttestations, 'n', 'purple'),
+        card('Appointments Coordinated',      prev.pcpAppointments,        m.pcpAppointments,        'n', 'purple'),
+        card('STARS Measure Appointments',    prev.preventiveAttestations, m.preventiveAttestations, 'n', 'purple'),
         card('Care Team Conversations',       prev.totalCareConvos,        m.totalCareConvos,        'n', 'teal'),
         card('Unique Members Engaged',        prev.uniqueMembersEngaged,   m.uniqueMembersEngaged,   'n', 'teal'),
     ].join('');
