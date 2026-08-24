@@ -923,12 +923,23 @@
             color: var(--light-green);
             font-weight: 700;
         }
-        .cohort-table tr.cohort-total-row td {
-            border-top: 2px solid rgba(255,255,255,0.22);
-            border-bottom: none;
-            background: rgba(255,255,255,0.04);
+        /* Light-card table variants — used by the repeat-screening table, which
+           sits inside a white .card on a dark-gradient section. The .card-table
+           class is required: .mkt-table sets no td color, so without it the cells
+           inherit the section's white text and vanish against the white card. */
+        .mkt-table.card-table td { color: var(--cool-slate); }
+        .mkt-table th.num, .mkt-table td.num { text-align: right; }
+        .mkt-table td.num-hl {
+            text-align: right;
+            color: var(--green);
             font-weight: 700;
-            color: var(--white);
+        }
+        .mkt-table tr.total-row td {
+            border-top: 2px solid var(--gray-1);
+            border-bottom: none;
+            background: var(--gray-3);
+            font-weight: 700;
+            color: var(--cool-slate);
         }
         .cohort-pending {
             color: rgba(255,255,255,0.25);
@@ -2654,28 +2665,28 @@ function renderRepeatScreening(id) {
     const t = REPEAT_SCREENING.total;
     const rows = REPEAT_SCREENING.byMarket.map(m => `
         <tr>
-            <td class="cohort-tier">${nameOf(m.code)} (${m.code})</td>
-            <td>${fmt(m.phq4n)}</td>
-            <td class="cohort-n">${fmt(m.phq4Red,'pct')}</td>
-            <td>${fmt(m.ucla3n)}</td>
-            <td class="cohort-n">${fmt(m.ucla3Red,'pct')}</td>
+            <td>${nameOf(m.code)} (${m.code})</td>
+            <td class="num">${fmt(m.phq4n)}</td>
+            <td class="num-hl">${fmt(m.phq4Red,'pct')}</td>
+            <td class="num">${fmt(m.ucla3n)}</td>
+            <td class="num-hl">${fmt(m.ucla3Red,'pct')}</td>
         </tr>`).join('');
     el.innerHTML = `
-        <table class="cohort-table">
+        <table class="mkt-table card-table">
             <thead><tr>
                 <th>Market</th>
-                <th>Members w/ 2+ PHQ-4</th>
-                <th>% w/ PHQ-4 reduction</th>
-                <th>Members w/ 2+ UCLA-3</th>
-                <th>% w/ UCLA-3 reduction</th>
+                <th class="num">Members w/ 2+ PHQ-4</th>
+                <th class="num">% w/ PHQ-4 reduction</th>
+                <th class="num">Members w/ 2+ UCLA-3</th>
+                <th class="num">% w/ UCLA-3 reduction</th>
             </tr></thead>
             <tbody>${rows}
-                <tr class="cohort-total-row">
-                    <td class="cohort-tier">All markets</td>
-                    <td>${fmt(t.phq4n)}</td>
-                    <td class="cohort-n">${fmt(t.phq4Red,'pct')}</td>
-                    <td>${fmt(t.ucla3n)}</td>
-                    <td class="cohort-n">${fmt(t.ucla3Red,'pct')}</td>
+                <tr class="total-row">
+                    <td>All markets</td>
+                    <td class="num">${fmt(t.phq4n)}</td>
+                    <td class="num-hl">${fmt(t.phq4Red,'pct')}</td>
+                    <td class="num">${fmt(t.ucla3n)}</td>
+                    <td class="num-hl">${fmt(t.ucla3Red,'pct')}</td>
                 </tr>
             </tbody>
         </table>`;
