@@ -2340,7 +2340,7 @@
         <div class="wrap">
             <div class="header-eyebrow">Net New Updates</div>
             <h1 class="updates-title">What's Changed Since <strong>Last Report</strong></h1>
-            <p class="updates-period">Previous update: <strong>July 9, 2026</strong> &nbsp;·&nbsp; Current: <strong id="upd-current-date"></strong> &nbsp;·&nbsp; Month <strong id="upd-month"></strong> of 25</p>
+            <p class="updates-period">Previous update: <strong>August 3, 2026</strong> &nbsp;·&nbsp; Current: <strong id="upd-current-date"></strong> &nbsp;·&nbsp; Month <strong id="upd-month"></strong> of 25</p>
         </div>
     </div>
 
@@ -2349,7 +2349,7 @@
             <div class="section-head">
                 <span class="section-eyebrow eyebrow-2">Enrollment &amp; Engagement</span>
                 <h2 class="section-title">Member Growth &amp; Conversion</h2>
-                <p class="section-sub">Enrollment and conversion rate movement since July 9 — the primary leading indicator for revenue and downstream outcomes.</p>
+                <p class="section-sub">Enrollment and engagement rate movement since August 3 — the primary leading indicator for revenue and downstream outcomes.</p>
             </div>
             <div class="change-grid" id="chg-enrollment"></div>
         </div>
@@ -2360,7 +2360,7 @@
             <div class="section-head">
                 <span class="section-eyebrow eyebrow-1">Enrollments by Market</span>
                 <h2 class="section-title">Market-by-Market Enrollment Growth</h2>
-                <p class="section-sub">New member enrollments per market since July 9 — Ohio leads in total volume, Washington leads in conversion rate.</p>
+                <p class="section-sub">New member enrollments per market since August 3 — Ohio leads in total volume, Washington leads in engagement rate.</p>
             </div>
             <div class="change-grid" id="chg-markets"></div>
         </div>
@@ -2371,7 +2371,7 @@
             <div class="section-head">
                 <span class="section-eyebrow eyebrow-3">Clinical Screenings</span>
                 <h2 class="section-title">SDOH &amp; Behavioral Health Assessments</h2>
-                <p class="section-sub">PRAPARE, UCLA-3, and PHQ-4 screening volume since July 9 — the data foundation for barrier identification and quality measure movement.</p>
+                <p class="section-sub">PRAPARE, UCLA-3, and PHQ-4 screening volume since August 3 — the data foundation for barrier identification and quality measure movement.</p>
             </div>
             <div class="change-grid" id="chg-screenings"></div>
         </div>
@@ -2727,7 +2727,7 @@ function renderAll() {
     const kpis = [
         { lbl:'Total Population',    val:fmt(m.totalPopulation),             ctx:'4 markets: OH · TX · UT · WA',              color:'' },
         { lbl:'Members Enrolled',    val:fmt(m.totalEnrolled),               ctx:`Target: ${fmt(m.enrollmentTargetMin)} minimum (15%)`, color:'' },
-        { lbl:'Conversion Rate',     val:fmt(m.overallConversionRate,'pct'), ctx:'↑ Exceeds 10% SLA target',                  color:'teal', ctxCls:'good' },
+        { lbl:'Engagement Rate',     val:fmt(m.overallConversionRate,'pct'), ctx:'↑ Exceeds 10% SLA target',                  color:'teal', ctxCls:'good' },
         { lbl:'Avg Call Length',     val:m.avgCallMinutes+' min',            ctx:'Per member interaction',                    color:'orange' },
         { lbl:'Program End',         val:'11/6/2028',                        ctx:'2-year term · SOW #'+D.program.sowNumber,   color:'' }
     ];
@@ -3345,7 +3345,7 @@ function renderUpdates() {
 
     document.getElementById('chg-enrollment').innerHTML = [
         card('Members Enrolled',              prev.totalEnrolled,         m.totalEnrolled,         'n',  'blue'),
-        card('Conversion Rate',               prev.overallConversionRate, m.overallConversionRate, '%',  'blue'),
+        card('Engagement Rate',               prev.overallConversionRate, m.overallConversionRate, '%',  'blue'),
         card('Total Members Outreached',      prev.totalOutreached,       m.totalOutreached,       'n',  'blue'),
         card('Revenue to Date',               prev.revenueToDate,         m.revenueToDate,         '$',  'green'),
     ].join('');
