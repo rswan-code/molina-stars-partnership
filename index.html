@@ -2726,6 +2726,7 @@ function renderAll() {
     /* KPIs */
     const kpis = [
         { lbl:'Total Population',    val:fmt(m.totalPopulation),             ctx:'4 markets: OH · TX · UT · WA',              color:'' },
+        { lbl:'Unique Members Reached', val:fmt(m.totalOutreached),          ctx:`${fmt(m.totalOutreached/m.totalPopulation,'pct')} of total population contacted`, color:'blue' },
         { lbl:'Members Enrolled',    val:fmt(m.totalEnrolled),               ctx:`Target: ${fmt(m.enrollmentTargetMin)} minimum (15%)`, color:'' },
         { lbl:'Engagement Rate',     val:fmt(m.overallConversionRate,'pct'), ctx:'↑ Exceeds 10% SLA target',                  color:'teal', ctxCls:'good' },
         { lbl:'Avg Call Length',     val:m.avgCallMinutes+' min',            ctx:'Per member interaction',                    color:'orange' },
