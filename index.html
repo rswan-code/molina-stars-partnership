@@ -2726,7 +2726,7 @@ function renderAll() {
     /* KPIs */
     const kpis = [
         { lbl:'Total Population',    val:fmt(m.totalPopulation),             ctx:'4 markets: OH · TX · UT · WA',              color:'' },
-        { lbl:'Unique Members Reached', val:fmt(m.totalOutreached),          ctx:`${fmt(m.totalOutreached/m.totalPopulation,'pct')} of total population contacted`, color:'blue' },
+        { lbl:'Unique Members Reached', val:fmt(m.totalOutreached),          ctx:'', color:'blue' },
         { lbl:'Members Enrolled',    val:fmt(m.totalEnrolled),               ctx:`Target: ${fmt(m.enrollmentTargetMin)} minimum (15%)`, color:'' },
         { lbl:'Engagement Rate',     val:fmt(m.overallConversionRate,'pct'), ctx:'↑ Exceeds 10% SLA target',                  color:'teal', ctxCls:'good' },
         { lbl:'Avg Call Length',     val:m.avgCallMinutes+' min',            ctx:'Per member interaction',                    color:'orange' },
@@ -2736,7 +2736,7 @@ function renderAll() {
         <div class="kpi ${k.color}">
             <div class="kpi-lbl">${k.lbl}</div>
             <div class="kpi-val">${k.val}</div>
-            <div class="kpi-ctx ${k.ctxCls||''}">${k.ctx}</div>
+            ${k.ctx ? `<div class="kpi-ctx ${k.ctxCls||''}">${k.ctx}</div>` : ''}
         </div>`).join('');
 
     /* Outreach */
