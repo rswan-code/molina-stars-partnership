@@ -2788,7 +2788,7 @@ function renderAll() {
     /* Market table */
     $('mkt-table').innerHTML = `
         <thead><tr>
-            <th>Market</th><th>Total Population</th><th>Outreached to Date</th><th>Enrolled</th><th>Engagement Rate</th><th>Go-Live</th>
+            <th>Market</th><th>Total Population (Initial Eligibility File)</th><th>Outreached to Date</th><th>Enrolled</th><th>Engagement Rate</th><th>Go-Live</th>
         </tr></thead>
         <tbody>${D.markets.map(mk => {
             const pct = Math.min(mk.conversionRate/0.35*100,100);
