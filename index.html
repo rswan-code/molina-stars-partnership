@@ -1852,7 +1852,7 @@
             <div class="tp-block" id="tp-engage">
                 <div class="tp-label">Talking Points — Reach &amp; Response</div>
                 <div class="tp-line"><span class="tp-stat">Engagement rate</span> — <span class="tp-say">"DSNP members are among the most complex and hardest-to-reach populations in managed care. Even after tripling our outreach base, more than 1 in 8 members reached are choosing to engage — and stay engaged — well above our 10% commitment. This population wants this support; they just haven't had access to it."</span></div>
-                <div class="tp-line"><span class="tp-stat">Washington leads at 15.3%, all 4 markets above the 10% floor</span> — <span class="tp-say">"Washington launched weeks later than the other markets, serves the population Molina specifically flagged as the hardest to reach, and has now enrolled 1,969 members — while leading the program on conversion at 15.3%. We have now reached nearly every member in the Washington eligibility file. The barriers are real — but members are responding in every market, with every cohort."</span></div>
+                <div class="tp-line"><span class="tp-stat">Washington leads at 15.3%, all 4 markets above the 10% floor</span> — <span class="tp-say">"Washington launched weeks later than the other markets, serves the population Molina specifically flagged as the hardest to reach, and has now enrolled 1,969 members — while leading the program on engagement rate at 15.3%. We have now reached nearly every member in the Washington eligibility file. The barriers are real — but members are responding in every market, with every cohort."</span></div>
             </div>
             <div class="card" style="margin-top:20px;">
                 <div class="card-lbl">Enrollment by Market</div>
@@ -2348,7 +2348,7 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="section-eyebrow eyebrow-2">Enrollment &amp; Engagement</span>
-                <h2 class="section-title">Member Growth &amp; Conversion</h2>
+                <h2 class="section-title">Member Growth &amp; Engagement</h2>
                 <p class="section-sub">Enrollment and engagement rate movement since August 3 — the primary leading indicator for revenue and downstream outcomes.</p>
             </div>
             <div class="change-grid" id="chg-enrollment"></div>
@@ -2843,21 +2843,21 @@ function renderAll() {
             <li>95% identify ≥1 social need · 94% urgency rate — acute barriers, not background noise</li>
             <li>Top barriers: income instability (91%) · food insecurity (67%)</li>
             <li>1,996 members engaged · avg 4.1 calls/member</li>
-            <li>Highest enrollment in the program — 2,251 enrolled at 15.3% conversion</li></ul>`,
+            <li>Highest enrollment in the program — 2,251 enrolled at a 15.3% engagement rate</li></ul>`,
         TX: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Largest eligible population (23,560) · SDOH burden 3.1 avg needs/member</li>
             <li>97% identify ≥1 social need · top barriers: income instability (91%) · food insecurity (66%)</li>
             <li>1,335 members engaged · avg 5.4 calls/member</li>
-            <li>1,539 enrolled at 14.6% conversion — a top market for PCP connections at scale</li></ul>`,
+            <li>1,539 enrolled at a 14.6% engagement rate — a top market for PCP connections at scale</li></ul>`,
         UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
-            <li>Smallest market · 14.7% conversion with the deepest engagement (5.7 calls/member)</li>
+            <li>Smallest market · 14.7% engagement rate and the deepest engagement per member (5.7 calls/member)</li>
             <li>96% identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)</li>
             <li>UCLA-3 avg 4.7 · PHQ-4 avg 2.9 — isolation & distress link to lower CAHPS/HOS scores</li>
             <li>447 members engaged · 550 enrolled</li></ul>`,
         WA: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Houseless population confirmed as complex challenge — data reflects the depth</li>
             <li>95% identify ≥1 social need · income instability (91%) · food insecurity (67%)</li>
-            <li>Leads the program on conversion · 1,969 enrolled at 15.3% conversion</li>
+            <li>Leads the program on engagement rate · 1,969 enrolled at 15.3%</li>
             <li>1,764 members engaged · nearly the full eligibility file reached (12,847 of 13,017)</li></ul>`
     };
     const maxUcla3 = Math.max(...D.markets.map(m => m.screening.ucla3avg));
@@ -2926,7 +2926,7 @@ function renderAll() {
             <ul class="tp-list">
                 <li>All 4 markets are above the 10% engagement SLA — enterprise rate of 15.1%, comfortably above the contractual minimum, even after scaling outreach to 41,800+ members. 6,309 total enrolled.</li>
                 <li>394 appointments coordinated with 214 Annual Wellness Visits leading — the AWV ramp is the clearest STARS-measurable activation signal in the program to date.</li>
-                <li>OH leads enrollment with 2,251 · WA leads conversion at 15.3% and has now reached nearly its entire eligibility file. All 4 markets exceed the SLA floor on a materially larger outreach base.</li>
+                <li>OH leads enrollment with 2,251 · WA leads on engagement rate at 15.3% and has now reached nearly its entire eligibility file. All 4 markets exceed the SLA floor on a materially larger outreach base.</li>
                 <li>6,012 PRAPARE screenings completed across all markets — 95–97% identify at least one social need per screening. Unique member count pending for SLA tracking.</li>
                 <li>${fmt(m.totalEnrolled)} enrolled members represent an estimated ${fmt(totalEst,'$')} in potential value for Molina through reduced costs and quality improvement.</li>
             </ul>
@@ -2936,7 +2936,7 @@ function renderAll() {
             <ul class="tp-list">
                 <li>Texas holds 23,560 members — the largest market population and the highest SDOH need (avg 3.1 per member, 97% indicate at least one need). 25% of the TX eligibility file is missing a phone number, capping reachable volume.</li>
                 <li>Engagement depth building — avg 4.1–5.7 calls per member by market. UT leads at 5.7, OH at 4.1. Building toward the 4-month average engagement goal.</li>
-                <li>Conversion has settled at ~15% as outreach scaled into the broader eligible population — still well above the 10% floor, and the four markets have converged into a 14.6–15.3% band; monitor as the outreach base matures.</li>
+                <li>The engagement rate has settled at ~15% as outreach scaled into the broader eligible population — still well above the 10% floor, and the four markets have converged into a 14.6–15.3% band; monitor as the outreach base matures.</li>
             </ul>
         </div>
         <div class="tp-card">
@@ -3200,21 +3200,21 @@ function renderValueView() {
             <li>95% identify ≥1 social need · 94% urgency rate — acute barriers, not background noise</li>
             <li>Top barriers: income instability (91%) · food insecurity (67%)</li>
             <li>1,996 members engaged · avg 4.1 calls/member</li>
-            <li>Highest enrollment in the program — 2,251 enrolled at 15.3% conversion</li></ul>`,
+            <li>Highest enrollment in the program — 2,251 enrolled at a 15.3% engagement rate</li></ul>`,
         TX: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Largest eligible population (23,560) · SDOH burden 3.1 avg needs/member</li>
             <li>97% identify ≥1 social need · top barriers: income instability (91%) · food insecurity (66%)</li>
             <li>1,335 members engaged · avg 5.4 calls/member</li>
-            <li>1,539 enrolled at 14.6% conversion — a top market for PCP connections at scale</li></ul>`,
+            <li>1,539 enrolled at a 14.6% engagement rate — a top market for PCP connections at scale</li></ul>`,
         UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
-            <li>Smallest market · 14.7% conversion with the deepest engagement (5.7 calls/member)</li>
+            <li>Smallest market · 14.7% engagement rate and the deepest engagement per member (5.7 calls/member)</li>
             <li>96% identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)</li>
             <li>UCLA-3 avg 4.7 · PHQ-4 avg 2.9 — isolation & distress link to lower CAHPS/HOS scores</li>
             <li>447 members engaged · 550 enrolled</li></ul>`,
         WA: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Houseless population confirmed as complex challenge — data reflects the depth</li>
             <li>95% identify ≥1 social need · income instability (91%) · food insecurity (67%)</li>
-            <li>Leads the program on conversion · 1,969 enrolled at 15.3% conversion</li>
+            <li>Leads the program on engagement rate · 1,969 enrolled at 15.3%</li>
             <li>1,764 members engaged · nearly the full eligibility file reached (12,847 of 13,017)</li></ul>`
     };
     if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
@@ -3353,7 +3353,7 @@ function renderUpdates() {
     const prevMarkets = { OH: 1863, TX: 1280, UT: 466, WA: 1716 };
     document.getElementById('chg-markets').innerHTML = D.markets.map(mk => {
         const before = prevMarkets[mk.code];
-        return card(`${mk.name} (${mk.code}) — ${(mk.conversionRate * 100).toFixed(1)}% conversion`, before, mk.enrolled, 'n', 'green');
+        return card(`${mk.name} (${mk.code}) — ${(mk.conversionRate * 100).toFixed(1)}% engagement rate`, before, mk.enrolled, 'n', 'green');
     }).join('');
 
     document.getElementById('chg-screenings').innerHTML = [
@@ -3418,7 +3418,7 @@ const MARKET_DETAIL = {
             "95% of screened members identify ≥1 social need · 94% flag a need as urgent — acute barriers, not background noise",
             "Top barriers: income instability (91%) · food insecurity (67%) · healthy days (52%)",
             "1,996 members engaged with a care team member · 8,653 engagement calls · avg 4.1 calls per member",
-            "Conversion at 15.3% — comfortably above the 10% contractual floor on the program's largest outreach base"
+            "Engagement rate at 15.3% — comfortably above the 10% contractual floor on the program's largest outreach base"
         ]
     },
     TX: {
@@ -3449,7 +3449,7 @@ const MARKET_DETAIL = {
         ],
         stars:{ overall:3.5, stateAvg:4.0, stayHealthy:3, memberExperience:4, chronicConditions:3 },
         signals:[
-            "Largest eligible population in the program (23,560) · 1,539 enrolled at 14.6% conversion",
+            "Largest eligible population in the program (23,560) · 1,539 enrolled at a 14.6% engagement rate",
             "97% of screened members identify ≥1 social need — the highest need prevalence of any market",
             "Top barriers: income instability (91%) · food insecurity (66%) · healthy days (49%)",
             "1,335 members engaged · 5.4 calls per member — the deepest engagement in the program",
@@ -3486,7 +3486,7 @@ const MARKET_DETAIL = {
         stars:{ overall:3.0, stateAvg:3.6, stayHealthy:2, memberExperience:1, chronicConditions:2 },
         signals:[
             "Houseless population confirmed as a complex challenge — the data reflects the depth",
-            "1,969 enrolled at 15.3% conversion — leads the program on conversion, second-highest enrollment volume",
+            "1,969 enrolled at a 15.3% engagement rate — leads the program on engagement rate, second-highest enrollment volume",
             "12,847 of 13,017 members in the eligibility file have been reached — effectively full coverage of the Washington population",
             "95% of screened members identify ≥1 social need · top barriers: income instability (91%) · food insecurity (67%)",
             "High screening volume — 2,538 UCLA-3 · 2,503 PHQ-4 · 1,891 PRAPARE",
@@ -3521,7 +3521,7 @@ const MARKET_DETAIL = {
         ],
         stars:{ overall:3.0, stateAvg:3.9, stayHealthy:3, memberExperience:2, chronicConditions:3 },
         signals:[
-            "550 enrolled at 14.7% conversion from the smallest eligible pool in the program",
+            "550 enrolled at a 14.7% engagement rate from the smallest eligible pool in the program",
             "96% of screened members identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)",
             "UCLA-3 avg 4.7 — tied for the highest loneliness score in the program; isolation & distress link to lower CAHPS/HOS scores",
             "447 members engaged · 5.7 calls per member — the deepest engagement depth in the program",
