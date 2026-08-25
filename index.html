@@ -3101,7 +3101,7 @@ function renderValueView() {
     /* Value KPIs */
     const vKpis = [
         { lbl:'Members Activated',      val:fmt(m.totalEnrolled),
-          ctx:'Percentage to Enrollment Target: 27.3%', color:'green',
+          ctx:'', color:'green',
           why:'Each enrolled member is a relationship the plan didn\'t have before — the foundation of the behavior change that moves quality measures.' },
         { lbl:'Engagement Rate',        val:fmt(m.overallConversionRate,'pct'),
           ctx:'↑ Exceeds 10% SLA target',             color:'teal', ctxCls:'good',
@@ -3120,7 +3120,7 @@ function renderValueView() {
         <div class="kpi ${k.color||''}">
             <div class="kpi-lbl">${k.lbl}</div>
             <div class="kpi-val">${k.val}</div>
-            <div class="kpi-ctx ${k.ctxCls||''}">${k.ctx}</div>
+            ${k.ctx ? `<div class="kpi-ctx ${k.ctxCls||''}">${k.ctx}</div>` : ''}
             <div class="kpi-why">${k.why}</div>
         </div>`).join('');
 
