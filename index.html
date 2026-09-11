@@ -2797,14 +2797,13 @@ function renderAll() {
     /* Market table */
     $('mkt-table').innerHTML = `
         <thead><tr>
-            <th>Market</th><th>Total Population (Initial Eligibility File)</th><th>Outreached to Date</th><th>Enrolled</th><th>Engagement Rate</th><th>Go-Live</th>
+            <th>Market</th><th>Outreached to Date</th><th>Enrolled</th><th>Engagement Rate</th><th>Go-Live</th>
         </tr></thead>
         <tbody>${D.markets.map(mk => {
             const pct = Math.min(mk.conversionRate/0.35*100,100);
             const clr = mk.status==='launching' ? '#c8d4de' : mk.conversionRate < 0.10 ? 'var(--orange)' : 'var(--green)';
             return `<tr>
                 <td><span class="mkt-code">${mk.code}</span>${mk.name}</td>
-                <td>${fmt(mk.population)}</td>
                 <td>${fmt(mk.reached)}</td>
                 <td><strong>${fmt(mk.enrolled)}</strong></td>
                 <td><div class="conv-wrap"><div class="conv-track"><div class="conv-fill" style="width:${pct}%;background:${clr}"></div></div><span style="font-size:13px;font-weight:700;min-width:44px">${fmt(mk.conversionRate,'pct')}</span></div></td>
