@@ -2467,7 +2467,7 @@ const D = {
         { month:"July 2026",  amount:33610,  target:197700 }
     ],
     sla: [
-        { name:"Engagement Rate",           target:0.10, actual:0.151,  status:"exceed",  desc:"Members enrolled vs. total outreached" },
+        { name:"Engagement Rate",           target:0.10, actual:null,   status:"exceed",  desc:"Members enrolled vs. total outreached" }, /* actual derived below from D.metrics.overallConversionRate */
         { name:"SDOH Screener Completion",  target:0.60, actual:0.953,  status:"exceed",  desc:"6,012 PRAPARE screenings completed across 4 markets — counts reflect total completions; unique member tracking in progress" },
         { name:"Social Needs Connections",  target:0.60, actual:null,   status:"pending", desc:"Members w/ needs connected to resources" },
         { name:"Outreach Attempts",         target:0.98, actual:null,   status:"pending", desc:"Target file members receiving full outreach cycle" },
@@ -2602,6 +2602,8 @@ D.metrics.totalEnrolled           = D.markets.reduce((sum, mk) => sum + mk.enrol
 D.metrics.totalOutreached         = D.markets.reduce((sum, mk) => sum + mk.reached,    0);
 D.metrics.overallConversionRate   = D.metrics.totalEnrolled / D.metrics.totalOutreached;
 D.metrics.stillNeeded             = Math.max(D.metrics.enrollmentTargetMin - D.metrics.totalEnrolled, 0);
+/* SLA table reads the same derived rate — never hardcode it here again */
+D.sla.find(s => s.name === "Engagement Rate").actual = D.metrics.overallConversionRate;
 
 D.metrics.totalPopulation         = D.markets.reduce((sum, mk) => sum + mk.population,              0);
 D.metrics.totalPrapare            = D.markets.reduce((sum, mk) => sum + mk.screening.praparen,       0);
