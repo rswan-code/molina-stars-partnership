@@ -2106,7 +2106,7 @@
             <div class="priority-badge">Molina Priority 1</div>
             <div class="priority-title">Establish PCP Relationships</div>
             <div class="priority-molina-q">"Help DSNP members establish a relationship with a Primary Care Provider."</div>
-            <div class="priority-answer">PCP connections are activating in all four markets — 760 appointments coordinated for 604 members, 373 already attended, including 396 Annual Wellness Visits (264 attended) and 19 new-patient visits establishing a PCP relationship for the first time. Economic instability, housing insecurity, and transportation gaps remain the primary barriers in every market, and 5,542 members engaged with a dedicated care team member are the mechanism removing them.</div>
+            <div class="priority-answer">PCP connections are activating in all four markets — 760 appointments coordinated for 604 members, 373 already attended, including 396 Annual Wellness Visits (264 attended) and 19 new-patient visits establishing a PCP relationship for the first time. Economic instability, housing insecurity, and transportation gaps remain the primary barriers in every market, and 5,902 members engaged with a dedicated care team member are the mechanism removing them.</div>
             <div class="journey-context">
                 <span class="journey-context-lbl">Value Journey</span>
                 <span>Transitioning from <strong>Deep Engagement</strong> to <strong>Activation</strong> — 760 appointments coordinated and 373 attended across OH, TX, WA, and UT as of September 1. SDOH resolution tracking and AWV attestation in progress.</span>
@@ -2114,7 +2114,7 @@
             <div class="card-grid" id="vv-pcp-grid"></div>
             <div class="tp-block">
                 <div class="tp-label">Talking Points — PCP Access</div>
-                <div class="tp-line"><span class="tp-stat">5,542 members engaged with a care team member</span> — <span class="tp-say">"These aren't automated reminders or text blasts. These are needs-based conversations with a dedicated care team member — the kind of interaction that builds the trust required to get a DSNP member to schedule and keep a PCP appointment."</span></div>
+                <div class="tp-line"><span class="tp-stat">5,902 members engaged with a care team member</span> — <span class="tp-say">"These aren't automated reminders or text blasts. These are needs-based conversations with a dedicated care team member — the kind of interaction that builds the trust required to get a DSNP member to schedule and keep a PCP appointment."</span></div>
                 <div class="tp-line"><span class="tp-stat">PCP connections activating across TX, WA & UT</span> — <span class="tp-say">"PCP connections are happening — multiple markets have confirmed visits, including an Annual Wellness Exam in WA that is a direct STARS attestation opportunity. Scaling activation across all four markets is the next priority."</span></div>
             </div>
         </div></div>
@@ -2441,8 +2441,10 @@ const D = {
            9/11/2026 (Molina_<ST>_DSNP_PyxHealth_Outreach_09112026.csv — one row per member,
            latest Outreach_Status; UAT'd per the COO, 9/14). Those run BELOW the 8/24 Tableau
            reach tiles for OH (−55), TX (−51) and UT (−111) and ABOVE for WA (+410) — use the
-           report, not Tableau, going forward. Engagement-call figures remain 8/24 Tableau. */
-        dataAsOf:       "Sept 14, 2026 (enrollment) · Sept 11 (outreach) · Sept 7 (screening)",
+           report, not Tableau, going forward. engage.careTeamMembers (distinct members with
+           ≥1 care-team conversation) = Kaylan-supplied 9/14 figures (WA 1,887 · OH 2,094 ·
+           TX 1,404 · UT 517). totalCalls / avgCallsPerMember remain 8/24 Tableau. */
+        dataAsOf:       "Sept 14, 2026 (enrollment & engagement) · Sept 11 (outreach) · Sept 7 (screening)",
         programMonth:   "6 of 25",
         sowEffective:   "November 7, 2025",
         programEnd:     "November 6, 2027",
@@ -2453,22 +2455,22 @@ const D = {
         { name:"Ohio",       code:"OH", planId:"H9955", population:11943, enrolled:2299, reached:14671, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:3.0, drug:3.0, stayHealthy:2, chronicConditions:3, memberExperience:3 },
           screening:{ ucla3n:2875, ucla3avg:4.7, phq4n:2854, phq4avg:3.1, praparen:2135, mwban:2101, sdohNeedPct:0.95, avgNeeds:3.0, urgentPct:0.94 },
-          engage:{ careTeamMembers:1996, totalCalls:8653, avgCallsPerMember:4.1 }
+          engage:{ careTeamMembers:2094, totalCalls:8653, avgCallsPerMember:4.1 }
         },
         { name:"Texas",      code:"TX", planId:"H7678", population:23560, enrolled:1571, reached:10522, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 },
           screening:{ ucla3n:2099, ucla3avg:4.2, phq4n:2090, phq4avg:2.3, praparen:1449, mwban:1562, sdohNeedPct:0.97, avgNeeds:3.1, urgentPct:0.94 },
-          engage:{ careTeamMembers:1335, totalCalls:6610, avgCallsPerMember:5.4 }
+          engage:{ careTeamMembers:1404, totalCalls:6610, avgCallsPerMember:5.4 }
         },
         { name:"Utah",       code:"UT", planId:"H5628", population:4212,  enrolled:573, reached:3625, status:"active", goLive:"3/17/2026",
           stars:{ overall:3.0, stateAvg:3.9, health:3.0, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:2 },
           screening:{ ucla3n:737, ucla3avg:4.6, phq4n:728, phq4avg:2.9, praparen:490, mwban:527, sdohNeedPct:0.96, avgNeeds:3.1, urgentPct:0.95 },
-          engage:{ careTeamMembers:447, totalCalls:2554, avgCallsPerMember:5.7 }
+          engage:{ careTeamMembers:517, totalCalls:2554, avgCallsPerMember:5.7 }
         },
         { name:"Washington", code:"WA", planId:"H5823", population:14034, enrolled:2033, reached:13257, status:"active", goLive:"4/8/2026",
           stars:{ overall:3.0, stateAvg:3.6, health:2.5, drug:4.0, stayHealthy:2, chronicConditions:2, memberExperience:1 },
           screening:{ ucla3n:2720, ucla3avg:4.4, phq4n:2681, phq4avg:2.5, praparen:1951, mwban:2082, sdohNeedPct:0.95, avgNeeds:3.1, urgentPct:0.94 },
-          engage:{ careTeamMembers:1764, totalCalls:7937, avgCallsPerMember:4.5 }
+          engage:{ careTeamMembers:1887, totalCalls:7937, avgCallsPerMember:4.5 }
         }
     ],
     metrics: {
@@ -2611,7 +2613,7 @@ const D = {
           desc:"March: $5,450 · April: $94,790 · May: $148,320 · June: $179,400 · July (partial): $33,610. Welcome revenue: $189,540 · Ongoing: $272,030. April, May, and June all approached or exceeded monthly targets. July is early in the month at 17.0% to target. Avg charge per member: $109.58.",
           action:"Finance: Revenue has not been refreshed since the July 9 enterprise Summary file — request the current Summary export before the next client presentation. Model the ramp through Month 7 on 6,476 enrolled at $109.58 avg charge; ongoing engagement revenue will compound as the cohort matures toward the 4-month average." },
         { type:"win",   title:"Engagement depth accelerating — avg 4.1–5.7 calls per member by market",
-          desc:"5,542 unique members engaged across all 4 markets (OH 1,996 · WA 1,764 · TX 1,335 · UT 447) across 25,754 engagement calls. Average calls per member: UT leads at 5.7, TX 5.4, WA 4.5, OH 4.1 — every market moved up from the August 3 cycle. Goal is 4 months average engagement.",
+          desc:"5,902 unique members engaged across all 4 markets as of 9/14 (OH 2,094 · WA 1,887 · TX 1,404 · UT 517) — up 360 from the 8/24 cycle. Engagement-call volume (25,754) and average calls per member (UT 5.7 · TX 5.4 · WA 4.5 · OH 4.1) are still the 8/24 Tableau figures and will restate when the next call export arrives. Goal is 4 months average engagement.",
           action:"CSC: UT's 5.7 avg calls per member is a positive signal — deepest engagement depth in the program. Continue monitoring members with only 1 call." },
         { type:"win",   title:"Star Rating baseline confirms Pyx is working in the right measures",
           desc:"CMS 2026 data shows Molina's weakest DSNP measures are exactly where Pyx activates: 'Staying Healthy — Screenings & Vaccines' (OH: 2★, WA: 2★) and 'Member Experience with Health Plan' (WA: 1★, UT: 2★, OH: 3★). TX is the strongest market at 3.5★ but still below 4.0★ state average. A 1-star improvement at $2–$5 PMPM across 42,846 members = $1.0M–$2.6M annually in CMS quality bonus revenue for Molina.",
@@ -2912,23 +2914,23 @@ function renderAll() {
         OH: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>95% identify ≥1 social need · 94% urgency rate — acute barriers, not background noise</li>
             <li>Top barriers: income instability (91%) · food insecurity (67%)</li>
-            <li>1,996 members engaged · avg 4.1 calls/member</li>
+            <li>2,094 members engaged · avg 4.1 calls/member</li>
             <li>Highest enrollment in the program — 2,299 enrolled at a 15.7% engagement rate</li></ul>`,
         TX: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Largest eligible population (23,560) · SDOH burden 3.1 avg needs/member</li>
             <li>97% identify ≥1 social need · top barriers: income instability (91%) · food insecurity (66%)</li>
-            <li>1,335 members engaged · avg 5.4 calls/member</li>
+            <li>1,404 members engaged · avg 5.4 calls/member</li>
             <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li></ul>`,
         UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Smallest market · leads the program on engagement rate at 15.8% · deepest engagement per member (5.7 calls/member)</li>
             <li>96% identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)</li>
             <li>UCLA-3 avg 4.7 · PHQ-4 avg 2.9 — isolation & distress link to lower CAHPS/HOS scores</li>
-            <li>447 members engaged · 573 enrolled</li></ul>`,
+            <li>517 members engaged · 573 enrolled</li></ul>`,
         WA: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Houseless population confirmed as complex challenge — data reflects the depth</li>
             <li>95% identify ≥1 social need · income instability (91%) · food insecurity (67%)</li>
             <li>2,033 enrolled at a 15.3% engagement rate · second-highest enrollment volume</li>
-            <li>1,764 members engaged · 13,257 reached — more than the August eligibility file listed; effectively full coverage</li></ul>`
+            <li>1,887 members engaged · 13,257 reached — more than the August eligibility file listed; effectively full coverage</li></ul>`
     };
     const maxUcla3 = Math.max(...D.markets.map(m => m.screening.ucla3avg));
     const maxPhq4  = Math.max(...D.markets.map(m => m.screening.phq4avg));
@@ -3269,23 +3271,23 @@ function renderValueView() {
         OH: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>95% identify ≥1 social need · 94% urgency rate — acute barriers, not background noise</li>
             <li>Top barriers: income instability (91%) · food insecurity (67%)</li>
-            <li>1,996 members engaged · avg 4.1 calls/member</li>
+            <li>2,094 members engaged · avg 4.1 calls/member</li>
             <li>Highest enrollment in the program — 2,299 enrolled at a 15.7% engagement rate</li></ul>`,
         TX: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Largest eligible population (23,560) · SDOH burden 3.1 avg needs/member</li>
             <li>97% identify ≥1 social need · top barriers: income instability (91%) · food insecurity (66%)</li>
-            <li>1,335 members engaged · avg 5.4 calls/member</li>
+            <li>1,404 members engaged · avg 5.4 calls/member</li>
             <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li></ul>`,
         UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Smallest market · leads the program on engagement rate at 15.8% · deepest engagement per member (5.7 calls/member)</li>
             <li>96% identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)</li>
             <li>UCLA-3 avg 4.7 · PHQ-4 avg 2.9 — isolation & distress link to lower CAHPS/HOS scores</li>
-            <li>447 members engaged · 573 enrolled</li></ul>`,
+            <li>517 members engaged · 573 enrolled</li></ul>`,
         WA: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Houseless population confirmed as complex challenge — data reflects the depth</li>
             <li>95% identify ≥1 social need · income instability (91%) · food insecurity (67%)</li>
             <li>2,033 enrolled at a 15.3% engagement rate · second-highest enrollment volume</li>
-            <li>1,764 members engaged · 13,257 reached — more than the August eligibility file listed; effectively full coverage</li></ul>`
+            <li>1,887 members engaged · 13,257 reached — more than the August eligibility file listed; effectively full coverage</li></ul>`
     };
     if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
         <div class="mkt-card">
@@ -3471,7 +3473,7 @@ const MARKET_DETAIL = {
             {n:"Housing",pct:0.19,up:1},{n:"Health Literacy",pct:0.18,up:8},{n:"Medication Adherence",pct:0.17,up:7},
             {n:"Safety",pct:0.09},{n:"Childcare",pct:0.06},{n:"Care Gap",pct:0.06,up:3}
         ],
-        engage:{ careTeamMembers:1996, totalCalls:8653, avgCallsPerMember:4.1,
+        engage:{ careTeamMembers:2094, totalCalls:8653, avgCallsPerMember:4.1,
                  avgActivityPerPerson:5, maxActivity:79, resourceConnections:881, posPsychLoneliness:57 },
         engagementMix:[
             {n:"PRAPARE (SDOH)",pct:0.39},{n:"UCLA-3 (Loneliness)",pct:0.19},
@@ -3489,7 +3491,7 @@ const MARKET_DETAIL = {
             "550 new onboards in the last 30 days — the strongest monthly add of any market",
             "95% of screened members identify ≥1 social need · 94% flag a need as urgent — acute barriers, not background noise",
             "Top barriers: income instability (91%) · food insecurity (67%) · healthy days (52%)",
-            "1,996 members engaged with a care team member · 8,653 engagement calls · avg 4.1 calls per member",
+            "2,094 members engaged with a care team member · 8,653 engagement calls (8/24) · avg 4.1 calls per member",
             "Engagement rate at 15.7% — comfortably above the 10% contractual floor on the program's largest outreach base"
         ]
     },
@@ -3507,7 +3509,7 @@ const MARKET_DETAIL = {
             {n:"Economic Stability",pct:0.21,up:1},{n:"Access to Care",pct:0.20,up:3},{n:"Medication Adherence",pct:0.17,up:3},
             {n:"Safety",pct:0.10},{n:"Care Gap",pct:0.06,up:1},{n:"Childcare",pct:0.06,up:1}
         ],
-        engage:{ careTeamMembers:1335, totalCalls:6610, avgCallsPerMember:5.4,
+        engage:{ careTeamMembers:1404, totalCalls:6610, avgCallsPerMember:5.4,
                  avgActivityPerPerson:5, maxActivity:51, resourceConnections:578, posPsychLoneliness:17 },
         engagementMix:[
             {n:"Resource Navigation",pct:0.33},{n:"PRAPARE (SDOH)",pct:0.31},
@@ -3524,7 +3526,7 @@ const MARKET_DETAIL = {
             "Largest eligible population in the program (23,560) · 1,571 enrolled at a 14.9% engagement rate",
             "97% of screened members identify ≥1 social need — the highest need prevalence of any market",
             "Top barriers: income instability (91%) · food insecurity (66%) · healthy days (49%)",
-            "1,335 members engaged · 5.4 calls per member — the deepest engagement in the program",
+            "1,404 members engaged · 5.4 calls per member — among the deepest engagement in the program",
             "Health literacy need at 32% — markedly higher than the other three markets, a clear navigation-support opportunity",
             "Data-quality note: 25% of the Texas eligibility file is missing a phone number — the single largest constraint on reachable volume"
         ]
@@ -3543,7 +3545,7 @@ const MARKET_DETAIL = {
             {n:"Health Literacy",pct:0.20,up:7},{n:"Medication Adherence",pct:0.19,up:5},{n:"Economic Stability",pct:0.19},
             {n:"Safety",pct:0.09},{n:"Care Gap",pct:0.09,up:3},{n:"Childcare",pct:0.04}
         ],
-        engage:{ careTeamMembers:1764, totalCalls:7937, avgCallsPerMember:4.5,
+        engage:{ careTeamMembers:1887, totalCalls:7937, avgCallsPerMember:4.5,
                  avgActivityPerPerson:5, maxActivity:32, resourceConnections:606, posPsychLoneliness:23 },
         engagementMix:[
             {n:"PRAPARE (SDOH)",pct:0.36},{n:"SDOH Navigation",pct:0.25},
@@ -3562,7 +3564,7 @@ const MARKET_DETAIL = {
             "13,257 members reached — more than the 13,017 in the August eligibility file; effectively full coverage of the Washington population",
             "95% of screened members identify ≥1 social need · top barriers: income instability (91%) · food insecurity (67%)",
             "High screening volume — 2,720 UCLA-3 · 2,681 PHQ-4 · 1,951 PRAPARE",
-            "1,764 members engaged · 4.5 calls per member"
+            "1,887 members engaged · 4.5 calls per member"
         ]
     },
     UT: {
@@ -3579,7 +3581,7 @@ const MARKET_DETAIL = {
             {n:"Access to Care",pct:0.19,up:3},{n:"Health Literacy",pct:0.18,up:3},{n:"Medication Adherence",pct:0.13,up:1},
             {n:"Safety",pct:0.09},{n:"Care Gap",pct:0.06,up:1},{n:"Childcare",pct:0.05,up:1}
         ],
-        engage:{ careTeamMembers:447, totalCalls:2554, avgCallsPerMember:5.7,
+        engage:{ careTeamMembers:517, totalCalls:2554, avgCallsPerMember:5.7,
                  avgActivityPerPerson:5, maxActivity:30, resourceConnections:215, posPsychLoneliness:30 },
         engagementMix:[
             {n:"SDOH Navigation",pct:0.34},{n:"PRAPARE (SDOH)",pct:0.26},
@@ -3596,7 +3598,7 @@ const MARKET_DETAIL = {
             "573 enrolled at a 15.8% engagement rate — the highest in the program — from the smallest eligible pool",
             "96% of screened members identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)",
             "UCLA-3 avg 4.6 — second-highest loneliness score in the program; isolation & distress link to lower CAHPS/HOS scores",
-            "447 members engaged · 5.7 calls per member — the deepest engagement depth in the program",
+            "517 members engaged · 5.7 calls per member — the deepest engagement depth in the program",
             "Outreach base of 3,625 covers 99.6% of the 3,639-member eligibility file — the reachable Utah population has been fully worked",
             "Smallest market by volume, but the deepest engagement per member in the program"
         ]
