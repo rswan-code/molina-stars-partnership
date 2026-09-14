@@ -3457,150 +3457,150 @@ function renderUpdates() {
 const MARKET_DETAIL = {
     OH: {
         name:"Ohio", code:"OH", planId:"H9955", goLive:"3/17/2026",
-        dataAsOf:"August 24, 2026", eligFileDate:"August 11, 2026",
-        enrolled:2299, onboards30:550, eligFile:15100,
-        uniqueOutreached:14671, onboardingFromOutreach:0.325,
-        appUserPct:0.49, gender:{ f:1292, m:959 },
+        dataAsOf:"September 14, 2026", eligFileDate:"September 10, 2026",
+        enrolled:2299, onboards30:188, eligFile:15276,
+        uniqueOutreached:14671, onboardingFromOutreach:0.324, /* uniqueOutreached = 9/11 Outreach report (UAT'd), NOT the dashboard's 14,501 tile */
+        appUserPct:0.49, gender:{ f:1324, m:975 },
         outreachAttempts:[
-            {n:"1 attempt",pct:0.22},{n:"2 attempts",pct:0.23},{n:"3 attempts",pct:0.17},
-            {n:"4 attempts",pct:0.17},{n:"5 attempts",pct:0.20}
+            {n:"1 attempt",pct:0.26},{n:"2 attempts",pct:0.24},{n:"3 attempts",pct:0.17},
+            {n:"4 attempts",pct:0.16},{n:"5 attempts",pct:0.17}
         ],
-        screening:{ praparen:2135, ucla3n:2875, ucla3avg:4.7, phq4n:2854, phq4avg:3.1,
-                    mwban:2101, sdohNeedPct:0.95, avgNeeds:3.0, urgentPct:0.94 },
+        screening:{ praparen:2185, ucla3n:3035, ucla3avg:4.7, phq4n:3013, phq4avg:3.1,
+                    mwban:2191, sdohNeedPct:0.95, avgNeeds:3.0, urgentPct:0.94 },
         sdohNeeds:[
             {n:"Income",pct:0.91},{n:"Food",pct:0.67},{n:"Healthy Days",pct:0.52},
             {n:"Transportation",pct:0.23},{n:"Economic Stability",pct:0.22},{n:"Access to Care",pct:0.20,up:4},
-            {n:"Housing",pct:0.19,up:1},{n:"Health Literacy",pct:0.18,up:8},{n:"Medication Adherence",pct:0.17,up:7},
+            {n:"Health Literacy",pct:0.19,up:9},{n:"Housing",pct:0.18},{n:"Medication Adherence",pct:0.18,up:8},
             {n:"Safety",pct:0.09},{n:"Childcare",pct:0.06},{n:"Care Gap",pct:0.06,up:3}
         ],
-        engage:{ careTeamMembers:2094, totalCalls:8653, avgCallsPerMember:4.1,
-                 avgActivityPerPerson:5, maxActivity:79, resourceConnections:881, posPsychLoneliness:57 },
+        engage:{ careTeamMembers:2094, totalCalls:10647, avgCallsPerMember:4.8,
+                 avgActivityPerPerson:5, maxActivity:92, resourceConnections:929, posPsychLoneliness:61 },
         engagementMix:[
-            {n:"PRAPARE (SDOH)",pct:0.39},{n:"UCLA-3 (Loneliness)",pct:0.19},
-            {n:"Resource Navigation",pct:0.19},{n:"SDOH Navigation",pct:0.18}
+            {n:"PRAPARE (SDOH)",pct:0.40},{n:"UCLA-3 (Loneliness)",pct:0.22},
+            {n:"Resource Navigation",pct:0.20},{n:"SDOH Navigation",pct:0.18}
         ],
         topResources:[
             {n:"Find Help (211 network)",rank:1,pct:0.14},{n:"211",rank:2,pct:0.13},
-            {n:"Find a Provider",rank:3,pct:0.09},{n:"Healthy Actions Rewards",rank:4,pct:0.07},
-            {n:"Network Dental (SKYGEN)",rank:5,pct:0.07},{n:"OTC (Over-the-Counter) Benefits",rank:6,pct:0.06},
-            {n:"Member Portal",rank:7,pct:0.05},{n:"Silver&Fit Fitness Program",rank:8,pct:0.04}
+            {n:"Find a Provider",rank:3,pct:0.09},{n:"Healthy Actions Rewards",rank:4,pct:0.08},
+            {n:"Network Dental (SKYGEN)",rank:5,pct:0.06},{n:"Member Portal",rank:6,pct:0.06},
+            {n:"OTC (Over-the-Counter) Benefits",rank:7,pct:0.05},{n:"Silver&Fit Fitness Program",rank:8,pct:0.04}
         ],
         stars:{ overall:3.0, stateAvg:3.6, stayHealthy:2, memberExperience:3, chronicConditions:3 },
         signals:[
             "Largest outreach base in the program — 14,671 members reached — supporting 2,299 enrollments, the highest volume across all four markets",
-            "550 new onboards in the last 30 days — the strongest monthly add of any market",
+            "188 new onboards in the last 30 days — the strongest monthly add of any market",
             "95% of screened members identify ≥1 social need · 94% flag a need as urgent — acute barriers, not background noise",
             "Top barriers: income instability (91%) · food insecurity (67%) · healthy days (52%)",
-            "2,094 members engaged with a care team member · 8,653 engagement calls (8/24) · avg 4.1 calls per member",
+            "2,094 members engaged with a care team member · 10,647 engagement calls · avg 4.8 calls per member",
             "Engagement rate at 15.7% — comfortably above the 10% contractual floor on the program's largest outreach base"
         ]
     },
     TX: {
         name:"Texas", code:"TX", planId:"H7678", goLive:"3/17/2026",
-        dataAsOf:"August 24, 2026", eligFileDate:"August 11, 2026",
-        enrolled:1571, onboards30:295, eligFile:12249,
-        uniqueOutreached:10522, onboardingFromOutreach:0.334,
-        appUserPct:0.41, gender:{ f:926, m:613 },
-        screening:{ praparen:1449, ucla3n:2099, ucla3avg:4.2, phq4n:2090, phq4avg:2.3,
-                    mwban:1562, sdohNeedPct:0.97, avgNeeds:3.1, urgentPct:0.94 },
+        dataAsOf:"September 14, 2026", eligFileDate:"September 10, 2026",
+        enrolled:1571, onboards30:143, eligFile:12143,
+        uniqueOutreached:10522, onboardingFromOutreach:0.328, /* uniqueOutreached = 9/11 Outreach report (UAT'd), NOT the dashboard's 10,406 tile */
+        appUserPct:0.42, gender:{ f:946, m:625 },
+        screening:{ praparen:1500, ucla3n:2247, ucla3avg:4.2, phq4n:2235, phq4avg:2.3,
+                    mwban:1650, sdohNeedPct:0.97, avgNeeds:3.2, urgentPct:0.94 },
         sdohNeeds:[
             {n:"Income",pct:0.91},{n:"Food",pct:0.66},{n:"Healthy Days",pct:0.49},
-            {n:"Health Literacy",pct:0.32,up:9},{n:"Housing",pct:0.24},{n:"Transportation",pct:0.22},
-            {n:"Economic Stability",pct:0.21,up:1},{n:"Access to Care",pct:0.20,up:3},{n:"Medication Adherence",pct:0.17,up:3},
-            {n:"Safety",pct:0.10},{n:"Care Gap",pct:0.06,up:1},{n:"Childcare",pct:0.06,up:1}
+            {n:"Health Literacy",pct:0.33,up:10},{n:"Housing",pct:0.23},{n:"Transportation",pct:0.21},
+            {n:"Economic Stability",pct:0.21,up:1},{n:"Access to Care",pct:0.19,up:2},{n:"Medication Adherence",pct:0.17,up:3},
+            {n:"Safety",pct:0.10},{n:"Care Gap",pct:0.06,up:1},{n:"Childcare",pct:0.05}
         ],
-        engage:{ careTeamMembers:1404, totalCalls:6610, avgCallsPerMember:5.4,
-                 avgActivityPerPerson:5, maxActivity:51, resourceConnections:578, posPsychLoneliness:17 },
+        engage:{ careTeamMembers:1404, totalCalls:7993, avgCallsPerMember:5.8,
+                 avgActivityPerPerson:5, maxActivity:51, resourceConnections:615, posPsychLoneliness:20 },
         engagementMix:[
-            {n:"Resource Navigation",pct:0.33},{n:"PRAPARE (SDOH)",pct:0.31},
+            {n:"PRAPARE (SDOH)",pct:0.36},{n:"Resource Navigation",pct:0.29},
             {n:"UCLA-3 (Loneliness)",pct:0.19},{n:"SDOH Navigation",pct:0.16}
         ],
         topResources:[
-            {n:"Find a Provider",rank:2,pct:0.15},{n:"OTC (Over-the-Counter) Benefits",rank:6,pct:0.14},
-            {n:"Find Help (211 network)",rank:1,pct:0.11},{n:"Healthy Actions Rewards",rank:4,pct:0.07},
-            {n:"211",rank:3,pct:0.05},{n:"Silver&Fit Fitness Program",rank:4,pct:0.05},
-            {n:"Long-Term Care Support",rank:6,pct:0.04},{n:"Member Portal",rank:6,pct:0.03}
+            {n:"Find a Provider",rank:2,pct:0.15},{n:"Find Help (211 network)",rank:1,pct:0.13},
+            {n:"OTC (Over-the-Counter) Benefits",rank:7,pct:0.13},{n:"Healthy Actions Rewards",rank:4,pct:0.06},
+            {n:"211",rank:3,pct:0.05},{n:"Silver&Fit Fitness Program",rank:4,pct:0.04},
+            {n:"Texas SNAP Benefits Sign-Up",rank:4,pct:0.03},{n:"Long-Term Care Support",rank:7,pct:0.03}
         ],
         stars:{ overall:3.5, stateAvg:4.0, stayHealthy:3, memberExperience:4, chronicConditions:3 },
         signals:[
             "Largest eligible population in the program (23,560) · 1,571 enrolled at a 14.9% engagement rate",
             "97% of screened members identify ≥1 social need — the highest need prevalence of any market",
             "Top barriers: income instability (91%) · food insecurity (66%) · healthy days (49%)",
-            "1,404 members engaged · 5.4 calls per member — among the deepest engagement in the program",
-            "Health literacy need at 32% — markedly higher than the other three markets, a clear navigation-support opportunity",
+            "1,404 members engaged · 7,993 engagement calls · 5.8 calls per member — tied with Utah for the deepest engagement in the program",
+            "Health literacy need at 33% — markedly higher than the other three markets (19–20%), a clear navigation-support opportunity",
             "Data-quality note: 25% of the Texas eligibility file is missing a phone number — the single largest constraint on reachable volume"
         ]
     },
     WA: {
         name:"Washington", code:"WA", planId:"H5823", goLive:"4/8/2026",
-        dataAsOf:"August 24, 2026", eligFileDate:"August 11, 2026",
-        enrolled:2033, onboards30:417, eligFile:13017,
-        uniqueOutreached:13257, onboardingFromOutreach:0.334,
-        appUserPct:0.42, gender:{ f:1108, m:861 },
-        screening:{ praparen:1951, ucla3n:2720, ucla3avg:4.4, phq4n:2681, phq4avg:2.5,
-                    mwban:2082, sdohNeedPct:0.95, avgNeeds:3.1, urgentPct:0.94 },
+        dataAsOf:"September 14, 2026", eligFileDate:"September 10, 2026",
+        enrolled:2033, onboards30:164, eligFile:12915,
+        uniqueOutreached:13257, onboardingFromOutreach:0.337, /* uniqueOutreached = 9/11 Outreach report (UAT'd), NOT the dashboard's 12,641 tile */
+        appUserPct:0.43, gender:{ f:1151, m:882 },
+        screening:{ praparen:1959, ucla3n:2841, ucla3avg:4.4, phq4n:2803, phq4avg:2.4,
+                    mwban:2137, sdohNeedPct:0.95, avgNeeds:3.1, urgentPct:0.94 },
         sdohNeeds:[
-            {n:"Income",pct:0.91},{n:"Food",pct:0.67,up:1},{n:"Healthy Days",pct:0.53},
+            {n:"Income",pct:0.91},{n:"Food",pct:0.67,up:1},{n:"Healthy Days",pct:0.52},
             {n:"Access to Care",pct:0.24,up:3},{n:"Transportation",pct:0.23,up:1},{n:"Housing",pct:0.21},
             {n:"Health Literacy",pct:0.20,up:7},{n:"Medication Adherence",pct:0.19,up:5},{n:"Economic Stability",pct:0.19},
-            {n:"Safety",pct:0.09},{n:"Care Gap",pct:0.09,up:3},{n:"Childcare",pct:0.04}
+            {n:"Care Gap",pct:0.09,up:3},{n:"Safety",pct:0.08},{n:"Childcare",pct:0.04}
         ],
-        engage:{ careTeamMembers:1887, totalCalls:7937, avgCallsPerMember:4.5,
-                 avgActivityPerPerson:5, maxActivity:32, resourceConnections:606, posPsychLoneliness:23 },
+        engage:{ careTeamMembers:1887, totalCalls:9646, avgCallsPerMember:5.1,
+                 avgActivityPerPerson:5, maxActivity:32, resourceConnections:654, posPsychLoneliness:23 },
         engagementMix:[
-            {n:"PRAPARE (SDOH)",pct:0.36},{n:"SDOH Navigation",pct:0.25},
-            {n:"UCLA-3 (Loneliness)",pct:0.22},{n:"Resource Navigation",pct:0.17}
+            {n:"PRAPARE (SDOH)",pct:0.40},{n:"SDOH Navigation",pct:0.25},
+            {n:"UCLA-3 (Loneliness)",pct:0.20},{n:"Resource Navigation",pct:0.15}
         ],
         topResources:[
-            {n:"Find Help (211 network)",rank:1,pct:0.15},{n:"Network Vision (VSP)",rank:5,pct:0.08},
-            {n:"211",rank:2,pct:0.07},{n:"Long-Term Care Support",rank:4,pct:0.05},
-            {n:"Healthy Actions Rewards",rank:3,pct:0.05},{n:"Network Dental (Delta Dental)",rank:5,pct:0.05},
+            {n:"Find Help (211 network)",rank:1,pct:0.14},{n:"Network Vision (VSP)",rank:5,pct:0.08},
+            {n:"211",rank:2,pct:0.07},{n:"Network Dental (Delta Dental)",rank:5,pct:0.06},
+            {n:"Healthy Actions Rewards",rank:3,pct:0.05},{n:"Long-Term Care Support",rank:4,pct:0.05},
             {n:"Disease Management Program",rank:8,pct:0.05},{n:"Health Promotion Programs",rank:5,pct:0.04}
         ],
         stars:{ overall:3.0, stateAvg:3.6, stayHealthy:2, memberExperience:1, chronicConditions:2 },
         signals:[
             "Houseless population confirmed as a complex challenge — the data reflects the depth",
             "2,033 enrolled at a 15.3% engagement rate — second-highest enrollment volume, within half a point of the program's top rate",
-            "13,257 members reached — more than the 13,017 in the August eligibility file; effectively full coverage of the Washington population",
+            "13,257 members reached — more than the 12,915 in the current (9/10) eligibility file; effectively full coverage of the Washington population",
             "95% of screened members identify ≥1 social need · top barriers: income instability (91%) · food insecurity (67%)",
-            "High screening volume — 2,720 UCLA-3 · 2,681 PHQ-4 · 1,951 PRAPARE",
-            "1,887 members engaged · 4.5 calls per member"
+            "High screening volume — 2,841 UCLA-3 · 2,803 PHQ-4 · 1,959 PRAPARE",
+            "1,887 members engaged · 9,646 engagement calls · 5.1 calls per member"
         ]
     },
     UT: {
         name:"Utah", code:"UT", planId:"H5628", goLive:"3/17/2026",
-        dataAsOf:"August 24, 2026", eligFileDate:"August 11, 2026",
-        enrolled:573, onboards30:94, eligFile:3639,
-        uniqueOutreached:3625, onboardingFromOutreach:0.339,
-        appUserPct:0.45, gender:{ f:334, m:216 },
-        screening:{ praparen:490, ucla3n:737, ucla3avg:4.6, phq4n:728, phq4avg:2.9,
-                    mwban:527, sdohNeedPct:0.96, avgNeeds:3.1, urgentPct:0.95 },
+        dataAsOf:"September 14, 2026", eligFileDate:"September 10, 2026",
+        enrolled:573, onboards30:67, eligFile:3596,
+        uniqueOutreached:3625, onboardingFromOutreach:0.344, /* uniqueOutreached = 9/11 Outreach report (UAT'd), NOT the dashboard's 3,674 tile */
+        appUserPct:0.45, gender:{ f:348, m:225 },
+        screening:{ praparen:542, ucla3n:858, ucla3avg:4.6, phq4n:845, phq4avg:2.9,
+                    mwban:607, sdohNeedPct:0.96, avgNeeds:3.2, urgentPct:0.96 },
         sdohNeeds:[
-            {n:"Income",pct:0.93},{n:"Food",pct:0.67},{n:"Healthy Days",pct:0.52},
-            {n:"Transportation",pct:0.25},{n:"Housing",pct:0.23},{n:"Economic Stability",pct:0.20,up:1},
-            {n:"Access to Care",pct:0.19,up:3},{n:"Health Literacy",pct:0.18,up:3},{n:"Medication Adherence",pct:0.13,up:1},
-            {n:"Safety",pct:0.09},{n:"Care Gap",pct:0.06,up:1},{n:"Childcare",pct:0.05,up:1}
+            {n:"Income",pct:0.94,up:1},{n:"Food",pct:0.67},{n:"Healthy Days",pct:0.51},
+            {n:"Transportation",pct:0.25},{n:"Housing",pct:0.22},{n:"Economic Stability",pct:0.20,up:1},
+            {n:"Access to Care",pct:0.19,up:3},{n:"Health Literacy",pct:0.19,up:4},{n:"Medication Adherence",pct:0.14,up:2},
+            {n:"Safety",pct:0.09},{n:"Care Gap",pct:0.07,up:2},{n:"Childcare",pct:0.06,up:2}
         ],
-        engage:{ careTeamMembers:517, totalCalls:2554, avgCallsPerMember:5.7,
-                 avgActivityPerPerson:5, maxActivity:30, resourceConnections:215, posPsychLoneliness:30 },
+        engage:{ careTeamMembers:517, totalCalls:3010, avgCallsPerMember:5.8,
+                 avgActivityPerPerson:6, maxActivity:30, resourceConnections:251, posPsychLoneliness:30 },
         engagementMix:[
-            {n:"SDOH Navigation",pct:0.34},{n:"PRAPARE (SDOH)",pct:0.26},
-            {n:"UCLA-3 (Loneliness)",pct:0.22},{n:"Resource Navigation",pct:0.14}
+            {n:"SDOH Navigation",pct:0.33},{n:"PRAPARE (SDOH)",pct:0.29},
+            {n:"UCLA-3 (Loneliness)",pct:0.20},{n:"Resource Navigation",pct:0.13}
         ],
         topResources:[
-            {n:"Find Help (211 network)",rank:1,pct:0.16},{n:"Silver&Fit Fitness Program",rank:2,pct:0.09},
-            {n:"211",rank:2,pct:0.08},{n:"Disease Management Program",rank:2,pct:0.07},
-            {n:"Find a Provider",rank:2,pct:0.05},{n:"Healthy Actions Rewards",rank:2,pct:0.05},
+            {n:"Find Help (211 network)",rank:1,pct:0.23},{n:"Silver&Fit Fitness Program",rank:2,pct:0.10},
+            {n:"211",rank:3,pct:0.08},{n:"Disease Management Program",rank:4,pct:0.06},
+            {n:"Find a Provider",rank:4,pct:0.05},{n:"Healthy Actions Rewards",rank:4,pct:0.05},
             {n:"National Hunger Hotline",rank:7,pct:0.05},{n:"Network Vision (VSP)",rank:7,pct:0.05}
         ],
         stars:{ overall:3.0, stateAvg:3.9, stayHealthy:3, memberExperience:2, chronicConditions:3 },
         signals:[
             "573 enrolled at a 15.8% engagement rate — the highest in the program — from the smallest eligible pool",
-            "96% of screened members identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)",
+            "96% of screened members identify ≥1 social need · 96% flag a need as urgent · top barriers: income instability (94%) · food insecurity (67%)",
             "UCLA-3 avg 4.6 — second-highest loneliness score in the program; isolation & distress link to lower CAHPS/HOS scores",
-            "517 members engaged · 5.7 calls per member — the deepest engagement depth in the program",
-            "Outreach base of 3,625 covers 99.6% of the 3,639-member eligibility file — the reachable Utah population has been fully worked",
-            "Smallest market by volume, but the deepest engagement per member in the program"
+            "517 members engaged · 3,010 engagement calls · 5.8 calls per member — tied with Texas for the deepest engagement in the program",
+            "Outreach base of 3,625 now exceeds the current 3,596-member eligibility file (9/10) — the reachable Utah population has been fully worked",
+            "Smallest market by volume, but the most activity per person (6) and among the deepest engagement per member in the program"
         ]
     }
 };
