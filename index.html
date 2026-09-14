@@ -2273,12 +2273,12 @@
                 <div class="card">
                     <div class="card-lbl">Ongoing Engagement</div>
                     <div class="card-val">$55/mo</div>
-                    <div class="card-sub">Per engaged member/month · Max 6 months = $390 cap per member</div>
+                    <div class="card-sub">Per engaged member/month · Max 6 months = $330 cap per member</div>
                 </div>
                 <div class="card">
                     <div class="card-lbl">Max Revenue Per Member</div>
-                    <div class="card-val">$435</div>
-                    <div class="card-sub">$45 welcome + $390 max ongoing · 53,749 total member population</div>
+                    <div class="card-val">$375</div>
+                    <div class="card-sub">$45 welcome + $330 max ongoing (matches Tableau's "max $375" charge tier) · 53,749 total member population</div>
                 </div>
                 <div class="card">
                     <div class="card-lbl">Custom Reports / Analytics</div>
@@ -2444,7 +2444,7 @@ const D = {
            report, not Tableau, going forward. engage.careTeamMembers (distinct members with
            ≥1 care-team conversation) = Kaylan-supplied 9/14 figures (WA 1,887 · OH 2,094 ·
            TX 1,404 · UT 517), which the 9/14 dashboards confirm exactly. */
-        dataAsOf:       "Sept 14, 2026 (enrollment, screening & engagement) · Sept 11 (outreach)",
+        dataAsOf:       "Sept 14, 2026 (enrollment, screening, engagement & revenue) · Sept 11 (outreach)",
         programMonth:   "6 of 25",
         sowEffective:   "November 7, 2025",
         programEnd:     "November 6, 2027",
@@ -2481,23 +2481,33 @@ const D = {
         enrollmentTargetPct:   0.15,
         stillNeeded:           0, /* recalculated below — target met 9/14/2026 */
         overallConversionRate: 0, /* recalculated below — enrolled ÷ reached */
-        avgMonthsEngagement:   2.0,
+        /* Revenue block = internal Navigate Engagement Dashboard export generated 9/14/2026
+           (same file as the enrollment counts). Welcome + Ongoing by market: OH $103,005 +
+           $200,145 · TX $70,065 + $154,770 · WA $90,855 + $184,910 · UT $24,840 + $49,885. */
+        avgMonthsEngagement:   2.9,
         avgCallMinutes:        12,
-        avgChargePerMember:    109.58,
+        avgChargePerMember:    135.65,
         enrollmentCallMinutes: null,
         engagementCallMinutes: null,
         costPerMinute:         0.80,
         revenueGoal:           1500000,
-        revenueToDate:         461570,
-        welcomeRevenue:        189540,
-        ongoingRevenue:        272030
+        revenueToDate:         878475,
+        welcomeRevenue:        288765,
+        ongoingRevenue:        589710
     },
+    /* "Progress Against Goal per Month" bars, 9/14 dashboard. Monthly targets are backed
+       out of the printed %-to-target labels. NOTE: March–June were RESTATED downward vs the
+       July 9 Summary file (e.g. June $179,400 → $168,965) — Tableau re-based prior months,
+       so month-over-month comparisons to the old series are not like-for-like.
+       `partial:true` = current month, month-to-date. */
     monthlyRevenue: [
-        { month:"March 2026", amount:5450,   target:19500  },
-        { month:"April 2026", amount:94790,  target:92250  },
-        { month:"May 2026",   amount:148320, target:185000 },
-        { month:"June 2026",  amount:179400, target:198300 },
-        { month:"July 2026",  amount:33610,  target:197700 }
+        { month:"March 2026",     amount:4835,   target:19500  },
+        { month:"April 2026",     amount:89285,  target:92250  },
+        { month:"May 2026",       amount:140570, target:185000 },
+        { month:"June 2026",      amount:168965, target:198100 },
+        { month:"July 2026",      amount:192840, target:198000 },
+        { month:"August 2026",    amount:204235, target:205500 },
+        { month:"September 2026", amount:77745,  target:213600, partial:true }
     ],
     sla: [
         { name:"Engagement Rate",           target:0.10, actual:null,   status:"exceed",  desc:"Members enrolled vs. total outreached" }, /* actual derived below from D.metrics.overallConversionRate */
@@ -2609,9 +2619,9 @@ const D = {
         { type:"watch", title:"Texas holds the largest population (23,560) — highest upside, highest need",
           desc:"TX at a 14.9% engagement rate with 1,571 enrolled — third-largest enrollment of the four markets. SDOH needs per member average 3.1. 97% indicate at least one social/community need — the highest prevalence in the program; income instability (91%) and food insecurity (66%) lead. Health literacy need is 32% in TX vs. 18–20% elsewhere. Care Connections tool now live for PCP/AWV scheduling.",
           action:"Account Manager: Align with Christine Rolls on TX-specific SDOH resource pipeline. Ensure care team has TX community resource access for housing, food, economic assistance. Escalate the 25% missing-phone rate in the TX eligibility file — it is the largest single constraint on reachable volume in the program." },
-        { type:"watch", title:"Revenue at $461,570 (30.8% of $1.5M goal) — figures as of July 9; awaiting enterprise Summary file",
-          desc:"March: $5,450 · April: $94,790 · May: $148,320 · June: $179,400 · July (partial): $33,610. Welcome revenue: $189,540 · Ongoing: $272,030. April, May, and June all approached or exceeded monthly targets. July is early in the month at 17.0% to target. Avg charge per member: $109.58.",
-          action:"Finance: Revenue has not been refreshed since the July 9 enterprise Summary file — request the current Summary export before the next client presentation. Model the ramp through Month 7 on 6,476 enrolled at $109.58 avg charge; ongoing engagement revenue will compound as the cohort matures toward the 4-month average." },
+        { type:"win",   title:"Revenue at $878,475 (58.6% of $1.5M goal) — August hit 99.4% of monthly target",
+          desc:"Per the internal Navigate Engagement Dashboard (9/14): March $4,835 · April $89,285 · May $140,570 · June $168,965 · July $192,840 · August $204,235 · September MTD $77,745. Welcome revenue $288,765 (OH $103,005 · WA $90,855 · TX $70,065 · UT $24,840) · Ongoing $589,710 (OH $200,145 · WA $184,910 · TX $154,770 · UT $49,885). Avg total charge per member $135.65 · avg 2.9 months of engagement · 100% of members within the 0–6 month billing window. July (97.4%) and August (99.4%) both essentially hit target — monthly run-rate has climbed every month since launch. NOTE: Tableau restated March–June downward vs. the July 9 Summary file (June $179,400 → $168,965), so the series is not directly comparable to earlier decks.",
+          action:"Finance: at a ~$205k monthly run-rate the remaining $621,525 clears the $1.5M goal around December 2026 — well inside the 11/6/2027 term. Watch the 6-month ongoing-engagement cap: the March–April cohorts start aging out of billable engagement in September–October, so run-rate depends on continued new enrollment. Model the tail with the data team before the Sept 24 Value Review." },
         { type:"win",   title:"Engagement depth accelerating — avg 4.8–5.8 calls per member by market",
           desc:"5,902 unique members engaged across all 4 markets as of 9/14 (OH 2,094 · WA 1,887 · TX 1,404 · UT 517) — up 360 from the 8/24 cycle — across 31,296 engagement calls (up from 25,754 on 8/24). Average calls per member: TX and UT lead at 5.8, WA 5.1, OH 4.8 — every market moved up again. Goal is 4 months average engagement.",
           action:"CSC: UT's 5.7 avg calls per member is a positive signal — deepest engagement depth in the program. Continue monitoring members with only 1 call." },
@@ -3060,25 +3070,27 @@ function renderAll() {
         </div>`).join('');
 
     /* ---- INTERNAL ---- */
-    const pctGoal = m.revenueToDate / m.revenueGoal;
-    const aprilRev = D.monthlyRevenue[1].amount;
-    const marchRev = D.monthlyRevenue[0].amount;
+    const pctGoal   = m.revenueToDate / m.revenueGoal;
+    const fullMonths = D.monthlyRevenue.filter(r => !r.partial);
+    const lastFull   = fullMonths[fullMonths.length - 1];
+    const mtd        = D.monthlyRevenue.find(r => r.partial);
+    const lastFullMo = lastFull.month.split(' ')[0];
 
     $('rev-grid').innerHTML = `
         <div class="rev-card">
             <div class="rev-card-lbl">Revenue to Date</div>
             <div class="rev-card-val">${fmt(m.revenueToDate,'$')}</div>
-            <div class="rev-card-sub">${fmt(pctGoal,'pct')} to $1.5M goal &nbsp;·&nbsp; Program Month 3 · Data as of May 11</div>
+            <div class="rev-card-sub">${fmt(pctGoal,'pct')} to $1.5M goal &nbsp;·&nbsp; Program Month ${D.program.programMonth.split(' ')[0]} · Internal dashboard as of September 14, 2026 &nbsp;·&nbsp; Avg charge per member ${fmt(m.avgChargePerMember,'$')} · avg ${m.avgMonthsEngagement} months engaged</div>
         </div>
         <div class="rev-card">
-            <div class="rev-card-lbl">May Run Rate (MTD)</div>
-            <div class="rev-card-val">${fmt(aprilRev,'$')}</div>
-            <div class="rev-card-sub">April: $95,250 (103% to target) &nbsp;·&nbsp; Welcome: ${fmt(m.welcomeRevenue,'$')} · Ongoing: ${fmt(m.ongoingRevenue,'$')}</div>
+            <div class="rev-card-lbl">${lastFullMo} Revenue (Latest Full Month)</div>
+            <div class="rev-card-val">${fmt(lastFull.amount,'$')}</div>
+            <div class="rev-card-sub">${fmt(lastFull.amount / lastFull.target,'pct')} to monthly target${mtd ? ` &nbsp;·&nbsp; ${mtd.month.split(' ')[0]} MTD: ${fmt(mtd.amount,'$')}` : ''} &nbsp;·&nbsp; Welcome: ${fmt(m.welcomeRevenue,'$')} · Ongoing: ${fmt(m.ongoingRevenue,'$')}</div>
         </div>
         <div class="rev-card">
             <div class="rev-card-lbl">Contract Revenue Goal</div>
             <div class="rev-card-val">$1.5M</div>
-            <div class="rev-card-sub">2-year term &nbsp;·&nbsp; ${fmt(m.totalPopulation)} total member population &nbsp;·&nbsp; Max $435/member</div>
+            <div class="rev-card-sub">2-year term &nbsp;·&nbsp; ${fmt(m.totalPopulation)} total member population &nbsp;·&nbsp; Max $375/member ($45 welcome + 6 × $55 ongoing)</div>
         </div>`;
 
     const fillPct = Math.max(pctGoal * 100, 0.4);
@@ -3133,20 +3145,15 @@ function renderAll() {
     /* Monthly trend */
     $('trend-grid').innerHTML = D.monthlyRevenue.map(r => {
         const pct = r.amount / r.target;
-        return `<div class="trend-card">
-            <div class="trend-month">${r.month}</div>
+        return `<div class="trend-card"${r.partial ? ' style="border:2px dashed var(--gray-1);background:var(--gray-3);"' : ''}>
+            <div class="trend-month">${r.month}${r.partial ? ' <span style="font-size:10px;font-weight:700;color:#4a6070;">(MTD)</span>' : ''}</div>
             <div class="trend-amount">${fmt(r.amount,'$')}</div>
-            <div class="trend-target">Monthly target: ${fmt(r.target,'$')} &nbsp;·&nbsp; ${fmt(pct,'pct')} to target</div>
+            <div class="trend-target">Monthly target: ${fmt(r.target,'$')} &nbsp;·&nbsp; ${fmt(pct,'pct')} to target${r.partial ? ' so far' : ''}</div>
             <div class="prog-track" style="margin-top:12px;">
                 <div class="prog-fill ${pct>=1?'g':'o'}" style="width:${Math.min(pct*100,100)}%"></div>
             </div>
         </div>`;
-    }).join('') + `
-        <div class="trend-card" style="border:2px dashed var(--gray-1);background:var(--gray-3);">
-            <div class="trend-month">June 2026</div>
-            <div class="trend-amount" style="color:#c8d4de;">TBD</div>
-            <div class="trend-target">First full month at 1,698 enrolled &nbsp;·&nbsp; All 4 markets continuing ramp</div>
-        </div>`;
+    }).join('');
 }
 
 /* =============================================
@@ -3367,7 +3374,7 @@ function renderUpdates() {
         totalEnrolled:          5325,
         overallConversionRate:  0.158,
         totalOutreached:        33792, /* Aug 3 Tableau reach tile; current is the 9/11 Outreach report (slightly different basis) */
-        revenueToDate:          461570,
+        revenueToDate:          461570, /* last published figure (July 9 Summary file) — no revenue source in the Aug 3 or Aug 24 cycles */
         totalPrapare:           5100,
         totalUcla3:             6647,
         totalPhq4:              6575,
