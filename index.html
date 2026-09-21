@@ -970,32 +970,6 @@
         }
         .kpi-split b { color: var(--cool-slate); }
         .kpi-split.na { font-style: italic; color: #8a9baa; }
-        .mkt-split {
-            margin-top: 10px;
-            padding-top: 8px;
-            border-top: 1px dashed var(--gray-2);
-        }
-        .mkt-split table { width: 100%; border-collapse: collapse; font-size: 11px; }
-        .mkt-split th {
-            text-align: right;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #8a9baa;
-            padding: 2px 0 5px;
-        }
-        .mkt-split th:first-child { text-align: left; }
-        .mkt-split td {
-            text-align: right;
-            padding: 3px 0;
-            color: #5f7385;
-            border-bottom: 1px solid #f0f3f6;
-            white-space: nowrap;
-        }
-        .mkt-split td:first-child { text-align: left; white-space: normal; }
-        .mkt-split tr:last-child td { border-bottom: none; }
-        .mkt-split td b { color: var(--slate); }
         .hc-res-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--gray-2); }
         .hc-res-cols .res-list { columns: 1; }
         .hc-res-cols .hc-res-hd { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5f7385; margin-bottom: 6px; }
@@ -2590,28 +2564,48 @@ const contractLine = (contracts, f, t) => (contracts || []).map(c => `${c.id} ${
 const HC_NOTE_SHORT = `Texas H-contract rows: <strong>H6515</strong> = Molina Medicare Complete Care Plus · <strong>H7678</strong> = Molina Medicare Complete Care. Members reached are actual by contract (Sept 11 outreach report). Enrolled is the Sept 14 Texas total apportioned by each contract's share of members in the Sept 14 member-level report, which tracks the dashboard total within 2%.`;
 const HC_NOTE_LONG  = `<strong>How the H-contract split is calculated.</strong> Tableau reports Texas as a single market, so the split draws on member-level files that carry the plan name. <em>Members reached</em> are actual by contract from the Sept 11 outreach report. <em>Enrolled, new onboards, screening counts, members engaged and calls</em> are the published Texas totals apportioned by each contract's share in the Sept 14 member-level report — that file tracks the Sept 14 dashboard totals within about 2% (1,540 vs. 1,571 members), so the parts always sum to the Texas figure shown. <em>Average scores and the ≥1-need rate</em> are the file's actual per-contract values. Eligibility-file counts, gender, app enrollment, urgency, the barrier categories, engagement mix and resource connections are not available by contract from any current source and are shown for Texas as a whole.`;
 
-/* Two-column H-contract table used inside the Client View and Value View market cards */
-function contractSplitTable(mk) {
-    const cs = mk.contracts;
-    if (!cs || !cs.length) return '';
-    const row = (lbl, f, t, fmtFn) => `<tr><td>${lbl}</td>${cs.map(c => `<td><b>${fmtFn ? fmtFn(c) : fmt(f(c), t)}</b></td>`).join('')}</tr>`;
-    return `<div class="mkt-split">
-        <table>
-            <thead><tr><th>By H-contract</th>${cs.map(c => `<th>${c.id}<br><span style="font-weight:400;text-transform:none;letter-spacing:0">${c.short}</span></th>`).join('')}</tr></thead>
-            <tbody>
-                ${row('Members reached', c => c.reached)}
-                ${row('Enrolled', c => c.enrolled)}
-                ${row('Engagement rate', c => c.conversionRate, 'pct')}
-                ${row('PRAPARE · ≥1 need', null, null, c => `${fmt(c.screening.praparen)} · ${fmt(c.screening.sdohNeedPct,'pct')}`)}
-                ${row('UCLA-3 · avg', null, null, c => `${fmt(c.screening.ucla3n)} · ${c.screening.ucla3avg.toFixed(1)}`)}
-                ${row('PHQ-4 · avg', null, null, c => `${fmt(c.screening.phq4n)} · ${c.screening.phq4avg.toFixed(1)}`)}
-                ${row('Medicare Well-Being', c => c.screening.mwban)}
-                ${row('Members engaged', c => c.engage.careTeamMembers)}
-                ${row('Appointments · attended', null, null, c => `${c.appts.total} · ${c.appts.attended}`)}
-            </tbody>
-        </table>
-        <div class="hc-note" style="margin-top:6px;">${HC_NOTE_SHORT}</div>
-    </div>`;
+/* "What We're Seeing by Market" cards (Client View + Value View share this).
+   Texas returns TWO cards — one per H-contract — in place of a single Texas
+   card (Kaylan 9/21: a by-contract table inside one tile was too compressed).
+   `subClr` is the muted sub-text color (Client #4a6070 · Value #8a9baa). */
+function spotlightCards(mk, signalHtml, subClr, maxUcla3, maxPhq4, badge) {
+    const sub  = t => `<span style="font-weight:400;color:${subClr};font-size:11px;">${t}</span>`;
+    const row  = (lbl, val) => `<div class="mkt-stat-row"><span class="mkt-stat-lbl">${lbl}</span><span class="mkt-stat-val">${val}</span></div>`;
+    const card = (name, body, sig) => `<div class="mkt-card"><div class="mkt-card-name">${name}</div>${body}<div class="mkt-signal">${sig}</div></div>`;
+    const uclaTxt = s => s.ucla3avg >= 6 ? '· Lonely' : '· Not lonely';
+    const phqTxt  = s => s.phq4avg <= 2 ? '· Normal' : s.phq4avg <= 5 ? '· Mild' : s.phq4avg <= 8 ? '· Moderate' : '· Severe';
+    const screeningRows = (s, withBadges) =>
+        row('PRAPARE (SDOH)',      `${fmt(s.praparen)} ${sub(`screenings · ${fmt(s.sdohNeedPct,'pct')} identify ≥1 need`)}`) +
+        row('UCLA-3 (Loneliness)', `${fmt(s.ucla3n)} ${sub(`screenings · avg score ${s.ucla3avg.toFixed(1)}${withBadges && s.ucla3avg === maxUcla3 ? badge : ''} ${uclaTxt(s)}`)}`) +
+        row('PHQ-4 (Distress)',    `${fmt(s.phq4n)} ${sub(`screenings · avg score ${s.phq4avg.toFixed(1)}${withBadges && s.phq4avg === maxPhq4 ? badge : ''} ${phqTxt(s)}`)}`) +
+        row('Medicare Well-Being', `${fmt(s.mwban)} ${sub('assessments completed')}`);
+
+    if (!mk.contracts || !mk.contracts.length) {
+        return card(`${mk.name} (${mk.code})`,
+            screeningRows(mk.screening, true) + row('Avg Social Needs', `${mk.screening.avgNeeds.toFixed(1)} per member`),
+            signalHtml);
+    }
+    /* Texas: one full tile per H-contract. Avg needs is Texas-wide (no by-contract source). */
+    return mk.contracts.map(c => card(
+        `${mk.name} — ${c.id} · ${c.short}`,
+        row('Enrolled', `${fmt(c.enrolled)} ${sub(`· ${fmt(c.conversionRate,'pct')} engagement rate on ${fmt(c.reached)} reached`)}`) +
+        screeningRows(c.screening, false) +
+        row('Avg Social Needs', `${mk.screening.avgNeeds.toFixed(1)} ${sub('per member · Texas-wide (not split by contract)')}`),
+        contractTileSignals(mk, c)
+    )).join('');
+}
+
+/* Key Signals for one Texas H-contract tile */
+function contractTileSignals(mk, c) {
+    const other = mk.contracts.find(o => o !== c);
+    const lead  = c.conversionRate > other.conversionRate;
+    return `<div class="mkt-signal-lbl">Key Signals</div><ul>
+            <li>${c.short} (${c.id}) carries ${fmt(c.enrolledShare,'pct')} of Texas enrollment — ${fmt(c.enrolled)} of ${fmt(mk.enrolled)} members</li>
+            <li>${fmt(c.conversionRate,'pct')} engagement rate on ${fmt(c.reached)} reached — ${lead ? `the more responsive Texas contract (${other.id}: ${fmt(other.conversionRate,'pct')})` : `${other.id} converts higher at ${fmt(other.conversionRate,'pct')}`}</li>
+            <li>${fmt(c.screening.sdohNeedPct,'pct')} identify ≥1 social need · ${fmt(c.file.lonelyPct,'pct')} lonely on UCLA-3 · ${fmt(c.file.distressModSevPct,'pct')} moderate–severe distress on PHQ-4</li>
+            <li>${fmt(c.engage.careTeamMembers)} members engaged · avg ${c.engage.avgCallsPerMember} calls/member · ${c.appts.total} appointments coordinated, ${c.appts.attended} attended (as of 9/1)</li>
+            <li>Texas-wide: top barriers are income instability (91%) · food insecurity (66%) · health literacy need 33%</li></ul>
+        <div class="hc-note" style="margin-top:8px;">Reach is actual by contract (Sept 11 outreach report). Enrolled and screening counts apportion the Sept 14 Texas totals by this contract's share in the Sept 14 member-level report; averages and the ≥1-need rate are the report's actual values.</div>`;
 }
 
 /* Contract-level bullets appended to the Texas Key Signals (Client + Value views) */
@@ -3139,8 +3133,7 @@ function renderAll() {
             <li>Largest eligible population (23,560) · SDOH burden 3.1 avg needs/member</li>
             <li>97% identify ≥1 social need · top barriers: income instability (91%) · food insecurity (66%)</li>
             <li>1,404 members engaged · avg 5.8 calls/member</li>
-            <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li>
-            ${txContractSignals(D.markets[1])}</ul>`,
+            <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li></ul>`, /* TX renders as two H-contract tiles — see spotlightCards(); these TX signals are not shown */
         UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Smallest market · leads the program on engagement rate at 15.8% · deepest engagement per member (5.7 calls/member)</li>
             <li>96% identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)</li>
@@ -3155,17 +3148,7 @@ function renderAll() {
     const maxUcla3 = Math.max(...D.markets.map(m => m.screening.ucla3avg));
     const maxPhq4  = Math.max(...D.markets.map(m => m.screening.phq4avg));
     const badge = '<span class="mkt-highest-badge">↑ highest</span>';
-    $('market-spotlight-grid').innerHTML = D.markets.map(mk => `
-        <div class="mkt-card">
-            <div class="mkt-card-name">${mk.name} (${mk.code})</div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PRAPARE (SDOH)</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · ${fmt(mk.screening.sdohNeedPct,'pct')} identify ≥1 need</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">UCLA-3 (Loneliness)</span><span class="mkt-stat-val">${fmt(mk.screening.ucla3n)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · avg score ${mk.screening.ucla3avg.toFixed(1)}${mk.screening.ucla3avg === maxUcla3 ? badge : ''} ${mk.screening.ucla3avg >= 6 ? '· Lonely' : '· Not lonely'}</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · avg score ${mk.screening.phq4avg.toFixed(1)}${mk.screening.phq4avg === maxPhq4 ? badge : ''} ${mk.screening.phq4avg <= 2 ? '· Normal' : mk.screening.phq4avg <= 5 ? '· Mild' : mk.screening.phq4avg <= 8 ? '· Moderate' : '· Severe'}</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Medicare Well-Being</span><span class="mkt-stat-val">${fmt(mk.screening.mwban)} <span style="font-weight:400;color:#4a6070;font-size:11px;">assessments completed</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
-            ${contractSplitTable(mk)}
-            <div class="mkt-signal">${signals[mk.code]}</div>
-        </div>`).join('');
+    $('market-spotlight-grid').innerHTML = D.markets.map(mk => spotlightCards(mk, signals[mk.code], '#4a6070', maxUcla3, maxPhq4, badge)).join('');
 
     /* Activation & Impact — appointment mix (Client View) */
     renderActivationMix('activation-mix');
@@ -3495,8 +3478,7 @@ function renderValueView() {
             <li>Largest eligible population (23,560) · SDOH burden 3.1 avg needs/member</li>
             <li>97% identify ≥1 social need · top barriers: income instability (91%) · food insecurity (66%)</li>
             <li>1,404 members engaged · avg 5.8 calls/member</li>
-            <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li>
-            ${txContractSignals(D.markets[1])}</ul>`,
+            <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li></ul>`, /* TX renders as two H-contract tiles — see spotlightCards(); these TX signals are not shown */
         UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Smallest market · leads the program on engagement rate at 15.8% · deepest engagement per member (5.7 calls/member)</li>
             <li>96% identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)</li>
@@ -3508,17 +3490,7 @@ function renderValueView() {
             <li>2,033 enrolled at a 15.3% engagement rate · second-highest enrollment volume</li>
             <li>1,887 members engaged · 13,257 reached — more than the August eligibility file listed; effectively full coverage</li></ul>`
     };
-    if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk=>`
-        <div class="mkt-card">
-            <div class="mkt-card-name">${mk.name} (${mk.code})</div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PRAPARE (SDOH)</span><span class="mkt-stat-val">${fmt(mk.screening.praparen)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · ${fmt(mk.screening.sdohNeedPct,'pct')} identify ≥1 need</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">UCLA-3 (Loneliness)</span><span class="mkt-stat-val">${fmt(mk.screening.ucla3n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · avg score ${mk.screening.ucla3avg.toFixed(1)}${mk.screening.ucla3avg === maxUcla3 ? badge : ''} ${mk.screening.ucla3avg>=6?'· Lonely':'· Not lonely'}</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · avg score ${mk.screening.phq4avg.toFixed(1)}${mk.screening.phq4avg === maxPhq4 ? badge : ''} ${mk.screening.phq4avg<=2?'· Normal':mk.screening.phq4avg<=5?'· Mild':mk.screening.phq4avg<=8?'· Moderate':'· Severe'}</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Medicare Well-Being</span><span class="mkt-stat-val">${fmt(mk.screening.mwban)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">assessments completed</span></span></div>
-            <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
-            ${contractSplitTable(mk)}
-            <div class="mkt-signal">${vvSignals[mk.code]}</div>
-        </div>`).join('');
+    if ($('vv-market-grid')) $('vv-market-grid').innerHTML = D.markets.map(mk => spotlightCards(mk, vvSignals[mk.code], '#8a9baa', maxUcla3, maxPhq4, badge)).join('');
 
     /* Activation mix (Value View) */
     renderActivationMix('vv-activation-mix');
