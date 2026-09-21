@@ -970,10 +970,6 @@
         }
         .kpi-split b { color: var(--cool-slate); }
         .kpi-split.na { font-style: italic; color: #8a9baa; }
-        .hc-res-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--gray-2); }
-        .hc-res-cols .res-list { columns: 1; }
-        .hc-res-cols .hc-res-hd { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5f7385; margin-bottom: 6px; }
-        @media (max-width: 640px) { .hc-res-cols { grid-template-columns: 1fr; } }
         .rs-asof {
             display: inline-block;
             margin-left: 8px;
@@ -2491,8 +2487,6 @@
                           ≥1-need 97.2% / 96.5% vs Tableau 97%).
      • appts            = ACTUAL by contract from the 9/1 Appointment Schedule
                           CSV (same NAMED-visit-type matching as ACTIVATION).
-     • topResources     = in-app "_accessed" rows by contract in the 9/14 file
-                          (H7678 volume is small — 44 rows).
    NOT available by contract from any source: eligibility file (12,143 / 25%
    missing phone), gender, app-user %, urgent-need %, the 12 barrier categories,
    engagement-type mix, resource connections, avg social needs (file PRAPARE
@@ -2506,19 +2500,13 @@ const TX_CONTRACTS = [
       file:{ members:1237, new30:108, ucla3n:1793, ucla3avg:4.2, phq4n:1782, phq4avg:2.3,
              praparen:1190, sdohNeedPct:0.972, mwban:1307, careTeamMembers:1059, totalCalls:3013,
              lonelyPct:0.217, distressModSevPct:0.162 },
-      appts:{ total:202, members:159, attended:74, awv:81, awvAttended:46 },
-      topResources:[ "OTC (Over-the-Counter) Benefits", "Find Help (211 network)", "Find a Provider",
-                     "Healthy Actions Rewards", "211" ],
-      resourceRows:182 },
+      appts:{ total:202, members:159, attended:74, awv:81, awvAttended:46 } },
     { id:"H7678", name:"Molina Medicare Complete Care", short:"Complete Care",
       reached:1704, onboardedInReport:298,
       file:{ members:303, new30:52, ucla3n:405, ucla3avg:4.4, phq4n:404, phq4avg:2.3,
              praparen:282, sdohNeedPct:0.965, mwban:309, careTeamMembers:242, totalCalls:569,
              lonelyPct:0.267, distressModSevPct:0.153 },
-      appts:{ total:42, members:34, attended:20, awv:24, awvAttended:16 },
-      topResources:[ "Find a Provider", "National Respite Locator", "Behavioral Health Services Locator",
-                     "Healthy Actions Rewards", "Member Portal" ],
-      resourceRows:44 }
+      appts:{ total:42, members:34, attended:20, awv:24, awvAttended:16 } }
 ];
 
 /* Split an integer total across weights so the parts are integers that sum
@@ -3839,10 +3827,6 @@ function renderMarketTab(code, rootId) {
     const cs = d.contracts || [];
     const split = f => cs.length ? `<div class="kpi-split">${cs.map(c => `<span><span class="hc-tag">${c.id}</span>${f(c)}</span>`).join('')}</div>` : '';
     const splitNA = what => cs.length ? `<div class="kpi-split na">${what} not available by H-contract — shown for Texas as a whole</div>` : '';
-    const contractResources = cs.length ? `<div class="hc-res-cols">${cs.map(c => `<div>
-                    <div class="hc-res-hd"><span class="hc-tag">${c.id}</span>${c.short} · ${fmt(c.resourceRows)} in-app resource views</div>
-                    <ul class="res-list">${c.topResources.map((r, i) => `<li><span class="res-rank">#${i+1}</span>${r}</li>`).join('')}</ul>
-                </div>`).join('')}</div>` : '';
     const contractNote = cs.length ? `<div class="card" style="margin-top:14px;"><div class="card-sub">${HC_NOTE_LONG}</div></div>` : '';
     const contractSignals = cs.length ? txContractSignals(d) + `
             <li>Appointments as of Sept 1: ${cs.map(c => `${c.id} ${c.appts.total} coordinated · ${c.appts.attended} attended · ${c.appts.awv} Annual Wellness Visits`).join(' — ')}</li>` : '';
@@ -3920,7 +3904,6 @@ function renderMarketTab(code, rootId) {
                 <div class="card-lbl">Top Self-Navigated Resources (In-App)</div>
                 <div class="card-sub" style="margin-bottom:14px;">Resources ${d.name} members found and connected to on their own within the Pyx app, by member volume.</div>
                 <ul class="res-list">${d.topResources.map(r => `<li><span class="res-rank">#${r.rank}</span>${r.n}</li>`).join('')}</ul>
-                ${contractResources}
             </div>
         </div>
     </div></div></div>
