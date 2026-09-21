@@ -938,6 +938,68 @@
         }
         .mkt-table tr.sub-row td:first-child { padding-left: 30px; }
         .mkt-table tr.sub-row td.num-hl { color: var(--green); opacity: 0.85; }
+        /* Texas H-contract split (H6515 Complete Care Plus / H7678 Complete Care) */
+        .hc-tag {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: var(--gray-3);
+            color: #5f7385;
+            border-radius: 3px;
+            padding: 1px 5px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .hc-note {
+            font-size: 11px;
+            color: #6b7f90;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+        .kpi-split {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 14px;
+            margin-top: 9px;
+            padding-top: 7px;
+            border-top: 1px dashed var(--gray-2);
+            font-size: 11px;
+            color: #5f7385;
+            line-height: 1.5;
+        }
+        .kpi-split b { color: var(--cool-slate); }
+        .kpi-split.na { font-style: italic; color: #8a9baa; }
+        .mkt-split {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--gray-2);
+        }
+        .mkt-split table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        .mkt-split th {
+            text-align: right;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #8a9baa;
+            padding: 2px 0 5px;
+        }
+        .mkt-split th:first-child { text-align: left; }
+        .mkt-split td {
+            text-align: right;
+            padding: 3px 0;
+            color: #5f7385;
+            border-bottom: 1px solid #f0f3f6;
+            white-space: nowrap;
+        }
+        .mkt-split td:first-child { text-align: left; white-space: normal; }
+        .mkt-split tr:last-child td { border-bottom: none; }
+        .mkt-split td b { color: var(--slate); }
+        .hc-res-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--gray-2); }
+        .hc-res-cols .res-list { columns: 1; }
+        .hc-res-cols .hc-res-hd { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5f7385; margin-bottom: 6px; }
+        @media (max-width: 640px) { .hc-res-cols { grid-template-columns: 1fr; } }
         .rs-asof {
             display: inline-block;
             margin-left: 8px;
@@ -1768,7 +1830,7 @@
         <p class="header-period" id="client-period"></p>
         <div class="market-pills">
             <span class="mpill">Ohio — H9955</span>
-            <span class="mpill">Texas — H7678 / H6515</span>
+            <span class="mpill">Texas — H6515 / H7678</span>
             <span class="mpill">Utah — H5628</span>
             <span class="mpill">Washington — H5823</span>
         </div>
@@ -1879,6 +1941,7 @@
             <div class="card" style="margin-top:20px;">
                 <div class="card-lbl">Enrollment by Market</div>
                 <table class="mkt-table" id="mkt-table"></table>
+                <div class="hc-note" id="mkt-table-note"></div>
             </div>
         </div></div>
     </div>
@@ -1929,8 +1992,8 @@
                 <div class="cohort-sub">DSNP members carry complex, compounding needs, so our care team coordinates across many visit types. Annual Wellness Visits now lead the mix — the activation work happening right now, in Month 6.</div>
                 <div class="card" style="margin-top:24px;">
                     <div class="act-stat-row">
-                        <div><div class="card-lbl">Appointments Coordinated</div><div class="card-val">760</div><div class="card-sub">Network total, all 4 markets · OH 248 · TX 244 · WA 190 · UT 78 · 604 members · 373 attended (49%)</div></div>
-                        <div><div class="card-lbl">Annual Wellness Visits</div><div class="card-val">396</div><div class="card-sub">52% of all appointments — 264 already attended · OH 133 · WA 109 · TX 105 · UT 49</div></div>
+                        <div><div class="card-lbl">Appointments Coordinated</div><div class="card-val">760</div><div class="card-sub">Network total, all 4 markets · OH 248 · TX 244 (H6515 202 · H7678 42) · WA 190 · UT 78 · 604 members · 373 attended (49%)</div></div>
+                        <div><div class="card-lbl">Annual Wellness Visits</div><div class="card-val">396</div><div class="card-sub">52% of all appointments — 264 already attended · OH 133 · WA 109 · TX 105 (H6515 81 · H7678 24) · UT 49</div></div>
                         <div><div class="card-lbl">STARS Measure Appointments</div><div class="card-val">106</div><div class="card-sub">Diabetes care (40) + blood pressure (38) + colon (16) + mammogram (12) — direct HEDIS/STARS quality measures; 28 are cancer screenings; 68 attended</div></div>
                     </div>
                     <div class="card-lbl" style="margin-top:8px;">Appointment Mix — By Visit Type</div>
@@ -2029,7 +2092,7 @@
         <p class="header-period" id="vv-period"></p>
         <div class="market-pills">
             <span class="mpill">Ohio — H9955</span>
-            <span class="mpill">Texas — H7678</span>
+            <span class="mpill">Texas — H6515 / H7678</span>
             <span class="mpill">Utah — H5628</span>
             <span class="mpill">Washington — H5823</span>
         </div>
@@ -2427,6 +2490,141 @@
 /* =============================================
    DATA — Update monthly from Tableau
 ============================================= */
+
+/* ---------------------------------------------------------------------------
+   TEXAS BY H-CONTRACT (added 9/21/2026, Kaylan's request: every Texas data
+   point on the Client View and the Texas tab broken out by contract).
+   Texas enrolls under two Medicare contracts: Molina Medicare Complete Care Plus
+   = H6515 and Molina Medicare Complete Care = H7678 (confirmed via CMS listings).
+
+   METHOD — Tableau reports Texas as one market, so:
+     • reached          = ACTUAL by contract from the 9/11 Outreach report
+                          (Molina_TX_DSNP_PyxHealth_Outreach_09112026.csv, one row
+                          per member; PlanName column). The 9/15 Outreach report
+                          is a strict subset cut at 8/31 — do NOT use it.
+     • enrolled, onboards30, screening COUNTS, members engaged, calls
+                        = the published Texas totals APPORTIONED by each
+                          contract's share in the 9/14 member-level report
+                          (Molina_TX_DSNP_PyxHealth_Weekly_Reports_09142026.csv,
+                          RunDate 9/14, activity through 9/13). That file tracks
+                          the 9/14 Tableau totals within ~2% (members 1,540 vs
+                          1,571 · UCLA-3 2,198 vs 2,247 · PRAPARE 1,472 vs 1,500),
+                          so the shares are a sound basis. Sums always tie to the
+                          Texas total (largest-remainder rounding in apportion()).
+     • ucla3avg / phq4avg / sdohNeedPct
+                        = the file's ACTUAL per-contract values (file averages
+                          match Tableau to the tenth: 4.24 vs 4.2 · 2.32 vs 2.3;
+                          ≥1-need 97.2% / 96.5% vs Tableau 97%).
+     • appts            = ACTUAL by contract from the 9/1 Appointment Schedule
+                          CSV (same NAMED-visit-type matching as ACTIVATION).
+     • topResources     = in-app "_accessed" rows by contract in the 9/14 file
+                          (H7678 volume is small — 44 rows).
+   NOT available by contract from any source: eligibility file (12,143 / 25%
+   missing phone), gender, app-user %, urgent-need %, the 12 barrier categories,
+   engagement-type mix, resource connections, avg social needs (file PRAPARE
+   score is a different basis than Tableau's avg-needs tile). Those stay at the
+   Texas total with a "not available by contract" note.
+   `file` = raw counts from the 9/14 member report (the apportioning weights).
+--------------------------------------------------------------------------- */
+const TX_CONTRACTS = [
+    { id:"H6515", name:"Molina Medicare Complete Care Plus", short:"Complete Care Plus",
+      reached:8818, onboardedInReport:1226,
+      file:{ members:1237, new30:108, ucla3n:1793, ucla3avg:4.2, phq4n:1782, phq4avg:2.3,
+             praparen:1190, sdohNeedPct:0.972, mwban:1307, careTeamMembers:1059, totalCalls:3013,
+             lonelyPct:0.217, distressModSevPct:0.162 },
+      appts:{ total:202, members:159, attended:74, awv:81, awvAttended:46 },
+      topResources:[ "OTC (Over-the-Counter) Benefits", "Find Help (211 network)", "Find a Provider",
+                     "Healthy Actions Rewards", "211" ],
+      resourceRows:182 },
+    { id:"H7678", name:"Molina Medicare Complete Care", short:"Complete Care",
+      reached:1704, onboardedInReport:298,
+      file:{ members:303, new30:52, ucla3n:405, ucla3avg:4.4, phq4n:404, phq4avg:2.3,
+             praparen:282, sdohNeedPct:0.965, mwban:309, careTeamMembers:242, totalCalls:569,
+             lonelyPct:0.267, distressModSevPct:0.153 },
+      appts:{ total:42, members:34, attended:20, awv:24, awvAttended:16 },
+      topResources:[ "Find a Provider", "National Respite Locator", "Behavioral Health Services Locator",
+                     "Healthy Actions Rewards", "Member Portal" ],
+      resourceRows:44 }
+];
+
+/* Split an integer total across weights so the parts are integers that sum
+   exactly to the total (largest-remainder method). */
+function apportion(total, weights) {
+    const sum  = weights.reduce((a, b) => a + b, 0);
+    const raw  = weights.map(w => total * w / sum);
+    const base = raw.map(Math.floor);
+    let rem = total - base.reduce((a, b) => a + b, 0);
+    raw.map((r, i) => [r - base[i], i]).sort((a, b) => b[0] - a[0])
+       .slice(0, rem).forEach(([, i]) => base[i]++);
+    return base;
+}
+
+/* Fill each contract's published-basis figures from the Texas totals.
+   `tx` needs enrolled, screening{}, engage{} and (optionally) onboards30. */
+function deriveContracts(tx, contracts) {
+    const w = key => contracts.map(c => c.file[key]);
+    const set = (vals, fn) => vals.forEach((v, i) => fn(contracts[i], v));
+    set(apportion(tx.enrolled, w('members')),                 (c, v) => { c.enrolled = v; c.conversionRate = v / c.reached; });
+    if (tx.onboards30 != null) set(apportion(tx.onboards30, w('new30')), (c, v) => c.onboards30 = v);
+    contracts.forEach(c => { c.screening = c.screening || {}; c.engage = c.engage || {}; });
+    set(apportion(tx.screening.ucla3n,   w('ucla3n')),        (c, v) => c.screening.ucla3n   = v);
+    set(apportion(tx.screening.phq4n,    w('phq4n')),         (c, v) => c.screening.phq4n    = v);
+    set(apportion(tx.screening.praparen, w('praparen')),      (c, v) => c.screening.praparen = v);
+    set(apportion(tx.screening.mwban,    w('mwban')),         (c, v) => c.screening.mwban    = v);
+    set(apportion(tx.engage.careTeamMembers, w('careTeamMembers')), (c, v) => c.engage.careTeamMembers = v);
+    set(apportion(tx.engage.totalCalls,  w('totalCalls')),    (c, v) => c.engage.totalCalls = v);
+    contracts.forEach(c => {
+        c.screening.ucla3avg    = c.file.ucla3avg;
+        c.screening.phq4avg     = c.file.phq4avg;
+        c.screening.sdohNeedPct = c.file.sdohNeedPct;
+        c.engage.avgCallsPerMember = Math.round(c.engage.totalCalls / c.engage.careTeamMembers * 10) / 10;
+        c.enrolledShare = c.enrolled / tx.enrolled;
+    });
+    return contracts;
+}
+
+/* "H6515 1,262 · H7678 309" — inline split string for card sub-copy */
+const contractLine = (contracts, f, t) => (contracts || []).map(c => `${c.id} ${fmt(f(c), t)}`).join(' · ');
+
+/* Footnotes that travel with every H-contract split (keep the method honest) */
+const HC_NOTE_SHORT = `Texas H-contract rows: <strong>H6515</strong> = Molina Medicare Complete Care Plus · <strong>H7678</strong> = Molina Medicare Complete Care. Members reached are actual by contract (Sept 11 outreach report). Enrolled is the Sept 14 Texas total apportioned by each contract's share of members in the Sept 14 member-level report, which tracks the dashboard total within 2%.`;
+const HC_NOTE_LONG  = `<strong>How the H-contract split is calculated.</strong> Tableau reports Texas as a single market, so the split draws on member-level files that carry the plan name. <em>Members reached</em> are actual by contract from the Sept 11 outreach report. <em>Enrolled, new onboards, screening counts, members engaged and calls</em> are the published Texas totals apportioned by each contract's share in the Sept 14 member-level report — that file tracks the Sept 14 dashboard totals within about 2% (1,540 vs. 1,571 members), so the parts always sum to the Texas figure shown. <em>Average scores and the ≥1-need rate</em> are the file's actual per-contract values. Eligibility-file counts, gender, app enrollment, urgency, the barrier categories, engagement mix and resource connections are not available by contract from any current source and are shown for Texas as a whole.`;
+
+/* Two-column H-contract table used inside the Client View and Value View market cards */
+function contractSplitTable(mk) {
+    const cs = mk.contracts;
+    if (!cs || !cs.length) return '';
+    const row = (lbl, f, t, fmtFn) => `<tr><td>${lbl}</td>${cs.map(c => `<td><b>${fmtFn ? fmtFn(c) : fmt(f(c), t)}</b></td>`).join('')}</tr>`;
+    return `<div class="mkt-split">
+        <table>
+            <thead><tr><th>By H-contract</th>${cs.map(c => `<th>${c.id}<br><span style="font-weight:400;text-transform:none;letter-spacing:0">${c.short}</span></th>`).join('')}</tr></thead>
+            <tbody>
+                ${row('Members reached', c => c.reached)}
+                ${row('Enrolled', c => c.enrolled)}
+                ${row('Engagement rate', c => c.conversionRate, 'pct')}
+                ${row('PRAPARE · ≥1 need', null, null, c => `${fmt(c.screening.praparen)} · ${fmt(c.screening.sdohNeedPct,'pct')}`)}
+                ${row('UCLA-3 · avg', null, null, c => `${fmt(c.screening.ucla3n)} · ${c.screening.ucla3avg.toFixed(1)}`)}
+                ${row('PHQ-4 · avg', null, null, c => `${fmt(c.screening.phq4n)} · ${c.screening.phq4avg.toFixed(1)}`)}
+                ${row('Medicare Well-Being', c => c.screening.mwban)}
+                ${row('Members engaged', c => c.engage.careTeamMembers)}
+                ${row('Appointments · attended', null, null, c => `${c.appts.total} · ${c.appts.attended}`)}
+            </tbody>
+        </table>
+        <div class="hc-note" style="margin-top:6px;">${HC_NOTE_SHORT}</div>
+    </div>`;
+}
+
+/* Contract-level bullets appended to the Texas Key Signals (Client + Value views) */
+function txContractSignals(mk) {
+    const cs = mk.contracts;
+    if (!cs || cs.length < 2) return '';
+    const [plus, cc] = cs; /* H6515 first, H7678 second */
+    return `
+            <li>Two Medicare contracts: ${plus.short} (${plus.id}) carries ${fmt(plus.enrolledShare,'pct')} of enrollment (${fmt(plus.enrolled)}) · ${cc.short} (${cc.id}) ${fmt(cc.enrolledShare,'pct')} (${fmt(cc.enrolled)})</li>
+            <li>${cc.id} converts at ${fmt(cc.conversionRate,'pct')} of ${fmt(cc.reached)} reached vs. ${fmt(plus.conversionRate,'pct')} for ${plus.id} — the smaller contract is the more responsive one</li>
+            <li>Need profile is consistent across both contracts — ${fmt(plus.screening.sdohNeedPct,'pct')} / ${fmt(cc.screening.sdohNeedPct,'pct')} identify ≥1 social need · UCLA-3 avg ${plus.screening.ucla3avg.toFixed(1)} / ${cc.screening.ucla3avg.toFixed(1)} · PHQ-4 avg ${plus.screening.phq4avg.toFixed(1)} / ${cc.screening.phq4avg.toFixed(1)}</li>`;
+}
+
 const D = {
     program: {
         reportMonth:    "September 2026",
@@ -2457,7 +2655,8 @@ const D = {
           screening:{ ucla3n:3035, ucla3avg:4.7, phq4n:3013, phq4avg:3.1, praparen:2185, mwban:2191, sdohNeedPct:0.95, avgNeeds:3.0, urgentPct:0.94 },
           engage:{ careTeamMembers:2094, totalCalls:10647, avgCallsPerMember:4.8 }
         },
-        { name:"Texas",      code:"TX", planId:"H7678", population:23560, enrolled:1571, reached:10522, status:"active", goLive:"3/17/2026",
+        { name:"Texas",      code:"TX", planId:"H6515 / H7678", population:23560, enrolled:1571, reached:10522, status:"active", goLive:"3/17/2026",
+          contracts: TX_CONTRACTS, /* H-contract split — derived in deriveContracts() below MARKET_DETAIL */
           stars:{ overall:3.5, stateAvg:4.0, health:3.5, drug:3.5, stayHealthy:3, chronicConditions:3, memberExperience:4 },
           screening:{ ucla3n:2247, ucla3avg:4.2, phq4n:2235, phq4avg:2.3, praparen:1500, mwban:1650, sdohNeedPct:0.97, avgNeeds:3.2, urgentPct:0.94 },
           engage:{ careTeamMembers:1404, totalCalls:7993, avgCallsPerMember:5.8 }
@@ -2863,7 +3062,7 @@ function renderAll() {
         <div class="card">
             <div class="card-lbl">Members Engaged by Care Team</div>
             <div class="card-val">${fmt(m.uniqueMembersEngaged)}</div>
-            <div class="card-sub">Distinct members with ≥1 care team conversation · OH ${fmt(D.markets[0].engage.careTeamMembers)} · TX ${fmt(D.markets[1].engage.careTeamMembers)} · UT ${fmt(D.markets[2].engage.careTeamMembers)} · WA ${fmt(D.markets[3].engage.careTeamMembers)} · Avg ${m.avgCallMinutes} min per call</div>
+            <div class="card-sub">Distinct members with ≥1 care team conversation · OH ${fmt(D.markets[0].engage.careTeamMembers)} · TX ${fmt(D.markets[1].engage.careTeamMembers)} (${contractLine(D.markets[1].contracts, c => c.engage.careTeamMembers)}) · UT ${fmt(D.markets[2].engage.careTeamMembers)} · WA ${fmt(D.markets[3].engage.careTeamMembers)} · Avg ${m.avgCallMinutes} min per call</div>
         </div>`;
 
     /* Market table */
@@ -2874,14 +3073,23 @@ function renderAll() {
         <tbody>${D.markets.map(mk => {
             const pct = Math.min(mk.conversionRate/0.35*100,100);
             const clr = mk.status==='launching' ? '#c8d4de' : mk.conversionRate < 0.10 ? 'var(--orange)' : 'var(--green)';
+            /* Texas: one indented sub-row per H-contract (reach actual; enrolled apportioned) */
+            const subRows = (mk.contracts || []).map(c => `<tr class="sub-row">
+                <td><span class="hc-tag">${c.id}</span>${c.name.replace('Molina Medicare ','')}</td>
+                <td>${fmt(c.reached)}</td>
+                <td class="num-hl"><strong>${fmt(c.enrolled)}</strong></td>
+                <td><div class="conv-wrap"><div class="conv-track"><div class="conv-fill" style="width:${Math.min(c.conversionRate/0.35*100,100)}%;background:${clr};opacity:.6"></div></div><span style="font-size:12px;font-weight:700;min-width:44px">${fmt(c.conversionRate,'pct')}</span></div></td>
+                <td style="font-size:11px;color:#8a9baa;">${fmt(c.enrolledShare,'pct')} of TX</td>
+            </tr>`).join('');
             return `<tr>
                 <td><span class="mkt-code">${mk.code}</span>${mk.name}</td>
                 <td>${fmt(mk.reached)}</td>
                 <td><strong>${fmt(mk.enrolled)}</strong></td>
                 <td><div class="conv-wrap"><div class="conv-track"><div class="conv-fill" style="width:${pct}%;background:${clr}"></div></div><span style="font-size:13px;font-weight:700;min-width:44px">${fmt(mk.conversionRate,'pct')}</span></div></td>
                 <td style="font-size:12px;color:#4a6070;">${mk.goLive}</td>
-            </tr>`;
+            </tr>${subRows}`;
         }).join('')}</tbody>`;
+    if ($('mkt-table-note')) $('mkt-table-note').innerHTML = HC_NOTE_SHORT;
 
     /* Deep Engagement & Barrier Visibility — live screening data */
     const totalPRAPARE = D.markets.reduce((s,mk) => s+(mk.screening?.praparen||0), 0);
@@ -2892,20 +3100,21 @@ function renderAll() {
     const wPHQ4  = D.markets.reduce((s,mk)=>s+(mk.screening?.phq4avg||0)*(mk.screening?.phq4n||0),0)/totalPHQ4;
     const wAvgNeeds = D.markets.reduce((s,mk)=>s+(mk.screening?.avgNeeds||0)*(mk.screening?.praparen||0),0)/totalPRAPARE;
     const pctSdohNeed = D.markets.reduce((s,mk)=>s+(mk.screening?.sdohNeedPct||0)*(mk.screening?.praparen||0),0)/totalPRAPARE;
+    const txC = D.markets[1].contracts || [];
 
     const activateMets = [
         { lbl:'PRAPARE (SDOH) Completed',
           val: fmt(totalPRAPARE),
-          sub:`Total screenings across all markets · ${fmt(pctSdohNeed,'pct')} identify ≥1 social need · Economic instability is the leading barrier in every market · By market: OH ${fmt(D.markets[0].screening.praparen)} · TX ${fmt(D.markets[1].screening.praparen)} · UT ${fmt(D.markets[2].screening.praparen)} · WA ${fmt(D.markets[3].screening.praparen)}` },
+          sub:`Total screenings across all markets · ${fmt(pctSdohNeed,'pct')} identify ≥1 social need · Economic instability is the leading barrier in every market · By market: OH ${fmt(D.markets[0].screening.praparen)} · TX ${fmt(D.markets[1].screening.praparen)} (${contractLine(txC, c => c.screening.praparen)}) · UT ${fmt(D.markets[2].screening.praparen)} · WA ${fmt(D.markets[3].screening.praparen)}` },
         { lbl:'PHQ-4 Completed',
           val: fmt(totalPHQ4),
-          sub:`Total screenings across all markets · Avg score ${wPHQ4.toFixed(1)} · Scale 0–12: 0–2 Normal · 3–5 Mild · 6–8 Moderate · 9–12 Severe · By market: OH ${fmt(D.markets[0].screening.phq4n)} · TX ${fmt(D.markets[1].screening.phq4n)} · UT ${fmt(D.markets[2].screening.phq4n)} · WA ${fmt(D.markets[3].screening.phq4n)}` },
+          sub:`Total screenings across all markets · Avg score ${wPHQ4.toFixed(1)} · Scale 0–12: 0–2 Normal · 3–5 Mild · 6–8 Moderate · 9–12 Severe · By market: OH ${fmt(D.markets[0].screening.phq4n)} · TX ${fmt(D.markets[1].screening.phq4n)} (${contractLine(txC, c => c.screening.phq4n)}) · UT ${fmt(D.markets[2].screening.phq4n)} · WA ${fmt(D.markets[3].screening.phq4n)}` },
         { lbl:'UCLA-3 (Loneliness) Completed',
           val: fmt(totalUCLA3),
-          sub:`Total screenings across all markets · Avg score ${wUCLA3.toFixed(1)} of 9 · Scale 3–9: 3–5 Not lonely · 6–9 Lonely · Avg score by market: OH ${D.markets[0].screening.ucla3avg.toFixed(1)} · TX ${D.markets[1].screening.ucla3avg.toFixed(1)} · UT ${D.markets[2].screening.ucla3avg.toFixed(1)} · WA ${D.markets[3].screening.ucla3avg.toFixed(1)}` },
+          sub:`Total screenings across all markets · Avg score ${wUCLA3.toFixed(1)} of 9 · Scale 3–9: 3–5 Not lonely · 6–9 Lonely · Avg score by market: OH ${D.markets[0].screening.ucla3avg.toFixed(1)} · TX ${D.markets[1].screening.ucla3avg.toFixed(1)} (${txC.map(c => `${c.id} ${c.screening.ucla3avg.toFixed(1)} on ${fmt(c.screening.ucla3n)}`).join(' · ')}) · UT ${D.markets[2].screening.ucla3avg.toFixed(1)} · WA ${D.markets[3].screening.ucla3avg.toFixed(1)}` },
         { lbl:'Medicare Well-Being Assessments',
           val: fmt(totalMWBA),
-          sub:`Total assessments across all markets · By market: OH ${fmt(D.markets[0].screening.mwban)} · TX ${fmt(D.markets[1].screening.mwban)} · UT ${fmt(D.markets[2].screening.mwban)} · WA ${fmt(D.markets[3].screening.mwban)}` },
+          sub:`Total assessments across all markets · By market: OH ${fmt(D.markets[0].screening.mwban)} · TX ${fmt(D.markets[1].screening.mwban)} (${contractLine(txC, c => c.screening.mwban)}) · UT ${fmt(D.markets[2].screening.mwban)} · WA ${fmt(D.markets[3].screening.mwban)}` },
         { lbl:'Avg Social Needs Per Member',
           val: wAvgNeeds.toFixed(1),
           sub:`Members carry multiple compounding barriers — not isolated incidents; systemic issues requiring coordinated navigation` },
@@ -2930,7 +3139,8 @@ function renderAll() {
             <li>Largest eligible population (23,560) · SDOH burden 3.1 avg needs/member</li>
             <li>97% identify ≥1 social need · top barriers: income instability (91%) · food insecurity (66%)</li>
             <li>1,404 members engaged · avg 5.8 calls/member</li>
-            <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li></ul>`,
+            <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li>
+            ${txContractSignals(D.markets[1])}</ul>`,
         UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Smallest market · leads the program on engagement rate at 15.8% · deepest engagement per member (5.7 calls/member)</li>
             <li>96% identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)</li>
@@ -2953,6 +3163,7 @@ function renderAll() {
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#4a6070;font-size:11px;">screenings · avg score ${mk.screening.phq4avg.toFixed(1)}${mk.screening.phq4avg === maxPhq4 ? badge : ''} ${mk.screening.phq4avg <= 2 ? '· Normal' : mk.screening.phq4avg <= 5 ? '· Mild' : mk.screening.phq4avg <= 8 ? '· Moderate' : '· Severe'}</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Medicare Well-Being</span><span class="mkt-stat-val">${fmt(mk.screening.mwban)} <span style="font-weight:400;color:#4a6070;font-size:11px;">assessments completed</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
+            ${contractSplitTable(mk)}
             <div class="mkt-signal">${signals[mk.code]}</div>
         </div>`).join('');
 
@@ -3209,7 +3420,7 @@ function renderValueView() {
         <div class="card">
             <div class="card-lbl">Care Team Conversations</div>
             <div class="card-val">${fmt(totalEngCalls)}</div>
-            <div class="card-sub">Needs-based conversations across all 4 markets — building the trust required to move members to PCP action &nbsp;·&nbsp; OH ${D.markets[0].engage.totalCalls} · TX ${D.markets[1].engage.totalCalls} · UT ${D.markets[2].engage.totalCalls} · WA ${D.markets[3].engage.totalCalls}</div>
+            <div class="card-sub">Needs-based conversations across all 4 markets — building the trust required to move members to PCP action &nbsp;·&nbsp; OH ${fmt(D.markets[0].engage.totalCalls)} · TX ${fmt(D.markets[1].engage.totalCalls)} (${contractLine(D.markets[1].contracts, c => c.engage.totalCalls)}) · UT ${fmt(D.markets[2].engage.totalCalls)} · WA ${fmt(D.markets[3].engage.totalCalls)}</div>
         </div>
         <div class="card">
             <div class="card-lbl">Primary Barrier to PCP Access</div>
@@ -3219,7 +3430,7 @@ function renderValueView() {
         <div class="card">
             <div class="card-lbl">Annual Wellness Visits Coordinated</div>
             <div class="card-val">396</div>
-            <div class="card-sub">264 attended as of 9/1 · OH 133 · WA 109 · TX 105 · UT 49 · Direct STARS attestation opportunity in every market</div>
+            <div class="card-sub">264 attended as of 9/1 · OH 133 · WA 109 · TX 105 (${contractLine(D.markets[1].contracts, c => c.appts.awv)}) · UT 49 · Direct STARS attestation opportunity in every market</div>
         </div>`;
 
     /* Priority 2: Member Experience */
@@ -3284,7 +3495,8 @@ function renderValueView() {
             <li>Largest eligible population (23,560) · SDOH burden 3.1 avg needs/member</li>
             <li>97% identify ≥1 social need · top barriers: income instability (91%) · food insecurity (66%)</li>
             <li>1,404 members engaged · avg 5.8 calls/member</li>
-            <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li></ul>`,
+            <li>1,571 enrolled at a 14.9% engagement rate — a top market for PCP connections at scale</li>
+            ${txContractSignals(D.markets[1])}</ul>`,
         UT: `<div class="mkt-signal-lbl">Key Signals</div><ul>
             <li>Smallest market · leads the program on engagement rate at 15.8% · deepest engagement per member (5.7 calls/member)</li>
             <li>96% identify ≥1 social need · top barriers: income instability (93%) · food insecurity (67%)</li>
@@ -3304,6 +3516,7 @@ function renderValueView() {
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">PHQ-4 (Distress)</span><span class="mkt-stat-val">${fmt(mk.screening.phq4n)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">screenings · avg score ${mk.screening.phq4avg.toFixed(1)}${mk.screening.phq4avg === maxPhq4 ? badge : ''} ${mk.screening.phq4avg<=2?'· Normal':mk.screening.phq4avg<=5?'· Mild':mk.screening.phq4avg<=8?'· Moderate':'· Severe'}</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Medicare Well-Being</span><span class="mkt-stat-val">${fmt(mk.screening.mwban)} <span style="font-weight:400;color:#8a9baa;font-size:11px;">assessments completed</span></span></div>
             <div class="mkt-stat-row"><span class="mkt-stat-lbl">Avg Social Needs</span><span class="mkt-stat-val">${mk.screening.avgNeeds.toFixed(1)} per member</span></div>
+            ${contractSplitTable(mk)}
             <div class="mkt-signal">${vvSignals[mk.code]}</div>
         </div>`).join('');
 
@@ -3503,8 +3716,9 @@ const MARKET_DETAIL = {
         ]
     },
     TX: {
-        name:"Texas", code:"TX", planId:"H7678", goLive:"3/17/2026",
+        name:"Texas", code:"TX", planId:"H6515 / H7678", goLive:"3/17/2026",
         dataAsOf:"September 14, 2026", eligFileDate:"September 10, 2026",
+        contracts: TX_CONTRACTS, /* same array as D.markets TX — split derived once, below */
         enrolled:1571, onboards30:143, eligFile:12143,
         uniqueOutreached:10522, onboardingFromOutreach:0.328, /* uniqueOutreached = 9/11 Outreach report (UAT'd), NOT the dashboard's 10,406 tile */
         appUserPct:0.42, gender:{ f:946, m:625 },
@@ -3617,6 +3831,10 @@ const MARKET_DETAIL = {
    enrolled ÷ unique members reached. Derived, not sourced, so the market tabs
    and the Client View can never disagree. */
 Object.values(MARKET_DETAIL).forEach(d => { d.conversionRate = d.enrolled / d.uniqueOutreached; });
+/* Texas H-contract split — one derivation feeds the Client View, Value View and
+   Texas tab (D.markets TX and MARKET_DETAIL.TX share the TX_CONTRACTS array).
+   Runs here because onboards30 lives on MARKET_DETAIL; all renders happen at init. */
+deriveContracts(MARKET_DETAIL.TX, TX_CONTRACTS);
 
 /* `up` on an item = points increase vs. the prior reporting cycle. When any item
    in the list carries one, every row gets a trend cell so the bars stay aligned. */
@@ -3645,6 +3863,19 @@ function renderMarketTab(code, rootId) {
     const uclaState = s.ucla3avg >= 6 ? 'Lonely' : 'Not lonely';
     const phqState  = s.phq4avg <= 2 ? 'Normal' : s.phq4avg <= 5 ? 'Mild' : s.phq4avg <= 8 ? 'Moderate' : 'Severe';
 
+    /* H-contract split lines (Texas only — other markets have no `contracts`). Each
+       helper returns '' when there is nothing to split so the template stays shared. */
+    const cs = d.contracts || [];
+    const split = f => cs.length ? `<div class="kpi-split">${cs.map(c => `<span><span class="hc-tag">${c.id}</span>${f(c)}</span>`).join('')}</div>` : '';
+    const splitNA = what => cs.length ? `<div class="kpi-split na">${what} not available by H-contract — shown for Texas as a whole</div>` : '';
+    const contractResources = cs.length ? `<div class="hc-res-cols">${cs.map(c => `<div>
+                    <div class="hc-res-hd"><span class="hc-tag">${c.id}</span>${c.short} · ${fmt(c.resourceRows)} in-app resource views</div>
+                    <ul class="res-list">${c.topResources.map((r, i) => `<li><span class="res-rank">#${i+1}</span>${r}</li>`).join('')}</ul>
+                </div>`).join('')}</div>` : '';
+    const contractNote = cs.length ? `<div class="card" style="margin-top:14px;"><div class="card-sub">${HC_NOTE_LONG}</div></div>` : '';
+    const contractSignals = cs.length ? txContractSignals(d) + `
+            <li>Appointments as of Sept 1: ${cs.map(c => `${c.id} ${c.appts.total} coordinated · ${c.appts.attended} attended · ${c.appts.awv} Annual Wellness Visits`).join(' — ')}</li>` : '';
+
     const html = `
     <!-- Header -->
     <div class="client-header">
@@ -3664,14 +3895,15 @@ function renderMarketTab(code, rootId) {
             <div class="section-title">${d.name} at a Glance</div>
         </div>
         <div class="kpi-grid">
-            <div class="kpi"><div class="kpi-lbl">Members Enrolled</div><div class="kpi-val">${fmt(d.enrolled)}</div><div class="kpi-ctx">+${fmt(d.onboards30)} in the last 30 days</div></div>
-            <div class="kpi teal"><div class="kpi-lbl">Engagement Rate</div><div class="kpi-val">${convPct}</div></div>
-            <div class="kpi blue"><div class="kpi-lbl">Unique Members Reached</div><div class="kpi-val">${fmt(d.uniqueOutreached)}</div><div class="kpi-ctx">${fmt(d.onboardingFromOutreach,'pct')} onboard from successful outreach</div></div>
-            <div class="kpi orange"><div class="kpi-lbl">Avg Social Needs</div><div class="kpi-val">${s.avgNeeds.toFixed(1)}</div><div class="kpi-ctx">Per screened member</div></div>
+            <div class="kpi"><div class="kpi-lbl">Members Enrolled</div><div class="kpi-val">${fmt(d.enrolled)}</div><div class="kpi-ctx">+${fmt(d.onboards30)} in the last 30 days</div>${split(c => `<b>${fmt(c.enrolled)}</b> · +${fmt(c.onboards30)} in 30 days`)}</div>
+            <div class="kpi teal"><div class="kpi-lbl">Engagement Rate</div><div class="kpi-val">${convPct}</div>${split(c => `<b>${fmt(c.conversionRate,'pct')}</b>`)}</div>
+            <div class="kpi blue"><div class="kpi-lbl">Unique Members Reached</div><div class="kpi-val">${fmt(d.uniqueOutreached)}</div><div class="kpi-ctx">${fmt(d.onboardingFromOutreach,'pct')} onboard from successful outreach</div>${split(c => `<b>${fmt(c.reached)}</b> reached`)}</div>
+            <div class="kpi orange"><div class="kpi-lbl">Avg Social Needs</div><div class="kpi-val">${s.avgNeeds.toFixed(1)}</div><div class="kpi-ctx">Per screened member</div>${splitNA('Avg needs')}</div>
         </div>
         <div class="card" style="margin-top:20px;">
-            <div class="card-sub"><strong>Who's enrolling:</strong> ${fmt(d.gender.f)} women · ${fmt(d.gender.m)} men · concentrated in the 55–74 age bands · ${fmt(d.appUserPct,'pct')} enrolled in the Pyx app as well as telephonic support; the rest fully supported telephonically by the Pyx Care Team.</div>
+            <div class="card-sub"><strong>Who's enrolling:</strong> ${fmt(d.gender.f)} women · ${fmt(d.gender.m)} men · concentrated in the 55–74 age bands · ${fmt(d.appUserPct,'pct')} enrolled in the Pyx app as well as telephonic support; the rest fully supported telephonically by the Pyx Care Team.${cs.length ? ' <em>Gender and app enrollment are not available by H-contract.</em>' : ''}</div>
         </div>
+        ${contractNote}
     </div></div></div>
 
     <!-- Screeners -->
@@ -3681,10 +3913,10 @@ function renderMarketTab(code, rootId) {
             <div class="section-sub">${fmt(s.praparen)} PRAPARE screenings · ${fmt(s.sdohNeedPct,'pct')} identify ≥1 social need · loneliness &amp; distress baselines established.</div>
         </div>
         <div class="card-grid">
-            <div class="card"><div class="card-lbl">PRAPARE (SDOH)</div><div class="card-val">${fmt(s.praparen)}</div><div class="card-sub">${fmt(s.sdohNeedPct,'pct')} identify ≥1 social need · ${fmt(s.urgentPct,'pct')} flag a need as urgent</div></div>
-            <div class="card"><div class="card-lbl">UCLA-3 (Loneliness)</div><div class="card-val">${fmt(s.ucla3n)}</div><div class="card-sub">Avg score ${s.ucla3avg.toFixed(1)} of 9 · ${uclaState} (3–5 not lonely · 6–9 lonely)</div></div>
-            <div class="card"><div class="card-lbl">PHQ-4 (Distress)</div><div class="card-val">${fmt(s.phq4n)}</div><div class="card-sub">Avg score ${s.phq4avg.toFixed(1)} of 12 · ${phqState} (0–2 normal · 3–5 mild · 6–8 moderate)</div></div>
-            <div class="card"><div class="card-lbl">Medicare Well-Being</div><div class="card-val">${fmt(s.mwban)}</div><div class="card-sub">Assessments completed across enrolled members</div></div>
+            <div class="card"><div class="card-lbl">PRAPARE (SDOH)</div><div class="card-val">${fmt(s.praparen)}</div><div class="card-sub">${fmt(s.sdohNeedPct,'pct')} identify ≥1 social need · ${fmt(s.urgentPct,'pct')} flag a need as urgent</div>${split(c => `<b>${fmt(c.screening.praparen)}</b> · ${fmt(c.screening.sdohNeedPct,'pct')} ≥1 need`)}</div>
+            <div class="card"><div class="card-lbl">UCLA-3 (Loneliness)</div><div class="card-val">${fmt(s.ucla3n)}</div><div class="card-sub">Avg score ${s.ucla3avg.toFixed(1)} of 9 · ${uclaState} (3–5 not lonely · 6–9 lonely)</div>${split(c => `<b>${fmt(c.screening.ucla3n)}</b> · avg ${c.screening.ucla3avg.toFixed(1)} · ${fmt(c.file.lonelyPct,'pct')} lonely`)}</div>
+            <div class="card"><div class="card-lbl">PHQ-4 (Distress)</div><div class="card-val">${fmt(s.phq4n)}</div><div class="card-sub">Avg score ${s.phq4avg.toFixed(1)} of 12 · ${phqState} (0–2 normal · 3–5 mild · 6–8 moderate)</div>${split(c => `<b>${fmt(c.screening.phq4n)}</b> · avg ${c.screening.phq4avg.toFixed(1)} · ${fmt(c.file.distressModSevPct,'pct')} moderate–severe`)}</div>
+            <div class="card"><div class="card-lbl">Medicare Well-Being</div><div class="card-val">${fmt(s.mwban)}</div><div class="card-sub">Assessments completed across enrolled members</div>${split(c => `<b>${fmt(c.screening.mwban)}</b>`)}</div>
         </div>
     </div></div></div>
 
@@ -3692,7 +3924,7 @@ function renderMarketTab(code, rootId) {
     <div class="white-bg"><div class="wrap"><div class="section">
         <div class="section-head">
             <div class="section-title">Top Social Barriers in ${d.name}</div>
-            <div class="section-sub">Share of screened members indicating a need in each area. <span style="color:var(--orange);font-weight:700;">&uarr;</span> marks areas that increased since the August 3 reporting cycle.</div>
+            <div class="section-sub">Share of screened members indicating a need in each area. <span style="color:var(--orange);font-weight:700;">&uarr;</span> marks areas that increased since the August 3 reporting cycle.${cs.length ? ' Barrier categories are reported for Texas as a whole — they are not available by H-contract.' : ''}</div>
         </div>
         <div class="card">${barhList(d.sdohNeeds, 'barrier')}</div>
     </div></div></div>
@@ -3703,20 +3935,21 @@ function renderMarketTab(code, rootId) {
             <div class="section-title">How ${d.name} Members Are Engaging</div>
         </div>
         <div class="kpi-grid">
-            <div class="kpi"><div class="kpi-lbl">Members Engaged</div><div class="kpi-val">${fmt(e.careTeamMembers)}</div><div class="kpi-ctx">Distinct members with ≥1 care team call</div></div>
-            <div class="kpi teal"><div class="kpi-lbl">Engagement Calls</div><div class="kpi-val">${fmt(e.totalCalls)}</div><div class="kpi-ctx">Avg ${e.avgCallsPerMember} calls per member</div></div>
-            <div class="kpi blue"><div class="kpi-lbl">Resource Connections</div><div class="kpi-val">${fmt(e.resourceConnections)}</div><div class="kpi-ctx">Configurable content shared with members</div></div>
+            <div class="kpi"><div class="kpi-lbl">Members Engaged</div><div class="kpi-val">${fmt(e.careTeamMembers)}</div><div class="kpi-ctx">Distinct members with ≥1 care team call</div>${split(c => `<b>${fmt(c.engage.careTeamMembers)}</b>`)}</div>
+            <div class="kpi teal"><div class="kpi-lbl">Engagement Calls</div><div class="kpi-val">${fmt(e.totalCalls)}</div><div class="kpi-ctx">Avg ${e.avgCallsPerMember} calls per member</div>${split(c => `<b>${fmt(c.engage.totalCalls)}</b> · ${c.engage.avgCallsPerMember} per member`)}</div>
+            <div class="kpi blue"><div class="kpi-lbl">Resource Connections</div><div class="kpi-val">${fmt(e.resourceConnections)}</div><div class="kpi-ctx">Configurable content shared with members</div>${splitNA('Resource connections')}</div>
         </div>
         <div class="card-grid" style="margin-top:20px;">
             <div class="card">
                 <div class="card-lbl">Primary Engagement Type</div>
-                <div class="card-sub" style="margin-bottom:14px;">How care team time is spent.</div>
+                <div class="card-sub" style="margin-bottom:14px;">How care team time is spent.${cs.length ? ' Shown for Texas as a whole — not available by H-contract.' : ''}</div>
                 ${barhList(d.engagementMix, 'mix')}
             </div>
             <div class="card">
                 <div class="card-lbl">Top Self-Navigated Resources (In-App)</div>
                 <div class="card-sub" style="margin-bottom:14px;">Resources ${d.name} members found and connected to on their own within the Pyx app, by member volume.</div>
                 <ul class="res-list">${d.topResources.map(r => `<li><span class="res-rank">#${r.rank}</span>${r.n}</li>`).join('')}</ul>
+                ${contractResources}
             </div>
         </div>
     </div></div></div>
@@ -3728,7 +3961,7 @@ function renderMarketTab(code, rootId) {
         </div>
         <div class="mkt-card">
             <div class="mkt-signal"><div class="mkt-signal-lbl">What stands out this period</div>
-            <ul>${d.signals.map(x => `<li>${x}</li>`).join('')}</ul></div>
+            <ul>${d.signals.map(x => `<li>${x}</li>`).join('')}${contractSignals}</ul></div>
         </div>
     </div></div></div>
 
