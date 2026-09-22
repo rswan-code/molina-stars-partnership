@@ -2550,7 +2550,12 @@ const contractLine = (contracts, f, t) => (contracts || []).map(c => `${c.id} ${
 
 /* Footnotes that travel with every H-contract split (keep the method honest) */
 const HC_NOTE_SHORT = `Texas H-contract rows: <strong>H6515</strong> = Molina Medicare Complete Care Plus · <strong>H7678</strong> = Molina Medicare Complete Care. Members reached are actual by contract (Sept 11 outreach report). Enrolled is the Sept 14 Texas total apportioned by each contract's share of members in the Sept 14 member-level report, which tracks the dashboard total within 2%.`;
-const HC_NOTE_LONG  = `<strong>How the H-contract split is calculated.</strong> Tableau reports Texas as a single market, so the split draws on member-level files that carry the plan name. <em>Members reached</em> are actual by contract from the Sept 11 outreach report. <em>Enrolled, new onboards, screening counts, members engaged and calls</em> are the published Texas totals apportioned by each contract's share in the Sept 14 member-level report — that file tracks the Sept 14 dashboard totals within about 2% (1,540 vs. 1,571 members), so the parts always sum to the Texas figure shown. <em>Average scores and the ≥1-need rate</em> are the file's actual per-contract values. Eligibility-file counts, gender, app enrollment, urgency, the barrier categories, engagement mix and resource connections are not available by contract from any current source and are shown for Texas as a whole.`;
+/* (The long "How the H-contract split is calculated" methodology card was removed from the
+   Texas tab on 2026-09-22 at Kaylan's request. Method summary for maintainers: reached is
+   actual by contract from the 9/11 outreach report; enrolled / onboards / screening counts /
+   engaged / calls are Texas totals apportioned by each contract's member share in the 9/14
+   member-level report; averages and ≥1-need rate are actual per-contract values; elig file,
+   gender, app share, urgency, barrier categories, engagement mix and resources are TX-wide.) */
 
 /* "What We're Seeing by Market" cards (Client View + Value View share this).
    Texas returns TWO cards — one per H-contract — in place of a single Texas
@@ -3827,7 +3832,6 @@ function renderMarketTab(code, rootId) {
     const cs = d.contracts || [];
     const split = f => cs.length ? `<div class="kpi-split">${cs.map(c => `<span><span class="hc-tag">${c.id}</span>${f(c)}</span>`).join('')}</div>` : '';
     const splitNA = what => cs.length ? `<div class="kpi-split na">${what} not available by H-contract — shown for Texas as a whole</div>` : '';
-    const contractNote = cs.length ? `<div class="card" style="margin-top:14px;"><div class="card-sub">${HC_NOTE_LONG}</div></div>` : '';
     const contractSignals = cs.length ? txContractSignals(d) + `
             <li>Appointments as of Sept 1: ${cs.map(c => `${c.id} ${c.appts.total} coordinated · ${c.appts.attended} attended · ${c.appts.awv} Annual Wellness Visits`).join(' — ')}</li>` : '';
 
@@ -3858,7 +3862,6 @@ function renderMarketTab(code, rootId) {
         <div class="card" style="margin-top:20px;">
             <div class="card-sub"><strong>Who's enrolling:</strong> ${fmt(d.gender.f)} women · ${fmt(d.gender.m)} men · concentrated in the 55–74 age bands · ${fmt(d.appUserPct,'pct')} enrolled in the Pyx app as well as telephonic support; the rest fully supported telephonically by the Pyx Care Team.${cs.length ? ' <em>Gender and app enrollment are not available by H-contract.</em>' : ''}</div>
         </div>
-        ${contractNote}
     </div></div></div>
 
     <!-- Screeners -->
